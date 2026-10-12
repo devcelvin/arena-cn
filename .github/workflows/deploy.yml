@@ -25,7 +25,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: 同步数据到 web/data
         run: node scripts/sync-web-data.mjs
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: 同步数据到 web/data
         run: node scripts/sync-web-data.mjs
       - uses: yanglbme/gitee-pages-action@main
