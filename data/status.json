@@ -1,0 +1,116 @@
+{
+ "lastSuccess": "2026-10-12T15:08:11.216Z",
+ "lastAttempt": "2026-10-12T15:08:11.216Z",
+ "stale": false,
+ "lastError": null,
+ "boards": {
+  "agent": {
+   "ok": true,
+   "count": 53,
+   "warnings": [
+    "top1 评分变化较大：0.2 → 0.155（-22.5%）"
+   ]
+  },
+  "agent-coding": {
+   "ok": true,
+   "count": 53,
+   "warnings": [
+    "top1 评分变化较大：0.2 → 0.17（-15.0%）"
+   ]
+  },
+  "agent-aligned": {
+   "ok": true,
+   "count": 53,
+   "warnings": [
+    "top1 评分变化较大：0.1 → 0.144（44.0%）"
+   ]
+  },
+  "text": {
+   "ok": true,
+   "count": 414,
+   "warnings": []
+  },
+  "text-chinese": {
+   "ok": true,
+   "count": 390,
+   "warnings": []
+  },
+  "text-coding": {
+   "ok": true,
+   "count": 409,
+   "warnings": []
+  },
+  "text-math": {
+   "ok": true,
+   "count": 400,
+   "warnings": []
+  },
+  "text-creative": {
+   "ok": true,
+   "count": 412,
+   "warnings": []
+  },
+  "text-instruction": {
+   "ok": true,
+   "count": 414,
+   "warnings": []
+  },
+  "vision": {
+   "ok": true,
+   "count": 165,
+   "warnings": []
+  },
+  "vision-chinese": {
+   "ok": true,
+   "count": 125,
+   "warnings": []
+  },
+  "document": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "search": {
+   "ok": true,
+   "count": 34,
+   "warnings": []
+  },
+  "webdev": {
+   "ok": true,
+   "count": 142,
+   "warnings": []
+  },
+  "image-to-webdev": {
+   "ok": true,
+   "count": 64,
+   "warnings": []
+  },
+  "text-to-image": {
+   "ok": true,
+   "count": 82,
+   "warnings": []
+  },
+  "text-to-video": {
+   "ok": true,
+   "count": 48,
+   "warnings": []
+  },
+  "image-to-video": {
+   "ok": true,
+   "count": 48,
+   "warnings": []
+  },
+  "video-edit": {
+   "ok": true,
+   "count": 10,
+   "warnings": []
+  }
+ },
+ "session": {
+  "sessionCount": 362870135,
+  "sessionsLastHour": 24951,
+  "newestSessionAt": "2026-10-12T13:46:43.388Z"
+ },
+ "snapshotRetentionDays": 45,
+ "repoSizeMB": 2.7
+}

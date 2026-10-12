@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Arena 中文榜单 — 全球 AI 模型对战排名（每日更新）</title>
+  <meta name="description" content="arena.ai（原 LMSYS Chatbot Arena）全球 AI 模型对战榜单中文版：文本对话、中文对话、编程、视觉、文生图、视频、智能体等 19 个榜单，每日自动抓取更新。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232563eb'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>A</text></svg>">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="logo">A</span>
+        AI Arena 中文榜单 <small>国内可访问的每日镜像</small>
+      </a>
+      <span class="spacer"></span>
+      <button class="icon-btn" id="theme-toggle" type="button">🌙 深色</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="fresh-slot"></div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>🏆 智能体总榜</h2>
+        <span class="sub">Best Overall Agents · 相对战力值（0 = 平均水平）</span>
+        <a class="more" href="board.html?b=agent">查看全部 →</a>
+      </div>
+      <div id="agent-slot"><div class="empty">加载中…</div></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>🇨🇳 中文对话榜</h2>
+        <span class="sub">中文真实用户对战 · ELO 评分</span>
+        <a class="more" href="board.html?b=text-chinese">查看全部 →</a>
+      </div>
+      <div id="zh-slot"><div class="empty">加载中…</div></div>
+    </section>
+
+    <div id="grid-slot"></div>
+
+    <footer class="footer">
+      <p>数据来源 <a href="https://arena.ai/leaderboard" target="_blank" rel="noopener">arena.ai</a>（原 LMSYS Chatbot Arena）公开榜单页面，本站每日自动抓取快照并做中文化整理，仅供学习参考，与官方无关；排名与评分版权归原站所有。</p>
+      <p>评分说明：ELO 为相对战力分；智能体榜为 Bradley-Terry 相对战力值（按百分比展示）。价格为每百万 token 美元计价（智能体榜为单任务成本），厂商中文名为整理者附加标注。</p>
+      <p id="foot-info"></p>
+    </footer>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

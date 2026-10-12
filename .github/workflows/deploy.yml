@@ -1,0 +1,69 @@
+# Deploy — 构建静态站点并部署到 GitHub Pages + Gitee Pages 国内镜像
+#
+# 触发：push 前端变更 / Daily Fetch 完成后 / 手动
+# 防递归：Daily Fetch 的数据提交带 [skip ci]，且本工作流的 push 触发器
+#         只监听 web/**，全程不写任何数据。
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Daily Fetch"]
+    types: [completed]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 数据体检（缺失则阻断部署，避免上线空站）
+        run: node scripts/check-data.mjs
+
+      - name: 同步数据到 web/data
+        run: node scripts/sync-web-data.mjs
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  # 国内镜像：Gitee Pages（需在仓库 Settings → Secrets 配置
+  # GITEE_USERNAME / GITEE_PASSWORD / GITEE_REPO；未配置时本 job
+  # 静默失败，不影响主站）
+  gitee:
+    needs: build
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: 同步数据到 web/data
+        run: node scripts/sync-web-data.mjs
+      - uses: yanglbme/gitee-pages-action@main
+        with:
+          gitee-username: ${{ secrets.GITEE_USERNAME }}
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          gitee-repo: ${{ secrets.GITEE_REPO }}
+          branch: main
+          directory: web

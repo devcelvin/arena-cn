@@ -1,0 +1,7 @@
+# 依赖与临时产物
+node_modules/
+.tmp/
+web/data/
+.playwright-cli/
+*.log
+.DS_Store
