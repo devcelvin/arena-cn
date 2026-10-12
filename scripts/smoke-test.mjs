@@ -1,7 +1,7 @@
 /**
- * smoke-test.mjs — 前端冒烟测试（开发用，不进仓库）
- * 用最小 DOM 桩在 Node 中真实执行 app.js 的 initHome / initBoard，
- * 验证：无运行时错误 + 关键内容正确渲染 + 筛选逻辑工作。
+ * smoke-test.mjs — 前端冒烟测试（开发用，随仓库保留，不参与线上产物）
+ * 用 DOM 桩在 Node 中真实执行 app.js 的 initHome / initBoard 与纯函数，
+ * 验证：无运行时错误 + 关键内容正确渲染 + 筛选/排序逻辑工作。
  */
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -9,35 +9,107 @@ import { fileURLToPath } from 'node:url';
 const ROOT = fileURLToPath(new URL('../web/', import.meta.url));
 const appCode = await readFile(ROOT + 'assets/app.js', 'utf8');
 
-/* ---------- DOM 桩 ---------- */
-function makeEl(sel) {
-  return {
-    _sel: sel,
+/* ============================================================
+   DOM 桩
+   ============================================================ */
+function makeEl(key, tag = 'DIV') {
+  const el = {
+    _key: key,
+    _tag: tag,
+    _children: new Map(),
+    _handlers: {},
+    _attrs: {},
     innerHTML: '',
     textContent: '',
     outerHTML: '',
+    value: '',
     style: {},
     dataset: {},
-    addEventListener(ev, fn) { (this._h ||= {})[ev] = fn; },
-    remove() {},
-    querySelector(s) { return makeEl(this._sel + ' ' + s); },
+    parentElement: null,
+    classList: {
+      _s: new Set(),
+      add(c) { this._s.add(c); },
+      remove(c) { this._s.delete(c); },
+      contains(c) { return this._s.has(c); },
+      toggle(c, on) { const v = on === undefined ? !this._s.has(c) : !!on; v ? this._s.add(c) : this._s.delete(c); return v; },
+    },
+    addEventListener(ev, fn) { (this._handlers[ev] ||= []).push(fn); },
+    removeEventListener() {},
+    remove() { this._removed = true; },
+    querySelector(sel) {
+      const k = key + ' ' + sel;
+      if (!el._children.has(sel)) {
+        const child = makeEl(k, guessTag(sel));
+        child.parentElement = el;
+        el._children.set(sel, child);
+      }
+      return el._children.get(sel);
+    },
+    querySelectorAll() { return []; },
+    closest(sel) {
+      // 仅支持必要的自匹配（用于表头排序 / 按钮点击的分发）
+      return matches(sel, el) ? el : null;
+    },
+    setAttribute(k, v) { this._attrs[k] = String(v); },
+    getAttribute(k) { return this._attrs[k] ?? null; },
+    focus() { el._focused = true; },
+    select() {},
+    appendChild(c) { c.parentElement = el; return c; },
+    scrollTo() {},
+    fire(ev, arg) {
+      (this._handlers[ev] || []).forEach((fn) => fn(arg));
+      return (this._handlers[ev] || []).length;
+    },
+    hasHandler(ev) { return !!(this._handlers[ev] || []).length; },
   };
+  return el;
 }
-const els = new Map();
+
+function guessTag(sel) {
+  const m = sel.trim().match(/^([a-zA-Z][\w-]*)/);
+  return m ? m[1].toUpperCase() : 'DIV';
+}
+function matches(sel, el) {
+  const tagPart = sel.trim().match(/^([a-zA-Z][\w-]*)/);
+  if (tagPart && el._tag !== tagPart[1].toUpperCase()) return false;
+  const attr = sel.match(/\[([\w-]+)/);
+  if (attr) {
+    const name = attr[1].replace(/-(\w)/g, (_, c) => c.toUpperCase());
+    return el.dataset[name] !== undefined || el._attrs[attr[1]] !== undefined;
+  }
+  const cls = sel.match(/\.([\w-]+)/);
+  if (cls) return el.classList.contains(cls[1]) || (el._key || '').includes(cls[1]);
+  return true;
+}
+
+let els = new Map();
+const body = makeEl('body', 'BODY');
 const documentStub = {
   title: '',
+  body,
   documentElement: { dataset: {} },
+  _handlers: {},
+  addEventListener(ev, fn) { (this._handlers[ev] ||= []).push(fn); },
+  createElement(tag) { return makeEl('created:' + tag + ':' + Math.random(), tag.toUpperCase()); },
   querySelector(sel) {
-    if (!els.has(sel)) els.set(sel, makeEl(sel));
+    if (!els.has(sel)) els.set(sel, makeEl(sel, guessTag(sel)));
     return els.get(sel);
   },
+  querySelectorAll() { return []; },
 };
+
 const store = {};
 const localStorageStub = {
   getItem: (k) => store[k] ?? null,
   setItem: (k, v) => { store[k] = v; },
 };
-const matchMediaStub = () => ({ matches: false });
+const matchMediaStub = () => ({ matches: false, addEventListener() {} });
+const windowStub = {
+  matchMedia: matchMediaStub,
+  scrollY: 0,
+  addEventListener() {},
+  scrollTo() {},
+};
 
 /* fetch 桩：从 web/ 读真实文件 */
 async function fetchStub(p) {
@@ -50,67 +122,156 @@ async function fetchStub(p) {
   }
 }
 
-const runApp = (search) => {
-  els.clear();
-  const locationStub = { pathname: search ? '/board.html' : '/index.html', search: search || '' };
+function runApp(search) {
+  els = new Map();
+  Object.keys(documentStub._handlers).forEach((k) => delete documentStub._handlers[k]);
+  const locationStub = {
+    pathname: search ? '/board.html' : '/index.html',
+    search: search || '',
+  };
   const fn = new Function(
-    'document', 'fetch', 'localStorage', 'matchMedia', 'location', 'URLSearchParams',
-    appCode + '\n;return { initHome, initBoard };'
+    'document', 'fetch', 'localStorage', 'matchMedia', 'location', 'window', 'URLSearchParams',
+    appCode + '\n;return { initHome, initBoard, sortModels, boardTable, scoreText, ciText, orgColor, fmtCompact, fmtRel };'
   );
-  const api = fn(documentStub, fetchStub, localStorageStub, matchMediaStub, locationStub, URLSearchParams);
-  return api;
-};
+  return fn(documentStub, fetchStub, localStorageStub, matchMediaStub, locationStub, windowStub, URLSearchParams);
+}
 
 let failures = 0;
 const check = (name, cond) => {
   console.log(`${cond ? '✓' : '✗'} ${name}`);
   if (!cond) failures++;
 };
+const settling = () => new Promise((r) => setTimeout(r, 60));
 
-/* ---------- 测试 1：首页 ---------- */
+/* ============================================================
+   测试 1：首页
+   ============================================================ */
 {
   const api = runApp('');
   await api.initHome();
-  await new Promise((r) => setTimeout(r, 50));
-  check('首页：新鲜度条含更新时间', els.get('#fresh-slot').innerHTML.includes('数据更新至'));
-  check('首页：新鲜度条含全球对战数', els.get('#fresh-slot').innerHTML.includes('全球累计对战'));
+  await settling();
+
+  const fresh = els.get('#fresh-slot').innerHTML;
+  check('首页：新鲜度条含更新时间', fresh.includes('数据更新至'));
+  check('首页：新鲜度条含相对时间', /分钟前|小时前|天前|刚刚/.test(fresh));
+  check('首页：新鲜度条含全球对战数', fresh.includes('全球累计对战'));
+
+  const kpi = els.get('#stats-slot').innerHTML;
+  check('首页：KPI 卡片渲染', kpi.includes('class="stat"'));
+  check('首页：KPI 含跨榜去重模型数', kpi.includes('862'));
+  check('首页：KPI 含厂商数', kpi.includes('46'));
+  check('首页：KPI 含国产模型数', kpi.includes('221'));
+  check('首页：KPI 含国产占比', kpi.includes('占比'));
+
   check('首页：智能体榜渲染 Top10', els.get('#agent-slot').innerHTML.includes('Claude Opus 5.5 (Max)'));
   check('首页：智能体榜为百分比量纲', els.get('#agent-slot').innerHTML.includes('+15.5%'));
   check('首页：中文榜渲染', els.get('#zh-slot').innerHTML.includes('gemini-4-argon-high'));
   check('首页：中文榜为 ELO 量纲', els.get('#zh-slot').innerHTML.includes('1587.7'));
-  check('首页：榜单宫格含 19 个入口', (els.get('#grid-slot').innerHTML.match(/board-card/g) || []).length >= 19);
-  check('首页：中文榜有国内精选标记', els.get('#grid-slot').innerHTML.includes('国内精选'));
-  check('首页：国产徽章出现', els.get('#zh-slot').innerHTML.includes('badge-cn') || els.get('#grid-slot').innerHTML.includes('badge-cn'));
+  check('首页：含厂商色块', els.get('#zh-slot').innerHTML.includes('org-tile'));
+  check('首页：含分数条形图', els.get('#zh-slot').innerHTML.includes('scorebar'));
+
+  const grid = els.get('#grid-slot').innerHTML;
+  check('首页：榜单宫格含 19 个入口', (grid.match(/class="board-card/g) || []).length >= 19);
+  check('首页：中文榜有国内精选标记', grid.includes('国内精选'));
+  check('首页：卡片展示榜首模型', grid.includes('top1'));
+  check('首页：卡片含规模条', grid.includes('class="bar"'));
+  check('首页：国产徽章出现', els.get('#zh-slot').innerHTML.includes('badge-cn') || grid.includes('badge-cn'));
   check('首页：页脚信息填充', els.get('#foot-info').textContent.includes('最后成功抓取'));
 }
 
-/* ---------- 测试 2：榜单页 ---------- */
+/* ============================================================
+   测试 2：榜单页（ELO）
+   ============================================================ */
 {
   const api = runApp('?b=text-chinese');
   await api.initBoard();
-  await new Promise((r) => setTimeout(r, 50));
+  await settling();
+
   check('榜单页：标题设置', documentStub.title.includes('中文对话榜'));
   check('榜单页：面包屑', els.get('#crumb').innerHTML.includes('中文对话榜'));
   check('榜单页：元信息', els.get('#board-meta').innerHTML.includes('arena.ai'));
-  check('榜单页：表格渲染（top100）', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 100);
-  check('榜单页：结果计数', els.get('#result-count').textContent.includes('390'));
+  check('榜单页：元信息为 chip 样式', els.get('#board-meta').innerHTML.includes('class="pill"'));
+
+  const nav = els.get('#chip-nav').innerHTML;
+  check('榜单页：切换条含 19 个榜', (nav.match(/class="chip"/g) || []).length >= 19);
+  check('榜单页：当前榜高亮', nav.includes('aria-current="true"'));
+
+  const boardHtml = els.get('#board-slot').innerHTML;
+  check('榜单页：表格渲染（top100）', (boardHtml.match(/<tr/g) || []).length >= 100);
+  check('榜单页：表头可排序', (boardHtml.match(/data-sort="/g) || []).length >= 4);
+  check('榜单页：结果计数', els.get('#result-count').innerHTML.includes('390'));
+
+  check('榜单页：搜索框已绑定', els.get('#filter-input').hasHandler('input'));
+  check('榜单页：清除按钮已绑定', els.get('#filter-clear').hasHandler('click'));
+  check('榜单页：全部/国产分段控件已绑定', els.get('#seg-all').hasHandler('click') && els.get('#seg-cn').hasHandler('click'));
+  check('榜单页：排序下拉已绑定', els.get('#sort-select').hasHandler('change'));
+
   // 模拟筛选
-  const input = els.get('#filter-input');
-  check('榜单页：筛选器已绑定', typeof input._h?.input === 'function');
-  input._h.input({ target: { value: 'deepseek' } });
-  await new Promise((r) => setTimeout(r, 10));
+  els.get('#filter-input').fire('input', { target: { value: 'deepseek' } });
+  await settling();
   const html = els.get('#board-slot').innerHTML;
   check('榜单页：筛选 deepseek 生效', /deepseek/i.test(html) && !/gemini-4-argon/i.test(html));
+
+  // 模拟只看国产
+  els.get('#seg-cn').fire('click', {});
+  await settling();
+  check('榜单页：只看国产生效', /badge-cn/.test(els.get('#board-slot').innerHTML));
+  els.get('#seg-all').fire('click', {});
+  await settling();
+
+  // 模拟中文厂商搜索
+  els.get('#filter-input').fire('input', { target: { value: '月之暗面' } });
+  await settling();
+  check('榜单页：支持中文厂商名搜索', /moonshot/i.test(els.get('#board-slot').innerHTML));
+
+  // 模拟排序（下拉）
+  els.get('#filter-input').fire('input', { target: { value: '' } });
+  await settling();
+  const sel = els.get('#sort-select');
+  sel.value = 'votes:desc';
+  sel.fire('change', { target: sel });
+  await settling();
+  check('榜单页：按票数降序不报错且仍有内容', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 100);
 }
 
-/* ---------- 测试 3：BT 榜单页 ---------- */
+/* ============================================================
+   测试 3：BT 榜单页
+   ============================================================ */
 {
   const api = runApp('?b=agent');
   await api.initBoard();
-  await new Promise((r) => setTimeout(r, 50));
+  await settling();
   check('Agent 榜页：标题', documentStub.title.includes('智能体总榜'));
   check('Agent 榜页：量纲提示', els.get('#scale-hint').textContent.includes('Bradley-Terry'));
   check('Agent 榜页：百分比渲染', els.get('#board-slot').innerHTML.includes('+15.5%'));
+  check('Agent 榜页：单任务成本列', els.get('#board-slot').innerHTML.includes('单任务成本'));
+}
+
+/* ============================================================
+   测试 4：纯函数
+   ============================================================ */
+{
+  const api = runApp('');
+  const rows = [
+    { rank: 3, name: 'c', org: 'X', score: 1200, votes: 10, inputPrice: 1, outputPrice: 2, contextLength: 1000 },
+    { rank: 1, name: 'a', org: 'Y', score: 1400, votes: 30, inputPrice: 3, outputPrice: 4, contextLength: 3000 },
+    { rank: 2, name: 'b', org: 'Z', score: 1300, votes: null, inputPrice: null, outputPrice: null, contextLength: null },
+  ];
+  check('排序：按排名升序', api.sortModels(rows, 'rank', 'asc').map((m) => m.rank).join(',') === '1,2,3');
+  check('排序：按排名降序', api.sortModels(rows, 'rank', 'desc').map((m) => m.rank).join(',') === '3,2,1');
+  check('排序：按评分降序', api.sortModels(rows, 'score', 'desc').map((m) => m.rank).join(',') === '1,2,3');
+  check('排序：按票数降序空值排最后', api.sortModels(rows, 'votes', 'desc').map((m) => m.votes).join(',') === '30,10,');
+  check('排序：按输入价升序空值排最后', api.sortModels(rows, 'inputPrice', 'asc').map((m) => m.inputPrice).join(',') === '1,3,');
+  check('格式化：亿位压缩', api.fmtCompact(362942248) === '3.63 亿');
+  check('格式化：万位压缩', api.fmtCompact(27216) === '2.7 万');
+  check('厂商色：已知厂商取固定色', api.orgColor('OpenAI') === '#0f9b6c');
+  check('厂商色：未知厂商取安全色板', /^#[0-9a-f]{6}$/.test(api.orgColor('SomeUnknownOrg')));
+  check('分数：BT 量纲百分比', api.scoreText({ score: 0.155 }, 'bt') === '+15.5%');
+  check('分数：ELO 量纲原值', api.scoreText({ score: 1587.7 }, 'elo') === '1587.7');
+  check('区间：BT 双侧不对称', api.ciText({ score: 0.155, scoreUpper: 0.18, scoreLower: 0.14 }, 'bt').includes('+2.5%'));
+  check('表格：展开按钮出现', api.boardTable(Array.from({ length: 12 }, (_, i) => ({
+    rank: i + 1, name: 'm' + i, org: 'X', score: 100 - i, votes: 1,
+  })), 'elo', { limit: 10 }).includes('展开全部 12'));
 }
 
 console.log(failures === 0 ? '\n全部通过 ✅' : `\n${failures} 项失败 ❌`);

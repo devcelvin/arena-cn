@@ -4,14 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>页面不存在 - AI Arena 中文榜单</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50' y='69' font-size='54' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>A</text></svg>">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <main class="wrap" style="padding-top:80px">
-    <div class="card empty">
-      <p style="font-size:18px;margin:0 0 8px">404 — 页面不存在</p>
-      <p><a href="index.html">返回首页</a></p>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="logo" aria-hidden="true">A</span>
+        AI Arena 中文榜单 <small>国内可访问的每日镜像</small>
+      </a>
+      <span class="spacer"></span>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅色主题">🌙 深色</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="card" style="margin-top:32px">
+      <div class="empty">
+        <span class="ico">🧭</span>
+        <div class="t">404 — 这个页面不在榜上</div>
+        <div class="d">地址可能拼错了，或者这个榜单还没开榜。</div>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <a class="btn btn-primary" href="index.html">回到首页</a>
+          <a class="btn btn-ghost" href="board.html?b=text-chinese">看中文对话榜</a>
+        </div>
+      </div>
     </div>
   </main>
+
+  <script src="assets/app.js"></script>
 </body>
 </html>

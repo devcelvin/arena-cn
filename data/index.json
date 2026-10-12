@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-12T17:20:00.170Z",
+ "generatedAt": "2026-10-12T17:36:41.980Z",
  "groups": [
   "智能体",
   "对话",
@@ -15,7 +15,12 @@
    "scale": "bt",
    "highlight": false,
    "modelCount": 53,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "Claude Opus 5.5 (Max)",
+    "org": "Anthropic",
+    "score": 0.155
+   }
   },
   {
    "id": "agent-coding",
@@ -24,7 +29,12 @@
    "scale": "bt",
    "highlight": false,
    "modelCount": 53,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "Claude Opus 5.5 (High)",
+    "org": "Anthropic",
+    "score": 0.17
+   }
   },
   {
    "id": "agent-aligned",
@@ -33,7 +43,12 @@
    "scale": "bt",
    "highlight": false,
    "modelCount": 53,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "Claude Opus 5.5 (High)",
+    "org": "Anthropic",
+    "score": 0.144
+   }
   },
   {
    "id": "text",
@@ -42,7 +57,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gemini-4-argon-high",
+    "org": "Google",
+    "score": 1525.4
+   }
   },
   {
    "id": "text-chinese",
@@ -51,7 +71,12 @@
    "scale": "elo",
    "highlight": true,
    "modelCount": 390,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gemini-4-argon-high",
+    "org": "Google",
+    "score": 1587.7
+   }
   },
   {
    "id": "text-coding",
@@ -60,7 +85,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 409,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gemini-4-argon-high",
+    "org": "Google",
+    "score": 1561.9
+   }
   },
   {
    "id": "text-math",
@@ -69,7 +99,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 400,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gemini-4-argon-high",
+    "org": "Google",
+    "score": 1528.3
+   }
   },
   {
    "id": "text-creative",
@@ -78,7 +113,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gemini-4-argon-high",
+    "org": "Google",
+    "score": 1519.2
+   }
   },
   {
    "id": "text-instruction",
@@ -87,7 +127,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gemini-4-argon-high",
+    "org": "Google",
+    "score": 1528.7
+   }
   },
   {
    "id": "vision",
@@ -96,7 +141,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 165,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "claude-fable-5-high",
+    "org": "Anthropic",
+    "score": 1308
+   }
   },
   {
    "id": "vision-chinese",
@@ -105,7 +155,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 125,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gemini-3.8-flash-high",
+    "org": "Google",
+    "score": 1379.7
+   }
   },
   {
    "id": "document",
@@ -114,7 +169,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "claude-opus-5-high",
+    "org": "Anthropic",
+    "score": 1516.3
+   }
   },
   {
    "id": "search",
@@ -123,7 +183,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 34,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gpt-5.6-sol-xhigh",
+    "org": "OpenAI",
+    "score": 1257.3
+   }
   },
   {
    "id": "webdev",
@@ -132,7 +197,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 142,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "claude-opus-5.5-max",
+    "org": "Anthropic",
+    "score": 1813
+   }
   },
   {
    "id": "image-to-webdev",
@@ -141,7 +211,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 64,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "claude-opus-5.5-max",
+    "org": "Anthropic",
+    "score": 1748.5
+   }
   },
   {
    "id": "text-to-image",
@@ -150,7 +225,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gpt-image-2.5-sunburst",
+    "org": "OpenAI",
+    "score": 1424.6
+   }
   },
   {
    "id": "text-to-video",
@@ -159,7 +239,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 48,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "gemini-omni-1.1-flash",
+    "org": "Google",
+    "score": 1516.2
+   }
   },
   {
    "id": "image-to-video",
@@ -168,7 +253,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 48,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "minimax-h3",
+    "org": "MiniMax",
+    "score": 1495.4
+   }
   },
   {
    "id": "video-edit",
@@ -177,7 +267,12 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 10,
-   "updatedAt": "2026-10-12T17:20:00.170Z"
+   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "topModel": {
+    "name": "wan3.0",
+    "org": "Alibaba",
+    "score": 1414.1
+   }
   }
  ]
 }

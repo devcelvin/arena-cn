@@ -20,8 +20,9 @@ async function exists(p) {
 await rm(`${ROOT}web/data`, { recursive: true, force: true });
 await mkdir(`${ROOT}web/data`, { recursive: true });
 await cp(`${ROOT}data/latest`, `${ROOT}web/data/latest`, { recursive: true });
-await cp(`${ROOT}data/index.json`, `${ROOT}web/data/index.json`);
-if (await exists(`${ROOT}data/status.json`)) {
-  await cp(`${ROOT}data/status.json`, `${ROOT}web/data/status.json`);
+for (const f of ['index.json', 'status.json', 'stats.json']) {
+  if (await exists(`${ROOT}data/${f}`)) {
+    await cp(`${ROOT}data/${f}`, `${ROOT}web/data/${f}`);
+  }
 }
 console.log('[sync-web-data] web/data 已更新');
