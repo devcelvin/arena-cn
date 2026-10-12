@@ -27,11 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 数据体检（缺失则阻断部署，避免上线空站）
-        run: node scripts/check-data.mjs
-
       - name: 同步数据到 web/data
         run: node scripts/sync-web-data.mjs
+
+      - name: 数据体检（缺失则阻断部署，避免上线空站）
+        run: node scripts/check-data.mjs
 
       - uses: actions/configure-pages@v5
 
