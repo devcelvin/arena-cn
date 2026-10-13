@@ -31,7 +31,7 @@ export const PAGES = [
     kind: 'home',
     boards: [
       { id: 'agent-capabilities', name: '能力榜', group: '智能体', scale: 'bt', container: true },
-      { id: 'agent-alignment', name: '对齐榜', group: '智能体', scale: 'index', pillId: 'safest-agents', snapshot: true, fromPill: true },
+      { id: 'agent-alignment', name: '意图对齐榜', group: '智能体', scale: 'index', pillId: 'safest-agents', snapshot: true, fromPill: true },
     ],
   },
   {

@@ -56,7 +56,7 @@ const SCALE_LABEL = { elo: 'ELO 评分', bt: '相对战力值', index: '对齐�
 const SCALE_HINT = {
   elo: 'ELO 为相对战力分，分数越高代表对战表现越强；± 为 95% 置信区间。',
   bt: '相对战力值基于 Bradley-Terry 模型，0 = 平均水平，正值表示优于平均，按百分比展示。',
-  index: '对齐指数来自真实会话里的行为信号（任务完成确认、用户满意度、可引导性、工具使用可靠性等），分数越高代表对齐表现越好。',
+  index: '对齐指数衡量模型在真实会话中「按用户意图办事」的表现，分数越高越好。源站标注为 Preliminary（初步数据），模型数与样本量都较小，仅供参考。',
 };
 
 /* 榜组图标（仅为可读性，不承载语义） */
@@ -496,7 +496,7 @@ function renderPicker() {
        title="${esc(b.name)} · ${b.modelCount != null ? b.modelCount + ' 个模型' : '暂无数据'}${kids ? ` · ${kids} 个子类别` : ''}">
       <span class="nm">${esc(b.name)}</span>
       ${b.highlight ? '<span class="star" title="国内精选">★</span>' : ''}
-      <span class="n">${b.modelCount != null ? b.modelCount : '—'}</span>
+      ${kids && b.modelCount == null ? '' : `<span class="n">${b.modelCount != null ? b.modelCount : '—'}</span>`}
       ${kids ? `<span class="kids">${kids} 类 ›</span>` : ''}
     </a>`;
   }).join('');
