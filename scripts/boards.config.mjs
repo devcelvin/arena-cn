@@ -30,9 +30,9 @@ export const PAGES = [
     url: '/leaderboard',
     kind: 'home',
     boards: [
-      { id: 'agent', name: '智能体总榜', group: '智能体', scale: 'bt', listIndex: 0, pillId: 'best-overall-agents' },
-      { id: 'agent-coding', name: '编程智能体榜', group: '智能体', scale: 'bt', listIndex: 1, pillId: 'agentic-coding' },
-      { id: 'agent-aligned', name: '对齐偏好智能体榜', group: '智能体', scale: 'bt', listIndex: 2, pillId: 'safest-agents' },
+      { id: 'agent', name: '智能体总榜', group: '智能体', scale: 'bt', listIndex: 0, pillId: 'best-overall-agents', snapshot: true },
+      { id: 'agent-coding', name: '编程智能体榜', group: '智能体', scale: 'bt', listIndex: 1, pillId: 'agentic-coding', snapshot: true },
+      { id: 'agent-aligned', name: '对齐偏好智能体榜', group: '智能体', scale: 'bt', listIndex: 2, pillId: 'safest-agents', snapshot: true },
     ],
   },
   {
