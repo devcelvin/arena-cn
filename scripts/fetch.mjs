@@ -44,12 +44,14 @@ async function fetchOne(page) {
 
 async function main() {
   await mkdir(outDir, { recursive: true });
-  console.log(`[fetch] ${today} 抓取 ${PAGES.length} 个页面（并发 ${CONCURRENCY}）`);
+  // container 类节点（如 image-edit）本身是客户端渲染、无自有榜单数据，只为三级树保留位置，不抓取
+  const targets = PAGES.filter((p) => p.kind !== 'container');
+  console.log(`[fetch] ${today} 抓取 ${targets.length} 个页面（并发 ${CONCURRENCY}）`);
   const results = [];
   let cursor = 0;
   async function worker() {
-    while (cursor < PAGES.length) {
-      const page = PAGES[cursor++];
+    while (cursor < targets.length) {
+      const page = targets[cursor++];
       const r = await fetchOne(page);
       results.push(r);
       console.log(`  ${r.ok ? '✓' : '✗'} ${r.page} ${r.ok ? `${(r.bytes / 1024).toFixed(0)}KB` : r.error}`);
@@ -58,7 +60,7 @@ async function main() {
   await Promise.all(Array.from({ length: CONCURRENCY }, worker));
 
   const ok = results.filter((r) => r.ok).length;
-  console.log(`[fetch] 完成：${ok}/${PAGES.length} 成功`);
+  console.log(`[fetch] 完成：${ok}/${targets.length} 成功`);
   if (ok === 0) {
     console.error('[fetch] 全部失败，退出码 1');
     process.exit(1);

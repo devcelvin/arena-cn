@@ -2,7 +2,13 @@
 
 [arena.ai](https://arena.ai/leaderboard)（原 LMSYS Chatbot Arena）全球 AI 模型对战榜单的**国内版镜像站**：每日自动抓取榜单数据，全中文界面，国内可访问，**全程零成本**（GitHub Actions + GitHub Pages + Gitee Pages 免费层，无服务器、无数据库、无构建步骤）。
 
-当前覆盖 **19 个榜单**：智能体总榜 / 编程智能体榜 / 对齐偏好智能体榜、文本对话总榜、**中文对话榜**、代码能力榜、数学能力榜、创意写作榜、指令遵循榜、视觉问答榜、中文视觉榜、文档理解榜、联网搜索榜、Web 开发榜、图像转网页榜、文生图榜、文生视频榜、图生视频榜、视频编辑榜。
+当前覆盖 **85 个榜单**，严格对齐源站的**三级分类**（依据 arena.ai 的 sitemap.xml，共 84 个榜单页）：
+
+- **一级 · 大类**：智能体 / 对话 / 代码 / 图像 / 视频
+- **二级 · 榜单**（14 个）：智能体总榜、编程智能体榜、对齐偏好智能体榜、文本对话榜、视觉问答榜、文档理解榜、联网搜索榜、Web 开发榜、图像转网页榜、文生图榜、图像编辑榜、文生视频榜、图生视频榜、视频编辑榜
+- **三级 · 类别**（71 个）：随榜单联动，如文本对话榜下 28 个（中文、数学、代码、创意写作、指令遵循、各语种、各行业…）、图像编辑榜下 16 个（单图/多图 × 各风格）、Web 开发榜下 11 个、视觉问答榜下 9 个、文生图榜下 7 个
+
+URL 形如 `/leaderboard/{大类}/{榜单}/{类别}`，界面按同样层级做三级联动切换。
 
 ## 在线地址
 
@@ -13,21 +19,21 @@
 
 数据健康状态实时可查：[/data/status.json](https://devcelvin.github.io/arena-cn/data/status.json)（`stale: false` 表示数据新鲜）。
 
-**两种时间不要混淆**：源站对每个榜单都标注了「数据日期」（排名与票数冻结于该日，各榜不同，如文本榜 10-08、搜索榜 08-24、智能体总榜 10-12），本站每榜的「数据日期」即取自源站 —— 分类页取页头标注（`<span>Oct 8, 2026</span>`），Agent 三榜取主页 pill 里 `trends` 序列末点的 `cutoffTime`（无 trends 的对齐偏好榜取 `note` 里的日期）；总票数仅在源站给出 `votes` 的分类页展示。「镜像抓取于」只是本站最近一次成功抓取的时间，只反映镜像新旧，不代表源站数据时间。两者都取不到时才退回显示抓取时间。
+**两种时间不要混淆**：源站对每个榜单都标注了「数据日期」（排名与票数冻结于该日，各榜不同，如文本榜 10-08、搜索榜 08-24、智能体总榜 10-12），本站每榜的「数据日期」即取自源站 —— 绝大多数榜单取页头标注（`<span>Oct 8, 2026</span>`）；智能体三榜取自 `/leaderboard/agent` 页头标注（源站 2026-10-13 起不再在首页 pill 里带 `trends` 序列，故改由此处取；更早的实现是取 pill 的 `trends` 末点 `cutoffTime`，该逻辑仍保留为优先路径）。「镜像抓取于」只是本站最近一次成功抓取的时间，只反映镜像新旧，不代表源站数据时间。两者都取不到时才退回显示抓取时间。
 
 ## 工作原理
 
 ```
-arena.ai 19 个榜单页（服务端渲染内嵌全量 JSON）
-   │  GitHub Actions 每日 22:23（北京时间）抓取，约 20MB
+arena.ai 84 个榜单页（服务端渲染内嵌全量 JSON，三级结构取自 sitemap）
+   │  GitHub Actions 每日 22:23（北京时间）抓取，约 80MB
    ▼
 scripts/ 解析（RSC payload → brace-matching）→ 6 重校验 → 归一化
    ▼
 data/  （数据即代码，随 git 提交）
-├── latest/{boardId}.json   站点唯一数据源（校验通过才覆盖）
-├── snapshots/              滚动保留 45 天
-├── history/{boardId}.jsonl 每榜 top50 趋势（追加式）
-├── index.json              榜单目录（含每榜 dataDate / totalVotes）
+├── latest/{boardId}.json   站点唯一数据源（全部 84 榜，校验通过才覆盖）
+├── snapshots/              滚动保留 45 天（**仅二级榜单**，三级类别不写快照）
+├── history/{boardId}.jsonl 二级榜单 top50 趋势（追加式）
+├── index.json              榜单目录（含每榜 group / parent / dataDate / totalVotes）
 └── status.json             健康状态 / 数据新鲜度
    ▼  push 触发
 web/ 静态站（零构建原生 HTML/CSS/JS，fetch 本地 JSON）
@@ -55,7 +61,7 @@ arena-cn/
 │   └── smoke-test.mjs      # 前端冒烟测试（开发用）
 ├── data/                   # 脚本生成，禁止手改
 ├── web/
-│   ├── index.html          # 单页：选择器 + 榜单（?b=text-chinese 可深链）
+│   ├── index.html          # 单页：三级联动选择器 + 榜单（?b=chat-text-math 可深链）
 │   ├── 404.html
 │   └── assets/             # style.css / app.js
 └── README.md
@@ -70,6 +76,8 @@ node scripts/sync-web-data.mjs
 node scripts/smoke-test.mjs   # 前端冒烟测试（DOM 桩，无需浏览器）
 cd web && python -m http.server 8765   # http://127.0.0.1:8765
 ```
+
+> **本地抓取注意**：`fetch.mjs` 走 Node fetch，住宅 IP 高频请求后会被源站 Cloudflare 拦成 403（HTML 过小直接判失败）；GitHub Actions 的出口 IP 不受影响。本地验证可改用 `curl -A "ArenaCN-Bot/1.0"` 逐页抓取（URL 清单可从 `boards.config.mjs` 导出）。
 
 ## 上线步骤（一次性，约 10 分钟）
 
@@ -88,7 +96,7 @@ cd web && python -m http.server 8765   # http://127.0.0.1:8765
 
 ## 数据说明与免责声明
 
-- 数据来源为 arena.ai 公开榜单页面（robots.txt 允许抓取 `/leaderboard*`），本站每日抓取一次（约 20MB），做中文化整理后静态呈现，**仅供学习参考，与官方无关；排名与评分版权归原站所有**。
+- 数据来源为 arena.ai 公开榜单页面（robots.txt 允许抓取 `/leaderboard*`），本站每日抓取一次（84 页，约 80MB），做中文化整理后静态呈现，**仅供学习参考，与官方无关；排名与评分版权归原站所有**。
 - 两种评分量纲：**ELO 评分**（对话/代码/图像/视频榜，相对战力分）与 **BT 相对战力值**（智能体榜，0 = 平均水平，按百分比展示）。
 - 价格为每百万 token 美元计价（智能体榜为单任务成本），来自 arena.ai 公开字段，可能大量缺失（显示 —）。
 - 厂商英文名为准，中文名为整理者附加标注；金色"国产"徽章为整理者判断。
@@ -99,7 +107,7 @@ cd web && python -m http.server 8765   # http://127.0.0.1:8765
 - **cron 没准时跑？** GitHub 高峰时段 scheduled workflow 可能延迟几分钟到几小时，一日一次无影响；可手动 Run workflow 补跑。
 - **arena.ai 改版导致解析失败？** 全部榜单校验失败时保留旧数据 + 邮件告警；修 `scripts/parse.mjs` 后手动跑一次 Daily Fetch 即可恢复。
 - **想增删榜单？** 只改 `scripts/boards.config.mjs`（每个页面一条配置），提交后次日生效。
-- **图像编辑榜 / 完整 Agent 榜为什么没有？** 这两个页面是客户端渲染，HTML 无数据，需逆向前端接口（P2 计划）。
+- **榜单页是客户端渲染、抓不到怎么办？** 图像编辑榜首页属此列，但它的 16 个子类别页有服务端渲染数据 —— 三级结构下该榜的数据由子类别提供，故已收录（首页自身在配置里标为 `container`，只为三级树保留位置，不抓取、无自有数据）。
 
 ## 路线图
 

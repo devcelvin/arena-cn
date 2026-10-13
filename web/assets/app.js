@@ -61,6 +61,27 @@ const SCALE_HINT = {
 /* 榜组图标（仅为可读性，不承载语义） */
 const GROUP_ICON = { 智能体: '🤖', 对话: '💬', 代码: '⌨️', 图像: '🎨', 视频: '🎬' };
 
+/* 旧链接兼容：2026-10-13 改为三级结构后榜单 id 加了路径前缀，老的 ?b= 仍可打开 */
+const LEGACY_ID = {
+  text: 'chat-text',
+  'text-chinese': 'chat-text-chinese',
+  'text-coding': 'chat-text-coding',
+  'text-math': 'chat-text-math',
+  'text-creative': 'chat-text-creative-writing',
+  'text-instruction': 'chat-text-instruction-following',
+  vision: 'chat-vision',
+  'vision-chinese': 'chat-vision-chinese',
+  document: 'chat-document',
+  search: 'chat-search',
+  webdev: 'code-webdev',
+  'image-to-webdev': 'code-image-to-webdev',
+  'text-to-image': 'image-text-to-image',
+  'text-to-video': 'video-text-to-video',
+  'image-to-video': 'video-image-to-video',
+  'video-edit': 'video-video-edit',
+};
+const resolveId = (id) => (id && LEGACY_ID[id]) || id;
+
 /* ============================================================
    工具
    ============================================================ */
@@ -376,8 +397,9 @@ function bindTableSort(container, getState, setState) {
    ============================================================ */
 let INDEX = null;        // data/index.json
 let ACTIVE = null;       // 当前榜单实例 { meta, models, query, onlyCN, sortKey, sortDir, apply }
-let activeGroup = '';    // 选择器当前大类
-let activeBoard = '';    // 选择器当前小类
+let activeGroup = '';    // 选择器当前大类（一级）
+let activeBoard = '';    // 当前选中的榜单（二级或三级）
+let activeParent = '';   // 当前二级榜单 id（三级类别的归属）
 let toolbarBound = false;
 
 async function initApp() {
@@ -408,32 +430,40 @@ async function initApp() {
   initPicker();
   bindToolbar();
 
-  // 初始榜单：URL ?b= 优先，否则第一个大类的第一个小类
-  const wanted = new URLSearchParams(location.search).get('b');
-  const initial = INDEX.boards.some((b) => b.id === wanted) ? wanted : INDEX.boards[0].id;
+  // 初始榜单：URL ?b= 优先（兼容旧 id），否则第一个二级榜单
+  const wanted = resolveId(new URLSearchParams(location.search).get('b'));
+  const fallback = (INDEX.boards.find((b) => b.isBoard) || INDEX.boards[0]).id;
+  const initial = INDEX.boards.some((b) => b.id === wanted) ? wanted : fallback;
   await selectBoard(initial, { push: false });
 
   // 浏览器前进/后退同步
   window.addEventListener('popstate', () => {
-    const b = new URLSearchParams(location.search).get('b');
+    const b = resolveId(new URLSearchParams(location.search).get('b'));
     if (b && INDEX.boards.some((x) => x.id === b)) selectBoard(b, { push: false });
   });
 }
 
 /* ---------- 选择器 ---------- */
+/* 二级榜单 = 无 parent 的榜；三级类别 = 带 parent 的榜（严格对齐源站三级结构） */
+const boardsOf = (group) => (INDEX ? INDEX.boards.filter((b) => b.group === group && b.isBoard) : []);
+const catsOf = (parentId) => (INDEX ? INDEX.boards.filter((b) => b.parent === parentId) : []);
+const boardById = (id) => (INDEX ? INDEX.boards.find((b) => b.id === id) : null);
+
 function renderPicker() {
   const majorBox = $('#picker-major');
-  const minorBox = $('#picker-minor');
-  if (!majorBox || !minorBox) return;
+  const boardBox = $('#picker-boards');
+  const catBox = $('#picker-cats');
+  if (!majorBox || !boardBox) return;
 
   const groups = (INDEX && INDEX.groups) || [];
   if (!groups.length) {
     majorBox.innerHTML = '<span class="picker-empty muted">暂无榜单数据</span>';
-    minorBox.innerHTML = '';
+    boardBox.innerHTML = '';
+    if (catBox) catBox.innerHTML = '';
     return;
   }
-  const boardsOf = (g) => INDEX.boards.filter((b) => b.group === g);
 
+  /* 一级：大类 */
   majorBox.innerHTML = groups.map((g) => {
     const on = g === activeGroup;
     return `<button type="button" role="tab" class="m-item" data-g="${esc(g)}"
@@ -443,22 +473,41 @@ function renderPicker() {
     </button>`;
   }).join('');
 
-  const list = boardsOf(activeGroup);
-  minorBox.innerHTML = list.map((b) => `
-    <a class="s-item ${b.highlight ? 'hl' : ''}" href="?b=${encodeURIComponent(b.id)}"
-       data-b="${esc(b.id)}" ${b.id === activeBoard ? 'aria-current="true"' : ''}
-       title="${esc(b.name)} · ${b.modelCount != null ? b.modelCount + ' 个模型' : '暂无数据'}">
+  /* 二级：该大类下的榜单 */
+  boardBox.innerHTML = boardsOf(activeGroup).map((b) => {
+    const kids = catsOf(b.id).length;
+    return `<a class="s-item ${b.highlight ? 'hl' : ''}" href="?b=${encodeURIComponent(b.id)}"
+       data-b="${esc(b.id)}" ${b.id === activeParent ? 'aria-current="true"' : ''}
+       title="${esc(b.name)} · ${b.modelCount != null ? b.modelCount + ' 个模型' : '暂无数据'}${kids ? ` · ${kids} 个子类别` : ''}">
       <span class="nm">${esc(b.name)}</span>
       ${b.highlight ? '<span class="star" title="国内精选">★</span>' : ''}
       <span class="n">${b.modelCount != null ? b.modelCount : '—'}</span>
-    </a>`).join('') +
-    `<span class="picker-tip muted">${GROUP_ICON[activeGroup] || ''} ${esc(activeGroup)}类共 ${list.length} 个榜单，点名称在当前页切换</span>`;
+      ${kids ? `<span class="kids">${kids} 类 ›</span>` : ''}
+    </a>`;
+  }).join('');
+
+  /* 三级：当前榜单下的类别 */
+  if (catBox) {
+    const cats = catsOf(activeParent);
+    const cur = boardById(activeParent);
+    catBox.innerHTML = cats.length
+      ? cats.map((c) => `
+        <a class="t-item ${c.highlight ? 'hl' : ''}" href="?b=${encodeURIComponent(c.id)}" data-b="${esc(c.id)}"
+           ${c.id === activeBoard ? 'aria-current="true"' : ''}
+           title="${esc(c.name)} · ${c.modelCount != null ? c.modelCount + ' 个模型' : '暂无数据'}">
+          <span class="nm">${esc(c.name)}</span>
+          ${c.highlight ? '<span class="star" title="国内精选">★</span>' : ''}
+          <span class="n">${c.modelCount != null ? c.modelCount : '—'}</span>
+        </a>`).join('')
+      : `<span class="picker-tip muted">${esc(cur ? cur.name : '')} 没有细分小类，点上面任一榜单即可查看完整排名</span>`;
+  }
 }
 
 function initPicker() {
   const majorBox = $('#picker-major');
-  const minorBox = $('#picker-minor');
-  if (!majorBox || !minorBox) return;
+  const boardBox = $('#picker-boards');
+  const catBox = $('#picker-cats');
+  if (!majorBox || !boardBox) return;
 
   const groups = (INDEX && INDEX.groups) || [];
   if (!groups.includes(activeGroup)) activeGroup = groups[0] || '';
@@ -467,7 +516,7 @@ function initPicker() {
     if (g === activeGroup) return;
     activeGroup = g;
     renderPicker();
-    const first = INDEX.boards.find((b) => b.group === g);
+    const first = boardsOf(g)[0];   // 切大类只落到二级榜单，三级由用户再选
     if (first) selectBoard(first.id);
   };
 
@@ -492,14 +541,19 @@ function initPicker() {
     pickMajor(items[j].dataset.g);
   });
 
-  // 小类：普通左键就地切换；Ctrl/⌘/中键点击保留原生行为（可开新标签）
-  minorBox.addEventListener('click', (e) => {
-    const a = e.target.closest ? e.target.closest('.s-item') : null;
-    if (!a) return;
-    if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
-    e.preventDefault();
-    selectBoard(a.dataset.b);
-  });
+  // 二级榜单 / 三级类别：普通左键就地切换；Ctrl/⌘/中键点击保留原生行为（可开新标签）
+  const bindSwitch = (box) => {
+    if (!box) return;
+    box.addEventListener('click', (e) => {
+      const a = e.target.closest ? e.target.closest('.s-item, .t-item') : null;
+      if (!a) return;
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      selectBoard(a.dataset.b);
+    });
+  };
+  bindSwitch(boardBox);
+  bindSwitch(catBox);
 
   renderPicker();
 }
@@ -507,15 +561,18 @@ function initPicker() {
 /* ---------- 切换榜单（就地） ---------- */
 async function selectBoard(id, opts = {}) {
   const push = opts.push !== false;
-  const info = INDEX && INDEX.boards.find((b) => b.id === id);
+  const info = boardById(id);
   if (!info) return;
 
   activeGroup = info.group;
   activeBoard = id;
-  renderPicker();   // 大类选中态 + 第二行小类 + 当前小类选中态，三者一次对齐
+  activeParent = info.parent || info.id;   // 三级类别归入其所属二级榜单
+  renderPicker();   // 一级选中态 + 二级 + 三级类别，三者一次对齐
 
   const titleEl = $('#board-title');
-  if (titleEl) titleEl.innerHTML = `${GROUP_ICON[info.group] || '📊'} ${esc(info.name)}`;
+  const parentInfo = info.parent ? boardById(info.parent) : null;
+  const fullName = parentInfo ? `${parentInfo.name} · ${info.name}` : info.name;
+  if (titleEl) titleEl.innerHTML = `${GROUP_ICON[info.group] || '📊'} ${esc(fullName)}`;
   const metaEl = $('#board-meta');
   if (metaEl) {
     // 源站标注了数据日期 → 展示数据日期 + 总票数（与源站头部一致）；
@@ -535,7 +592,7 @@ async function selectBoard(id, opts = {}) {
 
   const slot = $('#board-slot');
   if (slot) slot.innerHTML = skeletonHtml(10);
-  document.title = `${info.name} - AI Arena 中文榜单`;
+  document.title = `${fullName} - AI Arena 中文榜单`;
   if (push && window.history && window.history.pushState) {
     window.history.pushState({ b: id }, '', `?b=${encodeURIComponent(id)}`);
   }

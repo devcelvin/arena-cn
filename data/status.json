@@ -1,15 +1,13 @@
 {
- "lastSuccess": "2026-10-13T06:37:12.170Z",
- "lastAttempt": "2026-10-13T06:37:12.170Z",
+ "lastSuccess": "2026-10-13T12:56:38.640Z",
+ "lastAttempt": "2026-10-13T12:56:38.640Z",
  "stale": false,
  "lastError": null,
  "boards": {
   "agent": {
    "ok": true,
    "count": 52,
-   "warnings": [
-    "top1 评分变化较大：0.155 → 0.179（15.5%）"
-   ]
+   "warnings": []
   },
   "agent-coding": {
    "ok": true,
@@ -19,96 +17,423 @@
   "agent-aligned": {
    "ok": true,
    "count": 52,
-   "warnings": [
-    "top1 评分变化较大：0.144 → 0.161（11.8%）"
-   ]
-  },
-  "text": {
-   "ok": true,
-   "count": 414,
    "warnings": []
   },
-  "text-chinese": {
-   "ok": true,
-   "count": 390,
-   "warnings": []
-  },
-  "text-coding": {
-   "ok": true,
-   "count": 409,
-   "warnings": []
-  },
-  "text-math": {
-   "ok": true,
-   "count": 400,
-   "warnings": []
-  },
-  "text-creative": {
-   "ok": true,
-   "count": 412,
-   "warnings": []
-  },
-  "text-instruction": {
-   "ok": true,
-   "count": 414,
-   "warnings": []
-  },
-  "vision": {
-   "ok": true,
-   "count": 165,
-   "warnings": []
-  },
-  "vision-chinese": {
-   "ok": true,
-   "count": 125,
-   "warnings": []
-  },
-  "document": {
+  "chat-document": {
    "ok": true,
    "count": 44,
    "warnings": []
   },
-  "search": {
+  "chat-search": {
    "ok": true,
    "count": 34,
    "warnings": []
   },
-  "webdev": {
+  "chat-text": {
    "ok": true,
-   "count": 142,
+   "count": 414,
    "warnings": []
   },
-  "image-to-webdev": {
+  "chat-text-chinese": {
+   "ok": true,
+   "count": 390,
+   "warnings": []
+  },
+  "chat-text-coding": {
+   "ok": true,
+   "count": 409,
+   "warnings": []
+  },
+  "chat-text-creative-writing": {
+   "ok": true,
+   "count": 412,
+   "warnings": []
+  },
+  "chat-text-english": {
+   "ok": true,
+   "count": 414,
+   "warnings": []
+  },
+  "chat-text-exclude-ties": {
+   "ok": true,
+   "count": 414,
+   "warnings": []
+  },
+  "chat-text-expert": {
+   "ok": true,
+   "count": 364,
+   "warnings": []
+  },
+  "chat-text-french": {
+   "ok": true,
+   "count": 293,
+   "warnings": []
+  },
+  "chat-text-german": {
+   "ok": true,
+   "count": 312,
+   "warnings": []
+  },
+  "chat-text-hard-prompts": {
+   "ok": true,
+   "count": 414,
+   "warnings": []
+  },
+  "chat-text-hard-prompts-english": {
+   "ok": true,
+   "count": 412,
+   "warnings": []
+  },
+  "chat-text-industry-business-and-management-and-financial-operations": {
+   "ok": true,
+   "count": 407,
+   "warnings": []
+  },
+  "chat-text-industry-entertainment-and-sports-and-media": {
+   "ok": true,
+   "count": 412,
+   "warnings": []
+  },
+  "chat-text-industry-legal-and-government": {
+   "ok": true,
+   "count": 387,
+   "warnings": []
+  },
+  "chat-text-industry-life-and-physical-and-social-science": {
+   "ok": true,
+   "count": 412,
+   "warnings": []
+  },
+  "chat-text-industry-mathematical": {
+   "ok": true,
+   "count": 397,
+   "warnings": []
+  },
+  "chat-text-industry-medicine-and-healthcare": {
+   "ok": true,
+   "count": 385,
+   "warnings": []
+  },
+  "chat-text-industry-software-and-it-services": {
+   "ok": true,
+   "count": 414,
+   "warnings": []
+  },
+  "chat-text-industry-writing-and-literature-and-language": {
+   "ok": true,
+   "count": 413,
+   "warnings": []
+  },
+  "chat-text-instruction-following": {
+   "ok": true,
+   "count": 414,
+   "warnings": []
+  },
+  "chat-text-japanese": {
+   "ok": true,
+   "count": 278,
+   "warnings": []
+  },
+  "chat-text-korean": {
+   "ok": true,
+   "count": 281,
+   "warnings": []
+  },
+  "chat-text-longer-query": {
+   "ok": true,
+   "count": 392,
+   "warnings": []
+  },
+  "chat-text-math": {
+   "ok": true,
+   "count": 400,
+   "warnings": []
+  },
+  "chat-text-multi-turn": {
+   "ok": true,
+   "count": 412,
+   "warnings": []
+  },
+  "chat-text-non-english": {
+   "ok": true,
+   "count": 414,
+   "warnings": []
+  },
+  "chat-text-polish": {
+   "ok": true,
+   "count": 232,
+   "warnings": []
+  },
+  "chat-text-russian": {
+   "ok": true,
+   "count": 378,
+   "warnings": []
+  },
+  "chat-text-spanish": {
+   "ok": true,
+   "count": 298,
+   "warnings": []
+  },
+  "chat-vision": {
+   "ok": true,
+   "count": 165,
+   "warnings": []
+  },
+  "chat-vision-captioning": {
+   "ok": true,
+   "count": 34,
+   "warnings": []
+  },
+  "chat-vision-chinese": {
+   "ok": true,
+   "count": 125,
+   "warnings": []
+  },
+  "chat-vision-creative-writing": {
+   "ok": true,
+   "count": 101,
+   "warnings": []
+  },
+  "chat-vision-diagram": {
+   "ok": true,
+   "count": 121,
+   "warnings": []
+  },
+  "chat-vision-english": {
+   "ok": true,
+   "count": 165,
+   "warnings": []
+  },
+  "chat-vision-entity-recognition": {
+   "ok": true,
+   "count": 51,
+   "warnings": []
+  },
+  "chat-vision-homework": {
+   "ok": true,
+   "count": 116,
+   "warnings": []
+  },
+  "chat-vision-humor": {
+   "ok": true,
+   "count": 91,
+   "warnings": []
+  },
+  "chat-vision-ocr": {
+   "ok": true,
+   "count": 121,
+   "warnings": []
+  },
+  "code-image-to-webdev": {
    "ok": true,
    "count": 64,
    "warnings": []
   },
-  "text-to-image": {
+  "code-webdev": {
+   "ok": true,
+   "count": 142,
+   "warnings": []
+  },
+  "code-webdev-brand-marketing": {
+   "ok": true,
+   "count": 141,
+   "warnings": []
+  },
+  "code-webdev-consumer-product": {
+   "ok": true,
+   "count": 141,
+   "warnings": []
+  },
+  "code-webdev-content-creation-tools": {
+   "ok": true,
+   "count": 135,
+   "warnings": []
+  },
+  "code-webdev-data-analytics": {
+   "ok": true,
+   "count": 141,
+   "warnings": []
+  },
+  "code-webdev-frontend": {
+   "ok": true,
+   "count": 142,
+   "warnings": []
+  },
+  "code-webdev-fullstack": {
+   "ok": true,
+   "count": 78,
+   "warnings": []
+  },
+  "code-webdev-gaming": {
+   "ok": true,
+   "count": 141,
+   "warnings": []
+  },
+  "code-webdev-html": {
+   "ok": true,
+   "count": 141,
+   "warnings": []
+  },
+  "code-webdev-react": {
+   "ok": true,
+   "count": 126,
+   "warnings": []
+  },
+  "code-webdev-reference-based-design": {
+   "ok": true,
+   "count": 141,
+   "warnings": []
+  },
+  "code-webdev-simulations": {
+   "ok": true,
+   "count": 141,
+   "warnings": []
+  },
+  "image-image-edit-multi-image": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "image-image-edit-multi-image-3d-modeling": {
+   "ok": true,
+   "count": 32,
+   "warnings": []
+  },
+  "image-image-edit-multi-image-art": {
+   "ok": true,
+   "count": 30,
+   "warnings": []
+  },
+  "image-image-edit-multi-image-cartoon": {
+   "ok": true,
+   "count": 32,
+   "warnings": []
+  },
+  "image-image-edit-multi-image-commercial-design": {
+   "ok": true,
+   "count": 32,
+   "warnings": []
+  },
+  "image-image-edit-multi-image-photorealistic": {
+   "ok": true,
+   "count": 32,
+   "warnings": []
+  },
+  "image-image-edit-multi-image-portraits": {
+   "ok": true,
+   "count": 32,
+   "warnings": []
+  },
+  "image-image-edit-multi-image-text-rendering": {
+   "ok": true,
+   "count": 32,
+   "warnings": []
+  },
+  "image-image-edit-single-image": {
+   "ok": true,
+   "count": 59,
+   "warnings": []
+  },
+  "image-image-edit-single-image-3d-modeling": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "image-image-edit-single-image-art": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "image-image-edit-single-image-cartoon": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "image-image-edit-single-image-commercial-design": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "image-image-edit-single-image-photorealistic": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "image-image-edit-single-image-portraits": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "image-image-edit-single-image-text-rendering": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "image-text-to-image": {
    "ok": true,
    "count": 82,
    "warnings": []
   },
-  "text-to-video": {
+  "image-text-to-image-3d-modeling": {
+   "ok": true,
+   "count": 82,
+   "warnings": []
+  },
+  "image-text-to-image-art": {
+   "ok": true,
+   "count": 82,
+   "warnings": []
+  },
+  "image-text-to-image-cartoon": {
+   "ok": true,
+   "count": 82,
+   "warnings": []
+  },
+  "image-text-to-image-commercial-design": {
+   "ok": true,
+   "count": 82,
+   "warnings": []
+  },
+  "image-text-to-image-photorealistic": {
+   "ok": true,
+   "count": 82,
+   "warnings": []
+  },
+  "image-text-to-image-portraits": {
+   "ok": true,
+   "count": 82,
+   "warnings": []
+  },
+  "image-text-to-image-text-rendering": {
+   "ok": true,
+   "count": 82,
+   "warnings": []
+  },
+  "video-image-to-video": {
    "ok": true,
    "count": 48,
    "warnings": []
   },
-  "image-to-video": {
+  "video-text-to-video": {
    "ok": true,
    "count": 48,
    "warnings": []
   },
-  "video-edit": {
+  "video-video-edit": {
    "ok": true,
    "count": 10,
    "warnings": []
+  },
+  "image-image-edit": {
+   "ok": false,
+   "error": "未处理"
   }
  },
  "session": {
-  "sessionCount": 363166245,
-  "sessionsLastHour": 16994,
-  "newestSessionAt": "2026-10-13T05:44:24.028Z"
+  "sessionCount": 363315382,
+  "sessionsLastHour": 23058,
+  "newestSessionAt": "2026-10-13T11:47:15.799Z"
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 4
+ "repoSizeMB": 6.4
 }

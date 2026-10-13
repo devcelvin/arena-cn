@@ -62,6 +62,7 @@ async function readJson(path) {
 
 async function appendHistory(boardId, models) {
   const file = `${dataDir}history/${boardId}.jsonl`;
+  await mkdir(`${dataDir}history`, { recursive: true });
   let existing = '';
   let lastDate = null;
   if (existsSync(file)) {
@@ -90,8 +91,10 @@ async function main() {
   let okCount = 0;
   let failCount = 0;
   const nowIso = new Date().toISOString();
+  let agentPageStats = null;   // /leaderboard/agent 页头统计（供智能体三榜取数据日期）
 
   for (const page of PAGES) {
+    if (page.kind === 'container') continue; // 仅分组节点（如 image-edit），无自有数据
     const rawFile = `${rawDir}${page.id}.html`;
     if (!existsSync(rawFile)) {
       for (const b of page.boards) {
@@ -121,6 +124,12 @@ async function main() {
       agentLists = extractAgentLists(parsed.rscText);
       agentPills = extractHomePills(parsed.rscText);
       session = extractSessionStats(parsed.rscText);
+      // 源站首页 pills 自 2026-10-13 起不再带 trends/cutoffTime，
+      // 智能体三榜的数据日期改从 /leaderboard/agent 页头标注取
+      const agentRaw = `${rawDir}agent.html`;
+      if (existsSync(agentRaw)) {
+        agentPageStats = extractBoardStats(await readFile(agentRaw, 'utf8'));
+      }
       if (agentLists.length !== 3) {
         console.log(`⚠ home：Agent 列表组数 = ${agentLists.length}（预期 3），按顺序映射`);
       }
@@ -156,13 +165,16 @@ async function main() {
       }
 
       // 数据时间口径：分类页取头部 span（extractBoardStats）；
-      // home 页（Agent 三榜）取 pill 的 trends 末点 cutoffTime，无 trends 则取 note 里的日期。
+      // 首页（智能体三榜）优先取 pills 的 trends 末点 / note 日期，取不到再退回 agent 页头日期。
       const stats = page.kind === 'home'
-        ? agentPills?.[b.pillId] || { dataDate: null }
+        ? { dataDate: agentPills?.[b.pillId]?.dataDate || agentPageStats?.dataDate || null }
         : boardStats;
       const dataDate = stats.dataDate ?? null;
-      // home 页 pill 只有"会话数"（写在 note 里），与分类页 votes 不同量纲，不并入
-      const totalVotes = page.kind === 'home' ? null : boardStats.totalVotes ?? null;
+      // home 页 pill 只有"会话数"（写在 note 里），与分类页 votes 不同量纲，不并入；
+      // 智能体三榜改用 agent 页头标注的总票数
+      const totalVotes = page.kind === 'home'
+        ? agentPageStats?.totalVotes ?? null
+        : boardStats.totalVotes ?? null;
       if (!dataDate) {
         console.log(`⚠ ${b.id}：未提取到源站数据日期，该榜将退回显示抓取时间`);
       }
@@ -189,9 +201,12 @@ async function main() {
         const t = models[0];
         topModels[b.id] = { name: t.name, org: t.org || '', score: t.score };
       }
-      await mkdir(`${dataDir}snapshots/${today}`, { recursive: true });
-      await writeFile(`${dataDir}snapshots/${today}/${b.id}.json`, JSON.stringify(boardJson), 'utf8');
-      await appendHistory(b.id, models);
+      // 三级类别只出 latest：不写每日快照、不进趋势历史（否则文件数按类别数放大 7 倍）
+      if (b.snapshot) {
+        await mkdir(`${dataDir}snapshots/${today}`, { recursive: true });
+        await writeFile(`${dataDir}snapshots/${today}/${b.id}.json`, JSON.stringify(boardJson), 'utf8');
+        await appendHistory(b.id, models);
+      }
 
       boardStatus[b.id] = { ok: true, count: models.length, warnings };
       boardDataDates[b.id] = dataDate;
@@ -224,6 +239,8 @@ async function main() {
         name: b.name,
         group: b.group,
         scale: b.scale,
+        parent: b.parent ?? null,
+        isBoard: !b.parent,
         highlight: !!b.highlight,
         modelCount: st?.ok ? st.count : null,
         updatedAt: st?.ok ? nowIso : null,

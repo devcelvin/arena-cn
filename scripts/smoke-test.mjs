@@ -168,13 +168,14 @@ function itemsFrom(html, attr) {
   await settling();
 
   const major = els.get('#picker-major').innerHTML;
-  const minor = els.get('#picker-minor').innerHTML;
+  const boardsHtml = els.get('#picker-boards').innerHTML;
+  const catsHtml = els.get('#picker-cats').innerHTML;
   check('选择器：第一行含 5 个大类', (major.match(/role="tab"/g) || []).length === 5);
   check('选择器：默认选中第一个大类', /aria-selected="true"/.test(major));
-  check('选择器：第二行展示该大类的榜单', (minor.match(/class="s-item/g) || []).length >= 3);
-  check('选择器：小类带模型数', minor.includes('class="n"'));
-  check('选择器：默认有选中的小类', /aria-current="true"/.test(minor));
-  check('选择器：提示就地切换', minor.includes('当前页切换'));
+  check('选择器：第二行展示该大类的二级榜单', (boardsHtml.match(/class="s-item/g) || []).length >= 3);
+  check('选择器：二级榜单带模型数', boardsHtml.includes('class="n"'));
+  check('选择器：默认有选中的二级榜单', /aria-current="true"/.test(boardsHtml));
+  check('选择器：第三行（类别）已渲染', catsHtml.length > 0);
 
   check('榜单：默认加载智能体总榜', documentStub.title.includes('智能体总榜'));
   check('榜单：标题渲染', els.get('#board-title').innerHTML.includes('智能体总榜'));
@@ -203,9 +204,9 @@ function itemsFrom(html, attr) {
   await api.initApp();
   await settling();
 
-  const minorItems = itemsFrom(els.get('#picker-minor').innerHTML, 'data-b');
+  const minorItems = itemsFrom(els.get('#picker-boards').innerHTML, 'data-b');
   check('解析出智能体类小类', minorItems.length === 3);
-  els.get('#picker-minor').fire('click', {
+  els.get('#picker-boards').fire('click', {
     target: { closest: () => minorItems[1] },   // 编程智能体榜
     ctrlKey: false, metaKey: false, shiftKey: false, button: 0,
     preventDefault() {},
@@ -214,12 +215,12 @@ function itemsFrom(html, attr) {
   check('切换：标题更新为编程智能体榜', documentStub.title.includes('编程智能体榜'));
   check('切换：表格重渲染', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 50);
   check('切换：URL 已 push', pushed.some((u) => u.includes('agent-coding')));
-  check('切换：选中态更新', /aria-current="true"/.test(els.get('#picker-minor').innerHTML));
+  check('切换：选中态更新', /aria-current="true"/.test(els.get('#picker-boards').innerHTML));
   check('切换：筛选被重置', els.get('#filter-input').value === '');
 
   // Ctrl+点击不拦截（保留开新标签能力）
   const before = pushed.length;
-  els.get('#picker-minor').fire('click', {
+  els.get('#picker-boards').fire('click', {
     target: { closest: () => minorItems[0] },
     ctrlKey: true, metaKey: false, shiftKey: false, button: 0,
     preventDefault() { throw new Error('Ctrl+点击不应被拦截'); },
@@ -241,12 +242,21 @@ function itemsFrom(html, attr) {
   els.get('#picker-major').fire('click', { target: { closest: () => majorItems[1] }, preventDefault() {} }); // 对话
   await settling();
 
-  const minor = els.get('#picker-minor').innerHTML;
-  check('大类切换：第二行换成对话类', minor.includes('中文对话榜') && minor.includes('文本对话总榜'));
-  check('大类切换：不再有智能体榜', !minor.includes('编程智能体榜'));
-  check('大类切换：自动选中第一个小类', documentStub.title.includes('文本对话总榜'));
-  check('大类切换：含国内精选标记', minor.includes('star'));
-  check('大类切换：URL 已 push', pushed.some((u) => u.includes('b=text')));
+  const boardRow = els.get('#picker-boards').innerHTML;
+  check('大类切换：第二行换成对话类二级榜单', boardRow.includes('文本对话榜') && boardRow.includes('视觉问答榜'));
+  check('大类切换：不再有智能体榜', !boardRow.includes('编程智能体榜'));
+  check('大类切换：自动选中第一个二级榜单', documentStub.title.includes('文档理解榜'));
+  check('大类切换：URL 已 push', pushed.some((u) => u.includes('b=chat-document')));
+  // 切到「文本对话榜」→ 其三级类别里的「中文」应带国内精选 ★
+  const boardItems = itemsFrom(boardRow, 'data-b');
+  const textBoard = boardItems.find((x) => x.dataset.b === 'chat-text');
+  els.get('#picker-boards').fire('click', {
+    target: { closest: () => textBoard },
+    ctrlKey: false, metaKey: false, shiftKey: false, button: 0,
+    preventDefault() {},
+  });
+  await settling();
+  check('大类切换：三级类别含国内精选标记', els.get('#picker-cats').innerHTML.includes('star'));
 }
 
 /* ============================================================
@@ -256,10 +266,10 @@ function itemsFrom(html, attr) {
   const api = runApp('?b=text-chinese');
   await api.initApp();
   await settling();
-  check('深链：直接加载中文对话榜', documentStub.title.includes('中文对话榜'));
+  check('深链：旧 id 映射并加载（text-chinese → 文本对话榜·中文）', documentStub.title.includes('文本对话榜 · 中文'));
   check('深链：ELO 量纲', els.get('#board-slot').innerHTML.includes('1587.7'));
   check('深链：量纲提示', els.get('#scale-hint').textContent.includes('ELO'));
-  check('深链：选中态正确', /aria-current="true"/.test(els.get('#picker-minor').innerHTML));
+  check('深链：选中态正确', /aria-current="true"/.test(els.get('#picker-boards').innerHTML));
   check('深链：元信息含源站数据日期', /数据日期 <b>2026-10-0\d<\/b>/.test(els.get('#board-meta').innerHTML));
   check('深链：元信息含总票数', els.get('#board-meta').innerHTML.includes('总票数'));
 }

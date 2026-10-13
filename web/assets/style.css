@@ -636,8 +636,13 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
   background: var(--surface-2); border-bottom: 1px solid var(--border);
   overflow-x: auto;
 }
-.picker-row.picker-minor {
-  padding: var(--sp-3); flex-wrap: wrap;
+.picker-row.picker-boards {
+  padding: var(--sp-3) var(--sp-3) var(--sp-2); flex-wrap: wrap;
+  border-bottom: 1px dashed var(--border);
+}
+.picker-row.picker-cats {
+  padding: var(--sp-2) var(--sp-3) var(--sp-3); flex-wrap: wrap;
+  background: var(--surface-2);
 }
 .picker-empty { padding: var(--sp-3); font-size: var(--fs-base); }
 
@@ -683,27 +688,54 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
   border-color: color-mix(in srgb, var(--brand-500) 45%, var(--border));
   background: var(--accent-soft);
 }
-.s-item .star { color: #f59e0b; font-size: 12px; }
+.s-item .star, .t-item .star { color: #f59e0b; font-size: 12px; }
 
-/* 选中态必须排在 .hl 之后，并用 .picker-minor 提升特异性，
-   否则「国内精选」小类（同时带 .hl）会被 .hl 的浅蓝底盖掉，
+/* 选中态必须排在 .hl 之后，并用 .picker-boards 提升特异性，
+   否则「国内精选」榜单（同时带 .hl）会被 .hl 的浅蓝底盖掉，
    留下白字配浅底（对比度 1.09:1，等于看不见）。 */
-.picker-minor .s-item[aria-current="true"] {
+.picker-boards .s-item[aria-current="true"] {
   border-color: var(--sel-bg); background: var(--sel-bg); color: var(--sel-fg);
   font-weight: 650; box-shadow: var(--sh-brand);
 }
-.picker-minor .s-item[aria-current="true"] .n {
+.picker-boards .s-item[aria-current="true"] .n,
+.picker-boards .s-item[aria-current="true"] .kids {
   color: color-mix(in srgb, var(--sel-fg) 92%, transparent);
 }
-.picker-minor .s-item[aria-current="true"] .star {
+.picker-boards .s-item[aria-current="true"] .star {
   color: color-mix(in srgb, var(--sel-fg) 72%, #f59e0b);
 }
+
+/* 二级榜单上的「N 类 ›」角标 */
+.s-item .kids {
+  font-size: 11px; color: var(--muted); font-weight: 500;
+  border-left: 1px solid var(--border); padding-left: 6px;
+}
+
+/* 三级：类别 chip（比二级小一号，避免视觉层级倒挂） */
+.t-item {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px var(--sp-3); border-radius: var(--r-pill);
+  border: 1px dashed var(--border); background: var(--surface-1);
+  color: var(--text-sub); font-size: var(--fs-sm); font-weight: 500;
+  transition: border-color var(--t-fast), color var(--t-fast), background var(--t-fast);
+}
+.t-item:hover {
+  border-color: var(--accent); border-style: solid; color: var(--accent);
+  background: var(--accent-soft); text-decoration: none;
+}
+.t-item .n { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.t-item[aria-current="true"] {
+  border-style: solid; border-color: var(--accent); color: var(--accent);
+  background: var(--accent-soft); font-weight: 650;
+}
+.t-item[aria-current="true"] .n { color: var(--accent); }
 .picker-tip {
   font-size: var(--fs-sm); margin-left: auto; padding-left: var(--sp-2);
   white-space: nowrap;
 }
 @media (max-width: 720px) {
-  .picker-row.picker-minor { padding: var(--sp-3) var(--sp-3) var(--sp-2); }
+  .picker-row.picker-boards { padding: var(--sp-2); }
+  .picker-row.picker-cats { padding: var(--sp-2) var(--sp-2) var(--sp-3); }
   .m-item { padding: 8px 10px; font-size: var(--fs-base); }
   .m-item .ico { font-size: 13px; }
   .picker-tip { display: none; }
