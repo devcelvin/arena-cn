@@ -659,5 +659,8 @@ function bindExpand(slot, models, scale, opts = {}) {
 
 /* ============================================================
    路由
+   404 页也会加载本脚本（为了主题切换按钮可用），但它没有榜单容器，
+   必须用 #board-picker 存在与否作为入口判据 —— 否则 initApp() 会跑一遍
+   无用的数据请求，并在 selectBoard() 里把 404 的标题覆盖成某个榜单名。
    ============================================================ */
-if (typeof location !== 'undefined') initApp();
+if (typeof location !== 'undefined' && document.querySelector('#board-picker')) initApp();
