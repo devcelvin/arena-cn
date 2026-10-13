@@ -20,7 +20,7 @@ async function exists(p) {
 await rm(`${ROOT}web/data`, { recursive: true, force: true });
 await mkdir(`${ROOT}web/data`, { recursive: true });
 await cp(`${ROOT}data/latest`, `${ROOT}web/data/latest`, { recursive: true });
-for (const f of ['index.json', 'status.json', 'stats.json']) {
+for (const f of ['index.json', 'status.json']) {
   if (await exists(`${ROOT}data/${f}`)) {
     await cp(`${ROOT}data/${f}`, `${ROOT}web/data/${f}`);
   }

@@ -131,7 +131,7 @@ function runApp(search) {
   };
   const fn = new Function(
     'document', 'fetch', 'localStorage', 'matchMedia', 'location', 'window', 'URLSearchParams',
-    appCode + '\n;return { initHome, initBoard, sortModels, boardTable, scoreText, ciText, orgColor, fmtCompact, fmtRel };'
+    appCode + '\n;return { initHome, initBoard, sortModels, boardTable, scoreText, ciText, orgColor };'
   );
   return fn(documentStub, fetchStub, localStorageStub, matchMediaStub, locationStub, windowStub, URLSearchParams);
 }
@@ -156,12 +156,21 @@ const settling = () => new Promise((r) => setTimeout(r, 60));
   check('首页：新鲜度条含相对时间', /分钟前|小时前|天前|刚刚/.test(fresh));
   check('首页：新鲜度条含全球对战数', fresh.includes('全球累计对战'));
 
-  const kpi = els.get('#stats-slot').innerHTML;
-  check('首页：KPI 卡片渲染', kpi.includes('class="stat"'));
-  check('首页：KPI 含跨榜去重模型数', kpi.includes('862'));
-  check('首页：KPI 含厂商数', kpi.includes('46'));
-  check('首页：KPI 含国产模型数', kpi.includes('221'));
-  check('首页：KPI 含国产占比', kpi.includes('占比'));
+  const major = els.get('#picker-major').innerHTML;
+  const minor = els.get('#picker-minor').innerHTML;
+  check('首页：选择器第一行含 5 个大类', (major.match(/role="tab"/g) || []).length === 5);
+  check('首页：大类默认选中第一个', /aria-selected="true"/.test(major));
+  check('首页：第二行展示当前大类的榜单', (minor.match(/class="s-item/g) || []).length >= 3);
+  check('首页：选择器含模型数', minor.includes('class="n"'));
+
+  /* 切到「对话」大类，验证国内精选标记 */
+  els.get('#picker-major').fire('click', { target: { closest: () => ({ dataset: { g: '对话' } }) } });
+  await settling();
+  const minorChat = els.get('#picker-minor').innerHTML;
+  check('首页：对话类含中文对话榜', minorChat.includes('中文对话榜'));
+  check('首页：中文对话榜标为国内精选', minorChat.includes('star'));
+  els.get('#picker-major').fire('click', { target: { closest: () => ({ dataset: { g: '智能体' } }) } });
+  await settling();
 
   check('首页：智能体榜渲染 Top10', els.get('#agent-slot').innerHTML.includes('Claude Opus 5.5 (Max)'));
   check('首页：智能体榜为百分比量纲', els.get('#agent-slot').innerHTML.includes('+15.5%'));
@@ -169,14 +178,15 @@ const settling = () => new Promise((r) => setTimeout(r, 60));
   check('首页：中文榜为 ELO 量纲', els.get('#zh-slot').innerHTML.includes('1587.7'));
   check('首页：含厂商色块', els.get('#zh-slot').innerHTML.includes('org-tile'));
   check('首页：含分数条形图', els.get('#zh-slot').innerHTML.includes('scorebar'));
-
-  const grid = els.get('#grid-slot').innerHTML;
-  check('首页：榜单宫格含 19 个入口', (grid.match(/class="board-card/g) || []).length >= 19);
-  check('首页：中文榜有国内精选标记', grid.includes('国内精选'));
-  check('首页：卡片展示榜首模型', grid.includes('top1'));
-  check('首页：卡片含规模条', grid.includes('class="bar"'));
-  check('首页：国产徽章出现', els.get('#zh-slot').innerHTML.includes('badge-cn') || grid.includes('badge-cn'));
+  check('首页：国产徽章出现', els.get('#zh-slot').innerHTML.includes('badge-cn'));
   check('首页：页脚信息填充', els.get('#foot-info').textContent.includes('最后成功抓取'));
+
+  /* 大类切换 */
+  els.get('#picker-major').fire('click', { target: { closest: () => ({ dataset: { g: '视频' } }) } });
+  await settling();
+  const minorVideo = els.get('#picker-minor').innerHTML;
+  check('首页：切换到视频大类后刷新小类', minorVideo.includes('文生视频榜'));
+  check('首页：切换后不再出现文本类榜单', !minorVideo.includes('代码能力榜'));
 }
 
 /* ============================================================
@@ -262,8 +272,6 @@ const settling = () => new Promise((r) => setTimeout(r, 60));
   check('排序：按评分降序', api.sortModels(rows, 'score', 'desc').map((m) => m.rank).join(',') === '1,2,3');
   check('排序：按票数降序空值排最后', api.sortModels(rows, 'votes', 'desc').map((m) => m.votes).join(',') === '30,10,');
   check('排序：按输入价升序空值排最后', api.sortModels(rows, 'inputPrice', 'asc').map((m) => m.inputPrice).join(',') === '1,3,');
-  check('格式化：亿位压缩', api.fmtCompact(362942248) === '3.63 亿');
-  check('格式化：万位压缩', api.fmtCompact(27216) === '2.7 万');
   check('厂商色：已知厂商取固定色', api.orgColor('OpenAI') === '#0f9b6c');
   check('厂商色：未知厂商取安全色板', /^#[0-9a-f]{6}$/.test(api.orgColor('SomeUnknownOrg')));
   check('分数：BT 量纲百分比', api.scoreText({ score: 0.155 }, 'bt') === '+15.5%');

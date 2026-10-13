@@ -68,12 +68,6 @@ const $ = (s, el) => (el || document).querySelector(s);
 const $$ = (s, el) => Array.from((el || document).querySelectorAll(s));
 
 const fmtNum = (n) => (n == null ? '—' : n.toLocaleString('zh-CN'));
-const fmtCompact = (n) => {
-  if (n == null) return '—';
-  if (n >= 1e8) return (n / 1e8).toFixed(2) + ' 亿';
-  if (n >= 1e4) return (n / 1e4).toFixed(1) + ' 万';
-  return n.toLocaleString('zh-CN');
-};
 const pad2 = (x) => String(x).padStart(2, '0');
 const fmtTime = (iso) => {
   if (!iso) return '—';
@@ -97,7 +91,6 @@ const fmtCtx = (n) => {
   return String(n);
 };
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const pct = (a, b) => (b > 0 ? Math.round((a / b) * 1000) / 10 : 0);
 
 function orgColor(org) {
   if (ORG_COLOR_PIN[org]) return ORG_COLOR_PIN[org];
@@ -364,12 +357,11 @@ async function initHome() {
   const slots = ['#agent-slot', '#zh-slot'];
   slots.forEach((s) => { const el = $(s); if (el) el.innerHTML = `<div class="card">${skeletonHtml(6)}</div>`; });
 
-  let index, status, stats;
+  let index, status;
   try {
-    [index, status, stats] = await Promise.all([
+    [index, status] = await Promise.all([
       fetchJson('data/index.json'),
       fetchJson('data/status.json').catch(() => null),
-      fetchJson('data/stats.json').catch(() => null),
     ]);
   } catch (e) {
     const el = $('#fresh-slot');
@@ -381,26 +373,8 @@ async function initHome() {
   const fs = $('#fresh-slot');
   if (fs) fs.innerHTML = freshbarHtml(status);
 
-  /* --- KPI --- */
-  const s = stats || {};
-  const session = status && status.session ? status.session : null;
-  const kpis = [
-    { icon: '🏅', k: '收录模型（跨榜去重）', v: fmtNum(s.modelTotal), u: '个', bar: null },
-    { icon: '🏢', k: '覆盖厂商', v: fmtNum(s.orgCount), u: '家', bar: s.orgCount ? (s.cnOrgCount / s.orgCount) * 100 : 0, barText: `含国产 ${s.cnOrgCount || 0} 家` },
-    { icon: '🇨🇳', k: '国产模型', v: fmtNum(s.cnModelCount), u: '个', bar: s.modelTotal ? (s.cnModelCount / s.modelTotal) * 100 : 0, barText: `占比 ${pct(s.cnModelCount, s.modelTotal)}%` },
-    { icon: '🗳️', k: '全球累计对战', v: session ? fmtCompact(session.sessionCount) : '—', u: '场', bar: null },
-  ];
-  const stBox = $('#stats-slot');
-  if (stBox) {
-    stBox.innerHTML = `<div class="stats">${kpis.map((k) => `
-      <div class="stat">
-        <div class="k">${k.icon} ${esc(k.k)}</div>
-        <div class="v tnum">${k.v}<span class="u">${k.u}</span></div>
-        ${k.bar != null ? `<div class="spark"><i style="width:${Math.min(100, k.bar).toFixed(1)}%"></i></div><div class="muted" style="font-size:11px;margin-top:4px">${esc(k.barText || '')}</div>` : ''}
-      </div>`).join('')}</div>`;
-  }
+  initPicker(index);
 
-  const byId = Object.fromEntries(index.boards.map((b) => [b.id, b]));
   const load = (id) => fetchJson(`data/latest/${id}.json`).catch(() => null);
 
   /* --- 双栏重点榜 --- */
@@ -421,37 +395,85 @@ async function initHome() {
     bindExpand(el, board.models, scale);
   }
 
-  /* --- 榜单宫格 --- */
-  const gridEl = $('#grid-slot');
-  if (gridEl) {
-    const maxCount = Math.max(...index.boards.map((b) => b.modelCount || 0), 1);
-    gridEl.innerHTML = index.groups.map((g) => {
-      const cards = index.boards.filter((b) => b.group === g).map((b) => {
-        const t = b.topModel;
-        const fill = b.modelCount ? (b.modelCount / maxCount) * 100 : 0;
-        return `
-        <a class="board-card ${b.highlight ? 'hl' : ''}" href="board.html?b=${encodeURIComponent(b.id)}"
-           aria-label="${esc(b.name)}，${b.modelCount || 0} 个模型">
-          <div class="g">${GROUP_ICON[g] || '📊'} ${esc(g)}${b.highlight ? ' · <span class="star">★ 国内精选</span>' : ''}</div>
-          <div class="t">${esc(b.name)}</div>
-          <div class="m">${b.modelCount != null ? b.modelCount + ' 个模型' : '暂缺数据'} · ${SCALE_LABEL[b.scale]}</div>
-          ${t ? `<div class="top1">${orgTileHtml(t.org)}<b>${esc(t.name)}</b></div>` : ''}
-          <div class="bar"><i style="width:${Math.min(100, fill).toFixed(1)}%"></i></div>
-        </a>`;
-      }).join('');
-      return `<div class="section">
-        <div class="section-head"><h2>${GROUP_ICON[g] || ''} ${esc(g)}类榜单</h2>
-          <span class="sub">${index.boards.filter((b) => b.group === g).length} 个榜单</span></div>
-        <div class="grid">${cards}</div>
-      </div>`;
-    }).join('');
-  }
-
   /* --- 页脚 --- */
   const foot = $('#foot-info');
   if (foot && status) {
     foot.textContent = `最后成功抓取：${fmtTime(status.lastSuccess)}（北京时间）｜ 快照保留 ${status.snapshotRetentionDays || 45} 天｜数据仓库 ${status.repoSizeMB != null ? status.repoSizeMB + 'MB' : '—'}`;
   }
+}
+
+/* ============================================================
+   榜单选择器：第一行大类（tab），第二行小类（当前大类下的榜单）
+   ============================================================ */
+function initPicker(index) {
+  const majorBox = $('#picker-major');
+  const minorBox = $('#picker-minor');
+  if (!majorBox || !minorBox) return;
+
+  const groups = index.groups || [];
+  if (!groups.length) {
+    majorBox.innerHTML = '<span class="picker-empty muted">暂无榜单数据</span>';
+    return;
+  }
+  let active = groups[0];
+
+  const boardsOf = (g) => index.boards.filter((b) => b.group === g);
+
+  const renderMajor = () => {
+    majorBox.innerHTML = groups.map((g) => {
+      const n = boardsOf(g).length;
+      const on = g === active;
+      return `<button type="button" role="tab" class="m-item"
+        data-g="${esc(g)}" aria-selected="${on ? 'true' : 'false'}"
+        tabindex="${on ? '0' : '-1'}">
+        <span class="ico">${GROUP_ICON[g] || '📊'}</span>${esc(g)}
+        <span class="n">${n}</span>
+      </button>`;
+    }).join('');
+  };
+
+  const renderMinor = () => {
+    const list = boardsOf(active);
+    minorBox.innerHTML = list.map((b) => `
+      <a class="s-item ${b.highlight ? 'hl' : ''}" href="board.html?b=${encodeURIComponent(b.id)}"
+         title="${esc(b.name)} · ${b.modelCount != null ? b.modelCount + ' 个模型' : '暂无数据'}">
+        <span class="nm">${esc(b.name)}</span>
+        ${b.highlight ? '<span class="star" title="国内精选">★</span>' : ''}
+        <span class="n">${b.modelCount != null ? b.modelCount : '—'}</span>
+      </a>`).join('') + `
+      <span class="picker-tip muted">${GROUP_ICON[active] || ''} ${esc(active)}类共 ${list.length} 个榜单，点名称进入</span>`;
+  };
+
+  const select = (g) => {
+    if (!groups.includes(g)) return;
+    active = g;
+    renderMajor();
+    renderMinor();
+  };
+
+  majorBox.addEventListener('click', (e) => {
+    const btn = e.target.closest ? e.target.closest('.m-item') : null;
+    if (btn) select(btn.dataset.g);
+  });
+
+  // 键盘：左右/Home/End 在大类间移动（tablist 语义）
+  majorBox.addEventListener('keydown', (e) => {
+    const items = $$('.m-item', majorBox);
+    const i = items.findIndex((el) => el === document.activeElement);
+    if (i < 0) return;
+    let j = -1;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') j = (i + 1) % items.length;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') j = (i - 1 + items.length) % items.length;
+    else if (e.key === 'Home') j = 0;
+    else if (e.key === 'End') j = items.length - 1;
+    if (j < 0) return;
+    e.preventDefault();
+    items[j].focus();
+    select(items[j].dataset.g);
+  });
+
+  renderMajor();
+  renderMinor();
 }
 
 function bindExpand(slot, models, scale, opts = {}) {

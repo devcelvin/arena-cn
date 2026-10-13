@@ -16,7 +16,6 @@ import { PAGES, BOARDS } from './boards.config.mjs';
 import { parsePage, extractModelObjects, extractAgentLists, extractSessionStats } from './parse.mjs';
 import { validateBoard, validateSession } from './validate.mjs';
 import { cleanupSnapshots, dirSizeMB } from './cleanup.mjs';
-import { isCN } from './org-map.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const today = new Date().toISOString().slice(0, 10);
@@ -85,10 +84,7 @@ async function appendHistory(boardId, models) {
 
 async function main() {
   const boardStatus = {};
-  const topModels = {};        // { boardId: {name, org, score} } 供首页宫格展示
-  const seenKeys = new Set();  // 全站去重（同一模型会同时出现在多个榜）
-  const orgSet = new Set();
-  let cnModels = 0;
+  const topModels = {};        // { boardId: {name, org, score} } 供榜单页/详情展示
   let okCount = 0;
   let failCount = 0;
   const nowIso = new Date().toISOString();
@@ -163,14 +159,6 @@ async function main() {
       await mkdir(`${dataDir}latest`, { recursive: true });
       await writeFile(`${dataDir}latest/${b.id}.json`, JSON.stringify(boardJson), 'utf8');
 
-      // 首页汇总统计（跨榜去重）
-      for (const m of models) {
-        if (m.key && !seenKeys.has(m.key)) {
-          seenKeys.add(m.key);
-          if (m.org) orgSet.add(m.org);
-          if (isCN(m.org)) cnModels++;
-        }
-      }
       if (models.length) {
         const t = models[0];
         topModels[b.id] = { name: t.name, org: t.org || '', score: t.score };
@@ -198,8 +186,7 @@ async function main() {
   }
 
   // index.json
-  const index = {
-    generatedAt: nowIso,
+  const index = {    generatedAt: nowIso,
     groups: [...new Set(BOARDS.map((b) => b.group))],
     boards: BOARDS.map((b) => {
       const st = boardStatus[b.id];
@@ -215,19 +202,12 @@ async function main() {
       };
     }),
   };
-  await writeFile(`${dataDir}index.json`, JSON.stringify(index, null, 1), 'utf8');
-
-  // stats.json —— 首页 KPI 概览（跨榜去重）
-  const orgList = [...orgSet];
-  const stats = {
-    generatedAt: nowIso,
-    boardCount: okCount,
-    modelTotal: seenKeys.size,
-    orgCount: orgList.length,
-    cnOrgCount: orgList.filter(isCN).length,
-    cnModelCount: cnModels,
-  };
-  await writeFile(`${dataDir}stats.json`, JSON.stringify(stats, null, 1), 'utf8');
+  // index.json —— 本次全榜失败时保留上一次的目录，避免把 modelCount 全清成 null
+  if (okCount > 0) {
+    await writeFile(`${dataDir}index.json`, JSON.stringify(index, null, 1), 'utf8');
+  } else {
+    console.warn('[build-data] 本次无榜单成功，保留上一次的 index.json');
+  }
 
   // status.json
   const anyOk = okCount > 0;

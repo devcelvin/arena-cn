@@ -31,14 +31,13 @@
         从对话、中文对话、编程、数学，到文生图、视频生成与智能体实战。
         国内可直接访问，全中文界面，厂商均标注中文名，国产模型单独高亮。
       </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="board.html?b=text-chinese">🇨🇳 查看中文对话榜</a>
-        <a class="btn btn-ghost" href="#all-boards">浏览全部 19 个榜单</a>
-      </div>
     </section>
 
-    <!-- KPI -->
-    <div id="stats-slot"></div>
+    <!-- 榜单选择器：第一行大类，第二行小类 -->
+    <div class="picker" id="board-picker">
+      <div class="picker-row picker-major" role="tablist" aria-label="榜单大类" id="picker-major"></div>
+      <div class="picker-row picker-minor" id="picker-minor"></div>
+    </div>
 
     <!-- 新鲜度 -->
     <div id="fresh-slot"></div>
@@ -64,10 +63,6 @@
         </div>
       </div>
     </section>
-
-    <!-- 全部榜单 -->
-    <div id="all-boards"></div>
-    <div id="grid-slot"></div>
 
     <footer class="footer">
       <p><strong>关于数据</strong>　来源 <a href="https://arena.ai/leaderboard" target="_blank" rel="noopener">arena.ai</a>（原 LMSYS Chatbot Arena）公开榜单页面，本站每日自动抓取快照并做中文化整理，仅供学习参考，与官方无关；排名与评分版权归原站所有。</p>
