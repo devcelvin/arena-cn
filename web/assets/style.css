@@ -51,6 +51,12 @@
   --up:   #d93025;
   --down: #188038;
 
+  /* --- 填充强调色（选中态） ---
+     深色主题下 --accent 是浅蓝，配白字只有 2.5:1，
+     因此前景色必须随主题翻转，保证 ≥4.5:1 */
+  --sel-bg: var(--brand-600);
+  --sel-fg: #ffffff;
+
   /* --- 语义化别名：表面 --- */
   --bg:        var(--gray-100);
   --surface-1: #ffffff;
@@ -147,6 +153,8 @@
     --sh-brand: 0 8px 22px -6px rgb(96 165 250 / 0.4);
     --ring: 0 0 0 3px #1e3a5f;
     --shadow: var(--sh-sm);
+    --sel-bg: var(--brand-400);
+    --sel-fg: #0b0f19;
   }
 }
 
@@ -181,6 +189,8 @@
   --sh-brand: 0 8px 22px -6px rgb(96 165 250 / 0.4);
   --ring: 0 0 0 3px #1e3a5f;
   --shadow: var(--sh-sm);
+  --sel-bg: var(--brand-400);
+  --sel-fg: #0b0f19;
 }
 
 /* ============================================================
@@ -355,9 +365,9 @@ select.icon-btn option { background: var(--surface-1); color: var(--text); }
   transition: all var(--t-fast); text-decoration: none; white-space: nowrap;
 }
 .btn-primary {
-  background: var(--accent); color: #fff; box-shadow: var(--sh-brand);
+  background: var(--sel-bg); color: var(--sel-fg); box-shadow: var(--sh-brand);
 }
-.btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); color: #fff; }
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); color: var(--sel-fg); }
 .btn-ghost {
   background: var(--surface-1); color: var(--text); border-color: var(--border-strong);
 }
@@ -602,7 +612,7 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
 }
 .seg button + button { border-left: 1px solid var(--border); }
 .seg button:hover { background: var(--surface-3); }
-.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; font-weight: 600; }
+.seg button[aria-pressed="true"] { background: var(--sel-bg); color: var(--sel-fg); font-weight: 600; }
 
 .toolbar .count { font-size: var(--fs-base); color: var(--muted); margin-left: auto; }
 .toolbar .count b { color: var(--text); font-weight: 700; }
@@ -613,33 +623,6 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
   transition: background var(--t-fast);
 }
 .link-btn:hover { background: var(--accent-soft); text-decoration: none; }
-
-/* ---------- 榜单快速切换 ---------- */
-.chip-nav {
-  display: flex; gap: var(--sp-2); overflow-x: auto; padding: 2px 0 var(--sp-2);
-  margin-bottom: var(--sp-4); scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
-}
-.chip-nav::-webkit-scrollbar { height: 6px; }
-.chip-nav::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
-.chip-nav::-webkit-scrollbar-track { background: transparent; }
-.chip-nav a {
-  flex: none; padding: 6px 13px; border-radius: var(--r-pill);
-  border: 1px solid var(--border); background: var(--surface-1);
-  color: var(--text-sub); font-size: var(--fs-base); white-space: nowrap;
-  transition: all var(--t-fast);
-}
-.chip-nav a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
-.chip-nav a[aria-current="true"] {
-  background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600;
-  box-shadow: var(--sh-brand);
-}
-.chip-sep {
-  flex: none; align-self: center; padding: 0 var(--sp-2) 0 var(--sp-1);
-  font-size: var(--fs-sm); color: var(--muted); white-space: nowrap;
-  border-left: 1px solid var(--border); margin-left: var(--sp-1);
-}
-.chip-nav .chip-sep:first-child { border-left: none; margin-left: 0; padding-left: 0; }
 
 /* ---------- 榜单选择器（大类 / 小类 两行） ---------- */
 .picker {
@@ -691,12 +674,6 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
   border-color: var(--accent); color: var(--accent); background: var(--accent-soft);
   text-decoration: none; transform: translateY(-1px);
 }
-.s-item[aria-current="true"] {
-  border-color: var(--accent); background: var(--accent); color: #fff;
-  font-weight: 650; box-shadow: var(--sh-brand);
-}
-.s-item[aria-current="true"] .n { color: rgb(255 255 255 / 0.78); }
-.s-item[aria-current="true"] .star { color: #fde68a; }
 .s-item .n {
   font-size: var(--fs-sm); color: var(--muted); font-variant-numeric: tabular-nums;
   font-weight: 500;
@@ -707,6 +684,20 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
   background: var(--accent-soft);
 }
 .s-item .star { color: #f59e0b; font-size: 12px; }
+
+/* 选中态必须排在 .hl 之后，并用 .picker-minor 提升特异性，
+   否则「国内精选」小类（同时带 .hl）会被 .hl 的浅蓝底盖掉，
+   留下白字配浅底（对比度 1.09:1，等于看不见）。 */
+.picker-minor .s-item[aria-current="true"] {
+  border-color: var(--sel-bg); background: var(--sel-bg); color: var(--sel-fg);
+  font-weight: 650; box-shadow: var(--sh-brand);
+}
+.picker-minor .s-item[aria-current="true"] .n {
+  color: color-mix(in srgb, var(--sel-fg) 92%, transparent);
+}
+.picker-minor .s-item[aria-current="true"] .star {
+  color: color-mix(in srgb, var(--sel-fg) 72%, #f59e0b);
+}
 .picker-tip {
   font-size: var(--fs-sm); margin-left: auto; padding-left: var(--sp-2);
   white-space: nowrap;
@@ -718,17 +709,6 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
   .picker-tip { display: none; }
 }
 
-/* ---------- 首页双栏 ---------- */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); align-items: start; }
-.two-col > * { min-width: 0; }  /* 防止 nowrap 表格把栅格撑爆（grid 最小内容宽度陷阱） */
-.table-scroll { max-width: 100%; }
-@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
-
-/* ---------- 榜单页头 ---------- */
-.crumb { font-size: var(--fs-base); padding-top: var(--sp-4); color: var(--muted); }
-.crumb a { color: var(--muted); }
-.crumb a:hover { color: var(--accent); }
-
 /* ---------- 宽屏：表格无需横向滚动 ----------
    去掉滚动容器后，粘性表头改相对视口解析，吸附在顶栏正下方；
    前提是表格自然宽度（实测最宽约 808px）小于可用宽度，880px 起有足够余量。 */
@@ -736,7 +716,6 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
   .table-scroll { overflow-x: visible; }
   table.board th { top: var(--topbar-h); }
 }
-.crumb .sep { margin: 0 6px; opacity: 0.5; }
 
 .board-head { margin: var(--sp-3) 0 var(--sp-4); }
 .board-head h1 {
@@ -821,7 +800,7 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
 }
 
 @media print {
-  .topbar, .fab, .toolbar, .chip-nav { display: none !important; }
+  .topbar, .fab, .toolbar { display: none !important; }
   body { background: #fff; }
   .card { break-inside: avoid; box-shadow: none; }
 }
