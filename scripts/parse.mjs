@@ -150,9 +150,10 @@ export function extractSessionStats(rscText) {
  *
  * 这个日期才是榜单的数据时间：源站的排名与票数冻结于该日
  * （实测跨日抓取票数一字不变），抓取时间只反映镜像新旧。
- * 主页（Agent 三榜）与 image-edit 页无此结构，字段返回 null。
+ * image-edit 页无此结构，字段返回 null。
  *
  * 已实测 16 个分类页各自均只有 1 处匹配，模式唯一。
+ * 主页（Agent 三榜）不走这里 —— 见 extractHomePills。
  */
 const MONTHS = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
 
@@ -168,6 +169,80 @@ export function extractBoardStats(html) {
     dataDate,
     totalVotes: vm ? Number(vm[1].replace(/,/g, '')) : null,
   };
+}
+
+/** 从 start 处的 '[' 做平衡扫描，返回完整数组子串（失败返回 null） */
+function scanBalancedArray(text, start) {
+  let depth = 0;
+  let inStr = false;
+  let esc = false;
+  for (let i = start; i < text.length; i++) {
+    const c = text[i];
+    if (inStr) {
+      if (esc) esc = false;
+      else if (c === '\\') esc = true;
+      else if (c === '"') inStr = false;
+    } else if (c === '"') {
+      inStr = true;
+    } else if (c === '[' || c === '{') {
+      depth++;
+    } else if (c === ']' || c === '}') {
+      depth--;
+      if (depth === 0) return text.slice(start, i + 1);
+    }
+  }
+  return null;
+}
+
+/**
+ * 提取主页 pills（首页 8 张榜卡片对象）中各榜的数据时间。
+ *
+ * 主页的 Agent 三榜不提供服务端渲染的「数据日期」span（那套只给分类页），
+ * 但 pill 数据里带着等价信息：
+ *   ① 有 trends 的榜（Best Overall / Best Coding）：
+ *      trends.plots[].series[].points[].cutoffTime 的**末点 UTC 日期**即该榜数据冻结日。
+ *      已验证与源站分类页标注逐一对齐：text 10-08 / text-to-image 10-07 /
+ *      text-to-video 09-21 / webdev 10-08，且 /leaderboard/agent 页
+ *     服务端渲染 <span>Oct 12, 2026</span> 亦与该榜 cutoffTime 末点（10-12）一致。
+ *   ② 无 trends 的榜（Aligned）：日期写在 note，
+ *      形如 "Preliminary · September 30, 2026 · 72,509 sessions"。
+ *
+ * 返回 { [pillId]: { dataDate: 'YYYY-MM-DD'|null, sessions: number|null } }。
+ * 注：note 里的 sessions 是"对战会话数"，与分类页的 votes 不同量纲，
+ * 故不并入 totalVotes，仅单独返回备用。
+ */
+export function extractHomePills(rscText) {
+  const anchor = rscText.indexOf('"pills":[');
+  if (anchor === -1) return {};
+  const arrStr = scanBalancedArray(rscText, rscText.indexOf('[', anchor));
+  if (!arrStr) return {};
+  let pills;
+  try {
+    pills = JSON.parse(arrStr);
+  } catch {
+    return {};
+  }
+  const out = {};
+  for (const pill of Array.isArray(pills) ? pills : []) {
+    if (!pill || !pill.id) continue;
+    const pts = pill?.trends?.plots?.[0]?.series?.[0]?.points;
+    let dataDate = null;
+    if (Array.isArray(pts) && pts.length) {
+      const last = pts[pts.length - 1]?.cutoffTime;
+      if (typeof last === 'string' && /^\d{4}-\d{2}-\d{2}/.test(last)) dataDate = last.slice(0, 10);
+    }
+    let sessions = null;
+    if (typeof pill.note === 'string') {
+      const nm = pill.note.match(/([A-Z][a-z]{2})[a-z]* (\d{1,2}), (\d{4})/);
+      if (nm && MONTHS[nm[1]] && !dataDate) {
+        dataDate = `${nm[3]}-${String(MONTHS[nm[1]]).padStart(2, '0')}-${String(nm[2]).padStart(2, '0')}`;
+      }
+      const sm = pill.note.match(/([\d,]+)\s+sessions/);
+      if (sm) sessions = Number(sm[1].replace(/,/g, ''));
+    }
+    out[pill.id] = { dataDate, sessions };
+  }
+  return out;
 }
 
 /** 页面总入口：分类页 → 模型数组；主页 → { agentLists, session } */

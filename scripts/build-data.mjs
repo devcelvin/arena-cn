@@ -13,7 +13,7 @@ import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { PAGES, BOARDS } from './boards.config.mjs';
-import { parsePage, extractModelObjects, extractAgentLists, extractSessionStats, extractBoardStats } from './parse.mjs';
+import { parsePage, extractModelObjects, extractAgentLists, extractSessionStats, extractBoardStats, extractHomePills } from './parse.mjs';
 import { validateBoard, validateSession } from './validate.mjs';
 import { cleanupSnapshots, dirSizeMB } from './cleanup.mjs';
 
@@ -115,9 +115,11 @@ async function main() {
 
     let session = null;
     let agentLists = null;
+    let agentPills = null;
     let boardStats = { dataDate: null, totalVotes: null };
     if (page.kind === 'home') {
       agentLists = extractAgentLists(parsed.rscText);
+      agentPills = extractHomePills(parsed.rscText);
       session = extractSessionStats(parsed.rscText);
       if (agentLists.length !== 3) {
         console.log(`⚠ home：Agent 列表组数 = ${agentLists.length}（预期 3），按顺序映射`);
@@ -153,6 +155,18 @@ async function main() {
         continue;
       }
 
+      // 数据时间口径：分类页取头部 span（extractBoardStats）；
+      // home 页（Agent 三榜）取 pill 的 trends 末点 cutoffTime，无 trends 则取 note 里的日期。
+      const stats = page.kind === 'home'
+        ? agentPills?.[b.pillId] || { dataDate: null }
+        : boardStats;
+      const dataDate = stats.dataDate ?? null;
+      // home 页 pill 只有"会话数"（写在 note 里），与分类页 votes 不同量纲，不并入
+      const totalVotes = page.kind === 'home' ? null : boardStats.totalVotes ?? null;
+      if (!dataDate) {
+        console.log(`⚠ ${b.id}：未提取到源站数据日期，该榜将退回显示抓取时间`);
+      }
+
       const boardJson = {
         meta: {
           boardId: b.id,
@@ -160,8 +174,8 @@ async function main() {
           group: b.group,
           scale: b.scale,
           fetchedAt: nowIso,
-          dataDate: boardStats.dataDate,
-          totalVotes: boardStats.totalVotes,
+          dataDate,
+          totalVotes,
           sourceUrl: 'https://arena.ai' + page.url,
           modelCount: models.length,
         },
@@ -180,8 +194,8 @@ async function main() {
       await appendHistory(b.id, models);
 
       boardStatus[b.id] = { ok: true, count: models.length, warnings };
-      boardDataDates[b.id] = boardStats.dataDate;
-      boardTotalVotes[b.id] = boardStats.totalVotes;
+      boardDataDates[b.id] = dataDate;
+      boardTotalVotes[b.id] = totalVotes;
       okCount++;
       console.log(`✓ ${b.id}（${b.name}）${models.length} 个模型${warnings.length ? ` ⚠ ${warnings[0]}` : ''}`);
     }

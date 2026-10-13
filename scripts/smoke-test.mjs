@@ -310,7 +310,16 @@ function itemsFrom(html, attr) {
   check('Agent 榜：标题', documentStub.title.includes('智能体总榜'));
   check('Agent 榜：百分比渲染', els.get('#board-slot').innerHTML.includes(AGENT_PCT));
   check('Agent 榜：单任务成本列', els.get('#board-slot').innerHTML.includes('单任务成本'));
-  check('Agent 榜：源站无日期时回退抓取时间', els.get('#board-meta').innerHTML.includes('抓取于'));
+  // 源站对 Agent 榜也有数据时间（主页 pill 的 trends 末点 / note），
+  // 取到就应显示「数据日期」；只有真的取不到时才回退「抓取于」。
+  const hasAgentDate = !!agentBoard.meta.dataDate;
+  const agentMeta = els.get('#board-meta').innerHTML;
+  check(
+    hasAgentDate ? 'Agent 榜：显示源站数据日期' : 'Agent 榜：无源站日期时回退抓取时间',
+    hasAgentDate
+      ? agentMeta.includes('数据日期') && !agentMeta.includes('抓取于')
+      : agentMeta.includes('抓取于')
+  );
 
   const rows = [
     { rank: 3, name: 'c', org: 'X', score: 1200, votes: 10, inputPrice: 1, outputPrice: 2, contextLength: 1000 },

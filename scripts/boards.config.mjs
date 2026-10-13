@@ -13,6 +13,8 @@
  *     group       分组（智能体/对话/代码/图像/视频）
  *     scale       量纲：'elo' | 'winrate'
  *     listIndex   仅 home 页：取第几组 Agent 列表（0=最佳综合, 1=最佳编程, 2=最佳对齐）
+ *     pillId      仅 home 页：对应源站首页 pill 对象的 id，用于取该榜数据时间
+ *                 （见 parse.mjs extractHomePills；漏配则退回显示抓取时间）
  *     highlight   true = 国内精选（小类选择器里标 ★ 并给淡蓝底）
  */
 
@@ -22,9 +24,9 @@ export const PAGES = [
     url: '/leaderboard',
     kind: 'home',
     boards: [
-      { id: 'agent',          name: '智能体总榜',     group: '智能体', scale: 'bt', listIndex: 0 },
-      { id: 'agent-coding',   name: '编程智能体榜',   group: '智能体', scale: 'bt', listIndex: 1 },
-      { id: 'agent-aligned',  name: '对齐偏好智能体榜', group: '智能体', scale: 'bt', listIndex: 2 },
+      { id: 'agent',          name: '智能体总榜',     group: '智能体', scale: 'bt', listIndex: 0, pillId: 'best-overall-agents' },
+      { id: 'agent-coding',   name: '编程智能体榜',   group: '智能体', scale: 'bt', listIndex: 1, pillId: 'agentic-coding' },
+      { id: 'agent-aligned',  name: '对齐偏好智能体榜', group: '智能体', scale: 'bt', listIndex: 2, pillId: 'safest-agents' },
     ],
   },
   {
