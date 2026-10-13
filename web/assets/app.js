@@ -52,10 +52,11 @@ const ORG_PALETTE = [
   '#ca8a04', '#dc2626', '#4f46e5', '#059669', '#be185d', '#0369a1',
 ];
 
-const SCALE_LABEL = { elo: 'ELO 评分', bt: '相对战力值' };
+const SCALE_LABEL = { elo: 'ELO 评分', bt: '相对战力值', index: '对齐指数' };
 const SCALE_HINT = {
   elo: 'ELO 为相对战力分，分数越高代表对战表现越强；± 为 95% 置信区间。',
   bt: '相对战力值基于 Bradley-Terry 模型，0 = 平均水平，正值表示优于平均，按百分比展示。',
+  index: '对齐指数来自真实会话里的行为信号（任务完成确认、用户满意度、可引导性、工具使用可靠性等），分数越高代表对齐表现越好。',
 };
 
 /* 榜组图标（仅为可读性，不承载语义） */
@@ -79,6 +80,11 @@ const LEGACY_ID = {
   'text-to-video': 'video-text-to-video',
   'image-to-video': 'video-image-to-video',
   'video-edit': 'video-video-edit',
+  // 智能体三榜在二次对齐时改名归位：原「对齐偏好智能体榜」实为 Work 榜，
+  // 真正的 Alignment 是另一套量纲（index），见 agent-alignment
+  agent: 'agent-overall',
+  'agent-coding': 'agent-code',
+  'agent-aligned': 'agent-work',
 };
 const resolveId = (id) => (id && LEGACY_ID[id]) || id;
 
@@ -430,9 +436,9 @@ async function initApp() {
   initPicker();
   bindToolbar();
 
-  // 初始榜单：URL ?b= 优先（兼容旧 id），否则第一个二级榜单
+  // 初始榜单：URL ?b= 优先（兼容旧 id），否则第一个（有数据的）二级榜单
   const wanted = resolveId(new URLSearchParams(location.search).get('b'));
-  const fallback = (INDEX.boards.find((b) => b.isBoard) || INDEX.boards[0]).id;
+  const fallback = resolveTarget((INDEX.boards.find((b) => b.isBoard) || INDEX.boards[0]).id);
   const initial = INDEX.boards.some((b) => b.id === wanted) ? wanted : fallback;
   await selectBoard(initial, { push: false });
 
@@ -448,6 +454,15 @@ async function initApp() {
 const boardsOf = (group) => (INDEX ? INDEX.boards.filter((b) => b.group === group && b.isBoard) : []);
 const catsOf = (parentId) => (INDEX ? INDEX.boards.filter((b) => b.parent === parentId) : []);
 const boardById = (id) => (INDEX ? INDEX.boards.find((b) => b.id === id) : null);
+
+/** 容器节点（自身无榜单数据，如智能体「能力榜」）→ 落到第一个有数据的子类别 */
+function resolveTarget(id) {
+  const b = boardById(id);
+  if (!b || b.modelCount != null) return id;
+  const kids = catsOf(id);
+  if (!kids.length) return id;
+  return (kids.find((k) => k.modelCount != null) || kids[0]).id;
+}
 
 function renderPicker() {
   const majorBox = $('#picker-major');
@@ -561,11 +576,12 @@ function initPicker() {
 /* ---------- 切换榜单（就地） ---------- */
 async function selectBoard(id, opts = {}) {
   const push = opts.push !== false;
-  const info = boardById(id);
+  const targetId = resolveTarget(id);      // 容器节点落到其子类别
+  const info = boardById(targetId);
   if (!info) return;
 
   activeGroup = info.group;
-  activeBoard = id;
+  activeBoard = targetId;
   activeParent = info.parent || info.id;   // 三级类别归入其所属二级榜单
   renderPicker();   // 一级选中态 + 二级 + 三级类别，三者一次对齐
 
@@ -594,12 +610,12 @@ async function selectBoard(id, opts = {}) {
   if (slot) slot.innerHTML = skeletonHtml(10);
   document.title = `${fullName} - AI Arena 中文榜单`;
   if (push && window.history && window.history.pushState) {
-    window.history.pushState({ b: id }, '', `?b=${encodeURIComponent(id)}`);
+    window.history.pushState({ b: targetId }, '', `?b=${encodeURIComponent(targetId)}`);
   }
 
   let board;
   try {
-    board = await fetchJson(`data/latest/${id}.json`);
+    board = await fetchJson(`data/latest/${targetId}.json`);
   } catch {
     if (slot) slot.innerHTML = emptyStateHtml('📭', '暂无数据', '该榜单本次抓取未通过校验，展示的是上一次成功的数据缺失。', '<a class="btn btn-primary" href="index.html">回到首页</a>');
     return;

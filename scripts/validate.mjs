@@ -30,11 +30,12 @@ export function validateBoard({ boardId, scale, models, prev }) {
   }
 
   // 4. score 量纲区间（实测 ELO 全域约 880–1813；"排除平票"类榜单含老模型可低至 ~768，故下限放到 700；
-  //    BT 相对分值约 -0.17~+0.16，留余量）
-  const range = scale === 'elo' ? [700, 2000] : scale === 'bt' ? [-0.5, 1] : [0, 1];
+  //    BT 相对分值约 -0.17~+0.16；index 为智能体对齐指数，实测 0–100）
+  const range = scale === 'elo' ? [700, 2000] : scale === 'bt' ? [-0.5, 1] : scale === 'index' ? [0, 100] : [0, 1];
+  const scaleName = scale === 'elo' ? 'ELO' : scale === 'bt' ? 'BT' : scale === 'index' ? '对齐指数' : '胜率';
   const bad = models.filter((m) => !(m.score >= range[0] && m.score <= range[1]));
   if (bad.length) {
-    errors.push(`${bad.length} 个模型 score 超出${scale === 'elo' ? 'ELO' : scale === 'bt' ? 'BT' : '胜率'}合理区间 [${range}]，首个：${bad[0].name}=${bad[0].score}`);
+    errors.push(`${bad.length} 个模型 score 超出${scaleName}合理区间 [${range}]，首个：${bad[0].name}=${bad[0].score}`);
   }
 
   // 5. 必填字段完整（org 允许空串，不允许 null）

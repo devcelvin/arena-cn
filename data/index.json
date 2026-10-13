@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-13T13:00:56.644Z",
+ "generatedAt": "2026-10-13T13:39:23.413Z",
  "groups": [
   "智能体",
   "对话",
@@ -9,15 +9,29 @@
  ],
  "boards": [
   {
-   "id": "agent",
-   "name": "智能体总榜",
+   "id": "agent-capabilities",
+   "name": "能力榜",
    "group": "智能体",
    "scale": "bt",
    "parent": null,
    "isBoard": true,
    "highlight": false,
+   "modelCount": null,
+   "updatedAt": "2026-10-13T13:39:23.413Z",
+   "dataDate": null,
+   "totalVotes": null,
+   "topModel": null
+  },
+  {
+   "id": "agent-overall",
+   "name": "总榜",
+   "group": "智能体",
+   "scale": "bt",
+   "parent": "agent-capabilities",
+   "isBoard": false,
+   "highlight": false,
    "modelCount": 52,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-12",
    "totalVotes": null,
    "topModel": {
@@ -27,15 +41,15 @@
    }
   },
   {
-   "id": "agent-coding",
-   "name": "编程智能体榜",
+   "id": "agent-code",
+   "name": "编程",
    "group": "智能体",
    "scale": "bt",
-   "parent": null,
-   "isBoard": true,
+   "parent": "agent-capabilities",
+   "isBoard": false,
    "highlight": false,
    "modelCount": 52,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-12",
    "totalVotes": null,
    "topModel": {
@@ -45,21 +59,39 @@
    }
   },
   {
-   "id": "agent-aligned",
-   "name": "对齐偏好智能体榜",
+   "id": "agent-work",
+   "name": "工作",
    "group": "智能体",
    "scale": "bt",
-   "parent": null,
-   "isBoard": true,
+   "parent": "agent-capabilities",
+   "isBoard": false,
    "highlight": false,
    "modelCount": 52,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
-   "dataDate": "2026-09-30",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
+   "dataDate": "2026-10-12",
    "totalVotes": null,
    "topModel": {
     "name": "Claude Opus 5.5 (Max)",
     "org": "Anthropic",
     "score": 0.161
+   }
+  },
+  {
+   "id": "agent-alignment",
+   "name": "对齐榜",
+   "group": "智能体",
+   "scale": "index",
+   "parent": null,
+   "isBoard": true,
+   "highlight": false,
+   "modelCount": 27,
+   "updatedAt": "2026-10-13T13:39:23.413Z",
+   "dataDate": "2026-09-30",
+   "totalVotes": null,
+   "topModel": {
+    "name": "GPT-6.1 Sol",
+    "org": "OpenAI",
+    "score": 87.9
    }
   },
   {
@@ -71,7 +103,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-09-13",
    "totalVotes": 404715,
    "topModel": {
@@ -89,7 +121,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 34,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-08-24",
    "totalVotes": 1110523,
    "topModel": {
@@ -107,7 +139,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 8734330,
    "topModel": {
@@ -125,7 +157,7 @@
    "isBoard": false,
    "highlight": true,
    "modelCount": 390,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 667766,
    "topModel": {
@@ -143,7 +175,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 409,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 1872777,
    "topModel": {
@@ -161,7 +193,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 1393561,
    "topModel": {
@@ -179,7 +211,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 4221096,
    "topModel": {
@@ -197,7 +229,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 6187130,
    "topModel": {
@@ -215,7 +247,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 364,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 617312,
    "topModel": {
@@ -233,7 +265,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 293,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 167044,
    "topModel": {
@@ -251,7 +283,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 312,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 161652,
    "topModel": {
@@ -269,7 +301,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 4146382,
    "topModel": {
@@ -287,7 +319,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 1985675,
    "topModel": {
@@ -305,7 +337,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 407,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 1387058,
    "topModel": {
@@ -323,7 +355,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 1673923,
    "topModel": {
@@ -341,7 +373,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 387,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 584327,
    "topModel": {
@@ -359,7 +391,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 1456113,
    "topModel": {
@@ -377,7 +409,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 397,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 640004,
    "topModel": {
@@ -395,7 +427,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 385,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 524603,
    "topModel": {
@@ -413,7 +445,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 2910977,
    "topModel": {
@@ -431,7 +463,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 413,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 2163427,
    "topModel": {
@@ -449,7 +481,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 2897039,
    "topModel": {
@@ -467,7 +499,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 278,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 124567,
    "topModel": {
@@ -485,7 +517,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 281,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 135606,
    "topModel": {
@@ -503,7 +535,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 392,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 2341962,
    "topModel": {
@@ -521,7 +553,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 400,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 704232,
    "topModel": {
@@ -539,7 +571,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 1441802,
    "topModel": {
@@ -557,7 +589,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 4510825,
    "topModel": {
@@ -575,7 +607,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 232,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 170674,
    "topModel": {
@@ -593,7 +625,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 378,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 922114,
    "topModel": {
@@ -611,7 +643,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 298,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 175361,
    "topModel": {
@@ -629,7 +661,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 165,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 1462389,
    "topModel": {
@@ -647,7 +679,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 34,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 4197,
    "topModel": {
@@ -665,7 +697,7 @@
    "isBoard": false,
    "highlight": true,
    "modelCount": 125,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 81002,
    "topModel": {
@@ -683,7 +715,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 101,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 74373,
    "topModel": {
@@ -701,7 +733,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 121,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 263673,
    "topModel": {
@@ -719,7 +751,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 165,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 627463,
    "topModel": {
@@ -737,7 +769,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 51,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 6848,
    "topModel": {
@@ -755,7 +787,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 116,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 131047,
    "topModel": {
@@ -773,7 +805,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 91,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 43638,
    "topModel": {
@@ -791,7 +823,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 121,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 741111,
    "topModel": {
@@ -809,7 +841,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 64,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-09",
    "totalVotes": 177108,
    "topModel": {
@@ -827,7 +859,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 142,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 852934,
    "topModel": {
@@ -845,7 +877,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 141,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 242336,
    "topModel": {
@@ -863,7 +895,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 141,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 181019,
    "topModel": {
@@ -881,7 +913,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 135,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 92695,
    "topModel": {
@@ -899,7 +931,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 141,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 192807,
    "topModel": {
@@ -917,7 +949,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 142,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 752673,
    "topModel": {
@@ -935,7 +967,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 78,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 93642,
    "topModel": {
@@ -953,7 +985,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 141,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 229036,
    "topModel": {
@@ -971,7 +1003,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 141,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 185548,
    "topModel": {
@@ -989,7 +1021,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 126,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 565389,
    "topModel": {
@@ -1007,7 +1039,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 141,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 200154,
    "topModel": {
@@ -1025,7 +1057,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 141,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-08",
    "totalVotes": 128949,
    "topModel": {
@@ -1043,7 +1075,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 9248643,
    "topModel": {
@@ -1061,7 +1093,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 32,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 160617,
    "topModel": {
@@ -1079,7 +1111,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 30,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 25614,
    "topModel": {
@@ -1097,7 +1129,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 32,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 349835,
    "topModel": {
@@ -1115,7 +1147,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 32,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 295932,
    "topModel": {
@@ -1133,7 +1165,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 32,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 972360,
    "topModel": {
@@ -1151,7 +1183,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 32,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 745182,
    "topModel": {
@@ -1169,7 +1201,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 32,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 228204,
    "topModel": {
@@ -1187,7 +1219,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 59,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 30985932,
    "topModel": {
@@ -1205,7 +1237,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 485494,
    "topModel": {
@@ -1223,7 +1255,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 116695,
    "topModel": {
@@ -1241,7 +1273,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 993899,
    "topModel": {
@@ -1259,7 +1291,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 799701,
    "topModel": {
@@ -1277,7 +1309,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 2806148,
    "topModel": {
@@ -1295,7 +1327,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 2011762,
    "topModel": {
@@ -1313,7 +1345,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-06",
    "totalVotes": 595539,
    "topModel": {
@@ -1331,7 +1363,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-07",
    "totalVotes": 6604125,
    "topModel": {
@@ -1349,7 +1381,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-07",
    "totalVotes": 602700,
    "topModel": {
@@ -1367,7 +1399,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-07",
    "totalVotes": 897754,
    "topModel": {
@@ -1385,7 +1417,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-07",
    "totalVotes": 2614727,
    "topModel": {
@@ -1403,7 +1435,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-07",
    "totalVotes": 2064015,
    "topModel": {
@@ -1421,7 +1453,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-07",
    "totalVotes": 2910195,
    "topModel": {
@@ -1439,7 +1471,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-07",
    "totalVotes": 1640706,
    "topModel": {
@@ -1457,7 +1489,7 @@
    "isBoard": false,
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-10-07",
    "totalVotes": 1879876,
    "topModel": {
@@ -1475,7 +1507,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 48,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-09-21",
    "totalVotes": 2081953,
    "topModel": {
@@ -1493,7 +1525,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 48,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-09-21",
    "totalVotes": 718577,
    "topModel": {
@@ -1511,7 +1543,7 @@
    "isBoard": true,
    "highlight": false,
    "modelCount": 10,
-   "updatedAt": "2026-10-13T13:00:56.644Z",
+   "updatedAt": "2026-10-13T13:39:23.413Z",
    "dataDate": "2026-08-26",
    "totalVotes": 27930,
    "topModel": {

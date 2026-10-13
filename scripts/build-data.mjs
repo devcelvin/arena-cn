@@ -9,7 +9,7 @@
  *   data/index.json               榜单目录
  *   data/status.json              健康状态/新鲜度
  */
-import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, readdir, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { PAGES, BOARDS } from './boards.config.mjs';
@@ -143,9 +143,17 @@ async function main() {
     }
 
     for (const b of page.boards) {
+      // 容器节点（如智能体「能力榜」）：只登记进 index 供三级树使用，无自有榜单数据
+      if (b.container) {
+        boardStatus[b.id] = { ok: true, count: null };
+        continue;
+      }
       const rawModels =
         page.kind === 'home'
-          ? (agentLists[b.listIndex] || [])
+          ? b.fromPill
+            // 数据只在首页 pills 的 entries 里（如 Agent | Alignment，榜单页为客户端切换）
+            ? agentPills?.[b.pillId]?.entries || []
+            : agentLists[b.listIndex] || []
           : extractModelObjects(parsed.rscText);
       const models = rawModels.map(normalize);
       const prev = await readJson(`${dataDir}latest/${b.id}.json`);
@@ -253,6 +261,19 @@ async function main() {
   // index.json —— 本次全榜失败时保留上一次的目录，避免把 modelCount 全清成 null
   if (okCount > 0) {
     await writeFile(`${dataDir}index.json`, JSON.stringify(index, null, 1), 'utf8');
+
+    // 清理孤儿文件：榜单改名/下线后 latest 里的残留会跟着 sync-web-data 部署上线
+    try {
+      const valid = new Set(BOARDS.map((b) => b.id));
+      for (const f of await readdir(`${dataDir}latest`)) {
+        if (!f.endsWith('.json')) continue;
+        const id = f.slice(0, -5);
+        if (!valid.has(id)) {
+          await rm(`${dataDir}latest/${f}`, { force: true });
+          console.log(`[build-data] 清理孤儿文件 latest/${f}`);
+        }
+      }
+    } catch { /* latest 不存在时忽略 */ }
   } else {
     console.warn('[build-data] 本次无榜单成功，保留上一次的 index.json');
   }

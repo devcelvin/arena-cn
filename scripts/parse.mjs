@@ -240,7 +240,14 @@ export function extractHomePills(rscText) {
       const sm = pill.note.match(/([\d,]+)\s+sessions/);
       if (sm) sessions = Number(sm[1].replace(/,/g, ''));
     }
-    out[pill.id] = { dataDate, sessions };
+    out[pill.id] = {
+      dataDate,
+      sessions,
+      // 完整条目：部分榜（如 Agent | Alignment）的数据只在这里提供
+      // —— 它对应的榜单页是客户端切换（/leaderboard/agent 的 Categories），SSR 里没有
+      entries: Array.isArray(pill.entries) ? pill.entries : null,
+      scoreUnit: pill.scoreUnit ?? null,
+    };
   }
   return out;
 }

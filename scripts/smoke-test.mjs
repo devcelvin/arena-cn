@@ -11,7 +11,7 @@ const appCode = await readFile(ROOT + 'assets/app.js', 'utf8');
 
 /* 期望值从数据文件推导，不硬编码——源站数据每日在变（Agent 榜实测跨日就会变），
    硬编码值会把冒烟测试变成"源站没更新才算通过"的脆弱测试 */
-const agentBoard = JSON.parse(await readFile(ROOT + 'data/latest/agent.json', 'utf8'));
+const agentBoard = JSON.parse(await readFile(ROOT + 'data/latest/agent-overall.json', 'utf8'));
 const AGENT_COUNT = String(agentBoard.models.length);
 const AGENT_PCT = (agentBoard.models[0].score > 0 ? '+' : '') + (agentBoard.models[0].score * 100).toFixed(1) + '%';
 
@@ -172,13 +172,13 @@ function itemsFrom(html, attr) {
   const catsHtml = els.get('#picker-cats').innerHTML;
   check('选择器：第一行含 5 个大类', (major.match(/role="tab"/g) || []).length === 5);
   check('选择器：默认选中第一个大类', /aria-selected="true"/.test(major));
-  check('选择器：第二行展示该大类的二级榜单', (boardsHtml.match(/class="s-item/g) || []).length >= 3);
+  check('选择器：第二行展示该大类的二级榜单', (boardsHtml.match(/class="s-item/g) || []).length >= 2);
   check('选择器：二级榜单带模型数', boardsHtml.includes('class="n"'));
   check('选择器：默认有选中的二级榜单', /aria-current="true"/.test(boardsHtml));
   check('选择器：第三行（类别）已渲染', catsHtml.length > 0);
 
-  check('榜单：默认加载智能体总榜', documentStub.title.includes('智能体总榜'));
-  check('榜单：标题渲染', els.get('#board-title').innerHTML.includes('智能体总榜'));
+  check('榜单：默认加载能力榜·总榜', documentStub.title.includes('能力榜 · 总榜'));
+  check('榜单：标题渲染', els.get('#board-title').innerHTML.includes('能力榜 · 总榜'));
   check('榜单：元信息含模型数', els.get('#board-meta').innerHTML.includes(AGENT_COUNT));
   check('榜单：表格渲染', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 50);
   check('榜单：BT 量纲百分比', els.get('#board-slot').innerHTML.includes(AGENT_PCT));
@@ -205,16 +205,16 @@ function itemsFrom(html, attr) {
   await settling();
 
   const minorItems = itemsFrom(els.get('#picker-boards').innerHTML, 'data-b');
-  check('解析出智能体类小类', minorItems.length === 3);
+  check('解析出智能体类二级榜单（能力榜/对齐榜）', minorItems.length === 2);
   els.get('#picker-boards').fire('click', {
-    target: { closest: () => minorItems[1] },   // 编程智能体榜
+    target: { closest: () => minorItems[0] },   // 能力榜（容器 → 应落到「总榜」）
     ctrlKey: false, metaKey: false, shiftKey: false, button: 0,
     preventDefault() {},
   });
   await settling();
-  check('切换：标题更新为编程智能体榜', documentStub.title.includes('编程智能体榜'));
+  check('切换：容器节点自动落到子类别（能力榜 · 总榜）', documentStub.title.includes('能力榜 · 总榜'));
   check('切换：表格重渲染', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 50);
-  check('切换：URL 已 push', pushed.some((u) => u.includes('agent-coding')));
+  check('切换：URL 已 push', pushed.some((u) => u.includes('agent-overall')));
   check('切换：选中态更新', /aria-current="true"/.test(els.get('#picker-boards').innerHTML));
   check('切换：筛选被重置', els.get('#filter-input').value === '');
 
@@ -317,7 +317,7 @@ function itemsFrom(html, attr) {
   const api = runApp('?b=agent');
   await api.initApp();
   await settling();
-  check('Agent 榜：标题', documentStub.title.includes('智能体总榜'));
+  check('Agent 榜：标题', documentStub.title.includes('能力榜 · 总榜'));
   check('Agent 榜：百分比渲染', els.get('#board-slot').innerHTML.includes(AGENT_PCT));
   check('Agent 榜：单任务成本列', els.get('#board-slot').innerHTML.includes('单任务成本'));
   // 源站对 Agent 榜也有数据时间（主页 pill 的 trends 末点 / note），
