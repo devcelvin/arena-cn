@@ -613,6 +613,12 @@ async function selectBoard(id, opts = {}) {
     window.history.pushState({ b: targetId }, '', `?b=${encodeURIComponent(targetId)}`);
   }
 
+  // 百度统计：按榜上报「事件」，与 PV/UV 分开记，互不影响
+  // （不改用 _trackPageview，避免污染跳出率与停留时长口径）
+  try {
+    if (window._hmt) window._hmt.push(['_trackEvent', '榜单', '查看', fullName, 1]);
+  } catch (_) { /* 统计挂了也不能影响看榜 */ }
+
   let board;
   try {
     board = await fetchJson(`data/latest/${targetId}.json`);
