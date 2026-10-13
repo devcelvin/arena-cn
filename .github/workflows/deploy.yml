@@ -1,8 +1,9 @@
 # Deploy — 构建静态站点并部署到 GitHub Pages + Gitee Pages 国内镜像
 #
-# 触发：push 前端变更 / Daily Fetch 完成后 / 手动
-# 防递归：Daily Fetch 的数据提交带 [skip ci]，且本工作流的 push 触发器
-#         只监听 web/**，全程不写任何数据。
+# 触发：push 前端/数据/流水线变更 / Daily Fetch 完成后 / 手动
+# 防递归：Daily Fetch 的数据提交带 [skip ci]，GitHub 会跳过 push 触发的所有工作流，
+#         且它自己会在成功后用 workflow_dispatch 触发本流程，因此这里放开 data/**
+#         不会造成循环（日常自动抓取照常走那条显式触发路径）。
 name: Deploy
 
 on:
@@ -10,6 +11,8 @@ on:
     branches: [main]
     paths:
       - 'web/**'
+      - 'data/**'          # 手动修数据后也要能直接上线（web/data 由本工作流生成）
+      - 'scripts/**'       # 流水线逻辑变更同样需要重新部署
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
   workflow_run:
