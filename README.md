@@ -1,45 +1,70 @@
-# AI Arena 中文榜单（arena-cn）
+# 大模型竞技榜（leaderboard-cn）
 
-[arena.ai](https://arena.ai/leaderboard)（原 LMSYS Chatbot Arena）全球 AI 模型对战榜单的**国内版镜像站**：每日自动抓取榜单数据，全中文界面，国内可访问，**全程零成本**（GitHub Actions + GitHub Pages + Gitee Pages 免费层，无服务器、无数据库、无构建步骤）。
+LMArena 官方 AI 模型对战榜单的**中文呈现站**：每日自动同步官方公开数据集，全中文界面，国内可访问，**全程零成本**（GitHub Actions + GitHub Pages + Gitee Pages 免费层，无服务器、无数据库、无构建步骤）。
 
-当前覆盖 **87 个榜单**，严格对齐源站的**三级分类**（依据 arena.ai 的 sitemap.xml + 各榜单页实际结构）：
+当前覆盖 **59 个榜单**，按「大类 → 榜单 → 类别」三级联动组织：
 
-- **一级 · 大类**：智能体 / 对话 / 代码 / 图像 / 视频
-- **二级 · 榜单**（13 个）：能力榜、意图对齐榜（以上属智能体）、文本对话榜、视觉问答榜、文档理解榜、联网搜索榜、Web 开发榜、图像转网页榜、文生图榜、图像编辑榜、文生视频榜、图生视频榜、视频编辑榜
-- **三级 · 类别**（74 个）：随榜单联动，如文本对话榜下 28 个（中文、数学、代码、创意写作、指令遵循、各语种、各行业…）、图像编辑榜下 16 个（单图/多图 × 各风格）、Web 开发榜下 11 个、视觉问答榜下 9 个、文生图榜下 7 个、智能体能力榜下 3 个（总榜 / 编程 / 工作）
+- **一级 · 大类**（5 个）：智能体 / 对话 / 代码 / 图像 / 视频
+- **二级 · 榜单**（12 个）：智能体总榜、文本对话榜、视觉问答榜、联网搜索榜、文档理解榜、Web 开发榜、图像转网页榜、文生图榜、图像编辑榜、文生视频榜、图生视频榜、视频编辑榜
+- **三级 · 类别**（47 个）：随榜单联动，如文本对话榜下 28 个（中文、数学、代码、创意写作、指令遵循、各语种、各行业…）、视觉问答榜下 10 个、文生图榜下 7 个
 
-> **智能体大类的特殊性**：源站把智能体分成「能力榜（Capabilities）」与「意图对齐榜（Alignment）」两块。
-> 1. **能力榜**左栏再分 Overall / Code / Chat / Work 四个类别，**每个类别都有独立 URL**（`/leaderboard/agent` 及 `/code` `/chat` `/work`）；页内模型数据在 `snapshot.rows` 里，字段名与常规榜不同（`contenderName` / `model` / `avgScore`），由 `extractAgentSnapshot` 解析，同页还给出 `lastUpdated`（数据日期）与 `totalSessions`（总票数）。
-> 2. **意图对齐榜**是**独立量纲**（对齐指数，非 ELO/BT），数据只在源站首页 pill 的 entries 里给全，且源站标注为 Preliminary（初步数据，模型数与样本量都较小）。
->
-> 注：「能力榜」本身只是分组节点（左栏切类别才出数据），因此二级行不显示模型数，只标「N 类 ›」。
+---
 
-URL 形如 `/leaderboard/{大类}/{榜单}/{类别}`，界面按同样层级做三级联动切换。
+## 数据来源与授权（重要）
+
+数据来自 LMArena（lmarena-ai）**官方在 Hugging Face 公开发布的榜单数据集**：
+
+- 数据集：<https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset>
+- 授权：**CC BY 4.0**（允许复制、再分发、改编、商用，条件是署名）
+- 署名已落实在页脚与 `data/index.json` 的 `source` 字段：署名 + 许可证链接 + 改动说明
+
+### 为什么不直接抓 arena.ai 榜单页
+
+arena.ai《Terms of Use》（最后更新 2026-02-23）明确禁止：
+
+| 条款 | 内容 |
+| --- | --- |
+| §5(vi) | 禁止 programmatic / automated access |
+| §5(vii) | 禁止 scrape / extract / download data |
+| §5(i) | 禁止 reproduce / **mirror** / distribute / host / commercially exploit |
+| §5(v) | 禁止 **translate** 与制作衍生作品 |
+| §1 | 使用范围仅限 personal or internal business use |
+| §4.2 | Arena / Arena Intelligence 及相关标识为商标，未经许可不得用于自有产品 |
+
+镜像站形态在该 ToS 下无法合规（"全量搬运 + 中文化"同时命中 mirror 与 translate 两条）。改用官方主动发布、且明确以 CC BY 4.0 授权的数据集后，上述风险消除，**且数据数值与源站榜单页完全一致**（实测各榜 top1 偏差 0.0）。
+
+> 本项目**不抓取任何 arena.ai 页面**，也不使用其商标作为产品名。
+> 站点与 LMArena 无隶属或授权关系。
+
+---
 
 ## 在线地址
 
 | 站点 | 地址 | 说明 |
 | --- | --- | --- |
 | GitHub Pages（主站） | https://devcelvin.github.io/arena-cn/ | 全球可访问，数据每日更新 |
-| Gitee Pages（国内镜像） | 待配置 | 需实名认证后填 3 个 secrets，见「上线步骤」第 4 步 |
 
 数据健康状态实时可查：[/data/status.json](https://devcelvin.github.io/arena-cn/data/status.json)（`stale: false` 表示数据新鲜）。
 
-**两种时间不要混淆**：源站对每个榜单都标注了「数据日期」（排名与票数冻结于该日，各榜不同，如文本榜 10-08、搜索榜 08-24、智能体总榜 10-12），本站每榜的「数据日期」即取自源站 —— 绝大多数榜单取页头标注（`<span>Oct 8, 2026</span>`）；智能体三榜取自 `/leaderboard/agent` 页头标注（源站 2026-10-13 起不再在首页 pill 里带 `trends` 序列，故改由此处取；更早的实现是取 pill 的 `trends` 末点 `cutoffTime`，该逻辑仍保留为优先路径）。「镜像抓取于」只是本站最近一次成功抓取的时间，只反映镜像新旧，不代表源站数据时间。两者都取不到时才退回显示抓取时间。
+**两种时间不要混淆**：数据集对每个榜单都标注了 `leaderboard_publish_date`（排名与票数冻结于该日，各榜更新节奏不同，如文本榜 10-08、搜索榜 08-24、智能体榜 10-12），本站每榜的「数据日期」即取自该字段。「数据同步于」只是本站最近一次成功拉取的时间，只反映同步新旧，不代表源数据时间。
+
+---
 
 ## 工作原理
 
 ```
-arena.ai 84 个榜单页（服务端渲染内嵌全量 JSON，三级结构取自 sitemap）
-   │  GitHub Actions 每日 22:23（北京时间）抓取，约 80MB
+HF 官方数据集（CC BY 4.0）· 13 个 subset 的 parquet，约 3MB
+   │  GitHub Actions 每日 22:23（北京时间）拉取
    ▼
-scripts/ 解析（RSC payload → brace-matching）→ 6 重校验 → 归一化
+scripts/fetch-hf.mjs  下载 parquet → hyparquet 解析 → 按 category 拆分 → 归一化
+   ▼
+scripts/build-data.mjs 校验（6 重）→ 落库
    ▼
 data/  （数据即代码，随 git 提交）
-├── latest/{boardId}.json   站点唯一数据源（全部 84 榜，校验通过才覆盖）
+├── latest/{boardId}.json   站点唯一数据源（全部 59 榜，校验通过才覆盖）
 ├── snapshots/              滚动保留 45 天（**仅二级榜单**，三级类别不写快照）
 ├── history/{boardId}.jsonl 二级榜单 top50 趋势（追加式）
-├── index.json              榜单目录（含每榜 group / parent / dataDate / totalVotes）
+├── index.json              榜单目录（含 source / license 署名信息）
 └── status.json             健康状态 / 数据新鲜度
    ▼  push 触发
 web/ 静态站（零构建原生 HTML/CSS/JS，fetch 本地 JSON）
@@ -47,75 +72,84 @@ web/ 静态站（零构建原生 HTML/CSS/JS，fetch 本地 JSON）
    └─→ Gitee Pages（国内镜像，需配 secrets 后自动同步）
 ```
 
+### 改配置前必须先知道的两件事
+
+1. **文本榜和视觉榜必须用 `*_style_control` 变体**——数据集里 `text` / `vision` 与 `text_style_control` / `vision_style_control` 的数值**不同**；与源站榜单页默认展示一致的是后者（实测 top1 偏差 0.0）。搜索榜、文档榜则相反，用普通版。
+2. **`agent` subset 字段名不同**——用 `score` / `score_ci_lower` / `score_ci_upper` / `session_count`，其余 subset 用 `rating` / `rating_lower` / `rating_upper` / `vote_count`。
+
+---
+
 ## 目录结构
 
 ```
 arena-cn/
 ├── .github/workflows/
-│   ├── daily-fetch.yml     # 每日抓取 + 提交数据
+│   ├── daily-fetch.yml     # 每日同步 + 提交数据（name: Daily Sync）
 │   └── deploy.yml          # 部署 GitHub Pages + Gitee 镜像
 ├── scripts/
-│   ├── boards.config.mjs   # ★ 榜单清单（增删榜单只改这里）
-│   ├── org-map.mjs         # 厂商中文映射 + 国产集合
-│   ├── fetch.mjs           # 抓取（并发 3 / 重试 3 / UA 标识）
-│   ├── parse.mjs           # RSC payload 解析器（技术核心）
+│   ├── boards.config.mjs   # ★ 榜单清单 + 数据源常量（增删榜单只改这里）
+│   ├── fetch-hf.mjs        # 拉取 HF parquet → 归一化中间文件
+│   ├── org-map.mjs         # 厂商中文映射 + 国产集合 + 大小写归一化
+│   ├── build-data.mjs      # 校验 + 落库编排
 │   ├── validate.mjs        # 6 重校验
-│   ├── build-data.mjs      # 归一化落库编排
 │   ├── cleanup.mjs         # 45 天滚动清理
 │   ├── sync-web-data.mjs   # 数据 → web/data（部署用）
 │   ├── check-data.mjs      # 部署前体检
-│   └── smoke-test.mjs      # 前端冒烟测试（开发用）
+│   └── smoke-test.mjs      # 前端冒烟测试（DOM 桩，无需浏览器）
 ├── data/                   # 脚本生成，禁止手改
 ├── web/
 │   ├── index.html          # 单页：三级联动选择器 + 榜单（?b=chat-text-math 可深链）
 │   ├── 404.html
 │   └── assets/             # style.css / app.js
+├── package.json            # 唯一依赖：hyparquet（解析 parquet）
 └── README.md
 ```
 
 ## 本地开发
 
 ```bash
-node scripts/fetch.mjs        # 抓取（需要网络）
-node scripts/build-data.mjs   # 解析 + 校验 + 落库
-node scripts/sync-web-data.mjs
-node scripts/smoke-test.mjs   # 前端冒烟测试（DOM 桩，无需浏览器）
+npm install                    # 只装 hyparquet
+npm run fetch                  # 拉取数据集（需要网络）
+npm run build                  # 校验 + 落库
+npm run sync                   # 同步到 web/data
+npm run smoke                  # 前端冒烟测试
 cd web && python -m http.server 8765   # http://127.0.0.1:8765
 ```
 
-> **本地抓取注意**：`fetch.mjs` 走 Node fetch，住宅 IP 高频请求后会被源站 Cloudflare 拦成 403（HTML 过小直接判失败）；GitHub Actions 的出口 IP 不受影响。本地验证可改用 `curl -A "ArenaCN-Bot/1.0"` 逐页抓取（URL 清单可从 `boards.config.mjs` 导出）。
+## 上线步骤（一次性）
 
-## 上线步骤（一次性，约 10 分钟）
+1. **GitHub 建公开仓库**（公开 = Actions 免费无限时长 + Pages 免费的前提）
+2. 推送代码后开启 Pages：Settings → Pages → Source 选 **GitHub Actions**（不是分支！）
+3. 手动跑一次验证：Actions → Daily Sync → Run workflow
+4. **（可选）Gitee 国内镜像**：Gitee 实名 → 建公开仓库 → 开启 Pages → 在 GitHub 仓库 Settings → Secrets 添加 `GITEE_USERNAME` / `GITEE_PASSWORD` / `GITEE_REPO`
 
-1. **GitHub 建公开仓库** `arena-cn`（公开 = Actions 免费无限时长 + Pages 免费的前提）
-2. 推送代码：
-   ```bash
-   cd arena-cn
-   git init && git add -A && git commit -m "init"
-   git branch -M main
-   git remote add origin https://github.com/<你的用户名>/arena-cn.git
-   git push -u origin main
-   ```
-3. **开启 Pages**：仓库 Settings → Pages → Source 选 **GitHub Actions**（不是分支！）
-4. 手动跑一次验证：Actions → Daily Fetch → Run workflow → 完成后自动部署，访问 `https://<用户名>.github.io/arena-cn/`
-5. **（可选）Gitee 国内镜像**：Gitee 账号实名 → 建公开仓库（建议 `用户名.gitee.io`）→ 开启 Pages 服务 → 在 GitHub 仓库 Settings → Secrets 添加 `GITEE_USERNAME` / `GITEE_PASSWORD`（Gitee 登录密码或私人令牌）/ `GITEE_REPO`（`用户名/仓库名`）。之后每日数据更新会自动同步到 Gitee Pages。
+> **仓库名提示**：仓库名 `arena-cn` 沿用自早期版本。若想彻底避开商标关联，可改名为 `leaderboard-cn` 之类——但 Pages URL、Gitee 镜像配置与已有外链都要跟着改，需自行权衡。
 
-## 数据说明与免责声明
+---
 
-- 数据来源为 arena.ai 公开榜单页面（robots.txt 允许抓取 `/leaderboard*`），本站每日抓取一次（84 页，约 80MB），做中文化整理后静态呈现，**仅供学习参考，与官方无关；排名与评分版权归原站所有**。
-- 两种评分量纲：**ELO 评分**（对话/代码/图像/视频榜，相对战力分）与 **BT 相对战力值**（智能体榜，0 = 平均水平，按百分比展示）。
-- 价格为每百万 token 美元计价（智能体榜为单任务成本），来自 arena.ai 公开字段，可能大量缺失（显示 —）。
-- 厂商英文名为准，中文名为整理者附加标注；金色"国产"徽章为整理者判断。
-- 抓取失败时**不会覆盖旧数据**，页面会显示"数据可能过期"横幅，同时 GitHub 会发告警邮件到账户邮箱。
+## 与"抓网页"版本的字段差异
+
+数据集字段：`model_name` / `organization` / `license` / `rating` / `rating_lower` / `rating_upper` / `variance` / `vote_count` / `rank` / `category` / `leaderboard_publish_date`。
+
+| 项 | 说明 |
+| --- | --- |
+| **价格、上下文长度** | 数据集**没有**这两个字段，相关排序与列已移除，改为展示数据集自带的「开源协议」 |
+| **总票数** | 数据集未给出官方「榜单总票数」，不做推算，页面不再展示该字段 |
+| **全球累计对战数** | 数据集无此统计，已移除 |
+| **智能体细分榜** | 数据集只有 `overall`，原「编程 / 对话 / 工作 / 意图对齐」榜无对应数据，已下线 |
+| **图像编辑细分榜** | 数据集只有 overall 与 multi_image_edit，原单图/多图 × 各风格共 15 个细分榜无对应数据，已下线 |
+| **Web 开发细分榜** | 数据集只有 overall / html / react，原其余 8 个细分榜无对应数据，已下线 |
+
+被下线榜单不是永久丢失：LMArena 若把更多 category 加进数据集，只需在 `scripts/boards.config.mjs` 里补一行即可恢复。
 
 ## 常见问题
 
 - **cron 没准时跑？** GitHub 高峰时段 scheduled workflow 可能延迟几分钟到几小时，一日一次无影响；可手动 Run workflow 补跑。
-- **arena.ai 改版导致解析失败？** 全部榜单校验失败时保留旧数据 + 邮件告警；修 `scripts/parse.mjs` 后手动跑一次 Daily Fetch 即可恢复。
-- **想增删榜单？** 只改 `scripts/boards.config.mjs`（每个页面一条配置），提交后次日生效。
-- **榜单页是客户端渲染、抓不到怎么办？** 图像编辑榜首页属此列，但它的 16 个子类别页有服务端渲染数据 —— 三级结构下该榜的数据由子类别提供，故已收录（首页自身在配置里标为 `container`，只为三级树保留位置，不抓取、无自有数据）。
+- **数据集改版导致解析失败？** 全部榜单校验失败时保留旧数据 + 邮件告警；修 `scripts/fetch-hf.mjs` 后手动跑一次 Daily Sync 即可恢复。
+- **想增删榜单？** 只改 `scripts/boards.config.mjs`（每个榜单一条配置），提交后次日生效。
+- **为什么某榜分数和我在别处看到的不一样？** 先确认是不是 `style_control` 口径差异，见上文「改配置前必须先知道的两件事」。
 
 ## 路线图
 
-- **P1**：模型详情页 + ECharts 30 天趋势图（history 数据已就绪）、排名涨跌红绿显示、Gitee 镜像调优
-- **P2**：人民币换算（免费汇率源）、第三方兜底数据源自动切换、告警 webhook、逆向完整 Agent 榜、模型对比
+- **P1**：模型详情页 + 30 天趋势图（history 数据已就绪）、排名涨跌红绿显示、Gitee 镜像调优
+- **P2**：开源协议筛选（Proprietary / Apache / MIT…）、人民币换算、告警 webhook、模型对比

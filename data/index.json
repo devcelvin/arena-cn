@@ -1,5 +1,11 @@
 {
- "generatedAt": "2026-10-13T15:44:07.220Z",
+ "generatedAt": "2026-10-13T17:29:39.592Z",
+ "source": {
+  "publisher": "LMArena (lmarena-ai)",
+  "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+ },
  "groups": [
   "智能体",
   "对话",
@@ -9,143 +15,19 @@
  ],
  "boards": [
   {
-   "id": "agent-capabilities",
-   "name": "能力榜",
-   "group": "智能体",
-   "scale": "bt",
-   "parent": null,
-   "isBoard": true,
-   "highlight": false,
-   "modelCount": null,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": null,
-   "totalVotes": null,
-   "topModel": null
-  },
-  {
-   "id": "agent-alignment",
-   "name": "意图对齐榜",
-   "group": "智能体",
-   "scale": "index",
-   "parent": null,
-   "isBoard": true,
-   "highlight": false,
-   "modelCount": 27,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-09-30",
-   "totalVotes": null,
-   "topModel": {
-    "name": "GPT-6.1 Sol",
-    "org": "OpenAI",
-    "score": 87.9
-   }
-  },
-  {
    "id": "agent-overall",
-   "name": "总榜",
+   "name": "智能体总榜",
    "group": "智能体",
    "scale": "bt",
-   "parent": "agent-capabilities",
-   "isBoard": false,
-   "highlight": false,
+   "parent": null,
+   "isBoard": true,
    "modelCount": 52,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-12",
-   "totalVotes": 2505910,
    "topModel": {
     "name": "Claude Opus 5.5 (Max)",
     "org": "Anthropic",
     "score": 0.179
-   }
-  },
-  {
-   "id": "agent-code",
-   "name": "编程",
-   "group": "智能体",
-   "scale": "bt",
-   "parent": "agent-capabilities",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 52,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-12",
-   "totalVotes": 802643,
-   "topModel": {
-    "name": "Claude Opus 5.5 (Max)",
-    "org": "Anthropic",
-    "score": 0.176
-   }
-  },
-  {
-   "id": "agent-chat",
-   "name": "对话",
-   "group": "智能体",
-   "scale": "bt",
-   "parent": "agent-capabilities",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 51,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-12",
-   "totalVotes": 860092,
-   "topModel": {
-    "name": "Claude Opus 5.5 (Max)",
-    "org": "Anthropic",
-    "score": 0.161
-   }
-  },
-  {
-   "id": "agent-work",
-   "name": "工作",
-   "group": "智能体",
-   "scale": "bt",
-   "parent": "agent-capabilities",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 52,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-12",
-   "totalVotes": 1435598,
-   "topModel": {
-    "name": "Claude Opus 5.5 (Max)",
-    "org": "Anthropic",
-    "score": 0.161
-   }
-  },
-  {
-   "id": "chat-document",
-   "name": "文档理解榜",
-   "group": "对话",
-   "scale": "elo",
-   "parent": null,
-   "isBoard": true,
-   "highlight": false,
-   "modelCount": 44,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-09-13",
-   "totalVotes": 404715,
-   "topModel": {
-    "name": "claude-opus-5-high",
-    "org": "Anthropic",
-    "score": 1516.3
-   }
-  },
-  {
-   "id": "chat-search",
-   "name": "联网搜索榜",
-   "group": "对话",
-   "scale": "elo",
-   "parent": null,
-   "isBoard": true,
-   "highlight": false,
-   "modelCount": 34,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-08-24",
-   "totalVotes": 1110523,
-   "topModel": {
-    "name": "gpt-5.6-sol-xhigh",
-    "org": "OpenAI",
-    "score": 1257.3
    }
   },
   {
@@ -155,11 +37,9 @@
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 8734330,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -173,11 +53,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": true,
    "modelCount": 390,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 667766,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -191,11 +69,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 409,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 1872777,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -209,11 +85,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 1393561,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -227,11 +101,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 4221096,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -245,11 +117,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 6187130,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -263,11 +133,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 364,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 617312,
    "topModel": {
     "name": "claude-fable-5-high",
     "org": "Anthropic",
@@ -281,11 +149,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 293,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 167044,
    "topModel": {
     "name": "muse-spark-1.2 (xHigh)",
     "org": "Meta",
@@ -299,11 +165,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 312,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 161652,
    "topModel": {
     "name": "gemini-3-pro",
     "org": "Google",
@@ -317,11 +181,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 4146382,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -335,11 +197,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 1985675,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -353,11 +213,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 407,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 1387058,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -371,11 +229,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 1673923,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -389,11 +245,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 387,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 584327,
    "topModel": {
     "name": "muse-spark-1.2 (xHigh)",
     "org": "Meta",
@@ -407,11 +261,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 1456113,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -425,11 +277,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 397,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 640004,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -443,11 +293,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 385,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 524603,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -461,11 +309,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 2910977,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -479,11 +325,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 413,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 2163427,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -497,11 +341,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 2897039,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -515,11 +357,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 278,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 124567,
    "topModel": {
     "name": "claude-fable-5.1-max",
     "org": "Anthropic",
@@ -533,11 +373,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 281,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 135606,
    "topModel": {
     "name": "claude-fable-5.1-max",
     "org": "Anthropic",
@@ -551,11 +389,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 392,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 2341962,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -569,11 +405,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 400,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 704232,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -587,11 +421,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 1441802,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -605,11 +437,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 4510825,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -623,11 +453,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 232,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 170674,
    "topModel": {
     "name": "claude-fable-5.1-max",
     "org": "Anthropic",
@@ -641,11 +469,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 378,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 922114,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -659,11 +485,9 @@
    "scale": "elo",
    "parent": "chat-text",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 298,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 175361,
    "topModel": {
     "name": "muse-spark-1.2 (xHigh)",
     "org": "Meta",
@@ -677,11 +501,9 @@
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "highlight": false,
    "modelCount": 165,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 1462389,
    "topModel": {
     "name": "claude-fable-5-high",
     "org": "Anthropic",
@@ -695,11 +517,9 @@
    "scale": "elo",
    "parent": "chat-vision",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 34,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 4197,
    "topModel": {
     "name": "gemini-3.1-pro-preview",
     "org": "Google",
@@ -713,11 +533,9 @@
    "scale": "elo",
    "parent": "chat-vision",
    "isBoard": false,
-   "highlight": true,
    "modelCount": 125,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 81002,
    "topModel": {
     "name": "gemini-3.8-flash-high",
     "org": "Google",
@@ -731,11 +549,9 @@
    "scale": "elo",
    "parent": "chat-vision",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 101,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 74373,
    "topModel": {
     "name": "gemini-3-pro",
     "org": "Google",
@@ -749,11 +565,9 @@
    "scale": "elo",
    "parent": "chat-vision",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 121,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 263673,
    "topModel": {
     "name": "claude-fable-5-high",
     "org": "Anthropic",
@@ -767,11 +581,9 @@
    "scale": "elo",
    "parent": "chat-vision",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 165,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 627463,
    "topModel": {
     "name": "claude-fable-5-high",
     "org": "Anthropic",
@@ -785,11 +597,9 @@
    "scale": "elo",
    "parent": "chat-vision",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 51,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 6848,
    "topModel": {
     "name": "gemini-3-pro",
     "org": "Google",
@@ -803,11 +613,9 @@
    "scale": "elo",
    "parent": "chat-vision",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 116,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 131047,
    "topModel": {
     "name": "gpt-6.1-sol-max",
     "org": "OpenAI",
@@ -821,11 +629,9 @@
    "scale": "elo",
    "parent": "chat-vision",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 91,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 43638,
    "topModel": {
     "name": "claude-fable-5-high",
     "org": "Anthropic",
@@ -839,11 +645,9 @@
    "scale": "elo",
    "parent": "chat-vision",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 121,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-09",
-   "totalVotes": 741111,
    "topModel": {
     "name": "claude-fable-5-high",
     "org": "Anthropic",
@@ -851,21 +655,35 @@
    }
   },
   {
-   "id": "code-image-to-webdev",
-   "name": "图像转网页榜",
-   "group": "代码",
+   "id": "chat-search",
+   "name": "联网搜索榜",
+   "group": "对话",
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "highlight": false,
-   "modelCount": 64,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-09",
-   "totalVotes": 177108,
+   "modelCount": 34,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
+   "dataDate": "2026-08-24",
    "topModel": {
-    "name": "claude-opus-5.5-max",
+    "name": "gpt-5.6-sol-xhigh",
+    "org": "OpenAI",
+    "score": 1257.3
+   }
+  },
+  {
+   "id": "chat-document",
+   "name": "文档理解榜",
+   "group": "对话",
+   "scale": "elo",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 44,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
+   "dataDate": "2026-09-13",
+   "topModel": {
+    "name": "claude-opus-5-high",
     "org": "Anthropic",
-    "score": 1748.5
+    "score": 1516.3
    }
   },
   {
@@ -875,141 +693,13 @@
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "highlight": false,
-   "modelCount": 142,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "modelCount": 141,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 852934,
    "topModel": {
     "name": "claude-opus-5.5-max",
     "org": "Anthropic",
     "score": 1813
-   }
-  },
-  {
-   "id": "code-webdev-brand-marketing",
-   "name": "品牌营销",
-   "group": "代码",
-   "scale": "elo",
-   "parent": "code-webdev",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 141,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-08",
-   "totalVotes": 242336,
-   "topModel": {
-    "name": "claude-opus-5.5-max",
-    "org": "Anthropic",
-    "score": 1800.2
-   }
-  },
-  {
-   "id": "code-webdev-consumer-product",
-   "name": "消费产品",
-   "group": "代码",
-   "scale": "elo",
-   "parent": "code-webdev",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 141,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-08",
-   "totalVotes": 181019,
-   "topModel": {
-    "name": "gpt-6.1-sol-max",
-    "org": "OpenAI",
-    "score": 1713.2
-   }
-  },
-  {
-   "id": "code-webdev-content-creation-tools",
-   "name": "内容创作工具",
-   "group": "代码",
-   "scale": "elo",
-   "parent": "code-webdev",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 135,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-08",
-   "totalVotes": 92695,
-   "topModel": {
-    "name": "claude-opus-5.5-max",
-    "org": "Anthropic",
-    "score": 1784.3
-   }
-  },
-  {
-   "id": "code-webdev-data-analytics",
-   "name": "数据分析",
-   "group": "代码",
-   "scale": "elo",
-   "parent": "code-webdev",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 141,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-08",
-   "totalVotes": 192807,
-   "topModel": {
-    "name": "claude-opus-5.5-max",
-    "org": "Anthropic",
-    "score": 1693.6
-   }
-  },
-  {
-   "id": "code-webdev-frontend",
-   "name": "前端",
-   "group": "代码",
-   "scale": "elo",
-   "parent": "code-webdev",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 142,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-08",
-   "totalVotes": 752673,
-   "topModel": {
-    "name": "claude-opus-5.5-max",
-    "org": "Anthropic",
-    "score": 1857.1
-   }
-  },
-  {
-   "id": "code-webdev-fullstack",
-   "name": "全栈",
-   "group": "代码",
-   "scale": "elo",
-   "parent": "code-webdev",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 78,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-08",
-   "totalVotes": 93642,
-   "topModel": {
-    "name": "gpt-6-astra-max",
-    "org": "OpenAI",
-    "score": 1755.5
-   }
-  },
-  {
-   "id": "code-webdev-gaming",
-   "name": "游戏",
-   "group": "代码",
-   "scale": "elo",
-   "parent": "code-webdev",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 141,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-08",
-   "totalVotes": 229036,
-   "topModel": {
-    "name": "claude-opus-5.5-max",
-    "org": "Anthropic",
-    "score": 1934.7
    }
   },
   {
@@ -1019,11 +709,9 @@
    "scale": "elo",
    "parent": "code-webdev",
    "isBoard": false,
-   "highlight": false,
-   "modelCount": 141,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "modelCount": 140,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 185548,
    "topModel": {
     "name": "gpt-6.1-sol-max",
     "org": "OpenAI",
@@ -1037,11 +725,9 @@
    "scale": "elo",
    "parent": "code-webdev",
    "isBoard": false,
-   "highlight": false,
-   "modelCount": 126,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "modelCount": 125,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-08",
-   "totalVotes": 565389,
    "topModel": {
     "name": "claude-opus-5.5-max",
     "org": "Anthropic",
@@ -1049,327 +735,19 @@
    }
   },
   {
-   "id": "code-webdev-reference-based-design",
-   "name": "参考图设计",
+   "id": "code-image-to-webdev",
+   "name": "图像转网页榜",
    "group": "代码",
    "scale": "elo",
-   "parent": "code-webdev",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 141,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-08",
-   "totalVotes": 200154,
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 63,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
+   "dataDate": "2026-10-09",
    "topModel": {
     "name": "claude-opus-5.5-max",
     "org": "Anthropic",
-    "score": 1852.9
-   }
-  },
-  {
-   "id": "code-webdev-simulations",
-   "name": "交互模拟",
-   "group": "代码",
-   "scale": "elo",
-   "parent": "code-webdev",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 141,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-08",
-   "totalVotes": 128949,
-   "topModel": {
-    "name": "claude-opus-5.5-max",
-    "org": "Anthropic",
-    "score": 1919.1
-   }
-  },
-  {
-   "id": "image-image-edit-multi-image",
-   "name": "多图编辑",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 44,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 9248643,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1526.5
-   }
-  },
-  {
-   "id": "image-image-edit-multi-image-3d-modeling",
-   "name": "多图·3D 建模",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 32,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 160617,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1532
-   }
-  },
-  {
-   "id": "image-image-edit-multi-image-art",
-   "name": "多图·艺术",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 30,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 25614,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1542.8
-   }
-  },
-  {
-   "id": "image-image-edit-multi-image-cartoon",
-   "name": "多图·卡通",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 32,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 349835,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1566.8
-   }
-  },
-  {
-   "id": "image-image-edit-multi-image-commercial-design",
-   "name": "多图·商业设计",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 32,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 295932,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1556.6
-   }
-  },
-  {
-   "id": "image-image-edit-multi-image-photorealistic",
-   "name": "多图·真实摄影",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 32,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 972360,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1513.7
-   }
-  },
-  {
-   "id": "image-image-edit-multi-image-portraits",
-   "name": "多图·人像",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 32,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 745182,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1526.3
-   }
-  },
-  {
-   "id": "image-image-edit-multi-image-text-rendering",
-   "name": "多图·文字渲染",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 32,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 228204,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1591.7
-   }
-  },
-  {
-   "id": "image-image-edit-single-image",
-   "name": "单图编辑",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 59,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 30985932,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1523.6
-   }
-  },
-  {
-   "id": "image-image-edit-single-image-3d-modeling",
-   "name": "单图·3D 建模",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 44,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 485494,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1537.2
-   }
-  },
-  {
-   "id": "image-image-edit-single-image-art",
-   "name": "单图·艺术",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 44,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 116695,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1513.1
-   }
-  },
-  {
-   "id": "image-image-edit-single-image-cartoon",
-   "name": "单图·卡通",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 44,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 993899,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1542.5
-   }
-  },
-  {
-   "id": "image-image-edit-single-image-commercial-design",
-   "name": "单图·商业设计",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 44,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 799701,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1544.4
-   }
-  },
-  {
-   "id": "image-image-edit-single-image-photorealistic",
-   "name": "单图·真实摄影",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 44,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 2806148,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1512.3
-   }
-  },
-  {
-   "id": "image-image-edit-single-image-portraits",
-   "name": "单图·人像",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 44,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 2011762,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1519.1
-   }
-  },
-  {
-   "id": "image-image-edit-single-image-text-rendering",
-   "name": "单图·文字渲染",
-   "group": "图像",
-   "scale": "elo",
-   "parent": "image-image-edit",
-   "isBoard": false,
-   "highlight": false,
-   "modelCount": 44,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-10-06",
-   "totalVotes": 595539,
-   "topModel": {
-    "name": "gpt-image-2.5-sunburst",
-    "org": "OpenAI",
-    "score": 1578.7
+    "score": 1748.5
    }
   },
   {
@@ -1379,11 +757,9 @@
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-07",
-   "totalVotes": 6604125,
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
     "org": "OpenAI",
@@ -1397,11 +773,9 @@
    "scale": "elo",
    "parent": "image-text-to-image",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-07",
-   "totalVotes": 602700,
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
     "org": "OpenAI",
@@ -1415,11 +789,9 @@
    "scale": "elo",
    "parent": "image-text-to-image",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-07",
-   "totalVotes": 897754,
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
     "org": "OpenAI",
@@ -1433,11 +805,9 @@
    "scale": "elo",
    "parent": "image-text-to-image",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-07",
-   "totalVotes": 2614727,
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
     "org": "OpenAI",
@@ -1451,11 +821,9 @@
    "scale": "elo",
    "parent": "image-text-to-image",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-07",
-   "totalVotes": 2064015,
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
     "org": "OpenAI",
@@ -1469,11 +837,9 @@
    "scale": "elo",
    "parent": "image-text-to-image",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-07",
-   "totalVotes": 2910195,
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
     "org": "OpenAI",
@@ -1487,11 +853,9 @@
    "scale": "elo",
    "parent": "image-text-to-image",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-07",
-   "totalVotes": 1640706,
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
     "org": "OpenAI",
@@ -1505,69 +869,13 @@
    "scale": "elo",
    "parent": "image-text-to-image",
    "isBoard": false,
-   "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
+   "updatedAt": "2026-10-13T17:29:39.592Z",
    "dataDate": "2026-10-07",
-   "totalVotes": 1879876,
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
     "org": "OpenAI",
     "score": 1471.7
-   }
-  },
-  {
-   "id": "video-image-to-video",
-   "name": "图生视频榜",
-   "group": "视频",
-   "scale": "elo",
-   "parent": null,
-   "isBoard": true,
-   "highlight": false,
-   "modelCount": 48,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-09-21",
-   "totalVotes": 2081953,
-   "topModel": {
-    "name": "minimax-h3",
-    "org": "MiniMax",
-    "score": 1495.4
-   }
-  },
-  {
-   "id": "video-text-to-video",
-   "name": "文生视频榜",
-   "group": "视频",
-   "scale": "elo",
-   "parent": null,
-   "isBoard": true,
-   "highlight": false,
-   "modelCount": 48,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-09-21",
-   "totalVotes": 718577,
-   "topModel": {
-    "name": "gemini-omni-1.1-flash",
-    "org": "Google",
-    "score": 1516.2
-   }
-  },
-  {
-   "id": "video-video-edit",
-   "name": "视频编辑榜",
-   "group": "视频",
-   "scale": "elo",
-   "parent": null,
-   "isBoard": true,
-   "highlight": false,
-   "modelCount": 10,
-   "updatedAt": "2026-10-13T15:44:07.220Z",
-   "dataDate": "2026-08-26",
-   "totalVotes": 27930,
-   "topModel": {
-    "name": "wan3.0",
-    "org": "Alibaba",
-    "score": 1414.1
    }
   },
   {
@@ -1577,12 +885,78 @@
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "highlight": false,
-   "modelCount": null,
-   "updatedAt": null,
-   "dataDate": null,
-   "totalVotes": null,
-   "topModel": null
+   "modelCount": 59,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
+   "dataDate": "2026-10-06",
+   "topModel": {
+    "name": "gpt-image-2.5-sunburst",
+    "org": "OpenAI",
+    "score": 1523.6
+   }
+  },
+  {
+   "id": "image-image-edit-multi-image",
+   "name": "多图编辑",
+   "group": "图像",
+   "scale": "elo",
+   "parent": "image-image-edit",
+   "isBoard": false,
+   "modelCount": 44,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
+   "dataDate": "2026-10-06",
+   "topModel": {
+    "name": "gpt-image-2.5-sunburst",
+    "org": "OpenAI",
+    "score": 1526.5
+   }
+  },
+  {
+   "id": "video-text-to-video",
+   "name": "文生视频榜",
+   "group": "视频",
+   "scale": "elo",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 48,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
+   "dataDate": "2026-09-22",
+   "topModel": {
+    "name": "gemini-omni-1.1-flash",
+    "org": "Google",
+    "score": 1516.2
+   }
+  },
+  {
+   "id": "video-image-to-video",
+   "name": "图生视频榜",
+   "group": "视频",
+   "scale": "elo",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 48,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
+   "dataDate": "2026-09-22",
+   "topModel": {
+    "name": "minimax-h3",
+    "org": "MiniMax",
+    "score": 1495.4
+   }
+  },
+  {
+   "id": "video-video-edit",
+   "name": "视频编辑榜",
+   "group": "视频",
+   "scale": "elo",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 10,
+   "updatedAt": "2026-10-13T17:29:39.592Z",
+   "dataDate": "2026-08-27",
+   "topModel": {
+    "name": "wan3.0",
+    "org": "Alibaba",
+    "score": 1414.1
+   }
   }
  ]
 }

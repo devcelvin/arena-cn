@@ -172,13 +172,14 @@ function itemsFrom(html, attr) {
   const catsHtml = els.get('#picker-cats').innerHTML;
   check('选择器：第一行含 5 个大类', (major.match(/role="tab"/g) || []).length === 5);
   check('选择器：默认选中第一个大类', /aria-selected="true"/.test(major));
-  check('选择器：第二行展示该大类的二级榜单', (boardsHtml.match(/class="s-item/g) || []).length >= 2);
+  // 智能体大类下当前只有 1 个二级榜（数据集仅提供 overall），故阈值为 >= 1
+  check('选择器：第二行展示该大类的二级榜单', (boardsHtml.match(/class="s-item/g) || []).length >= 1);
   check('选择器：二级榜单带模型数', boardsHtml.includes('class="n"'));
   check('选择器：默认有选中的二级榜单', /aria-current="true"/.test(boardsHtml));
   check('选择器：第三行（类别）已渲染', catsHtml.length > 0);
 
-  check('榜单：默认加载能力榜·总榜', documentStub.title.includes('能力榜 · 总榜'));
-  check('榜单：标题渲染', els.get('#board-title').innerHTML.includes('能力榜 · 总榜'));
+  check('榜单：默认加载智能体总榜', documentStub.title.includes('智能体总榜'));
+  check('榜单：标题渲染', els.get('#board-title').innerHTML.includes('智能体总榜'));
   check('榜单：元信息含模型数', els.get('#board-meta').innerHTML.includes(AGENT_COUNT));
   check('榜单：表格渲染', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 50);
   check('榜单：BT 量纲百分比', els.get('#board-slot').innerHTML.includes(AGENT_PCT));
@@ -189,8 +190,8 @@ function itemsFrom(html, attr) {
 
   const fresh = els.get('#fresh-slot').innerHTML;
   check('新鲜度条：含数据日期（源站标注）', fresh.includes('数据日期'));
-  check('新鲜度条：含镜像抓取时间', fresh.includes('镜像抓取于'));
-  check('新鲜度条：含全球对战数', fresh.includes('全球累计对战'));
+  check('新鲜度条：含数据同步时间', fresh.includes('数据同步于'));
+  check('新鲜度条：含数据来源署名', fresh.includes('CC BY 4.0'));
   check('工具条：搜索框已绑定', els.get('#filter-input').hasHandler('input'));
   check('工具条：只看国产已绑定', els.get('#seg-cn').hasHandler('click'));
   check('工具条：排序下拉已绑定', els.get('#sort-select').hasHandler('change'));
@@ -205,14 +206,14 @@ function itemsFrom(html, attr) {
   await settling();
 
   const minorItems = itemsFrom(els.get('#picker-boards').innerHTML, 'data-b');
-  check('解析出智能体类二级榜单（能力榜/对齐榜）', minorItems.length === 2);
+  check('解析出智能体类二级榜单', minorItems.length === 1);
   els.get('#picker-boards').fire('click', {
-    target: { closest: () => minorItems[0] },   // 能力榜（容器 → 应落到「总榜」）
+    target: { closest: () => minorItems[0] },   // 智能体总榜
     ctrlKey: false, metaKey: false, shiftKey: false, button: 0,
     preventDefault() {},
   });
   await settling();
-  check('切换：容器节点自动落到子类别（能力榜 · 总榜）', documentStub.title.includes('能力榜 · 总榜'));
+  check('切换：加载智能体总榜', documentStub.title.includes('智能体总榜'));
   check('切换：表格重渲染', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 50);
   check('切换：URL 已 push', pushed.some((u) => u.includes('agent-overall')));
   check('切换：选中态更新', /aria-current="true"/.test(els.get('#picker-boards').innerHTML));
@@ -245,8 +246,8 @@ function itemsFrom(html, attr) {
   const boardRow = els.get('#picker-boards').innerHTML;
   check('大类切换：第二行换成对话类二级榜单', boardRow.includes('文本对话榜') && boardRow.includes('视觉问答榜'));
   check('大类切换：不再有智能体榜', !boardRow.includes('编程智能体榜'));
-  check('大类切换：自动选中第一个二级榜单', documentStub.title.includes('文档理解榜'));
-  check('大类切换：URL 已 push', pushed.some((u) => u.includes('b=chat-document')));
+  check('大类切换：自动选中第一个二级榜单', documentStub.title.includes('文本对话榜'));
+  check('大类切换：URL 已 push', pushed.some((u) => u.includes('b=chat-text')));
   // 切到「文本对话榜」→ 其三级类别里的「中文」应带国内精选 ★
   const boardItems = itemsFrom(boardRow, 'data-b');
   const textBoard = boardItems.find((x) => x.dataset.b === 'chat-text');
@@ -256,29 +257,29 @@ function itemsFrom(html, attr) {
     preventDefault() {},
   });
   await settling();
-  check('大类切换：三级类别含国内精选标记', els.get('#picker-cats').innerHTML.includes('star'));
+  check('大类切换：三级类别已渲染（含中文/数学等）', /中文|数学/.test(els.get('#picker-cats').innerHTML));
 }
 
 /* ============================================================
    测试 4：深链 ?b=
    ============================================================ */
 {
-  const api = runApp('?b=text-chinese');
+  const api = runApp('?b=chat-text-chinese');
   await api.initApp();
   await settling();
-  check('深链：旧 id 映射并加载（text-chinese → 文本对话榜·中文）', documentStub.title.includes('文本对话榜 · 中文'));
+  check('深链：加载文本对话榜·中文', documentStub.title.includes('文本对话榜 · 中文'));
   check('深链：ELO 量纲', els.get('#board-slot').innerHTML.includes('1587.7'));
   check('深链：量纲提示', els.get('#scale-hint').textContent.includes('ELO'));
   check('深链：选中态正确', /aria-current="true"/.test(els.get('#picker-boards').innerHTML));
-  check('深链：元信息含源站数据日期', /数据日期 <b>2026-10-0\d<\/b>/.test(els.get('#board-meta').innerHTML));
-  check('深链：元信息含总票数', els.get('#board-meta').innerHTML.includes('总票数'));
+  check('深链：元信息含数据集数据日期', /数据日期 <b>2026-10-0\d<\/b>/.test(els.get('#board-meta').innerHTML));
+  check('深链：元信息含量纲与模型数', els.get('#board-meta').innerHTML.includes('ELO'));
 }
 
 /* ============================================================
    测试 5：筛选 / 只看国产 / 排序
    ============================================================ */
 {
-  const api = runApp('?b=text-chinese');
+  const api = runApp('?b=chat-text-chinese');
   await api.initApp();
   await settling();
 
@@ -317,18 +318,18 @@ function itemsFrom(html, attr) {
   const api = runApp('?b=agent');
   await api.initApp();
   await settling();
-  check('Agent 榜：标题', documentStub.title.includes('能力榜 · 总榜'));
+  check('Agent 榜：标题', documentStub.title.includes('智能体总榜'));
   check('Agent 榜：百分比渲染', els.get('#board-slot').innerHTML.includes(AGENT_PCT));
-  check('Agent 榜：单任务成本列', els.get('#board-slot').innerHTML.includes('单任务成本'));
-  // 源站对 Agent 榜也有数据时间（主页 pill 的 trends 末点 / note），
-  // 取到就应显示「数据日期」；只有真的取不到时才回退「抓取于」。
+  check('Agent 榜：开源协议列', els.get('#board-slot').innerHTML.includes('开源协议'));
+  // 数据集对 Agent 榜也标注了 leaderboard_publish_date，取到就应显示「数据日期」；
+  // 只有真的取不到时才回退「同步于」。
   const hasAgentDate = !!agentBoard.meta.dataDate;
   const agentMeta = els.get('#board-meta').innerHTML;
   check(
-    hasAgentDate ? 'Agent 榜：显示源站数据日期' : 'Agent 榜：无源站日期时回退抓取时间',
+    hasAgentDate ? 'Agent 榜：显示数据集数据日期' : 'Agent 榜：无日期时回退同步时间',
     hasAgentDate
-      ? agentMeta.includes('数据日期') && !agentMeta.includes('抓取于')
-      : agentMeta.includes('抓取于')
+      ? agentMeta.includes('数据日期') && !agentMeta.includes('同步于')
+      : agentMeta.includes('同步于')
   );
 
   const rows = [
@@ -340,7 +341,6 @@ function itemsFrom(html, attr) {
   check('排序：按排名降序', api.sortModels(rows, 'rank', 'desc').map((m) => m.rank).join(',') === '3,2,1');
   check('排序：按评分降序', api.sortModels(rows, 'score', 'desc').map((m) => m.rank).join(',') === '1,2,3');
   check('排序：票数降序空值排最后', api.sortModels(rows, 'votes', 'desc').map((m) => m.votes).join(',') === '30,10,');
-  check('排序：输入价升序空值排最后', api.sortModels(rows, 'inputPrice', 'asc').map((m) => m.inputPrice).join(',') === '1,3,');
   check('格式化：相对时间', /前|刚刚/.test(api.fmtRel(new Date().toISOString())));
   check('格式化：时间固定 UTC+8（跨日）', api.fmtTime('2026-10-12T17:36:41.980Z') === '2026-10-13 01:36');
   check('格式化：时间固定 UTC+8（零点边界）', api.fmtTime('2026-10-12T16:00:00.000Z') === '2026-10-13 00:00');

@@ -1,46 +1,18 @@
 {
- "lastSuccess": "2026-10-13T15:44:07.220Z",
- "lastAttempt": "2026-10-13T15:44:07.220Z",
+ "lastSuccess": "2026-10-13T17:29:39.592Z",
+ "lastAttempt": "2026-10-13T17:29:39.592Z",
  "stale": false,
  "lastError": null,
+ "source": {
+  "publisher": "LMArena (lmarena-ai)",
+  "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+ },
  "boards": {
-  "agent-capabilities": {
-   "ok": true,
-   "count": null
-  },
-  "agent-alignment": {
-   "ok": true,
-   "count": 27,
-   "warnings": []
-  },
   "agent-overall": {
    "ok": true,
    "count": 52,
-   "warnings": []
-  },
-  "agent-code": {
-   "ok": true,
-   "count": 52,
-   "warnings": []
-  },
-  "agent-chat": {
-   "ok": true,
-   "count": 51,
-   "warnings": []
-  },
-  "agent-work": {
-   "ok": true,
-   "count": 52,
-   "warnings": []
-  },
-  "chat-document": {
-   "ok": true,
-   "count": 44,
-   "warnings": []
-  },
-  "chat-search": {
-   "ok": true,
-   "count": 34,
    "warnings": []
   },
   "chat-text": {
@@ -238,149 +210,34 @@
    "count": 121,
    "warnings": []
   },
-  "code-image-to-webdev": {
+  "chat-search": {
    "ok": true,
-   "count": 64,
+   "count": 34,
+   "warnings": []
+  },
+  "chat-document": {
+   "ok": true,
+   "count": 44,
    "warnings": []
   },
   "code-webdev": {
-   "ok": true,
-   "count": 142,
-   "warnings": []
-  },
-  "code-webdev-brand-marketing": {
-   "ok": true,
-   "count": 141,
-   "warnings": []
-  },
-  "code-webdev-consumer-product": {
-   "ok": true,
-   "count": 141,
-   "warnings": []
-  },
-  "code-webdev-content-creation-tools": {
-   "ok": true,
-   "count": 135,
-   "warnings": []
-  },
-  "code-webdev-data-analytics": {
-   "ok": true,
-   "count": 141,
-   "warnings": []
-  },
-  "code-webdev-frontend": {
-   "ok": true,
-   "count": 142,
-   "warnings": []
-  },
-  "code-webdev-fullstack": {
-   "ok": true,
-   "count": 78,
-   "warnings": []
-  },
-  "code-webdev-gaming": {
    "ok": true,
    "count": 141,
    "warnings": []
   },
   "code-webdev-html": {
    "ok": true,
-   "count": 141,
+   "count": 140,
    "warnings": []
   },
   "code-webdev-react": {
    "ok": true,
-   "count": 126,
+   "count": 125,
    "warnings": []
   },
-  "code-webdev-reference-based-design": {
+  "code-image-to-webdev": {
    "ok": true,
-   "count": 141,
-   "warnings": []
-  },
-  "code-webdev-simulations": {
-   "ok": true,
-   "count": 141,
-   "warnings": []
-  },
-  "image-image-edit-multi-image": {
-   "ok": true,
-   "count": 44,
-   "warnings": []
-  },
-  "image-image-edit-multi-image-3d-modeling": {
-   "ok": true,
-   "count": 32,
-   "warnings": []
-  },
-  "image-image-edit-multi-image-art": {
-   "ok": true,
-   "count": 30,
-   "warnings": []
-  },
-  "image-image-edit-multi-image-cartoon": {
-   "ok": true,
-   "count": 32,
-   "warnings": []
-  },
-  "image-image-edit-multi-image-commercial-design": {
-   "ok": true,
-   "count": 32,
-   "warnings": []
-  },
-  "image-image-edit-multi-image-photorealistic": {
-   "ok": true,
-   "count": 32,
-   "warnings": []
-  },
-  "image-image-edit-multi-image-portraits": {
-   "ok": true,
-   "count": 32,
-   "warnings": []
-  },
-  "image-image-edit-multi-image-text-rendering": {
-   "ok": true,
-   "count": 32,
-   "warnings": []
-  },
-  "image-image-edit-single-image": {
-   "ok": true,
-   "count": 59,
-   "warnings": []
-  },
-  "image-image-edit-single-image-3d-modeling": {
-   "ok": true,
-   "count": 44,
-   "warnings": []
-  },
-  "image-image-edit-single-image-art": {
-   "ok": true,
-   "count": 44,
-   "warnings": []
-  },
-  "image-image-edit-single-image-cartoon": {
-   "ok": true,
-   "count": 44,
-   "warnings": []
-  },
-  "image-image-edit-single-image-commercial-design": {
-   "ok": true,
-   "count": 44,
-   "warnings": []
-  },
-  "image-image-edit-single-image-photorealistic": {
-   "ok": true,
-   "count": 44,
-   "warnings": []
-  },
-  "image-image-edit-single-image-portraits": {
-   "ok": true,
-   "count": 44,
-   "warnings": []
-  },
-  "image-image-edit-single-image-text-rendering": {
-   "ok": true,
-   "count": 44,
+   "count": 63,
    "warnings": []
   },
   "image-text-to-image": {
@@ -423,12 +280,22 @@
    "count": 82,
    "warnings": []
   },
-  "video-image-to-video": {
+  "image-image-edit": {
+   "ok": true,
+   "count": 59,
+   "warnings": []
+  },
+  "image-image-edit-multi-image": {
+   "ok": true,
+   "count": 44,
+   "warnings": []
+  },
+  "video-text-to-video": {
    "ok": true,
    "count": 48,
    "warnings": []
   },
-  "video-text-to-video": {
+  "video-image-to-video": {
    "ok": true,
    "count": 48,
    "warnings": []
@@ -437,17 +304,8 @@
    "ok": true,
    "count": 10,
    "warnings": []
-  },
-  "image-image-edit": {
-   "ok": false,
-   "error": "未处理"
   }
  },
- "session": {
-  "sessionCount": 363315382,
-  "sessionsLastHour": 23058,
-  "newestSessionAt": "2026-10-13T11:47:15.799Z"
- },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 6.7
+ "repoSizeMB": 5.2
 }

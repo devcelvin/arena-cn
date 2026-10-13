@@ -1,0 +1,17 @@
+{
+  "name": "arena-cn",
+  "version": "2.0.0",
+  "private": true,
+  "description": "LMArena 官方榜单数据集（CC BY 4.0）的中文呈现站",
+  "type": "module",
+  "scripts": {
+    "fetch": "node scripts/fetch-hf.mjs",
+    "build": "node scripts/build-data.mjs",
+    "sync": "node scripts/sync-web-data.mjs",
+    "check": "node scripts/check-data.mjs",
+    "smoke": "node scripts/smoke-test.mjs"
+  },
+  "dependencies": {
+    "hyparquet": "^1.31.4"
+  }
+}

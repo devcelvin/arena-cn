@@ -54,6 +54,12 @@ export const ORG_ZH = {
   InclusiveAI: '潞晨科技',
   'SenseTime': '商汤科技',
   'iFlytek': '科大讯飞',
+  // —— CC BY 4.0 数据集（HF lmarena-ai/leaderboard-dataset）里的写法 ——
+  // 该数据集 organization 为小写 + 连字符（如 zai / ant-group / luma-ai），
+  // 与榜单页的展示写法（Z.ai / Ant Group / Luma AI）不同，靠 orgCanonical 归一化对齐
+  'Xiaomi': '小米',
+  'Ant Group': '蚂蚁集团',
+  'Kling': '快手',
 };
 
 /** 国产厂商集合（用于金色"国产"徽章高亮） */
@@ -63,7 +69,27 @@ export const CN_ORGS = new Set([
   'Tencent', 'Baidu', 'Kuaishou', 'Shengshu', 'Vidu',
   'Shanghai AI Laboratory', 'OpenBMB', 'ModelBest', 'InclusiveAI',
   'SenseTime', 'iFlytek',
+  'Xiaomi', 'Ant Group', 'Kling',
 ]);
+
+/**
+ * 厂商名归一化：HF 数据集给小写连字符形式（google / zai / ant-group / luma-ai），
+ * 本站统一显示 ORG_ZH 里的规范写法（Google / Z.ai / Ant Group / Luma AI）。
+ * 未收录的按「首字母大写」兜底，保证界面可读。
+ */
+const CANON = new Map();
+for (const k of Object.keys(ORG_ZH)) CANON.set(k.toLowerCase().replace(/[\s._-]/g, ''), k);
+
+export function orgCanonical(raw) {
+  if (!raw) return '';
+  const s = String(raw).trim();
+  if (!s) return '';
+  if (ORG_ZH[s]) return s;
+  const hit = CANON.get(s.toLowerCase().replace(/[\s._-]/g, ''));
+  if (hit) return hit;
+  // 未收录：连字符/空格后首字母大写，其余保持原样
+  return s.replace(/(^|[\s-])([a-z])/g, (_, p, c) => p + c.toUpperCase());
+}
 
 export function orgZh(org) {
   if (!org) return '';

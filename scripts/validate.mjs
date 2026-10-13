@@ -29,9 +29,11 @@ export function validateBoard({ boardId, scale, models, prev }) {
     }
   }
 
-  // 4. score 量纲区间（实测 ELO 全域约 880–1813；"排除平票"类榜单含老模型可低至 ~768，故下限放到 700；
-  //    BT 相对分值约 -0.17~+0.16；index 为智能体对齐指数，实测 0–100）
-  const range = scale === 'elo' ? [700, 2000] : scale === 'bt' ? [-0.5, 1] : scale === 'index' ? [0, 100] : [0, 1];
+  // 4. score 量纲区间
+  //    ELO：CC BY 4.0 数据集实测全域约 534（文本榜含老模型）–1863（Web 开发榜），故取 [500, 2000]；
+  //         原下限 700 是按抓取榜单页时的分布定的，换源后会把真实数据误判为异常。
+  //    BT ：智能体榜相对分值，实测约 -0.17~+0.18。
+  const range = scale === 'elo' ? [500, 2000] : scale === 'bt' ? [-0.5, 1] : scale === 'index' ? [0, 100] : [0, 1];
   const scaleName = scale === 'elo' ? 'ELO' : scale === 'bt' ? 'BT' : scale === 'index' ? '对齐指数' : '胜率';
   const bad = models.filter((m) => !(m.score >= range[0] && m.score <= range[1]));
   if (bad.length) {

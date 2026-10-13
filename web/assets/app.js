@@ -273,24 +273,19 @@ function dataDateRangeHtml() {
   const lo = fmtDate(dates[0]);
   const hi = fmtDate(dates[dates.length - 1]);
   const text = lo === hi ? `<b>${lo}</b>` : `<b>${lo}</b> ~ <b>${hi}</b>`;
-  return `<span><span class="dot"></span>数据日期 ${text}（源站标注，以各榜为准）</span>`;
+  return `<span><span class="dot"></span>数据日期 ${text}（数据集标注，以各榜为准）</span>`;
 }
 
 function freshbarHtml(status) {
   if (!status) return '';
   const t = status.lastSuccess ? fmtTime(status.lastSuccess) : '—';
   const rel = status.lastSuccess ? fmtRel(status.lastSuccess) : '—';
-  const s = status.session;
-  const sessionPart = s
-    ? `<span>全球累计对战 <b>${fmtNum(s.sessionCount)}</b> 场</span>
-       <span>最近一小时 <b>${fmtNum(s.sessionsLastHour)}</b> 场</span>`
-    : '';
+  // 注：CC BY 4.0 数据集不含「全球累计对战场次」类会话统计，原 session 区块已移除
   return `<div class="freshbar ${status.stale ? 'stale' : ''}">
     ${dataDateRangeHtml()}
-    <span>镜像抓取于 <b>${t}</b>（北京时间 · ${rel}）</span>
-    ${sessionPart}
-    <span>数据来源 <b>arena.ai</b>，每日自动抓取</span>
-  </div>${status.stale ? '<div class="banner-warn">⚠️ 数据可能过期：自动抓取已多日未成功，以下展示的是最后一次成功抓取的数据。</div>' : ''}`;
+    <span>数据同步于 <b>${t}</b>（北京时间 · ${rel}）</span>
+    <span>数据来源 <b>LMArena 官方数据集</b>（CC BY 4.0）</span>
+  </div>${status.stale ? '<div class="banner-warn">⚠️ 数据可能过期：数据同步已多日未成功，以下展示的是最后一次成功同步的数据。</div>' : ''}`;
 }
 
 /* ============================================================
@@ -301,9 +296,6 @@ function sortModels(models, key, dir) {
     switch (key) {
       case 'score': return m.score ?? null;
       case 'votes': return m.votes ?? null;
-      case 'inputPrice': return m.inputPrice ?? null;
-      case 'outputPrice': return m.outputPrice ?? null;
-      case 'contextLength': return m.contextLength ?? null;
       case 'rank':
       default: return m.rank ?? null;
     }
@@ -325,7 +317,6 @@ function sortModels(models, key, dir) {
 
 function boardTable(models, scale, opts = {}) {
   const { limit = 0, sortKey = 'rank', sortDir = 'asc' } = opts;
-  const prices = scale !== 'bt';
   let list = sortModels(models, sortKey, sortDir);
   const showExpand = limit && list.length > limit;
   const visible = showExpand ? list.slice(0, limit) : list;
@@ -343,11 +334,9 @@ function boardTable(models, scale, opts = {}) {
 
   const rows = visible.map((m) => {
     const cn = CN_ORGS.has(m.org);
-    const priceCells = prices
-      ? `<td class="price num" data-label="输入价">${fmtPrice(m.inputPrice)}</td>
-         <td class="price num" data-label="输出价">${fmtPrice(m.outputPrice)}</td>
-         <td class="ctx num" data-label="上下文">${fmtCtx(m.contextLength)}</td>`
-      : `<td class="price num" data-label="单任务成本">${m.costPerTask == null ? '—' : '$' + m.costPerTask.toFixed(2)}</td>`;
+    // CC BY 4.0 数据集不含价格与上下文长度，改用数据集自带的开源协议字段
+    const lic = m.license ? String(m.license).replace(/[<>&"]/g, '') : '—';
+    const licCell = `<td class="lic" data-label="协议">${lic}</td>`;
     return `<tr class="${cn ? 'cn-row' : ''}${m.rank <= 3 ? ' top3' : ''}">
       <td class="rank" data-label="排名">${rankCell(m.rank)}</td>
       <td class="model" data-label="模型">${modelCell(m)}</td>
@@ -357,7 +346,7 @@ function boardTable(models, scale, opts = {}) {
         ${ciText(m, scale) ? `<div class="ci">${ciText(m, scale)}</div>` : ''}
       </td>
       <td class="votes num" data-label="投票数">${fmtNum(m.votes)}</td>
-      ${priceCells}
+      ${licCell}
     </tr>`;
   }).join('');
 
@@ -367,9 +356,7 @@ function boardTable(models, scale, opts = {}) {
       <th scope="col">模型</th>
       ${th('score', SCALE_LABEL[scale])}
       ${th('votes', '投票数')}
-      ${prices
-        ? `${th('inputPrice', '输入价')}${th('outputPrice', '输出价')}${th('contextLength', '上下文')}`
-        : `<th scope="col">单任务成本</th>`}
+      <th scope="col">开源协议</th>
     </tr></thead>
     <tbody>${rows}</tbody>
   </table></div>
@@ -591,24 +578,20 @@ async function selectBoard(id, opts = {}) {
   if (titleEl) titleEl.innerHTML = `${GROUP_ICON[info.group] || '📊'} ${esc(fullName)}`;
   const metaEl = $('#board-meta');
   if (metaEl) {
-    // 源站标注了数据日期 → 展示数据日期 + 总票数（与源站头部一致）；
-    // 未标注（Agent 三榜）→ 回退显示抓取时间，至少说明镜像新旧
+    // 数据集标注了数据日期 → 展示数据日期；未标注 → 回退显示同步时间，至少说明数据新旧。
+    // 注：CC BY 4.0 数据集未提供「榜单总票数」字段，故不再展示总票数（不做推算）。
     const datePill = info.dataDate
       ? `<span class="pill">数据日期 <b>${fmtDate(info.dataDate)}</b></span>`
-      : `<span class="pill">抓取于 <b>${fmtTime(info.updatedAt)}</b></span>`;
-    const votesPill = info.totalVotes != null
-      ? `<span class="pill">总票数 <b>${fmtNum(info.totalVotes)}</b></span>`
-      : '';
+      : `<span class="pill">同步于 <b>${fmtTime(info.updatedAt)}</b></span>`;
     metaEl.innerHTML = `
       <span class="pill">量纲 <b>${SCALE_LABEL[info.scale]}</b></span>
       <span class="pill">模型数 <b>${info.modelCount != null ? info.modelCount : '—'}</b></span>
-      ${datePill}
-      ${votesPill}`;
+      ${datePill}`;
   }
 
   const slot = $('#board-slot');
   if (slot) slot.innerHTML = skeletonHtml(10);
-  document.title = `${fullName} - AI Arena 中文榜单`;
+  document.title = `${fullName} - 大模型竞技榜`;
   if (push && window.history && window.history.pushState) {
     window.history.pushState({ b: targetId }, '', `?b=${encodeURIComponent(targetId)}`);
   }
@@ -623,7 +606,7 @@ async function selectBoard(id, opts = {}) {
   try {
     board = await fetchJson(`data/latest/${targetId}.json`);
   } catch {
-    if (slot) slot.innerHTML = emptyStateHtml('📭', '暂无数据', '该榜单本次抓取未通过校验，展示的是上一次成功的数据缺失。', '<a class="btn btn-primary" href="index.html">回到首页</a>');
+    if (slot) slot.innerHTML = emptyStateHtml('📭', '暂无数据', '该榜单本次同步未通过校验，展示的是上一次成功同步的数据。', '<a class="btn btn-primary" href="index.html">回到首页</a>');
     return;
   }
   mountBoard(slot, board);

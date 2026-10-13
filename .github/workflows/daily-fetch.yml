@@ -1,9 +1,11 @@
-# Daily Fetch — 每日自动抓取 arena.ai 榜单数据
+# Daily Sync — 每日同步 LMArena 官方榜单数据集（Hugging Face · CC BY 4.0）
 #
-# 时间：UTC 14:23 = 北京时间 22:23（避开整点 cron 排队高峰；
-#       arena.ai 数据实时滚动，任意时刻抓取均有效）
-# 手动补跑：Actions → Daily Fetch → Run workflow
-name: Daily Fetch
+# 时间：UTC 14:23 = 北京时间 22:23（避开整点 cron 排队高峰）
+# 手动补跑：Actions → Daily Sync → Run workflow
+#
+# ⚠️ 本项目不再抓取 arena.ai 站点页面（其 ToS §5 禁止 scrape / mirror / translate）。
+#    数据源为官方主动发布、以 CC BY 4.0 授权的公开数据集，抓取脚本为 scripts/fetch-hf.mjs。
+name: Daily Sync
 
 on:
   schedule:
@@ -24,9 +26,12 @@ jobs:
         with:
           node-version: 22
 
-      - name: 抓取 + 解析 + 校验 + 落库
+      - name: 安装依赖（hyparquet：解析 parquet）
+        run: npm install --no-audit --no-fund
+
+      - name: 拉取数据集 + 校验 + 落库
         run: |
-          node scripts/fetch.mjs
+          node scripts/fetch-hf.mjs
           node scripts/build-data.mjs
 
       - name: 提交数据快照

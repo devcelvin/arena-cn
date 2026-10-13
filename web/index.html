@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Arena 中文榜单 — 全球 AI 模型对战排名（每日更新）</title>
-  <meta name="description" content="arena.ai（原 LMSYS Chatbot Arena）全球 AI 模型对战榜单中文版：按「大类 → 榜单 → 类别」三级联动整理全部 88 个榜单（对话/代码/图像/视频/智能体），每日自动抓取更新。">
+  <title>大模型竞技榜 — AI 模型对战排名中文版（每日更新）</title>
+  <meta name="description" content="LMArena 官方榜单数据集（CC BY 4.0）的中文呈现：按「大类 → 榜单 → 类别」三级联动整理 59 个榜单（对话/代码/图像/视频/智能体），每日同步，全中文界面，国产模型单独高亮。">
   <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50' y='69' font-size='54' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>A</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>榜</text></svg>">
   <link rel="stylesheet" href="assets/style.css">
   <!-- 百度统计：官方要求放在 </head> 标签前，异步加载 -->
   <script>
@@ -24,8 +24,8 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="index.html">
-        <span class="logo" aria-hidden="true">A</span>
-        AI Arena 中文榜单 <small>国内可访问的每日镜像</small>
+        <span class="logo" aria-hidden="true">榜</span>
+        大模型竞技榜 <small>中文版 · 每日更新</small>
       </a>
       <span class="spacer"></span>
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅色主题">🌙 深色</button>
@@ -37,8 +37,8 @@
     <section class="hero">
       <h1>全球 AI 模型<em>对战实力榜</em>，中文版每日更新</h1>
       <p class="lead">
-        数据取自 arena.ai（原 LMSYS Chatbot Arena）公开榜单，按「大类 → 榜单 → 类别」三级联动整理全部
-        88 个榜单 —— 国内可直接访问，全中文界面，厂商均标注中文名，国产模型单独高亮。
+        数据来自 LMArena 官方公开数据集（CC BY 4.0），按「大类 → 榜单 → 类别」三级联动整理
+        59 个榜单 —— 全中文界面，厂商均标注中文名，国产模型单独高亮。
       </p>
     </section>
 
@@ -78,9 +78,6 @@
           <option value="score:desc">评分 ↓</option>
           <option value="score:asc">评分 ↑</option>
           <option value="votes:desc">票数 ↓</option>
-          <option value="inputPrice:asc">输入价 ↑</option>
-          <option value="outputPrice:asc">输出价 ↑</option>
-          <option value="contextLength:desc">上下文 ↓</option>
         </select>
         <span class="count" id="result-count"></span>
       </div>
@@ -89,8 +86,15 @@
     </div>
 
     <footer class="footer">
-      <p><strong>关于数据</strong>　来源 <a href="https://arena.ai/leaderboard" target="_blank" rel="noopener">arena.ai</a>（原 LMSYS Chatbot Arena）公开榜单页面，本站每日自动抓取快照并做中文化整理，仅供学习参考，与官方无关；排名与评分版权归原站所有。</p>
-      <p><strong>评分说明</strong>　ELO 为相对战力分；智能体榜为 Bradley-Terry 相对战力值（0 = 平均水平，按百分比展示）。价格为每百万 token 美元计价（智能体榜为单任务成本），厂商中文名为整理者附加标注。</p>
+      <p><strong>数据来源与授权（CC BY 4.0 署名）</strong>　本站数据来自
+        <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">LMArena（lmarena-ai）官方榜单数据集</a>，
+        该数据集以
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>
+        授权。本站在此基础上做了<strong>中文界面呈现与三级分类重排</strong>，未修改任何评分、排名与票数数值。
+        本站与 LMArena 无隶属或授权关系。</p>
+      <p><strong>评分说明</strong>　ELO 为相对战力分；智能体榜为 Bradley-Terry 相对战力值（0 = 平均水平，按百分比展示）。
+        各榜「数据日期」由数据集标注，各榜更新节奏不同，与本站同步时间不是一回事。厂商中文名为本站附加标注；
+        「开源协议」取自数据集自带的模型协议字段。</p>
       <p id="foot-info"></p>
       <div class="links">
         <a href="index.html?b=agent">智能体总榜</a>
@@ -99,7 +103,7 @@
         <a href="index.html?b=code-webdev">Web 开发榜</a>
         <a href="index.html?b=image-text-to-image">文生图榜</a>
         <a href="index.html?b=chat-vision">视觉问答榜</a>
-        <a href="https://arena.ai/leaderboard" target="_blank" rel="noopener">原始榜单 ↗</a>
+        <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">原始数据集 ↗</a>
       </div>
     </footer>
   </main>
