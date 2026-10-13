@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-12T17:36:41.980Z",
+ "generatedAt": "2026-10-13T06:37:12.170Z",
  "groups": [
   "智能体",
   "对话",
@@ -14,12 +14,14 @@
    "group": "智能体",
    "scale": "bt",
    "highlight": false,
-   "modelCount": 53,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "modelCount": 52,
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": null,
+   "totalVotes": null,
    "topModel": {
     "name": "Claude Opus 5.5 (Max)",
     "org": "Anthropic",
-    "score": 0.155
+    "score": 0.179
    }
   },
   {
@@ -28,12 +30,14 @@
    "group": "智能体",
    "scale": "bt",
    "highlight": false,
-   "modelCount": 53,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "modelCount": 52,
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": null,
+   "totalVotes": null,
    "topModel": {
-    "name": "Claude Opus 5.5 (High)",
+    "name": "Claude Opus 5.5 (Max)",
     "org": "Anthropic",
-    "score": 0.17
+    "score": 0.176
    }
   },
   {
@@ -42,12 +46,14 @@
    "group": "智能体",
    "scale": "bt",
    "highlight": false,
-   "modelCount": 53,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "modelCount": 52,
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": null,
+   "totalVotes": null,
    "topModel": {
-    "name": "Claude Opus 5.5 (High)",
+    "name": "Claude Opus 5.5 (Max)",
     "org": "Anthropic",
-    "score": 0.144
+    "score": 0.161
    }
   },
   {
@@ -57,7 +63,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-08",
+   "totalVotes": 8734330,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -71,7 +79,9 @@
    "scale": "elo",
    "highlight": true,
    "modelCount": 390,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-08",
+   "totalVotes": 667766,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -85,7 +95,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 409,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-08",
+   "totalVotes": 1872777,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -99,7 +111,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 400,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-08",
+   "totalVotes": 704232,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -113,7 +127,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 412,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-08",
+   "totalVotes": 1393561,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -127,7 +143,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 414,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-08",
+   "totalVotes": 2897039,
    "topModel": {
     "name": "gemini-4-argon-high",
     "org": "Google",
@@ -141,7 +159,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 165,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-09",
+   "totalVotes": 1462389,
    "topModel": {
     "name": "claude-fable-5-high",
     "org": "Anthropic",
@@ -155,7 +175,9 @@
    "scale": "elo",
    "highlight": true,
    "modelCount": 125,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-09",
+   "totalVotes": 81002,
    "topModel": {
     "name": "gemini-3.8-flash-high",
     "org": "Google",
@@ -169,7 +191,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 44,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-09-13",
+   "totalVotes": 404715,
    "topModel": {
     "name": "claude-opus-5-high",
     "org": "Anthropic",
@@ -183,7 +207,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 34,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-08-24",
+   "totalVotes": 1110523,
    "topModel": {
     "name": "gpt-5.6-sol-xhigh",
     "org": "OpenAI",
@@ -197,7 +223,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 142,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-08",
+   "totalVotes": 852934,
    "topModel": {
     "name": "claude-opus-5.5-max",
     "org": "Anthropic",
@@ -211,7 +239,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 64,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-09",
+   "totalVotes": 177108,
    "topModel": {
     "name": "claude-opus-5.5-max",
     "org": "Anthropic",
@@ -225,7 +255,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-10-07",
+   "totalVotes": 6604125,
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
     "org": "OpenAI",
@@ -239,7 +271,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 48,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-09-21",
+   "totalVotes": 718577,
    "topModel": {
     "name": "gemini-omni-1.1-flash",
     "org": "Google",
@@ -253,7 +287,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 48,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-09-21",
+   "totalVotes": 2081953,
    "topModel": {
     "name": "minimax-h3",
     "org": "MiniMax",
@@ -267,7 +303,9 @@
    "scale": "elo",
    "highlight": false,
    "modelCount": 10,
-   "updatedAt": "2026-10-12T17:36:41.980Z",
+   "updatedAt": "2026-10-13T06:37:12.170Z",
+   "dataDate": "2026-08-26",
+   "totalVotes": 27930,
    "topModel": {
     "name": "wan3.0",
     "org": "Alibaba",

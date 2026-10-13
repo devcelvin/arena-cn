@@ -1,23 +1,27 @@
 {
- "lastSuccess": "2026-10-12T17:36:41.980Z",
- "lastAttempt": "2026-10-12T17:36:41.980Z",
+ "lastSuccess": "2026-10-13T06:37:12.170Z",
+ "lastAttempt": "2026-10-13T06:37:12.170Z",
  "stale": false,
  "lastError": null,
  "boards": {
   "agent": {
    "ok": true,
-   "count": 53,
-   "warnings": []
+   "count": 52,
+   "warnings": [
+    "top1 评分变化较大：0.155 → 0.179（15.5%）"
+   ]
   },
   "agent-coding": {
    "ok": true,
-   "count": 53,
+   "count": 52,
    "warnings": []
   },
   "agent-aligned": {
    "ok": true,
-   "count": 53,
-   "warnings": []
+   "count": 52,
+   "warnings": [
+    "top1 评分变化较大：0.144 → 0.161（11.8%）"
+   ]
   },
   "text": {
    "ok": true,
@@ -101,10 +105,10 @@
   }
  },
  "session": {
-  "sessionCount": 362942248,
-  "sessionsLastHour": 27216,
-  "newestSessionAt": "2026-10-12T16:20:56.445Z"
+  "sessionCount": 363166245,
+  "sessionsLastHour": 16994,
+  "newestSessionAt": "2026-10-13T05:44:24.028Z"
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 2.7
+ "repoSizeMB": 4
 }

@@ -143,6 +143,33 @@ export function extractSessionStats(rscText) {
   };
 }
 
+/**
+ * 提取榜单页头部统计（服务端渲染部分，不在 RSC payload 里）：
+ *   数据日期：<span>Oct 8, 2026</span>（时钟图标旁，源站对该榜数据时间的标注）
+ *   总票数：<span>8,734,330<!-- --> <!-- -->votes</span>
+ *
+ * 这个日期才是榜单的数据时间：源站的排名与票数冻结于该日
+ * （实测跨日抓取票数一字不变），抓取时间只反映镜像新旧。
+ * 主页（Agent 三榜）与 image-edit 页无此结构，字段返回 null。
+ *
+ * 已实测 16 个分类页各自均只有 1 处匹配，模式唯一。
+ */
+const MONTHS = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
+
+export function extractBoardStats(html) {
+  const dm = html.match(/<span>([A-Z][a-z]{2}) (\d{1,2}), (\d{4})<\/span>/);
+  const vm = html.match(/<span>([\d,]+)<!-- --> <!-- -->votes<\/span>/);
+  let dataDate = null;
+  if (dm) {
+    const mon = MONTHS[dm[1]];
+    if (mon) dataDate = `${dm[3]}-${String(mon).padStart(2, '0')}-${String(dm[2]).padStart(2, '0')}`;
+  }
+  return {
+    dataDate,
+    totalVotes: vm ? Number(vm[1].replace(/,/g, '')) : null,
+  };
+}
+
 /** 页面总入口：分类页 → 模型数组；主页 → { agentLists, session } */
 export function parsePage(html) {
   const text = extractRscText(html);

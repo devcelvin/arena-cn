@@ -13,7 +13,7 @@ import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { PAGES, BOARDS } from './boards.config.mjs';
-import { parsePage, extractModelObjects, extractAgentLists, extractSessionStats } from './parse.mjs';
+import { parsePage, extractModelObjects, extractAgentLists, extractSessionStats, extractBoardStats } from './parse.mjs';
 import { validateBoard, validateSession } from './validate.mjs';
 import { cleanupSnapshots, dirSizeMB } from './cleanup.mjs';
 
@@ -85,6 +85,8 @@ async function appendHistory(boardId, models) {
 async function main() {
   const boardStatus = {};
   const topModels = {};        // { boardId: {name, org, score} } 供榜单页/详情展示
+  const boardDataDates = {};   // { boardId: 'YYYY-MM-DD' | null } 源站标注的榜单数据日期
+  const boardTotalVotes = {};  // { boardId: number | null } 源站标注的榜单总票数
   let okCount = 0;
   let failCount = 0;
   const nowIso = new Date().toISOString();
@@ -113,11 +115,19 @@ async function main() {
 
     let session = null;
     let agentLists = null;
+    let boardStats = { dataDate: null, totalVotes: null };
     if (page.kind === 'home') {
       agentLists = extractAgentLists(parsed.rscText);
       session = extractSessionStats(parsed.rscText);
       if (agentLists.length !== 3) {
         console.log(`⚠ home：Agent 列表组数 = ${agentLists.length}（预期 3），按顺序映射`);
+      }
+    } else {
+      boardStats = extractBoardStats(html);
+      if (!boardStats.dataDate) {
+        console.log(`⚠ ${page.id}：未提取到数据日期（源站结构可能变化），该榜将只显示抓取时间`);
+      } else if (boardStats.dataDate > today || new Date(boardStats.dataDate).getTime() < new Date(nowIso).getTime() - 400 * 86400_000) {
+        console.log(`⚠ ${page.id}：数据日期 ${boardStats.dataDate} 不在合理区间（未来或超过 400 天前），请人工复核`);
       }
     }
 
@@ -150,6 +160,8 @@ async function main() {
           group: b.group,
           scale: b.scale,
           fetchedAt: nowIso,
+          dataDate: boardStats.dataDate,
+          totalVotes: boardStats.totalVotes,
           sourceUrl: 'https://arena.ai' + page.url,
           modelCount: models.length,
         },
@@ -168,6 +180,8 @@ async function main() {
       await appendHistory(b.id, models);
 
       boardStatus[b.id] = { ok: true, count: models.length, warnings };
+      boardDataDates[b.id] = boardStats.dataDate;
+      boardTotalVotes[b.id] = boardStats.totalVotes;
       okCount++;
       console.log(`✓ ${b.id}（${b.name}）${models.length} 个模型${warnings.length ? ` ⚠ ${warnings[0]}` : ''}`);
     }
@@ -186,7 +200,8 @@ async function main() {
   }
 
   // index.json
-  const index = {    generatedAt: nowIso,
+  const index = {
+    generatedAt: nowIso,
     groups: [...new Set(BOARDS.map((b) => b.group))],
     boards: BOARDS.map((b) => {
       const st = boardStatus[b.id];
@@ -198,6 +213,8 @@ async function main() {
         highlight: !!b.highlight,
         modelCount: st?.ok ? st.count : null,
         updatedAt: st?.ok ? nowIso : null,
+        dataDate: st?.ok ? boardDataDates[b.id] ?? null : null,
+        totalVotes: st?.ok ? boardTotalVotes[b.id] ?? null : null,
         topModel: topModels[b.id] || null,
       };
     }),

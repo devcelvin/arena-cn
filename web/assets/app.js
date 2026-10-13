@@ -69,10 +69,18 @@ const $$ = (s, el) => Array.from((el || document).querySelectorAll(s));
 
 const fmtNum = (n) => (n == null ? '—' : n.toLocaleString('zh-CN'));
 const pad2 = (x) => String(x).padStart(2, '0');
+/* 固定按 UTC+8 取部件：页面标注「北京时间」，不能用浏览器本地时区
+   （海外访客会把当地时间误标成北京时间）。中国无夏令时，+8 恒定。 */
+const bj = (d) => new Date(d.getTime() + 8 * 3600_000);
 const fmtTime = (iso) => {
   if (!iso) return '—';
-  const d = new Date(iso);
-  return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())} ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+  const d = bj(new Date(iso));
+  return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth() + 1)}-${pad2(d.getUTCDate())} ${pad2(d.getUTCHours())}:${pad2(d.getUTCMinutes())}`;
+};
+const fmtDate = (iso) => {
+  if (!iso) return '—';
+  const d = bj(new Date(iso));
+  return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth() + 1)}-${pad2(d.getUTCDate())}`;
 };
 const fmtRel = (iso) => {
   if (!iso) return '—';
@@ -227,6 +235,20 @@ function emptyStateHtml(icon, title, desc, actionHtml = '') {
   </div>`;
 }
 
+/* 数据日期区间：源站在每个榜单页标注该榜数据时间（排名与票数冻结于该日），
+   各榜日期不同（如文本榜 10-08、搜索榜 08-24），这里展示区间并提示以各榜为准 */
+function dataDateRangeHtml() {
+  const dates = (INDEX && INDEX.boards || [])
+    .map((b) => b.dataDate)
+    .filter(Boolean)
+    .sort();
+  if (!dates.length) return '';
+  const lo = fmtDate(dates[0]);
+  const hi = fmtDate(dates[dates.length - 1]);
+  const text = lo === hi ? `<b>${lo}</b>` : `<b>${lo}</b> ~ <b>${hi}</b>`;
+  return `<span><span class="dot"></span>数据日期 ${text}（源站标注，以各榜为准）</span>`;
+}
+
 function freshbarHtml(status) {
   if (!status) return '';
   const t = status.lastSuccess ? fmtTime(status.lastSuccess) : '—';
@@ -237,7 +259,8 @@ function freshbarHtml(status) {
        <span>最近一小时 <b>${fmtNum(s.sessionsLastHour)}</b> 场</span>`
     : '';
   return `<div class="freshbar ${status.stale ? 'stale' : ''}">
-    <span><span class="dot"></span>数据更新至 <b>${t}</b>（北京时间 · ${rel}）</span>
+    ${dataDateRangeHtml()}
+    <span>镜像抓取于 <b>${t}</b>（北京时间 · ${rel}）</span>
     ${sessionPart}
     <span>数据来源 <b>arena.ai</b>，每日自动抓取</span>
   </div>${status.stale ? '<div class="banner-warn">⚠️ 数据可能过期：自动抓取已多日未成功，以下展示的是最后一次成功抓取的数据。</div>' : ''}`;
@@ -495,10 +518,19 @@ async function selectBoard(id, opts = {}) {
   if (titleEl) titleEl.innerHTML = `${GROUP_ICON[info.group] || '📊'} ${esc(info.name)}`;
   const metaEl = $('#board-meta');
   if (metaEl) {
+    // 源站标注了数据日期 → 展示数据日期 + 总票数（与源站头部一致）；
+    // 未标注（Agent 三榜）→ 回退显示抓取时间，至少说明镜像新旧
+    const datePill = info.dataDate
+      ? `<span class="pill">数据日期 <b>${fmtDate(info.dataDate)}</b></span>`
+      : `<span class="pill">抓取于 <b>${fmtTime(info.updatedAt)}</b></span>`;
+    const votesPill = info.totalVotes != null
+      ? `<span class="pill">总票数 <b>${fmtNum(info.totalVotes)}</b></span>`
+      : '';
     metaEl.innerHTML = `
       <span class="pill">量纲 <b>${SCALE_LABEL[info.scale]}</b></span>
       <span class="pill">模型数 <b>${info.modelCount != null ? info.modelCount : '—'}</b></span>
-      <span class="pill">更新于 <b>${fmtTime(info.updatedAt)}</b></span>`;
+      ${datePill}
+      ${votesPill}`;
   }
 
   const slot = $('#board-slot');

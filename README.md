@@ -13,6 +13,8 @@
 
 数据健康状态实时可查：[/data/status.json](https://devcelvin.github.io/arena-cn/data/status.json)（`stale: false` 表示数据新鲜）。
 
+**两种时间不要混淆**：源站在每个榜单页标注「数据日期」（排名与票数冻结于该日，各榜不同，如文本榜 10-08、搜索榜 08-24），本站每榜的「数据日期 / 总票数」即提取自该标注；「镜像抓取于」只是本站最近一次成功抓取的时间，只反映镜像新旧，不代表源站数据时间。
+
 ## 工作原理
 
 ```
@@ -22,11 +24,11 @@ arena.ai 19 个榜单页（服务端渲染内嵌全量 JSON）
 scripts/ 解析（RSC payload → brace-matching）→ 6 重校验 → 归一化
    ▼
 data/  （数据即代码，随 git 提交）
-   ├── latest/{boardId}.json   站点唯一数据源（校验通过才覆盖）
-   ├── snapshots/              滚动保留 45 天
-   ├── history/{boardId}.jsonl 每榜 top50 趋势（追加式）
-   ├── index.json              榜单目录
-   └── status.json             健康状态 / 数据新鲜度
+├── latest/{boardId}.json   站点唯一数据源（校验通过才覆盖）
+├── snapshots/              滚动保留 45 天
+├── history/{boardId}.jsonl 每榜 top50 趋势（追加式）
+├── index.json              榜单目录（含每榜 dataDate / totalVotes）
+└── status.json             健康状态 / 数据新鲜度
    ▼  push 触发
 web/ 静态站（零构建原生 HTML/CSS/JS，fetch 本地 JSON）
    ├─→ GitHub Pages（主站）

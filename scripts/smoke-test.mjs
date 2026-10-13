@@ -9,6 +9,12 @@ import { fileURLToPath } from 'node:url';
 const ROOT = fileURLToPath(new URL('../web/', import.meta.url));
 const appCode = await readFile(ROOT + 'assets/app.js', 'utf8');
 
+/* 期望值从数据文件推导，不硬编码——源站数据每日在变（Agent 榜实测跨日就会变），
+   硬编码值会把冒烟测试变成"源站没更新才算通过"的脆弱测试 */
+const agentBoard = JSON.parse(await readFile(ROOT + 'data/latest/agent.json', 'utf8'));
+const AGENT_COUNT = String(agentBoard.models.length);
+const AGENT_PCT = (agentBoard.models[0].score > 0 ? '+' : '') + (agentBoard.models[0].score * 100).toFixed(1) + '%';
+
 /* ============================================================
    DOM 桩
    ============================================================ */
@@ -132,7 +138,7 @@ function runApp(search) {
   const locationStub = { pathname: '/index.html', search: search || '' };
   const fn = new Function(
     'document', 'fetch', 'localStorage', 'matchMedia', 'location', 'window', 'URLSearchParams',
-    appCode + '\n;return { initApp, selectBoard, mountBoard, sortModels, boardTable, scoreText, ciText, orgColor, fmtRel };'
+    appCode + '\n;return { initApp, selectBoard, mountBoard, sortModels, boardTable, scoreText, ciText, orgColor, fmtRel, fmtTime, fmtDate };'
   );
   return fn(documentStub, fetchStub, localStorageStub, matchMediaStub, locationStub, windowStub, URLSearchParams);
 }
@@ -172,16 +178,17 @@ function itemsFrom(html, attr) {
 
   check('榜单：默认加载智能体总榜', documentStub.title.includes('智能体总榜'));
   check('榜单：标题渲染', els.get('#board-title').innerHTML.includes('智能体总榜'));
-  check('榜单：元信息含模型数', els.get('#board-meta').innerHTML.includes('53'));
+  check('榜单：元信息含模型数', els.get('#board-meta').innerHTML.includes(AGENT_COUNT));
   check('榜单：表格渲染', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 50);
-  check('榜单：BT 量纲百分比', els.get('#board-slot').innerHTML.includes('+15.5%'));
+  check('榜单：BT 量纲百分比', els.get('#board-slot').innerHTML.includes(AGENT_PCT));
   check('榜单：厂商色块', els.get('#board-slot').innerHTML.includes('org-tile'));
   check('榜单：分数条形图', els.get('#board-slot').innerHTML.includes('scorebar'));
-  check('榜单：默认计数', els.get('#result-count').innerHTML.includes('53'));
+  check('榜单：默认计数', els.get('#result-count').innerHTML.includes(AGENT_COUNT));
   check('页面：初始不 push 历史', pushed.length === 0);
 
   const fresh = els.get('#fresh-slot').innerHTML;
-  check('新鲜度条：含更新时间', fresh.includes('数据更新至'));
+  check('新鲜度条：含数据日期（源站标注）', fresh.includes('数据日期'));
+  check('新鲜度条：含镜像抓取时间', fresh.includes('镜像抓取于'));
   check('新鲜度条：含全球对战数', fresh.includes('全球累计对战'));
   check('工具条：搜索框已绑定', els.get('#filter-input').hasHandler('input'));
   check('工具条：只看国产已绑定', els.get('#seg-cn').hasHandler('click'));
@@ -253,6 +260,8 @@ function itemsFrom(html, attr) {
   check('深链：ELO 量纲', els.get('#board-slot').innerHTML.includes('1587.7'));
   check('深链：量纲提示', els.get('#scale-hint').textContent.includes('ELO'));
   check('深链：选中态正确', /aria-current="true"/.test(els.get('#picker-minor').innerHTML));
+  check('深链：元信息含源站数据日期', /数据日期 <b>2026-10-0\d<\/b>/.test(els.get('#board-meta').innerHTML));
+  check('深链：元信息含总票数', els.get('#board-meta').innerHTML.includes('总票数'));
 }
 
 /* ============================================================
@@ -299,8 +308,9 @@ function itemsFrom(html, attr) {
   await api.initApp();
   await settling();
   check('Agent 榜：标题', documentStub.title.includes('智能体总榜'));
-  check('Agent 榜：百分比渲染', els.get('#board-slot').innerHTML.includes('+15.5%'));
+  check('Agent 榜：百分比渲染', els.get('#board-slot').innerHTML.includes(AGENT_PCT));
   check('Agent 榜：单任务成本列', els.get('#board-slot').innerHTML.includes('单任务成本'));
+  check('Agent 榜：源站无日期时回退抓取时间', els.get('#board-meta').innerHTML.includes('抓取于'));
 
   const rows = [
     { rank: 3, name: 'c', org: 'X', score: 1200, votes: 10, inputPrice: 1, outputPrice: 2, contextLength: 1000 },
@@ -313,6 +323,10 @@ function itemsFrom(html, attr) {
   check('排序：票数降序空值排最后', api.sortModels(rows, 'votes', 'desc').map((m) => m.votes).join(',') === '30,10,');
   check('排序：输入价升序空值排最后', api.sortModels(rows, 'inputPrice', 'asc').map((m) => m.inputPrice).join(',') === '1,3,');
   check('格式化：相对时间', /前|刚刚/.test(api.fmtRel(new Date().toISOString())));
+  check('格式化：时间固定 UTC+8（跨日）', api.fmtTime('2026-10-12T17:36:41.980Z') === '2026-10-13 01:36');
+  check('格式化：时间固定 UTC+8（零点边界）', api.fmtTime('2026-10-12T16:00:00.000Z') === '2026-10-13 00:00');
+  check('格式化：日期固定 UTC+8', api.fmtDate('2026-10-12T17:36:41.980Z') === '2026-10-13');
+  check('格式化：空值安全', api.fmtTime(null) === '—' && api.fmtDate(null) === '—');
   check('厂商色：已知厂商固定色', api.orgColor('OpenAI') === '#0f9b6c');
   check('厂商色：未知厂商取安全色板', /^#[0-9a-f]{6}$/.test(api.orgColor('SomeUnknownOrg')));
   check('分数：BT 百分比', api.scoreText({ score: 0.155 }, 'bt') === '+15.5%');
