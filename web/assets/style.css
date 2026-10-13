@@ -314,8 +314,8 @@ select.icon-btn option { background: var(--surface-1); color: var(--text); }
 /* ---------- Hero ---------- */
 .hero {
   position: relative; overflow: hidden;
-  margin: var(--sp-5) 0 var(--sp-5);
-  padding: var(--sp-8) var(--sp-6);
+  margin: var(--sp-4) 0 var(--sp-4);
+  padding: var(--sp-6) var(--sp-5);
   border-radius: var(--r-xl);
   border: 1px solid var(--border);
   background:
@@ -343,7 +343,7 @@ select.icon-btn option { background: var(--surface-1); color: var(--text); }
   -webkit-text-fill-color: transparent; color: transparent;
 }
 .hero p.lead {
-  margin: 0 0 var(--sp-5); color: var(--text-sub);
+  margin: 0; color: var(--text-sub);
   font-size: var(--fs-lg); max-width: 54em; line-height: var(--lh-base);
 }
 
@@ -679,6 +679,12 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
   border-color: var(--accent); color: var(--accent); background: var(--accent-soft);
   text-decoration: none; transform: translateY(-1px);
 }
+.s-item[aria-current="true"] {
+  border-color: var(--accent); background: var(--accent); color: #fff;
+  font-weight: 650; box-shadow: var(--sh-brand);
+}
+.s-item[aria-current="true"] .n { color: rgb(255 255 255 / 0.78); }
+.s-item[aria-current="true"] .star { color: #fde68a; }
 .s-item .n {
   font-size: var(--fs-sm); color: var(--muted); font-variant-numeric: tabular-nums;
   font-weight: 500;

@@ -53,8 +53,7 @@ arena-cn/
 │   └── smoke-test.mjs      # 前端冒烟测试（开发用）
 ├── data/                   # 脚本生成，禁止手改
 ├── web/
-│   ├── index.html          # 首页
-│   ├── board.html          # 榜单页（?b=text-chinese）
+│   ├── index.html          # 单页：选择器 + 榜单（?b=text-chinese 可深链）
 │   ├── 404.html
 │   └── assets/             # style.css / app.js
 └── README.md

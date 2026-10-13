@@ -348,115 +348,112 @@ function bindTableSort(container, getState, setState) {
 }
 
 /* ============================================================
-   首页
+   单页榜单查看器
+   结构：选择器（大类 + 小类）→ 当前榜单（就地切换，不跳页）
    ============================================================ */
-async function initHome() {
+let INDEX = null;        // data/index.json
+let ACTIVE = null;       // 当前榜单实例 { meta, models, query, onlyCN, sortKey, sortDir, apply }
+let activeGroup = '';    // 选择器当前大类
+let activeBoard = '';    // 选择器当前小类
+let toolbarBound = false;
+
+async function initApp() {
   initTheme();
   initFab();
 
-  const slots = ['#agent-slot', '#zh-slot'];
-  slots.forEach((s) => { const el = $(s); if (el) el.innerHTML = `<div class="card">${skeletonHtml(6)}</div>`; });
+  const slot = $('#board-slot');
+  if (slot) slot.innerHTML = skeletonHtml(10);
 
-  let index, status;
+  let status;
   try {
-    [index, status] = await Promise.all([
+    [INDEX, status] = await Promise.all([
       fetchJson('data/index.json'),
       fetchJson('data/status.json').catch(() => null),
     ]);
-  } catch (e) {
+  } catch {
     const el = $('#fresh-slot');
     if (el) el.innerHTML = '<div class="banner-warn">数据加载失败，请检查部署是否包含 web/data/ 目录。</div>';
-    slots.forEach((s) => { const e2 = $(s); if (e2) e2.innerHTML = `<div class="card">${emptyStateHtml('📦', '数据未就绪', '请先在 CI 中运行 Daily Fetch，或本地执行 node scripts/build-data.mjs。')}</div>`; });
+    const t = $('#board-title');
+    if (t) t.textContent = '数据未就绪';
+    if (slot) slot.innerHTML = emptyStateHtml('📦', '数据未就绪', '请先在 CI 中运行 Daily Fetch，或本地执行 node scripts/build-data.mjs。');
     return;
   }
 
   const fs = $('#fresh-slot');
   if (fs) fs.innerHTML = freshbarHtml(status);
 
-  initPicker(index);
+  initPicker();
+  bindToolbar();
 
-  const load = (id) => fetchJson(`data/latest/${id}.json`).catch(() => null);
+  // 初始榜单：URL ?b= 优先，否则第一个大类的第一个小类
+  const wanted = new URLSearchParams(location.search).get('b');
+  const initial = INDEX.boards.some((b) => b.id === wanted) ? wanted : INDEX.boards[0].id;
+  await selectBoard(initial, { push: false });
 
-  /* --- 双栏重点榜 --- */
-  const panels = [
-    { slot: '#agent-slot', id: 'agent', scale: 'bt', fallback: 'bt' },
-    { slot: '#zh-slot', id: 'text-chinese', scale: 'elo', fallback: 'elo' },
-  ];
-  for (const p of panels) {
-    const board = await load(p.id);
-    const el = $(p.slot);
-    if (!el) continue;
-    if (!board || !board.models || !board.models.length) {
-      el.innerHTML = `<div class="card">${emptyStateHtml('📭', '暂无数据', '该榜单本次抓取未通过校验，展示的是最后一次成功数据缺失。')}</div>`;
-      continue;
-    }
-    const scale = (board.meta && board.meta.scale) || p.scale;
-    el.innerHTML = `<div class="card">${boardTable(board.models, scale, { limit: 10 })}</div>`;
-    bindExpand(el, board.models, scale);
-  }
-
-  /* --- 页脚 --- */
-  const foot = $('#foot-info');
-  if (foot && status) {
-    foot.textContent = `最后成功抓取：${fmtTime(status.lastSuccess)}（北京时间）｜ 快照保留 ${status.snapshotRetentionDays || 45} 天｜数据仓库 ${status.repoSizeMB != null ? status.repoSizeMB + 'MB' : '—'}`;
-  }
+  // 浏览器前进/后退同步
+  window.addEventListener('popstate', () => {
+    const b = new URLSearchParams(location.search).get('b');
+    if (b && INDEX.boards.some((x) => x.id === b)) selectBoard(b, { push: false });
+  });
 }
 
-/* ============================================================
-   榜单选择器：第一行大类（tab），第二行小类（当前大类下的榜单）
-   ============================================================ */
-function initPicker(index) {
+/* ---------- 选择器 ---------- */
+function renderPicker() {
   const majorBox = $('#picker-major');
   const minorBox = $('#picker-minor');
   if (!majorBox || !minorBox) return;
 
-  const groups = index.groups || [];
+  const groups = (INDEX && INDEX.groups) || [];
   if (!groups.length) {
     majorBox.innerHTML = '<span class="picker-empty muted">暂无榜单数据</span>';
+    minorBox.innerHTML = '';
     return;
   }
-  let active = groups[0];
+  const boardsOf = (g) => INDEX.boards.filter((b) => b.group === g);
 
-  const boardsOf = (g) => index.boards.filter((b) => b.group === g);
+  majorBox.innerHTML = groups.map((g) => {
+    const on = g === activeGroup;
+    return `<button type="button" role="tab" class="m-item" data-g="${esc(g)}"
+      aria-selected="${on ? 'true' : 'false'}" tabindex="${on ? '0' : '-1'}">
+      <span class="ico">${GROUP_ICON[g] || '📊'}</span>${esc(g)}
+      <span class="n">${boardsOf(g).length}</span>
+    </button>`;
+  }).join('');
 
-  const renderMajor = () => {
-    majorBox.innerHTML = groups.map((g) => {
-      const n = boardsOf(g).length;
-      const on = g === active;
-      return `<button type="button" role="tab" class="m-item"
-        data-g="${esc(g)}" aria-selected="${on ? 'true' : 'false'}"
-        tabindex="${on ? '0' : '-1'}">
-        <span class="ico">${GROUP_ICON[g] || '📊'}</span>${esc(g)}
-        <span class="n">${n}</span>
-      </button>`;
-    }).join('');
-  };
+  const list = boardsOf(activeGroup);
+  minorBox.innerHTML = list.map((b) => `
+    <a class="s-item ${b.highlight ? 'hl' : ''}" href="?b=${encodeURIComponent(b.id)}"
+       data-b="${esc(b.id)}" ${b.id === activeBoard ? 'aria-current="true"' : ''}
+       title="${esc(b.name)} · ${b.modelCount != null ? b.modelCount + ' 个模型' : '暂无数据'}">
+      <span class="nm">${esc(b.name)}</span>
+      ${b.highlight ? '<span class="star" title="国内精选">★</span>' : ''}
+      <span class="n">${b.modelCount != null ? b.modelCount : '—'}</span>
+    </a>`).join('') +
+    `<span class="picker-tip muted">${GROUP_ICON[activeGroup] || ''} ${esc(activeGroup)}类共 ${list.length} 个榜单，点名称在当前页切换</span>`;
+}
 
-  const renderMinor = () => {
-    const list = boardsOf(active);
-    minorBox.innerHTML = list.map((b) => `
-      <a class="s-item ${b.highlight ? 'hl' : ''}" href="board.html?b=${encodeURIComponent(b.id)}"
-         title="${esc(b.name)} · ${b.modelCount != null ? b.modelCount + ' 个模型' : '暂无数据'}">
-        <span class="nm">${esc(b.name)}</span>
-        ${b.highlight ? '<span class="star" title="国内精选">★</span>' : ''}
-        <span class="n">${b.modelCount != null ? b.modelCount : '—'}</span>
-      </a>`).join('') + `
-      <span class="picker-tip muted">${GROUP_ICON[active] || ''} ${esc(active)}类共 ${list.length} 个榜单，点名称进入</span>`;
-  };
+function initPicker() {
+  const majorBox = $('#picker-major');
+  const minorBox = $('#picker-minor');
+  if (!majorBox || !minorBox) return;
 
-  const select = (g) => {
-    if (!groups.includes(g)) return;
-    active = g;
-    renderMajor();
-    renderMinor();
+  const groups = (INDEX && INDEX.groups) || [];
+  if (!groups.includes(activeGroup)) activeGroup = groups[0] || '';
+
+  const pickMajor = (g) => {
+    if (g === activeGroup) return;
+    activeGroup = g;
+    renderPicker();
+    const first = INDEX.boards.find((b) => b.group === g);
+    if (first) selectBoard(first.id);
   };
 
   majorBox.addEventListener('click', (e) => {
     const btn = e.target.closest ? e.target.closest('.m-item') : null;
-    if (btn) select(btn.dataset.g);
+    if (btn) pickMajor(btn.dataset.g);
   });
 
-  // 键盘：左右/Home/End 在大类间移动（tablist 语义）
+  // 键盘：左右/Home/End 在大类间移动
   majorBox.addEventListener('keydown', (e) => {
     const items = $$('.m-item', majorBox);
     const i = items.findIndex((el) => el === document.activeElement);
@@ -469,11 +466,185 @@ function initPicker(index) {
     if (j < 0) return;
     e.preventDefault();
     items[j].focus();
-    select(items[j].dataset.g);
+    pickMajor(items[j].dataset.g);
   });
 
-  renderMajor();
-  renderMinor();
+  // 小类：普通左键就地切换；Ctrl/⌘/中键点击保留原生行为（可开新标签）
+  minorBox.addEventListener('click', (e) => {
+    const a = e.target.closest ? e.target.closest('.s-item') : null;
+    if (!a) return;
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    selectBoard(a.dataset.b);
+  });
+
+  renderPicker();
+}
+
+/* ---------- 切换榜单（就地） ---------- */
+async function selectBoard(id, opts = {}) {
+  const push = opts.push !== false;
+  const info = INDEX && INDEX.boards.find((b) => b.id === id);
+  if (!info) return;
+
+  activeGroup = info.group;
+  activeBoard = id;
+  renderPicker();   // 大类选中态 + 第二行小类 + 当前小类选中态，三者一次对齐
+
+  const titleEl = $('#board-title');
+  if (titleEl) titleEl.innerHTML = `${GROUP_ICON[info.group] || '📊'} ${esc(info.name)}`;
+  const metaEl = $('#board-meta');
+  if (metaEl) {
+    metaEl.innerHTML = `
+      <span class="pill">量纲 <b>${SCALE_LABEL[info.scale]}</b></span>
+      <span class="pill">模型数 <b>${info.modelCount != null ? info.modelCount : '—'}</b></span>
+      <span class="pill">更新于 <b>${fmtTime(info.updatedAt)}</b></span>`;
+  }
+
+  const slot = $('#board-slot');
+  if (slot) slot.innerHTML = skeletonHtml(10);
+  document.title = `${info.name} - AI Arena 中文榜单`;
+  if (push && window.history && window.history.pushState) {
+    window.history.pushState({ b: id }, '', `?b=${encodeURIComponent(id)}`);
+  }
+
+  let board;
+  try {
+    board = await fetchJson(`data/latest/${id}.json`);
+  } catch {
+    if (slot) slot.innerHTML = emptyStateHtml('📭', '暂无数据', '该榜单本次抓取未通过校验，展示的是上一次成功的数据缺失。', '<a class="btn btn-primary" href="index.html">回到首页</a>');
+    return;
+  }
+  mountBoard(slot, board);
+}
+
+/* ---------- 挂载榜单（工具条 + 表格） ---------- */
+function mountBoard(slot, board) {
+  const meta = board.meta;
+  const st = {
+    meta,
+    models: board.models || [],
+    query: '',
+    onlyCN: false,
+    sortKey: 'rank',
+    sortDir: 'asc',
+  };
+
+  const hint = $('#scale-hint');
+  if (hint) hint.textContent = SCALE_HINT[meta.scale] || '';
+
+  const input = $('#filter-input');
+  const field = $('#search-field');
+  if (input) input.value = '';
+  if (field) field.classList.remove('has-value');
+  const segAll = $('#seg-all');
+  const segCN = $('#seg-cn');
+  if (segAll && segCN) {
+    segAll.setAttribute('aria-pressed', 'true');
+    segCN.setAttribute('aria-pressed', 'false');
+  }
+  const sel = $('#sort-select');
+  if (sel) sel.value = 'rank:asc';
+
+  const syncSortSelect = () => {
+    const s2 = $('#sort-select');
+    if (s2) s2.value = `${st.sortKey}:${st.sortDir}`;
+  };
+
+  const apply = () => {
+    let models = st.models;
+    if (st.onlyCN) models = models.filter((m) => CN_ORGS.has(m.org));
+    if (st.query) {
+      const q = st.query.toLowerCase();
+      models = models.filter((m) =>
+        (m.name || '').toLowerCase().includes(q) ||
+        (m.org || '').toLowerCase().includes(q) ||
+        (m.key || '').toLowerCase().includes(q) ||
+        (ORG_ZH[m.org] || '').includes(st.query));
+    }
+    if (slot) slot.innerHTML = boardTable(models, meta.scale, { limit: 100, sortKey: st.sortKey, sortDir: st.sortDir });
+    bindTableSort(slot, () => st, (s) => { Object.assign(st, s); syncSortSelect(); apply(); });
+    if (slot) bindExpand(slot, models, meta.scale, { sortKey: st.sortKey, sortDir: st.sortDir });
+
+    const cnt = $('#result-count');
+    if (cnt) cnt.innerHTML = `共 <b>${models.length}</b> 个模型${st.query || st.onlyCN ? '（已筛选）' : ''}`;
+    const f = $('#search-field');
+    if (f) f.classList.toggle('has-value', !!st.query);
+  };
+
+  st.apply = apply;
+  ACTIVE = st;
+  apply();
+}
+
+/* ---------- 工具条（只绑一次，动作作用于当前 ACTIVE） ---------- */
+function bindToolbar() {
+  if (toolbarBound) return;
+  toolbarBound = true;
+
+  const input = $('#filter-input');
+  const clearBtn = $('#filter-clear');
+  const segAll = $('#seg-all');
+  const segCN = $('#seg-cn');
+  const sel = $('#sort-select');
+
+  if (input) {
+    input.addEventListener('input', (e) => {
+      if (!ACTIVE) return;
+      ACTIVE.query = e.target.value.trim();
+      ACTIVE.apply();
+    });
+  }
+  if (clearBtn && input) {
+    clearBtn.addEventListener('click', () => {
+      if (!ACTIVE) return;
+      input.value = '';
+      ACTIVE.query = '';
+      input.focus();
+      ACTIVE.apply();
+    });
+  }
+  if (segAll && segCN) {
+    segAll.addEventListener('click', () => {
+      if (!ACTIVE || !ACTIVE.onlyCN) return;
+      ACTIVE.onlyCN = false;
+      segAll.setAttribute('aria-pressed', 'true');
+      segCN.setAttribute('aria-pressed', 'false');
+      ACTIVE.apply();
+    });
+    segCN.addEventListener('click', () => {
+      if (!ACTIVE || ACTIVE.onlyCN) return;
+      ACTIVE.onlyCN = true;
+      segAll.setAttribute('aria-pressed', 'false');
+      segCN.setAttribute('aria-pressed', 'true');
+      ACTIVE.apply();
+    });
+  }
+  if (sel) {
+    sel.addEventListener('change', () => {
+      if (!ACTIVE) return;
+      const [k, d] = sel.value.split(':');
+      ACTIVE.sortKey = k;
+      ACTIVE.sortDir = d;
+      ACTIVE.apply();
+    });
+  }
+  if (input) {
+    document.addEventListener('keydown', (e) => {
+      const t = e.target;
+      const tag = t && t.tagName;
+      const typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+      if (e.key === '/' && !typing) {
+        e.preventDefault();
+        input.focus();
+        input.select();
+      } else if (e.key === 'Escape' && e.target === input) {
+        e.preventDefault();
+        input.value = '';
+        if (ACTIVE) { ACTIVE.query = ''; ACTIVE.apply(); }
+      }
+    });
+  }
 }
 
 function bindExpand(slot, models, scale, opts = {}) {
@@ -487,135 +658,6 @@ function bindExpand(slot, models, scale, opts = {}) {
 }
 
 /* ============================================================
-   榜单页
-   ============================================================ */
-async function initBoard() {
-  initTheme();
-  initFab();
-
-  const id = new URLSearchParams(location.search).get('b') || 'text';
-  document.title = '加载中… - AI Arena 中文榜单';
-  const slot = $('#board-slot');
-  if (slot) slot.innerHTML = skeletonHtml(10);
-
-  let index, board;
-  try {
-    [index, board] = await Promise.all([fetchJson('data/index.json'), fetchJson(`data/latest/${id}.json`)]);
-  } catch {
-    if (slot) slot.innerHTML = emptyStateHtml('🔍', '榜单不存在或数据缺失', '请返回首页选择榜单。', '<a class="btn btn-primary" href="index.html">返回首页</a>');
-    document.title = '榜单不存在 - AI Arena 中文榜单';
-    return;
-  }
-  const meta = board.meta;
-  document.title = `${meta.name} - AI Arena 中文榜单`;
-
-  const crumb = $('#crumb');
-  if (crumb) crumb.innerHTML = `<a href="index.html">首页</a><span class="sep">/</span>${esc(meta.group)}类<span class="sep">/</span>${esc(meta.name)}`;
-
-  const titleEl = $('#board-title');
-  if (titleEl) titleEl.innerHTML = `${GROUP_ICON[meta.group] || '📊'} ${esc(meta.name)}`;
-
-  const metaEl = $('#board-meta');
-  if (metaEl) {
-    metaEl.innerHTML = `
-      <span class="pill">量纲 <b>${SCALE_LABEL[meta.scale]}</b></span>
-      <span class="pill">模型数 <b>${meta.modelCount}</b></span>
-      <span class="pill">更新于 <b>${fmtTime(meta.fetchedAt)}</b></span>
-      <span class="pill">来源 <b><a href="${esc(meta.sourceUrl)}" target="_blank" rel="noopener">arena.ai ↗</a></b></span>`;
-  }
-  const hintEl = $('#scale-hint');
-  if (hintEl) hintEl.textContent = SCALE_HINT[meta.scale] || '';
-
-  /* --- 榜单快速切换 --- */
-  const nav = $('#chip-nav');
-  if (nav) {
-    nav.innerHTML = index.groups.map((g) => {
-      const items = index.boards.filter((b) => b.group === g).map((b) =>
-        `<a class="chip" href="board.html?b=${encodeURIComponent(b.id)}"
-            ${b.id === id ? 'aria-current="true"' : ''}>${esc(b.name)}</a>`).join('');
-      return `<span class="chip-sep">${GROUP_ICON[g] || ''} ${esc(g)}</span>${items}`;
-    }).join('');
-  }
-
-  /* --- 工具条 + 表格 --- */
-  let query = '';
-  let onlyCN = false;
-  let sortKey = 'rank';
-  let sortDir = 'asc';
-
-  const apply = () => {
-    let models = board.models;
-    if (onlyCN) models = models.filter((m) => CN_ORGS.has(m.org));
-    if (query) {
-      const q = query.toLowerCase();
-      models = models.filter((m) =>
-        (m.name || '').toLowerCase().includes(q) ||
-        (m.org || '').toLowerCase().includes(q) ||
-        (m.key || '').toLowerCase().includes(q) ||
-        (ORG_ZH[m.org] || '').includes(query));
-    }
-    const sortOpts = { limit: 100, sortKey, sortDir };
-    if (slot) slot.innerHTML = boardTable(models, meta.scale, sortOpts);
-    bindTableSort(slot, () => ({ sortKey, sortDir }), (st) => {
-      sortKey = st.sortKey; sortDir = st.sortDir;
-      const s2 = $('#sort-select');
-      if (s2) s2.value = `${sortKey}:${sortDir}`;
-      apply();
-    });
-    if (slot) bindExpand(slot, models, meta.scale, { sortKey, sortDir });
-
-    const cnt = $('#result-count');
-    if (cnt) cnt.innerHTML = `共 <b>${models.length}</b> 个模型${query || onlyCN ? '（已筛选）' : ''}`;
-    const field = $('#search-field');
-    if (field) field.classList.toggle('has-value', !!query);
-  };
-
-  const input = $('#filter-input');
-  if (input) {
-    input.addEventListener('input', (e) => { query = e.target.value.trim(); apply(); });
-  }
-  const clearBtn = $('#filter-clear');
-  if (clearBtn && input) {
-    clearBtn.addEventListener('click', () => { input.value = ''; query = ''; input.focus(); apply(); });
-  }
-  const segAll = $('#seg-all');
-  const segCN = $('#seg-cn');
-  if (segAll && segCN) {
-    const setSeg = (cn) => {
-      onlyCN = cn;
-      segAll.setAttribute('aria-pressed', String(!cn));
-      segCN.setAttribute('aria-pressed', String(cn));
-      apply();
-    };
-    segAll.addEventListener('click', () => setSeg(false));
-    segCN.addEventListener('click', () => setSeg(true));
-  }
-  const sel = $('#sort-select');
-  if (sel) {
-    sel.addEventListener('change', () => {
-      const [k, d] = sel.value.split(':');
-      sortKey = k; sortDir = d; apply();
-    });
-  }
-  if (input) {
-    document.addEventListener('keydown', (e) => {
-      const t = e.target;
-      const tag = t && t.tagName;
-      const typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
-      if ((e.key === '/' && !typing) || (e.key === 'Escape' && e.target === input)) {
-        e.preventDefault();
-        input.focus();
-        if (e.key === 'Escape') { input.value = ''; query = ''; apply(); }
-        else input.select();
-      }
-    });
-  }
-
-  apply();
-}
-
-/* ============================================================
    路由
    ============================================================ */
-if (typeof location !== 'undefined' && location.pathname && location.pathname.endsWith('board.html')) initBoard();
-else initHome();
+if (typeof location !== 'undefined') initApp();

@@ -28,12 +28,11 @@
       <h1>全球 AI 模型<em>对战实力榜</em>，中文版每日更新</h1>
       <p class="lead">
         数据取自 arena.ai（原 LMSYS Chatbot Arena）公开榜单，每天自动抓取 19 个维度的完整排名——
-        从对话、中文对话、编程、数学，到文生图、视频生成与智能体实战。
         国内可直接访问，全中文界面，厂商均标注中文名，国产模型单独高亮。
       </p>
     </section>
 
-    <!-- 榜单选择器：第一行大类，第二行小类 -->
+    <!-- 榜单选择器：第一行大类，第二行小类，点选后当前页直接切换 -->
     <div class="picker" id="board-picker">
       <div class="picker-row picker-major" role="tablist" aria-label="榜单大类" id="picker-major"></div>
       <div class="picker-row picker-minor" id="picker-minor"></div>
@@ -42,38 +41,52 @@
     <!-- 新鲜度 -->
     <div id="fresh-slot"></div>
 
-    <!-- 重点榜（双栏） -->
-    <section class="section">
-      <div class="two-col">
-        <div>
-          <div class="section-head">
-            <h2>🏆 智能体总榜</h2>
-            <span class="sub">Top 10 · 相对战力值</span>
-            <a class="more" href="board.html?b=agent">全部</a>
-          </div>
-          <div id="agent-slot"><div class="card"><div class="empty">加载中…</div></div></div>
+    <!-- 当前榜单（单榜，随选择器就地切换） -->
+    <div class="board-head">
+      <h1 id="board-title">加载中…</h1>
+      <div class="meta" id="board-meta"></div>
+    </div>
+
+    <div class="card">
+      <div class="toolbar">
+        <div class="search-field" id="search-field">
+          <span class="ic" aria-hidden="true">🔍</span>
+          <label class="sr-only" for="filter-input">筛选模型</label>
+          <input type="search" id="filter-input" placeholder="搜索模型名 / 厂商（支持中文，如「月之暗面」）" autocomplete="off">
+          <button class="clear" id="filter-clear" type="button" aria-label="清除搜索">✕</button>
+          <kbd>/</kbd>
         </div>
-        <div>
-          <div class="section-head">
-            <h2>🇨🇳 中文对话榜</h2>
-            <span class="sub">Top 10 · ELO 评分</span>
-            <a class="more" href="board.html?b=text-chinese">全部</a>
-          </div>
-          <div id="zh-slot"><div class="card"><div class="empty">加载中…</div></div></div>
+        <div class="seg" role="group" aria-label="筛选范围">
+          <button type="button" id="seg-all" aria-pressed="true">全部厂商</button>
+          <button type="button" id="seg-cn" aria-pressed="false">🇨🇳 只看国产</button>
         </div>
+        <label class="sr-only" for="sort-select">排序方式</label>
+        <select id="sort-select" class="icon-btn">
+          <option value="rank:asc">排名 ↑</option>
+          <option value="rank:desc">排名 ↓</option>
+          <option value="score:desc">评分 ↓</option>
+          <option value="score:asc">评分 ↑</option>
+          <option value="votes:desc">票数 ↓</option>
+          <option value="inputPrice:asc">输入价 ↑</option>
+          <option value="outputPrice:asc">输出价 ↑</option>
+          <option value="contextLength:desc">上下文 ↓</option>
+        </select>
+        <span class="count" id="result-count"></span>
       </div>
-    </section>
+      <div id="scale-hint" class="scale-hint"></div>
+      <div id="board-slot"></div>
+    </div>
 
     <footer class="footer">
       <p><strong>关于数据</strong>　来源 <a href="https://arena.ai/leaderboard" target="_blank" rel="noopener">arena.ai</a>（原 LMSYS Chatbot Arena）公开榜单页面，本站每日自动抓取快照并做中文化整理，仅供学习参考，与官方无关；排名与评分版权归原站所有。</p>
       <p><strong>评分说明</strong>　ELO 为相对战力分；智能体榜为 Bradley-Terry 相对战力值（0 = 平均水平，按百分比展示）。价格为每百万 token 美元计价（智能体榜为单任务成本），厂商中文名为整理者附加标注。</p>
       <p id="foot-info"></p>
       <div class="links">
-        <a href="board.html?b=agent">智能体总榜</a>
-        <a href="board.html?b=text">文本对话总榜</a>
-        <a href="board.html?b=text-chinese">中文对话榜</a>
-        <a href="board.html?b=text-coding">代码能力榜</a>
-        <a href="board.html?b=vision">视觉问答榜</a>
+        <a href="index.html?b=agent">智能体总榜</a>
+        <a href="index.html?b=text">文本对话总榜</a>
+        <a href="index.html?b=text-chinese">中文对话榜</a>
+        <a href="index.html?b=text-coding">代码能力榜</a>
+        <a href="index.html?b=vision">视觉问答榜</a>
         <a href="https://arena.ai/leaderboard" target="_blank" rel="noopener">原始榜单 ↗</a>
       </div>
     </footer>

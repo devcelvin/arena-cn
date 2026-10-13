@@ -1,7 +1,7 @@
 /**
  * smoke-test.mjs — 前端冒烟测试（开发用，随仓库保留，不参与线上产物）
- * 用 DOM 桩在 Node 中真实执行 app.js 的 initHome / initBoard 与纯函数，
- * 验证：无运行时错误 + 关键内容正确渲染 + 筛选/排序逻辑工作。
+ * 用 DOM 桩在 Node 中真实执行 app.js，验证：
+ * 无运行时错误 + 选择器渲染 + 就地切换 + 筛选/排序逻辑 + 纯函数正确性。
  */
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -23,6 +23,7 @@ function makeEl(key, tag = 'DIV') {
     textContent: '',
     outerHTML: '',
     value: '',
+    tabIndex: 0,
     style: {},
     dataset: {},
     parentElement: null,
@@ -37,28 +38,26 @@ function makeEl(key, tag = 'DIV') {
     removeEventListener() {},
     remove() { this._removed = true; },
     querySelector(sel) {
-      const k = key + ' ' + sel;
       if (!el._children.has(sel)) {
-        const child = makeEl(k, guessTag(sel));
+        const child = makeEl(key + ' ' + sel, guessTag(sel));
         child.parentElement = el;
         el._children.set(sel, child);
       }
       return el._children.get(sel);
     },
     querySelectorAll() { return []; },
-    closest(sel) {
-      // 仅支持必要的自匹配（用于表头排序 / 按钮点击的分发）
-      return matches(sel, el) ? el : null;
-    },
+    closest(sel) { return matches(sel, el) ? el : null; },
     setAttribute(k, v) { this._attrs[k] = String(v); },
     getAttribute(k) { return this._attrs[k] ?? null; },
+    removeAttribute(k) { delete this._attrs[k]; },
     focus() { el._focused = true; },
     select() {},
     appendChild(c) { c.parentElement = el; return c; },
     scrollTo() {},
     fire(ev, arg) {
-      (this._handlers[ev] || []).forEach((fn) => fn(arg));
-      return (this._handlers[ev] || []).length;
+      const hs = this._handlers[ev] || [];
+      hs.forEach((fn) => fn(arg));
+      return hs.length;
     },
     hasHandler(ev) { return !!(this._handlers[ev] || []).length; },
   };
@@ -84,12 +83,14 @@ function matches(sel, el) {
 
 let els = new Map();
 const body = makeEl('body', 'BODY');
+const docHandlers = {};
 const documentStub = {
   title: '',
   body,
   documentElement: { dataset: {} },
-  _handlers: {},
-  addEventListener(ev, fn) { (this._handlers[ev] ||= []).push(fn); },
+  activeElement: null,
+  addEventListener(ev, fn) { (docHandlers[ev] ||= []).push(fn); },
+  removeEventListener() {},
   createElement(tag) { return makeEl('created:' + tag + ':' + Math.random(), tag.toUpperCase()); },
   querySelector(sel) {
     if (!els.has(sel)) els.set(sel, makeEl(sel, guessTag(sel)));
@@ -104,11 +105,13 @@ const localStorageStub = {
   setItem: (k, v) => { store[k] = v; },
 };
 const matchMediaStub = () => ({ matches: false, addEventListener() {} });
+const pushed = [];
 const windowStub = {
   matchMedia: matchMediaStub,
   scrollY: 0,
   addEventListener() {},
   scrollTo() {},
+  history: { pushState(s, t, url) { pushed.push(url); } },
 };
 
 /* fetch 桩：从 web/ 读真实文件 */
@@ -124,14 +127,12 @@ async function fetchStub(p) {
 
 function runApp(search) {
   els = new Map();
-  Object.keys(documentStub._handlers).forEach((k) => delete documentStub._handlers[k]);
-  const locationStub = {
-    pathname: search ? '/board.html' : '/index.html',
-    search: search || '',
-  };
+  Object.keys(docHandlers).forEach((k) => delete docHandlers[k]);
+  pushed.length = 0;
+  const locationStub = { pathname: '/index.html', search: search || '' };
   const fn = new Function(
     'document', 'fetch', 'localStorage', 'matchMedia', 'location', 'window', 'URLSearchParams',
-    appCode + '\n;return { initHome, initBoard, sortModels, boardTable, scoreText, ciText, orgColor };'
+    appCode + '\n;return { initApp, selectBoard, mountBoard, sortModels, boardTable, scoreText, ciText, orgColor, fmtRel };'
   );
   return fn(documentStub, fetchStub, localStorageStub, matchMediaStub, locationStub, windowStub, URLSearchParams);
 }
@@ -141,127 +142,166 @@ const check = (name, cond) => {
   console.log(`${cond ? '✓' : '✗'} ${name}`);
   if (!cond) failures++;
 };
-const settling = () => new Promise((r) => setTimeout(r, 60));
+const settling = () => new Promise((r) => setTimeout(r, 80));
 
-/* ============================================================
-   测试 1：首页
-   ============================================================ */
-{
-  const api = runApp('');
-  await api.initHome();
-  await settling();
-
-  const fresh = els.get('#fresh-slot').innerHTML;
-  check('首页：新鲜度条含更新时间', fresh.includes('数据更新至'));
-  check('首页：新鲜度条含相对时间', /分钟前|小时前|天前|刚刚/.test(fresh));
-  check('首页：新鲜度条含全球对战数', fresh.includes('全球累计对战'));
-
-  const major = els.get('#picker-major').innerHTML;
-  const minor = els.get('#picker-minor').innerHTML;
-  check('首页：选择器第一行含 5 个大类', (major.match(/role="tab"/g) || []).length === 5);
-  check('首页：大类默认选中第一个', /aria-selected="true"/.test(major));
-  check('首页：第二行展示当前大类的榜单', (minor.match(/class="s-item/g) || []).length >= 3);
-  check('首页：选择器含模型数', minor.includes('class="n"'));
-
-  /* 切到「对话」大类，验证国内精选标记 */
-  els.get('#picker-major').fire('click', { target: { closest: () => ({ dataset: { g: '对话' } }) } });
-  await settling();
-  const minorChat = els.get('#picker-minor').innerHTML;
-  check('首页：对话类含中文对话榜', minorChat.includes('中文对话榜'));
-  check('首页：中文对话榜标为国内精选', minorChat.includes('star'));
-  els.get('#picker-major').fire('click', { target: { closest: () => ({ dataset: { g: '智能体' } }) } });
-  await settling();
-
-  check('首页：智能体榜渲染 Top10', els.get('#agent-slot').innerHTML.includes('Claude Opus 5.5 (Max)'));
-  check('首页：智能体榜为百分比量纲', els.get('#agent-slot').innerHTML.includes('+15.5%'));
-  check('首页：中文榜渲染', els.get('#zh-slot').innerHTML.includes('gemini-4-argon-high'));
-  check('首页：中文榜为 ELO 量纲', els.get('#zh-slot').innerHTML.includes('1587.7'));
-  check('首页：含厂商色块', els.get('#zh-slot').innerHTML.includes('org-tile'));
-  check('首页：含分数条形图', els.get('#zh-slot').innerHTML.includes('scorebar'));
-  check('首页：国产徽章出现', els.get('#zh-slot').innerHTML.includes('badge-cn'));
-  check('首页：页脚信息填充', els.get('#foot-info').textContent.includes('最后成功抓取'));
-
-  /* 大类切换 */
-  els.get('#picker-major').fire('click', { target: { closest: () => ({ dataset: { g: '视频' } }) } });
-  await settling();
-  const minorVideo = els.get('#picker-minor').innerHTML;
-  check('首页：切换到视频大类后刷新小类', minorVideo.includes('文生视频榜'));
-  check('首页：切换后不再出现文本类榜单', !minorVideo.includes('代码能力榜'));
+/* 从渲染出的 HTML 里解析出 data-g / data-b 项，用于模拟点击分发 */
+function itemsFrom(html, attr) {
+  const out = [];
+  const re = new RegExp(`<[^>]*\\b${attr}="([^"]*)"[^>]*>`, 'g');
+  let m;
+  while ((m = re.exec(html))) out.push({ dataset: { [attr === 'data-g' ? 'g' : 'b']: m[1] } });
+  return out;
 }
 
 /* ============================================================
-   测试 2：榜单页（ELO）
+   测试 1：默认加载
+   ============================================================ */
+{
+  const api = runApp('');
+  await api.initApp();
+  await settling();
+
+  const major = els.get('#picker-major').innerHTML;
+  const minor = els.get('#picker-minor').innerHTML;
+  check('选择器：第一行含 5 个大类', (major.match(/role="tab"/g) || []).length === 5);
+  check('选择器：默认选中第一个大类', /aria-selected="true"/.test(major));
+  check('选择器：第二行展示该大类的榜单', (minor.match(/class="s-item/g) || []).length >= 3);
+  check('选择器：小类带模型数', minor.includes('class="n"'));
+  check('选择器：默认有选中的小类', /aria-current="true"/.test(minor));
+  check('选择器：提示就地切换', minor.includes('当前页切换'));
+
+  check('榜单：默认加载智能体总榜', documentStub.title.includes('智能体总榜'));
+  check('榜单：标题渲染', els.get('#board-title').innerHTML.includes('智能体总榜'));
+  check('榜单：元信息含模型数', els.get('#board-meta').innerHTML.includes('53'));
+  check('榜单：表格渲染', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 50);
+  check('榜单：BT 量纲百分比', els.get('#board-slot').innerHTML.includes('+15.5%'));
+  check('榜单：厂商色块', els.get('#board-slot').innerHTML.includes('org-tile'));
+  check('榜单：分数条形图', els.get('#board-slot').innerHTML.includes('scorebar'));
+  check('榜单：默认计数', els.get('#result-count').innerHTML.includes('53'));
+  check('页面：初始不 push 历史', pushed.length === 0);
+
+  const fresh = els.get('#fresh-slot').innerHTML;
+  check('新鲜度条：含更新时间', fresh.includes('数据更新至'));
+  check('新鲜度条：含全球对战数', fresh.includes('全球累计对战'));
+  check('工具条：搜索框已绑定', els.get('#filter-input').hasHandler('input'));
+  check('工具条：只看国产已绑定', els.get('#seg-cn').hasHandler('click'));
+  check('工具条：排序下拉已绑定', els.get('#sort-select').hasHandler('change'));
+}
+
+/* ============================================================
+   测试 2：就地切换（点小类不跳页，URL 更新）
+   ============================================================ */
+{
+  const api = runApp('');
+  await api.initApp();
+  await settling();
+
+  const minorItems = itemsFrom(els.get('#picker-minor').innerHTML, 'data-b');
+  check('解析出智能体类小类', minorItems.length === 3);
+  els.get('#picker-minor').fire('click', {
+    target: { closest: () => minorItems[1] },   // 编程智能体榜
+    ctrlKey: false, metaKey: false, shiftKey: false, button: 0,
+    preventDefault() {},
+  });
+  await settling();
+  check('切换：标题更新为编程智能体榜', documentStub.title.includes('编程智能体榜'));
+  check('切换：表格重渲染', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 50);
+  check('切换：URL 已 push', pushed.some((u) => u.includes('agent-coding')));
+  check('切换：选中态更新', /aria-current="true"/.test(els.get('#picker-minor').innerHTML));
+  check('切换：筛选被重置', els.get('#filter-input').value === '');
+
+  // Ctrl+点击不拦截（保留开新标签能力）
+  const before = pushed.length;
+  els.get('#picker-minor').fire('click', {
+    target: { closest: () => minorItems[0] },
+    ctrlKey: true, metaKey: false, shiftKey: false, button: 0,
+    preventDefault() { throw new Error('Ctrl+点击不应被拦截'); },
+  });
+  await settling();
+  check('切换：Ctrl+点击不拦截', pushed.length === before);
+}
+
+/* ============================================================
+   测试 3：大类切换
+   ============================================================ */
+{
+  const api = runApp('');
+  await api.initApp();
+  await settling();
+
+  const majorItems = itemsFrom(els.get('#picker-major').innerHTML, 'data-g');
+  check('解析出 5 个大类', majorItems.length === 5);
+  els.get('#picker-major').fire('click', { target: { closest: () => majorItems[1] }, preventDefault() {} }); // 对话
+  await settling();
+
+  const minor = els.get('#picker-minor').innerHTML;
+  check('大类切换：第二行换成对话类', minor.includes('中文对话榜') && minor.includes('文本对话总榜'));
+  check('大类切换：不再有智能体榜', !minor.includes('编程智能体榜'));
+  check('大类切换：自动选中第一个小类', documentStub.title.includes('文本对话总榜'));
+  check('大类切换：含国内精选标记', minor.includes('star'));
+  check('大类切换：URL 已 push', pushed.some((u) => u.includes('b=text')));
+}
+
+/* ============================================================
+   测试 4：深链 ?b=
    ============================================================ */
 {
   const api = runApp('?b=text-chinese');
-  await api.initBoard();
+  await api.initApp();
+  await settling();
+  check('深链：直接加载中文对话榜', documentStub.title.includes('中文对话榜'));
+  check('深链：ELO 量纲', els.get('#board-slot').innerHTML.includes('1587.7'));
+  check('深链：量纲提示', els.get('#scale-hint').textContent.includes('ELO'));
+  check('深链：选中态正确', /aria-current="true"/.test(els.get('#picker-minor').innerHTML));
+}
+
+/* ============================================================
+   测试 5：筛选 / 只看国产 / 排序
+   ============================================================ */
+{
+  const api = runApp('?b=text-chinese');
+  await api.initApp();
   await settling();
 
-  check('榜单页：标题设置', documentStub.title.includes('中文对话榜'));
-  check('榜单页：面包屑', els.get('#crumb').innerHTML.includes('中文对话榜'));
-  check('榜单页：元信息', els.get('#board-meta').innerHTML.includes('arena.ai'));
-  check('榜单页：元信息为 chip 样式', els.get('#board-meta').innerHTML.includes('class="pill"'));
-
-  const nav = els.get('#chip-nav').innerHTML;
-  check('榜单页：切换条含 19 个榜', (nav.match(/class="chip"/g) || []).length >= 19);
-  check('榜单页：当前榜高亮', nav.includes('aria-current="true"'));
-
-  const boardHtml = els.get('#board-slot').innerHTML;
-  check('榜单页：表格渲染（top100）', (boardHtml.match(/<tr/g) || []).length >= 100);
-  check('榜单页：表头可排序', (boardHtml.match(/data-sort="/g) || []).length >= 4);
-  check('榜单页：结果计数', els.get('#result-count').innerHTML.includes('390'));
-
-  check('榜单页：搜索框已绑定', els.get('#filter-input').hasHandler('input'));
-  check('榜单页：清除按钮已绑定', els.get('#filter-clear').hasHandler('click'));
-  check('榜单页：全部/国产分段控件已绑定', els.get('#seg-all').hasHandler('click') && els.get('#seg-cn').hasHandler('click'));
-  check('榜单页：排序下拉已绑定', els.get('#sort-select').hasHandler('change'));
-
-  // 模拟筛选
   els.get('#filter-input').fire('input', { target: { value: 'deepseek' } });
   await settling();
   const html = els.get('#board-slot').innerHTML;
-  check('榜单页：筛选 deepseek 生效', /deepseek/i.test(html) && !/gemini-4-argon/i.test(html));
+  check('筛选：deepseek 生效', /deepseek/i.test(html) && !/gemini-4-argon/i.test(html));
+  check('筛选：计数更新', els.get('#result-count').innerHTML.includes('已筛选'));
 
-  // 模拟只看国产
+  els.get('#filter-input').fire('input', { target: { value: '' } });
+  await settling();
   els.get('#seg-cn').fire('click', {});
   await settling();
-  check('榜单页：只看国产生效', /badge-cn/.test(els.get('#board-slot').innerHTML));
+  check('筛选：只看国产生效', /badge-cn/.test(els.get('#board-slot').innerHTML));
   els.get('#seg-all').fire('click', {});
   await settling();
 
-  // 模拟中文厂商搜索
   els.get('#filter-input').fire('input', { target: { value: '月之暗面' } });
   await settling();
-  check('榜单页：支持中文厂商名搜索', /moonshot/i.test(els.get('#board-slot').innerHTML));
+  check('筛选：中文厂商名生效', /moonshot/i.test(els.get('#board-slot').innerHTML));
 
-  // 模拟排序（下拉）
   els.get('#filter-input').fire('input', { target: { value: '' } });
   await settling();
   const sel = els.get('#sort-select');
   sel.value = 'votes:desc';
   sel.fire('change', { target: sel });
   await settling();
-  check('榜单页：按票数降序不报错且仍有内容', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 100);
+  check('排序：按票数降序仍有内容', (els.get('#board-slot').innerHTML.match(/<tr/g) || []).length >= 100);
+  check('排序：排序后计数恢复', !els.get('#result-count').innerHTML.includes('已筛选'));
 }
 
 /* ============================================================
-   测试 3：BT 榜单页
+   测试 6：BT 榜单 + 纯函数
    ============================================================ */
 {
   const api = runApp('?b=agent');
-  await api.initBoard();
+  await api.initApp();
   await settling();
-  check('Agent 榜页：标题', documentStub.title.includes('智能体总榜'));
-  check('Agent 榜页：量纲提示', els.get('#scale-hint').textContent.includes('Bradley-Terry'));
-  check('Agent 榜页：百分比渲染', els.get('#board-slot').innerHTML.includes('+15.5%'));
-  check('Agent 榜页：单任务成本列', els.get('#board-slot').innerHTML.includes('单任务成本'));
-}
+  check('Agent 榜：标题', documentStub.title.includes('智能体总榜'));
+  check('Agent 榜：百分比渲染', els.get('#board-slot').innerHTML.includes('+15.5%'));
+  check('Agent 榜：单任务成本列', els.get('#board-slot').innerHTML.includes('单任务成本'));
 
-/* ============================================================
-   测试 4：纯函数
-   ============================================================ */
-{
-  const api = runApp('');
   const rows = [
     { rank: 3, name: 'c', org: 'X', score: 1200, votes: 10, inputPrice: 1, outputPrice: 2, contextLength: 1000 },
     { rank: 1, name: 'a', org: 'Y', score: 1400, votes: 30, inputPrice: 3, outputPrice: 4, contextLength: 3000 },
@@ -270,12 +310,13 @@ const settling = () => new Promise((r) => setTimeout(r, 60));
   check('排序：按排名升序', api.sortModels(rows, 'rank', 'asc').map((m) => m.rank).join(',') === '1,2,3');
   check('排序：按排名降序', api.sortModels(rows, 'rank', 'desc').map((m) => m.rank).join(',') === '3,2,1');
   check('排序：按评分降序', api.sortModels(rows, 'score', 'desc').map((m) => m.rank).join(',') === '1,2,3');
-  check('排序：按票数降序空值排最后', api.sortModels(rows, 'votes', 'desc').map((m) => m.votes).join(',') === '30,10,');
-  check('排序：按输入价升序空值排最后', api.sortModels(rows, 'inputPrice', 'asc').map((m) => m.inputPrice).join(',') === '1,3,');
-  check('厂商色：已知厂商取固定色', api.orgColor('OpenAI') === '#0f9b6c');
+  check('排序：票数降序空值排最后', api.sortModels(rows, 'votes', 'desc').map((m) => m.votes).join(',') === '30,10,');
+  check('排序：输入价升序空值排最后', api.sortModels(rows, 'inputPrice', 'asc').map((m) => m.inputPrice).join(',') === '1,3,');
+  check('格式化：相对时间', /前|刚刚/.test(api.fmtRel(new Date().toISOString())));
+  check('厂商色：已知厂商固定色', api.orgColor('OpenAI') === '#0f9b6c');
   check('厂商色：未知厂商取安全色板', /^#[0-9a-f]{6}$/.test(api.orgColor('SomeUnknownOrg')));
-  check('分数：BT 量纲百分比', api.scoreText({ score: 0.155 }, 'bt') === '+15.5%');
-  check('分数：ELO 量纲原值', api.scoreText({ score: 1587.7 }, 'elo') === '1587.7');
+  check('分数：BT 百分比', api.scoreText({ score: 0.155 }, 'bt') === '+15.5%');
+  check('分数：ELO 原值', api.scoreText({ score: 1587.7 }, 'elo') === '1587.7');
   check('区间：BT 双侧不对称', api.ciText({ score: 0.155, scoreUpper: 0.18, scoreLower: 0.14 }, 'bt').includes('+2.5%'));
   check('表格：展开按钮出现', api.boardTable(Array.from({ length: 12 }, (_, i) => ({
     rank: i + 1, name: 'm' + i, org: 'X', score: 100 - i, votes: 1,
