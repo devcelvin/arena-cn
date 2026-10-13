@@ -377,7 +377,12 @@ select.icon-btn option { background: var(--surface-1); color: var(--text); }
 /* ---------- 通用卡片 ---------- */
 .card {
   background: var(--surface-1); border: 1px solid var(--border);
-  border-radius: var(--r-lg); box-shadow: var(--sh-xs); overflow: hidden;
+  border-radius: var(--r-lg); box-shadow: var(--sh-xs);
+  /* clip 只裁剪、不产生滚动容器；若用 hidden 会拦截内部粘性表头的视口吸附 */
+  overflow: clip;
+}
+@supports not (overflow: clip) {
+  .card { overflow: hidden; }
 }
 .card-pad { padding: var(--sp-4); }
 
@@ -452,6 +457,13 @@ select.icon-btn option { background: var(--surface-1); color: var(--text); }
 /* ============================================================
    5. BOARD TABLE
    ============================================================ */
+
+/* 横向滚动容器。
+   注意：一旦祖先节点是滚动容器，position:sticky 的 top 就相对「这个容器」
+   解析而不是视口——表头位于容器偏移 0 处，top:58px 会把它向下推 58px，
+   正好压住第一行（PC 端第一行被挡的根因）。
+   因此默认 top 必须为 0；只有当表格宽到不需要横向滚动时，才在宽屏媒体查询里
+   去掉滚动容器，让表头改为相对视口吸附到顶栏下方。 */
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 table.board { width: 100%; border-collapse: separate; border-spacing: 0; font-size: var(--fs-base); }
@@ -461,7 +473,7 @@ table.board th, table.board td {
   border-bottom: 1px solid var(--border); white-space: nowrap; vertical-align: middle;
 }
 table.board th {
-  position: sticky; top: var(--topbar-h); z-index: 5;
+  position: sticky; top: 0; z-index: 5;
   background: var(--head-bg);
   font-size: var(--fs-sm); color: var(--muted); font-weight: 600;
   letter-spacing: 0.02em; user-select: none;
@@ -716,6 +728,14 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
 .crumb { font-size: var(--fs-base); padding-top: var(--sp-4); color: var(--muted); }
 .crumb a { color: var(--muted); }
 .crumb a:hover { color: var(--accent); }
+
+/* ---------- 宽屏：表格无需横向滚动 ----------
+   去掉滚动容器后，粘性表头改相对视口解析，吸附在顶栏正下方；
+   前提是表格自然宽度（实测最宽约 808px）小于可用宽度，880px 起有足够余量。 */
+@media (min-width: 880px) {
+  .table-scroll { overflow-x: visible; }
+  table.board th { top: var(--topbar-h); }
+}
 .crumb .sep { margin: 0 6px; opacity: 0.5; }
 
 .board-head { margin: var(--sp-3) 0 var(--sp-4); }
