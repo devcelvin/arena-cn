@@ -153,7 +153,7 @@
    "name": "中文视觉榜",
    "group": "对话",
    "scale": "elo",
-   "highlight": false,
+   "highlight": true,
    "modelCount": 125,
    "updatedAt": "2026-10-12T17:36:41.980Z",
    "topModel": {

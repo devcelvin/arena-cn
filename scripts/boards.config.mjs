@@ -13,7 +13,7 @@
  *     group       分组（智能体/对话/代码/图像/视频）
  *     scale       量纲：'elo' | 'winrate'
  *     listIndex   仅 home 页：取第几组 Agent 列表（0=最佳综合, 1=最佳编程, 2=最佳对齐）
- *     highlight   true = 首页突出展示
+ *     highlight   true = 国内精选（小类选择器里标 ★ 并给淡蓝底）
  */
 
 export const PAGES = [
@@ -73,7 +73,7 @@ export const PAGES = [
     id: 'vision-chinese',
     url: '/leaderboard/chat/vision/chinese',
     kind: 'category',
-    boards: [{ id: 'vision-chinese', name: '中文视觉榜', group: '对话', scale: 'elo' }],
+    boards: [{ id: 'vision-chinese', name: '中文视觉榜', group: '对话', scale: 'elo', highlight: true }],
   },
   {
     id: 'document',
