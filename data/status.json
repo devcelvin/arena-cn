@@ -1,12 +1,17 @@
 {
- "lastSuccess": "2026-10-13T13:39:23.413Z",
- "lastAttempt": "2026-10-13T13:39:23.413Z",
+ "lastSuccess": "2026-10-13T15:16:54.104Z",
+ "lastAttempt": "2026-10-13T15:16:54.104Z",
  "stale": false,
  "lastError": null,
  "boards": {
   "agent-capabilities": {
    "ok": true,
    "count": null
+  },
+  "agent-alignment": {
+   "ok": true,
+   "count": 27,
+   "warnings": []
   },
   "agent-overall": {
    "ok": true,
@@ -18,14 +23,14 @@
    "count": 52,
    "warnings": []
   },
+  "agent-chat": {
+   "ok": true,
+   "count": 51,
+   "warnings": []
+  },
   "agent-work": {
    "ok": true,
    "count": 52,
-   "warnings": []
-  },
-  "agent-alignment": {
-   "ok": true,
-   "count": 27,
    "warnings": []
   },
   "chat-document": {
@@ -444,5 +449,5 @@
   "newestSessionAt": "2026-10-13T11:47:15.799Z"
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 6.6
+ "repoSizeMB": 6.7
 }

@@ -11,10 +11,10 @@
  *   page.url      arena.ai 页面路径
  *   page.kind     'category'（常规榜单页，解析全部模型对象）
  *                 'home'（主页，解析 3 组 Agent 列表 + 会话统计 + pills 数据日期）
- *                 'container'（仅分组节点：该页本身客户端渲染无自有数据，
+ *                 'agent'（智能体页，模型数据在 snapshot.rows 里，字段名与常规榜不同，
+ *                          由 extractAgentSnapshot 解析，含 lastUpdated / totalSessions）
+ *                 'container'（仅分组节点：该页本身无自有数据，
  *                              只为三级树保留位置，不抓取、不产出 latest）
- *                 'stats'（只抓页头统计不产出榜单；/leaderboard/agent 用，
- *                          供智能体三榜取数据日期 —— 首页 pills 已不再带 trends）
  *   board.id      榜单 id（data/latest/{id}.json），= URL 路径去 /leaderboard/ 后斜杠转连字符
  *   board.name    中文名
  *   board.group   一级大类
@@ -31,18 +31,39 @@ export const PAGES = [
     kind: 'home',
     boards: [
       { id: 'agent-capabilities', name: '能力榜', group: '智能体', scale: 'bt', container: true },
-      { id: 'agent-overall', name: '总榜', group: '智能体', scale: 'bt', listIndex: 0, pillId: 'best-overall-agents', parent: 'agent-capabilities', snapshot: true },
-      { id: 'agent-code', name: '编程', group: '智能体', scale: 'bt', listIndex: 1, pillId: 'agentic-coding', parent: 'agent-capabilities', snapshot: true },
-      { id: 'agent-work', name: '工作', group: '智能体', scale: 'bt', listIndex: 2, pillId: 'best-agents-work', parent: 'agent-capabilities', snapshot: true },
       { id: 'agent-alignment', name: '对齐榜', group: '智能体', scale: 'index', pillId: 'safest-agents', snapshot: true, fromPill: true },
     ],
   },
   {
-    id: 'agent',
+    id: 'agent-overall',
     url: '/leaderboard/agent',
-    kind: 'stats',
+    kind: 'agent',
     boards: [
-
+      { id: 'agent-overall', name: '总榜', group: '智能体', scale: 'bt', parent: 'agent-capabilities', snapshot: true },
+    ],
+  },
+  {
+    id: 'agent-code',
+    url: '/leaderboard/agent/code',
+    kind: 'agent',
+    boards: [
+      { id: 'agent-code', name: '编程', group: '智能体', scale: 'bt', parent: 'agent-capabilities', snapshot: true },
+    ],
+  },
+  {
+    id: 'agent-chat',
+    url: '/leaderboard/agent/chat',
+    kind: 'agent',
+    boards: [
+      { id: 'agent-chat', name: '对话', group: '智能体', scale: 'bt', parent: 'agent-capabilities', snapshot: true },
+    ],
+  },
+  {
+    id: 'agent-work',
+    url: '/leaderboard/agent/work',
+    kind: 'agent',
+    boards: [
+      { id: 'agent-work', name: '工作', group: '智能体', scale: 'bt', parent: 'agent-capabilities', snapshot: true },
     ],
   },
   {

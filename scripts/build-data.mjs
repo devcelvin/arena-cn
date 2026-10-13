@@ -13,7 +13,7 @@ import { readFile, writeFile, mkdir, readdir, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { PAGES, BOARDS } from './boards.config.mjs';
-import { parsePage, extractModelObjects, extractAgentLists, extractSessionStats, extractBoardStats, extractHomePills } from './parse.mjs';
+import { parsePage, extractModelObjects, extractAgentLists, extractSessionStats, extractBoardStats, extractHomePills, extractAgentSnapshot } from './parse.mjs';
 import { validateBoard, validateSession } from './validate.mjs';
 import { cleanupSnapshots, dirSizeMB } from './cleanup.mjs';
 
@@ -91,7 +91,6 @@ async function main() {
   let okCount = 0;
   let failCount = 0;
   const nowIso = new Date().toISOString();
-  let agentPageStats = null;   // /leaderboard/agent 页头统计（供智能体三榜取数据日期）
 
   for (const page of PAGES) {
     if (page.kind === 'container') continue; // 仅分组节点（如 image-edit），无自有数据
@@ -119,19 +118,20 @@ async function main() {
     let session = null;
     let agentLists = null;
     let agentPills = null;
+    let agentSnap = null;
     let boardStats = { dataDate: null, totalVotes: null };
     if (page.kind === 'home') {
       agentLists = extractAgentLists(parsed.rscText);
       agentPills = extractHomePills(parsed.rscText);
       session = extractSessionStats(parsed.rscText);
-      // 源站首页 pills 自 2026-10-13 起不再带 trends/cutoffTime，
-      // 智能体三榜的数据日期改从 /leaderboard/agent 页头标注取
-      const agentRaw = `${rawDir}agent.html`;
-      if (existsSync(agentRaw)) {
-        agentPageStats = extractBoardStats(await readFile(agentRaw, 'utf8'));
-      }
       if (agentLists.length !== 3) {
         console.log(`⚠ home：Agent 列表组数 = ${agentLists.length}（预期 3），按顺序映射`);
+      }
+    } else if (page.kind === 'agent') {
+      // 智能体页：模型在 snapshot.rows 里（字段名与常规榜不同），并带 lastUpdated / totalSessions
+      agentSnap = extractAgentSnapshot(parsed.rscText);
+      if (!agentSnap) {
+        console.log(`⚠ ${page.id}：未解析到 snapshot 数据（源站结构可能变化）`);
       }
     } else {
       boardStats = extractBoardStats(html);
@@ -151,10 +151,12 @@ async function main() {
       const rawModels =
         page.kind === 'home'
           ? b.fromPill
-            // 数据只在首页 pills 的 entries 里（如 Agent | Alignment，榜单页为客户端切换）
+            // 数据只在首页 pills 的 entries 里（如 Agent | Alignment 是独立量纲，榜单页不给）
             ? agentPills?.[b.pillId]?.entries || []
             : agentLists[b.listIndex] || []
-          : extractModelObjects(parsed.rscText);
+          : page.kind === 'agent'
+            ? agentSnap?.models || []
+            : extractModelObjects(parsed.rscText);
       const models = rawModels.map(normalize);
       const prev = await readJson(`${dataDir}latest/${b.id}.json`);
 
@@ -172,17 +174,20 @@ async function main() {
         continue;
       }
 
-      // 数据时间口径：分类页取头部 span（extractBoardStats）；
-      // 首页（智能体三榜）优先取 pills 的 trends 末点 / note 日期，取不到再退回 agent 页头日期。
+      // 数据时间口径：常规页取页头 span；智能体页取 snapshot.lastUpdated；
+      // 首页对齐榜取 pills 的 note 日期（该榜是独立量纲，榜单页不给数据）。
       const stats = page.kind === 'home'
-        ? { dataDate: agentPills?.[b.pillId]?.dataDate || agentPageStats?.dataDate || null }
-        : boardStats;
+        ? { dataDate: agentPills?.[b.pillId]?.dataDate || null }
+        : page.kind === 'agent'
+          ? { dataDate: agentSnap?.dataDate ?? null, totalVotes: agentSnap?.totalSessions ?? null }
+          : boardStats;
       const dataDate = stats.dataDate ?? null;
-      // home 页 pill 只有"会话数"（写在 note 里），与分类页 votes 不同量纲，不并入；
-      // 智能体三榜改用 agent 页头标注的总票数
+      // 票数：常规页取页头 votes；智能体页取 snapshot.totalSessions；首页 pill 里的"会话数"口径不同不并入
       const totalVotes = page.kind === 'home'
-        ? agentPageStats?.totalVotes ?? null
-        : boardStats.totalVotes ?? null;
+        ? null
+        : page.kind === 'agent'
+          ? agentSnap?.totalSessions ?? null
+          : boardStats.totalVotes ?? null;
       if (!dataDate) {
         console.log(`⚠ ${b.id}：未提取到源站数据日期，该榜将退回显示抓取时间`);
       }

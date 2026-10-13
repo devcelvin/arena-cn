@@ -82,7 +82,6 @@ function scanBalanced(text, start) {
   }
   return null;
 }
-
 /**
  * 提取所有模型对象（以 {"rank": 为锚点）。
  * 返回原始对象数组（arena.ai 原始字段名）。
@@ -250,6 +249,67 @@ export function extractHomePills(rscText) {
     };
   }
   return out;
+}
+
+/**
+ * 提取智能体榜的 snapshot 数据（/leaderboard/agent 及其 /code /chat /work 子页）。
+ *
+ * 智能体页的模型数据不在常规的 `{"rank":… ,"modelKey":…}` 数组里，而是内嵌在
+ *   "snapshot":{"lastUpdated":"2026-10-12T17:00:00.000Z","totalSessions":N,
+ *               "modelCount":N,"rows":[{"rank":1,"contenderName":"…","model":"…",
+ *               "modelOrganization":"…","license":"…","modelUrl":"…",
+ *               "inputPricePerMillion":4,"outputPricePerMillion":20,
+ *               "rankSpread":{"min":1,"max":7},
+ *               "avgScore":{"value":0.1789,"ci":0.0424},"sessions":5686,…}]}
+ * 里（字段名与常规榜不同，故单独解析）。这里只做字段名映射，归一化交给 build-data。
+ */
+export function extractAgentSnapshot(rscText) {
+  let i = 0;
+  while ((i = rscText.indexOf('"snapshot":', i)) !== -1) {
+    const braceStart = rscText.indexOf('{', i + 11);
+    if (braceStart === -1) break;
+    const objStr = scanBalanced(rscText, braceStart);
+    if (objStr) {
+      let snap;
+      try { snap = JSON.parse(objStr); } catch { snap = null; }
+      if (snap && Array.isArray(snap.rows) && snap.rows.length) {
+        const models = snap.rows.map((r) => {
+          const v = r.avgScore?.value;
+          const ci = r.avgScore?.ci;
+          return {
+            rank: r.rank,
+            rankUpper: r.rankSpread?.min ?? null,
+            rankLower: r.rankSpread?.max ?? null,
+            modelKey: r.contenderName,
+            modelDisplayName: r.model,
+            modelOrganization: r.modelOrganization ?? '',
+            license: r.license ?? null,
+            modelUrl: r.modelUrl ?? null,
+            inputPricePerMillion: r.inputPricePerMillion ?? null,
+            outputPricePerMillion: r.outputPricePerMillion ?? null,
+            rating: v ?? null,
+            ratingUpper: v != null && ci != null ? v + ci : null,
+            ratingLower: v != null && ci != null ? v - ci : null,
+            votes: r.sessions ?? null,
+            contextLength: null,
+            pricePerImage: null,
+            pricePerSecond: null,
+            releaseType: r.releaseType ?? null,
+            costPerTaskUsd: null,
+          };
+        });
+        const lastUpdated = typeof snap.lastUpdated === 'string' ? snap.lastUpdated : null;
+        return {
+          models,
+          dataDate: lastUpdated ? lastUpdated.slice(0, 10) : null,
+          totalSessions: snap.totalSessions ?? null,
+          modelCount: snap.modelCount ?? models.length,
+        };
+      }
+    }
+    i += 12;
+  }
+  return null;
 }
 
 /** 页面总入口：分类页 → 模型数组；主页 → { agentLists, session } */
