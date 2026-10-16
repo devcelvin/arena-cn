@@ -51,9 +51,7 @@
   --up:   #d93025;
   --down: #188038;
 
-  /* --- 填充强调色（选中态） ---
-     深色主题下 --accent 是浅蓝，配白字只有 2.5:1，
-     因此前景色必须随主题翻转，保证 ≥4.5:1 */
+  /* --- 填充强调色（选中态）：brand-600 底 + 白字，对比度 ≥4.5:1 --- */
   --sel-bg: var(--brand-600);
   --sel-fg: #ffffff;
 
@@ -117,80 +115,10 @@
   --radius: var(--r-lg);
   --maxw: 1160px;
   --topbar-h: 58px;
-}
 
-/* ---------- 深色主题 ---------- */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:        #0a0d14;
-    --surface-1: #13171f;
-    --surface-2: #1a1f29;
-    --surface-3: #212734;
-    --text:      #e8eaee;
-    --text-sub:  #aeb4c0;
-    --muted:     #8b93a3;
-    --border:    #262c38;
-    --border-strong: #333b4a;
-    --accent:      var(--brand-400);
-    --accent-soft: #17233b;
-    --row-hover:   #1a1f29;
-    --head-bg:     #13171f;
-    --track:       #262c38;
-
-    --success-bg: #102a1c; --success: #4ade80;
-    --warning-bg: #2c1f08; --warning: #fbbf24;
-    --danger-bg:  #2c1315; --danger:  #f87171;
-    --gold-bg:    #2e2209; --gold:    #fbbf24;
-    --violet-bg:  #221a37; --violet:  #a78bfa;
-    --up:   #f87171;
-    --down: #4ade80;
-
-    /* 深色模式保留阴影 + 顶部高光，避免层次塌陷 */
-    --sh-xs: 0 1px 2px rgb(0 0 0 / 0.5);
-    --sh-sm: 0 1px 3px rgb(0 0 0 / 0.55), 0 1px 2px rgb(0 0 0 / 0.4);
-    --sh-md: 0 4px 10px -2px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.45);
-    --sh-lg: 0 14px 24px -8px rgb(0 0 0 / 0.7), 0 4px 8px -4px rgb(0 0 0 / 0.5);
-    --sh-brand: 0 8px 22px -6px rgb(96 165 250 / 0.4);
-    --ring: 0 0 0 3px #1e3a5f;
-    --shadow: var(--sh-sm);
-    --sel-bg: var(--brand-400);
-    --sel-fg: #0b0f19;
-  }
-}
-
-:root[data-theme="dark"] {
-  --bg:        #0a0d14;
-  --surface-1: #13171f;
-  --surface-2: #1a1f29;
-  --surface-3: #212734;
-  --text:      #e8eaee;
-  --text-sub:  #aeb4c0;
-  --muted:     #8b93a3;
-  --border:    #262c38;
-  --border-strong: #333b4a;
-  --accent:      var(--brand-400);
-  --accent-soft: #17233b;
-  --row-hover:   #1a1f29;
-  --head-bg:     #13171f;
-  --track:       #262c38;
-
-  --success-bg: #102a1c; --success: #4ade80;
-  --warning-bg: #2c1f08; --warning: #fbbf24;
-  --danger-bg:  #2c1315; --danger:  #f87171;
-  --gold-bg:    #2e2209; --gold:    #fbbf24;
-  --violet-bg:  #221a37; --violet:  #a78bfa;
-  --up:   #f87171;
-  --down: #4ade80;
-
-  --sh-xs: 0 1px 2px rgb(0 0 0 / 0.5);
-  --sh-sm: 0 1px 3px rgb(0 0 0 / 0.55), 0 1px 2px rgb(0 0 0 / 0.4);
-  --sh-md: 0 4px 10px -2px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.45);
-  --sh-lg: 0 14px 24px -8px rgb(0 0 0 / 0.7), 0 4px 8px -4px rgb(0 0 0 / 0.5);
-  --sh-brand: 0 8px 22px -6px rgb(96 165 250 / 0.4);
-  --ring: 0 0 0 3px #1e3a5f;
-  --shadow: var(--sh-sm);
-  --sel-bg: var(--brand-400);
-  --sel-fg: #0b0f19;
+  /* 站点固定浅色（2026-10-16 移除主题切换）：声明 color-scheme 后，
+     浏览器原生控件（输入框 / 下拉 / 滚动条）在任何系统偏好下都按浅色渲染 */
+  color-scheme: light;
 }
 
 /* ============================================================
@@ -218,10 +146,6 @@ body {
 
 a { color: var(--accent); text-decoration: none; transition: color var(--t-fast); }
 a:hover { color: var(--brand-700); }
-:root[data-theme="dark"] a:hover { color: var(--brand-300); }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) a:hover { color: var(--brand-300); }
-}
 
 h1, h2, h3 { line-height: var(--lh-tight); margin: 0; font-weight: 700; }
 
@@ -551,14 +475,10 @@ table.board tr.top3 td { border-bottom-color: var(--border); }
 /* --- 中国标识图标（内联 SVG 五星红旗） --------------------------------
    ⚠️ 不要改回 🇨🇳 emoji：Windows（Segoe UI Emoji）不渲染国旗字符，
    会降级显示成 “CN” 两个字母（2026-10-16 用户截图反馈证实）。
-   内联 SVG 保证 Win/mac/iOS 与深浅主题下表现一致。
+   内联 SVG 保证 Win/mac/iOS 渲染一致。
    尺寸约定：按钮内 16px 宽，badge 内 13px 宽（viewBox 恒为 18×12，3:2）。 */
 .cn-flag { display: inline-block; vertical-align: -0.14em; flex: none; border-radius: 2px; }
 .cn-flag .flag-bg { stroke: rgba(0, 0, 0, 0.18); stroke-width: 0.6; }
-:root[data-theme="dark"] .cn-flag .flag-bg { stroke: rgba(255, 255, 255, 0.32); }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .cn-flag .flag-bg { stroke: rgba(255, 255, 255, 0.32); }
-}
 
 /* --- 分数 + 条形图 --- */
 .score { font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }

@@ -178,28 +178,8 @@ async function fetchJson(p) {
 }
 
 /* ============================================================
-   主题 + 回到顶部
+   回到顶部
    ============================================================ */
-function isDark() {
-  const t = document.documentElement.dataset.theme;
-  if (t) return t === 'dark';
-  return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-}
-
-function initTheme() {
-  const saved = localStorage.getItem('arena-theme');
-  if (saved) document.documentElement.dataset.theme = saved;
-  const btn = $('#theme-toggle');
-  if (!btn) return;
-  const sync = () => { btn.innerHTML = isDark() ? '☀️ <span>浅色</span>' : '🌙 <span>深色</span>'; };
-  sync();
-  btn.addEventListener('click', () => {
-    document.documentElement.dataset.theme = isDark() ? 'light' : 'dark';
-    localStorage.setItem('arena-theme', document.documentElement.dataset.theme);
-    sync();
-  });
-}
-
 function initFab() {
   if (!document.body) return;
   const fab = document.createElement('button');
@@ -410,7 +390,6 @@ let activeParent = '';   // 当前二级榜单 id（三级类别的归属）
 let toolbarBound = false;
 
 async function initApp() {
-  initTheme();
   initFab();
 
   const slot = $('#board-slot');
@@ -767,8 +746,9 @@ function bindExpand(slot, models, scale, opts = {}) {
 
 /* ============================================================
    路由
-   404 页也会加载本脚本（为了主题切换按钮可用），但它没有榜单容器，
-   必须用 #board-picker 存在与否作为入口判据 —— 否则 initApp() 会跑一遍
-   无用的数据请求，并在 selectBoard() 里把 404 的标题覆盖成某个榜单名。
+   入口判据：页面里有没有榜单容器（#board-picker）—— 只有首页有。
+   其它静态页（about / 404）已不引入本脚本（2026-10-16 移除主题切换后
+   不再需要）；这里保留判断，防止将来误引入时 initApp() 跑一遍
+   无用的数据请求，并在 selectBoard() 里覆盖掉页面标题。
    ============================================================ */
 if (typeof location !== 'undefined' && document.querySelector('#board-picker')) initApp();
