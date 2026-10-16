@@ -233,6 +233,31 @@ h1, h2, h3 { line-height: var(--lh-tight); margin: 0; font-weight: 700; }
 }
 .icon-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
+/* 顶栏主入口「关于/商务合作」：实心品牌按钮，与次级控件（.icon-btn）拉开层级。
+   小屏收成短文案，避免 6 个字把品牌名挤换行。 */
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 34px; padding: 6px 14px;
+  border: 1px solid transparent; border-radius: var(--r-md);
+  background: var(--sel-bg); color: var(--sel-fg);
+  font-size: var(--fs-base); font-weight: 650;
+  box-shadow: var(--sh-brand);
+  white-space: nowrap; transition: all var(--t-fast);
+}
+.nav-cta:hover {
+  color: var(--sel-fg); text-decoration: none;
+  filter: brightness(1.07); transform: translateY(-1px);
+}
+.nav-cta:active { transform: translateY(0); }
+/* 实心蓝底按钮上的焦点环：换个更深的蓝并保留 2px 偏移，否则与按钮底色糊在一起 */
+.nav-cta:focus-visible { outline-color: var(--brand-800); border-radius: var(--r-md); }
+
+.nav-cta .cta-short { display: none; }
+@media (max-width: 640px) {
+  .nav-cta .cta-long { display: none; }
+  .nav-cta .cta-short { display: inline; }
+}
+
 /* 下拉框（排序）复用按钮外观 */
 select.icon-btn {
   appearance: none; -webkit-appearance: none;
