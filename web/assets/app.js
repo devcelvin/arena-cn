@@ -29,6 +29,20 @@ const CN_ORGS = new Set([
   'SenseTime', 'iFlytek',
 ]);
 
+/* ---------- 中国标识图标（内联 SVG 五星红旗） ----------
+   ⚠️ 不要改回 🇨🇳 emoji：Windows（Segoe UI Emoji）不渲染国旗字符，
+   会降级显示成 “CN” 两个字母（2026-10-16 用户截图反馈证实）。
+   与 web/index.html 中 #seg-cn 按钮内的 SVG 保持一致，改一处记得改另一处。
+   旗面 18×12（标准 3:2），一大四小五角星，小星各有一角尖指向大星中心。 */
+const CN_FLAG_SVG = '<svg class="cn-flag" width="13" height="8.67" viewBox="0 0 18 12" aria-hidden="true" focusable="false">' +
+  '<rect class="flag-bg" x="0.4" y="0.4" width="17.2" height="11.2" rx="1.3" fill="#DE2910"/>' +
+  '<path d="M3 1.2L3.4 2.44L4.71 2.44L3.65 3.21L4.06 4.46L3 3.69L1.94 4.46L2.35 3.21L1.29 2.44L2.6 2.44Z" fill="#FFDE00"/>' +
+  '<path d="M5.38 1.57L5.73 1.18L5.46 0.73L5.94 0.93L6.28 0.54L6.24 1.06L6.72 1.26L6.21 1.38L6.16 1.9L5.89 1.45Z" fill="#FFDE00"/>' +
+  '<path d="M6.49 2.5L6.96 2.27L6.88 1.75L7.25 2.13L7.72 1.9L7.47 2.36L7.84 2.74L7.32 2.65L7.08 3.11L7 2.59Z" fill="#FFDE00"/>' +
+  '<path d="M6.51 4L7.03 3.98L7.17 3.48L7.35 3.97L7.88 3.95L7.46 4.28L7.64 4.77L7.21 4.47L6.8 4.8L6.94 4.29Z" fill="#FFDE00"/>' +
+  '<path d="M5.44 4.95L5.93 5.13L6.25 4.73L6.23 5.25L6.72 5.43L6.21 5.57L6.19 6.09L5.9 5.66L5.4 5.8L5.73 5.39Z" fill="#FFDE00"/>' +
+  '</svg>';
+
 /* ---------- 厂商色：知名品牌固定色，其余按哈希取安全色板 ---------- */
 const ORG_COLOR_PIN = {
   OpenAI: '#0f9b6c', Anthropic: '#d97706', Google: '#2563eb', Meta: '#4f46e5',
@@ -227,7 +241,7 @@ function modelCell(m) {
   return `<div class="model-cell">
     ${orgTileHtml(m.org)}
     <span class="txt">
-      <span class="nm">${link}${pre}${lic}${cn ? '<span class="badge badge-cn">国产</span>' : ''}</span>
+      <span class="nm">${link}${pre}${lic}${cn ? `<span class="badge badge-cn">${CN_FLAG_SVG}国产</span>` : ''}</span>
       <span class="org">${esc(m.org || '未知厂商')}${zhNote}</span>
     </span>
   </div>`;

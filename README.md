@@ -99,6 +99,7 @@ arena-cn/
 ├── data/                   # 脚本生成，禁止手改
 ├── web/
 │   ├── index.html          # 单页：三级联动选择器 + 榜单（?b=chat-text-math 可深链）
+│   ├── about.html          # 关于本站：数据授权 / 更新机制 / 反馈与合作
 │   ├── 404.html
 │   └── assets/             # style.css / app.js
 ├── package.json            # 唯一依赖：hyparquet（解析 parquet）

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于本站与合作 - 大模型竞技榜</title>
+  <meta name="description" content="大模型竞技榜：数据来源与授权说明、更新机制、反馈渠道与合作方式。">
+  <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>榜</text></svg>">
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- 百度统计：与首页同一份代码 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5093f662c823fc0b2c9bb08e127685d7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="logo" aria-hidden="true">榜</span>
+        大模型竞技榜 <small>中文版 · 每日更新</small>
+      </a>
+      <span class="spacer"></span>
+      <a class="icon-btn" href="index.html">← 回榜单</a>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅色主题">🌙 深色</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>关于本站</h1>
+      <p class="lead">
+        「大模型竞技榜」把 LMArena 官方公开榜单整理成一页可查的中文界面：
+        59 个榜单，按「大类 → 榜单 → 类别」三级组织，每日自动同步。
+      </p>
+    </section>
+
+    <div class="card card-pad" style="margin-bottom:16px">
+      <h2 style="font-size:var(--fs-xl);margin:0 0 10px">本站是什么</h2>
+      <p>
+        覆盖智能体、对话、代码、图像、视频五大类的 59 个榜单（12 个二级榜 + 47 个类别）。
+        厂商名称统一做了中文标注，国产模型单独标记，便于在中文语境下快速横向对比。
+      </p>
+      <p style="margin-bottom:0">
+        站点本身是纯静态页面，无后台、无数据库；数据处理与发布由公开的自动化流程完成。
+      </p>
+    </div>
+
+    <div class="card card-pad" style="margin-bottom:16px">
+      <h2 style="font-size:var(--fs-xl);margin:0 0 10px">数据从哪来</h2>
+      <p>
+        全部数据来自 LMArena（lmarena-ai）在 Hugging Face
+        <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">公开发布的榜单数据集</a>，
+        该数据集以
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>
+        授权。
+      </p>
+      <p>本站在此基础上做的改动只有三项：</p>
+      <ul style="margin:0 0 12px;padding-left:20px">
+        <li>界面中文化；</li>
+        <li>按「大类 → 榜单 → 类别」三级重新组织榜单；</li>
+        <li>厂商名称映射为中文。</li>
+      </ul>
+      <p style="margin-bottom:0">
+        <strong>任何评分、排名与票数数值均未修改。</strong>
+        本站与 LMArena 无隶属或授权关系，相关名称与标识归其各自权利人所有。
+      </p>
+    </div>
+
+    <div class="card card-pad" style="margin-bottom:16px">
+      <h2 style="font-size:var(--fs-xl);margin:0 0 10px">数据更新与两种时间</h2>
+      <p>本站每日自动同步一次官方数据集。页面上有两个时间，注意别混淆：</p>
+      <ul style="margin:0 0 12px;padding-left:20px">
+        <li><strong>数据日期</strong>：LMArena 冻结该榜排名与票数的日期。各榜更新节奏不同，可能相差几天到几周；</li>
+        <li><strong>数据同步于</strong>：本站最近一次拉取的时间，只反映同步动作的新旧。</li>
+      </ul>
+      <p style="margin-bottom:0">
+        同步出现异常时，本站保留上一次的完整数据并排查，不会上线空榜或不完整的数据。
+      </p>
+    </div>
+
+    <div class="card card-pad" style="margin-bottom:16px">
+      <h2 style="font-size:var(--fs-xl);margin:0 0 10px">反馈与纠错</h2>
+      <p>
+        数据异常、厂商中文名有误、希望新增某个榜单，或者其他任何问题，欢迎邮件告知：
+        <a href="mailto:425032579@qq.com">425032579@qq.com</a>
+      </p>
+      <p style="margin-bottom:0;color:var(--text-sub)">
+        邮件一般会在 1–2 个工作日内回复。
+      </p>
+    </div>
+
+    <div class="card card-pad" style="margin-bottom:16px">
+      <h2 style="font-size:var(--fs-xl);margin:0 0 10px">合作</h2>
+      <p>
+        本站读者主要是关注大模型选型与动态的中文用户，包括开发者、AI 从业者、内容与产品团队。
+      </p>
+      <p>
+        如果你有内容合作、工具推荐、站点互推的想法，欢迎邮件联系：
+        <a href="mailto:425032579@qq.com">425032579@qq.com</a>
+        首页与榜单页的展示位对合作方开放，有推广需求可直接邮件说明，
+        我会回复当前可用的位置与报价。
+      </p>
+      <p style="margin-bottom:0">
+        <strong>说明：本站不提供任何影响排名、评分或票数的方式。</strong>
+        榜单数据只来自公开数据集，不因任何商业合作而改变。
+      </p>
+    </div>
+
+    <footer class="footer">
+      <p>
+        <strong>数据来源与授权</strong>　本站数据来自
+        <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">LMArena（lmarena-ai）官方榜单数据集</a>（
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>）。
+        本站与 LMArena 无隶属或授权关系。
+      </p>
+      <div class="links">
+        <a href="index.html">全部榜单</a>
+        <a href="index.html?b=agent">智能体总榜</a>
+        <a href="index.html?b=chat-text">文本对话榜</a>
+        <a href="index.html?b=chat-text-chinese">中文对话</a>
+        <a href="index.html?b=image-text-to-image">文生图榜</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

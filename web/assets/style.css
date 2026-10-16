@@ -544,9 +544,21 @@ table.board tr.top3 td { border-bottom-color: var(--border); }
   padding: 1px 7px; border-radius: var(--r-pill); font-weight: 600;
   border: 1px solid transparent; white-space: nowrap;
 }
-.badge-cn      { background: var(--gold-bg);   color: var(--gold);   border-color: color-mix(in srgb, var(--gold) 32%, transparent); }
+.badge-cn      { background: var(--gold-bg);   color: var(--gold);   border-color: color-mix(in srgb, var(--gold) 32%, transparent); display: inline-flex; align-items: center; gap: 4px; }
 .badge-license { background: var(--accent-soft); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 26%, transparent); font-weight: 500; }
 .badge-pre     { background: var(--violet-bg); color: var(--violet); border-color: color-mix(in srgb, var(--violet) 32%, transparent); font-weight: 500; }
+
+/* --- 中国标识图标（内联 SVG 五星红旗） --------------------------------
+   ⚠️ 不要改回 🇨🇳 emoji：Windows（Segoe UI Emoji）不渲染国旗字符，
+   会降级显示成 “CN” 两个字母（2026-10-16 用户截图反馈证实）。
+   内联 SVG 保证 Win/mac/iOS 与深浅主题下表现一致。
+   尺寸约定：按钮内 16px 宽，badge 内 13px 宽（viewBox 恒为 18×12，3:2）。 */
+.cn-flag { display: inline-block; vertical-align: -0.14em; flex: none; border-radius: 2px; }
+.cn-flag .flag-bg { stroke: rgba(0, 0, 0, 0.18); stroke-width: 0.6; }
+:root[data-theme="dark"] .cn-flag .flag-bg { stroke: rgba(255, 255, 255, 0.32); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cn-flag .flag-bg { stroke: rgba(255, 255, 255, 0.32); }
+}
 
 /* --- 分数 + 条形图 --- */
 .score { font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
@@ -606,6 +618,7 @@ tr.cn-row .scorebar i { background: linear-gradient(90deg, #fbbf24, #d97706); }
   overflow: hidden; background: var(--surface-1);
 }
 .seg button {
+  display: inline-flex; align-items: center; gap: 6px;
   border: none; background: none; padding: 7px 11px; font-size: var(--fs-base);
   color: var(--text-sub); cursor: pointer; min-height: 36px;
   transition: background var(--t-fast), color var(--t-fast);
