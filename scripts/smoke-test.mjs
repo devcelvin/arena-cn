@@ -5,6 +5,7 @@
  */
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { CN_ORGS as SRC_CN_ORGS, ORG_ZH as SRC_ORG_ZH } from './org-map.mjs';
 
 const ROOT = fileURLToPath(new URL('../web/', import.meta.url));
 const appCode = await readFile(ROOT + 'assets/app.js', 'utf8');
@@ -14,6 +15,7 @@ const appCode = await readFile(ROOT + 'assets/app.js', 'utf8');
 const agentBoard = JSON.parse(await readFile(ROOT + 'data/latest/agent-overall.json', 'utf8'));
 const AGENT_COUNT = String(agentBoard.models.length);
 const AGENT_PCT = (agentBoard.models[0].score > 0 ? '+' : '') + (agentBoard.models[0].score * 100).toFixed(1) + '%';
+const textBoard = JSON.parse(await readFile(ROOT + 'data/latest/chat-text.json', 'utf8'));
 
 /* ============================================================
    DOM 桩
@@ -138,7 +140,7 @@ function runApp(search) {
   const locationStub = { pathname: '/index.html', search: search || '' };
   const fn = new Function(
     'document', 'fetch', 'localStorage', 'matchMedia', 'location', 'window', 'URLSearchParams',
-    appCode + '\n;return { initApp, selectBoard, mountBoard, sortModels, boardTable, scoreText, ciText, orgColor, fmtRel, fmtTime, fmtDate };'
+    appCode + '\n;return { initApp, selectBoard, mountBoard, sortModels, boardTable, scoreText, ciText, orgColor, fmtRel, fmtTime, fmtDate, modelCell, CN_ORGS, ORG_ZH };'
   );
   return fn(documentStub, fetchStub, localStorageStub, matchMediaStub, locationStub, windowStub, URLSearchParams);
 }
@@ -354,6 +356,36 @@ function itemsFrom(html, attr) {
   check('表格：展开按钮出现', api.boardTable(Array.from({ length: 12 }, (_, i) => ({
     rank: i + 1, name: 'm' + i, org: 'X', score: 100 - i, votes: 1,
   })), 'elo', { limit: 10 }).includes('展开全部 12'));
+}
+
+/* ============================================================
+   测试 7：国产标识
+   事故（2026-10-18）：org-map.mjs 早已加了 Xiaomi，但 app.js 的手抄副本
+   没同步，导致小米 MiMo 全系没标「国产」。这里直接比对两份集合防复发。
+   ============================================================ */
+{
+  const api = runApp('');
+
+  const missCN = [...SRC_CN_ORGS].filter((o) => !api.CN_ORGS.has(o));
+  const extraCN = [...api.CN_ORGS].filter((o) => !SRC_CN_ORGS.has(o));
+  check(
+    `一致：CN_ORGS 与 org-map.mjs 同步${missCN.length || extraCN.length ? `（app.js 缺 ${missCN.join('/') || '—'}；多 ${extraCN.join('/') || '—'}）` : ''}`,
+    missCN.length === 0 && extraCN.length === 0
+  );
+
+  const missZh = Object.keys(SRC_ORG_ZH).filter((o) => !(o in api.ORG_ZH));
+  const diffZh = Object.keys(SRC_ORG_ZH).filter((o) => o in api.ORG_ZH && api.ORG_ZH[o] !== SRC_ORG_ZH[o]);
+  check(
+    `一致：ORG_ZH 与 org-map.mjs 同步${missZh.length || diffZh.length ? `（app.js 缺 ${missZh.join('/') || '—'}；异 ${diffZh.join('/') || '—'}）` : ''}`,
+    missZh.length === 0 && diffZh.length === 0
+  );
+
+  const xiaomi = textBoard.models.find((m) => m.org === 'Xiaomi');
+  check(`国产：小米模型（${xiaomi ? xiaomi.name : '未找到'}）渲染国产徽章`, !!xiaomi && api.modelCell(xiaomi).includes('badge-cn'));
+  check('国产：小米显示中文小注「小米」', !!xiaomi && api.modelCell(xiaomi).includes('小米'));
+
+  const openai = textBoard.models.find((m) => m.org === 'OpenAI');
+  check('国产：非国产厂商不误标', !!openai && !api.modelCell(openai).includes('badge-cn'));
 }
 
 console.log(failures === 0 ? '\n全部通过 ✅' : `\n${failures} 项失败 ❌`);

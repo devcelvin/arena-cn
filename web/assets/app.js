@@ -3,7 +3,10 @@
    数据全部来自本地静态 JSON（data/），无任何运行时外部依赖
    ============================================================ */
 
-/* ---------- 厂商中文映射（与 scripts/org-map.mjs 保持一致） ---------- */
+/* ---------- 厂商中文映射（与 scripts/org-map.mjs 保持一致） ----------
+   ⚠️ 这里是 org-map.mjs 的手抄副本，浏览器无法直接 import 那个 Node 模块。
+   两处必须同步改：2026-10-18 就因漏同步 Xiaomi，导致小米 MiMo 全系没标「国产」。
+   scripts/smoke-test.mjs 已加断言校验两份集合一致，drift 会直接测试失败。 */
 const ORG_ZH = {
   Google: '谷歌', OpenAI: 'OpenAI', Anthropic: 'Anthropic', Meta: 'Meta',
   'Meta AI': 'Meta', xAI: 'xAI', Amazon: '亚马逊', AWS: '亚马逊',
@@ -20,13 +23,14 @@ const ORG_ZH = {
   Vidu: '生数科技', 'Shanghai AI Laboratory': '上海人工智能实验室',
   OpenBMB: '面壁智能', ModelBest: '面壁智能', InclusiveAI: '潞晨科技',
   SenseTime: '商汤科技', iFlytek: '科大讯飞',
+  Xiaomi: '小米', 'Ant Group': '蚂蚁集团', Kling: '快手',
 };
 const CN_ORGS = new Set([
   'DeepSeek', 'Moonshot', 'Moonshot AI', 'Zhipu', 'Z.ai', 'ZhipuAI',
   'Alibaba', 'Qwen', 'ByteDance', 'MiniMax', 'StepFun', '01.AI',
   'Tencent', 'Baidu', 'Kuaishou', 'Shengshu', 'Vidu',
   'Shanghai AI Laboratory', 'OpenBMB', 'ModelBest', 'InclusiveAI',
-  'SenseTime', 'iFlytek',
+  'SenseTime', 'iFlytek', 'Xiaomi', 'Ant Group', 'Kling',
 ]);
 
 /* ---------- 中国标识图标（内联 SVG 五星红旗） ----------
