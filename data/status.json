@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-10-20T18:32:11.939Z",
- "lastAttempt": "2026-10-20T18:32:11.939Z",
+ "lastSuccess": "2026-10-21T18:45:21.970Z",
+ "lastAttempt": "2026-10-21T18:45:21.970Z",
  "stale": false,
  "lastError": null,
  "source": {
@@ -17,42 +17,42 @@
   },
   "chat-text": {
    "ok": true,
-   "count": 416,
+   "count": 417,
    "warnings": []
   },
   "chat-text-chinese": {
    "ok": true,
-   "count": 392,
+   "count": 393,
    "warnings": []
   },
   "chat-text-coding": {
    "ok": true,
-   "count": 411,
+   "count": 412,
    "warnings": []
   },
   "chat-text-creative-writing": {
    "ok": true,
-   "count": 414,
+   "count": 415,
    "warnings": []
   },
   "chat-text-english": {
    "ok": true,
-   "count": 416,
+   "count": 417,
    "warnings": []
   },
   "chat-text-exclude-ties": {
    "ok": true,
-   "count": 416,
+   "count": 417,
    "warnings": []
   },
   "chat-text-expert": {
    "ok": true,
-   "count": 366,
+   "count": 367,
    "warnings": []
   },
   "chat-text-french": {
    "ok": true,
-   "count": 297,
+   "count": 299,
    "warnings": []
   },
   "chat-text-german": {
@@ -62,62 +62,62 @@
   },
   "chat-text-hard-prompts": {
    "ok": true,
-   "count": 416,
+   "count": 417,
    "warnings": []
   },
   "chat-text-hard-prompts-english": {
    "ok": true,
-   "count": 414,
+   "count": 415,
    "warnings": []
   },
   "chat-text-industry-business-and-management-and-financial-operations": {
    "ok": true,
-   "count": 409,
+   "count": 410,
    "warnings": []
   },
   "chat-text-industry-entertainment-and-sports-and-media": {
    "ok": true,
-   "count": 414,
+   "count": 415,
    "warnings": []
   },
   "chat-text-industry-legal-and-government": {
    "ok": true,
-   "count": 388,
+   "count": 390,
    "warnings": []
   },
   "chat-text-industry-life-and-physical-and-social-science": {
    "ok": true,
-   "count": 414,
+   "count": 415,
    "warnings": []
   },
   "chat-text-industry-mathematical": {
    "ok": true,
-   "count": 398,
+   "count": 400,
    "warnings": []
   },
   "chat-text-industry-medicine-and-healthcare": {
    "ok": true,
-   "count": 386,
+   "count": 388,
    "warnings": []
   },
   "chat-text-industry-software-and-it-services": {
    "ok": true,
-   "count": 416,
+   "count": 417,
    "warnings": []
   },
   "chat-text-industry-writing-and-literature-and-language": {
    "ok": true,
-   "count": 415,
+   "count": 416,
    "warnings": []
   },
   "chat-text-instruction-following": {
    "ok": true,
-   "count": 416,
+   "count": 417,
    "warnings": []
   },
   "chat-text-japanese": {
    "ok": true,
-   "count": 280,
+   "count": 283,
    "warnings": []
   },
   "chat-text-korean": {
@@ -127,22 +127,22 @@
   },
   "chat-text-longer-query": {
    "ok": true,
-   "count": 394,
+   "count": 395,
    "warnings": []
   },
   "chat-text-math": {
    "ok": true,
-   "count": 400,
+   "count": 403,
    "warnings": []
   },
   "chat-text-multi-turn": {
    "ok": true,
-   "count": 414,
+   "count": 415,
    "warnings": []
   },
   "chat-text-non-english": {
    "ok": true,
-   "count": 416,
+   "count": 417,
    "warnings": []
   },
   "chat-text-polish": {
@@ -152,7 +152,7 @@
   },
   "chat-text-russian": {
    "ok": true,
-   "count": 380,
+   "count": 381,
    "warnings": []
   },
   "chat-text-spanish": {
@@ -211,8 +211,8 @@
    "warnings": []
   },
   "chat-search": {
-   "ok": false,
-   "error": "本轮抓取无数据（subset/category 缺失或下载失败）",
+   "ok": true,
+   "count": 42,
    "warnings": []
   },
   "chat-document": {
@@ -282,12 +282,12 @@
   },
   "image-image-edit": {
    "ok": true,
-   "count": 59,
+   "count": 60,
    "warnings": []
   },
   "image-image-edit-multi-image": {
    "ok": true,
-   "count": 44,
+   "count": 45,
    "warnings": []
   },
   "video-text-to-video": {
@@ -307,5 +307,5 @@
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 7.9
+ "repoSizeMB": 8.4
 }
