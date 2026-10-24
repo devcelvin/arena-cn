@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-23T18:28:58.275Z",
+ "generatedAt": "2026-10-24T17:29:49.715Z",
  "source": {
   "publisher": "LMArena (lmarena-ai)",
   "url": "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset",
@@ -21,13 +21,13 @@
    "scale": "bt",
    "parent": null,
    "isBoard": true,
-   "modelCount": 53,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
-   "dataDate": "2026-10-20",
+   "modelCount": 50,
+   "updatedAt": "2026-10-24T17:29:49.715Z",
+   "dataDate": "2026-10-23",
    "topModel": {
     "name": "Claude Opus 5.5 (Max)",
     "org": "Anthropic",
-    "score": 0.209
+    "score": 0.208
    }
   },
   {
@@ -38,7 +38,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 418,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -54,7 +54,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 394,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -70,7 +70,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 413,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -86,7 +86,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 416,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Claude Opus 5.5 (High)",
@@ -102,7 +102,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 418,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -118,7 +118,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 418,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -134,7 +134,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 368,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Claude Fable 5 (High)",
@@ -150,7 +150,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 302,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -166,7 +166,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 315,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 3 Pro",
@@ -182,7 +182,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 418,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -198,7 +198,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 416,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -214,7 +214,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 411,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -230,7 +230,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 416,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -246,7 +246,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 391,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Muse Spark 1.2 (xHigh)",
@@ -262,7 +262,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 416,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -278,7 +278,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 401,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -294,7 +294,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 389,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -310,7 +310,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 418,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -326,7 +326,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 417,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Claude Opus 5.5 (High)",
@@ -342,7 +342,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 418,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Claude Opus 5.5 (High)",
@@ -358,7 +358,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 284,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Claude Fable 5.1 (Max)",
@@ -374,7 +374,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 286,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Claude Fable 5.1 (Max)",
@@ -390,7 +390,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 396,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -406,7 +406,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 404,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -422,7 +422,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 416,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -438,7 +438,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 418,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Gemini 4 Argon (High)",
@@ -454,7 +454,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 237,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Claude Fable 5.1 (Max)",
@@ -470,7 +470,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 382,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Muse Wonder (Max)",
@@ -486,7 +486,7 @@
    "parent": "chat-text",
    "isBoard": false,
    "modelCount": 303,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-22",
    "topModel": {
     "name": "Claude Fable 5 (High)",
@@ -502,7 +502,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 167,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Claude Fable 5 (High)",
@@ -518,7 +518,7 @@
    "parent": "chat-vision",
    "isBoard": false,
    "modelCount": 34,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Gemini 3.1 Pro Preview",
@@ -534,7 +534,7 @@
    "parent": "chat-vision",
    "isBoard": false,
    "modelCount": 128,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Gemini 3.8 Flash (High)",
@@ -550,7 +550,7 @@
    "parent": "chat-vision",
    "isBoard": false,
    "modelCount": 104,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Gemini 3 Pro",
@@ -566,7 +566,7 @@
    "parent": "chat-vision",
    "isBoard": false,
    "modelCount": 123,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Claude Fable 5 (High)",
@@ -582,7 +582,7 @@
    "parent": "chat-vision",
    "isBoard": false,
    "modelCount": 167,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Claude Fable 5 (High)",
@@ -598,7 +598,7 @@
    "parent": "chat-vision",
    "isBoard": false,
    "modelCount": 51,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Gemini 3 Pro",
@@ -614,7 +614,7 @@
    "parent": "chat-vision",
    "isBoard": false,
    "modelCount": 118,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "GPT-6.1 Sol (Max)",
@@ -630,7 +630,7 @@
    "parent": "chat-vision",
    "isBoard": false,
    "modelCount": 93,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Claude Fable 5 (High)",
@@ -646,7 +646,7 @@
    "parent": "chat-vision",
    "isBoard": false,
    "modelCount": 123,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Claude Fable 5 (High)",
@@ -662,7 +662,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 42,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-13",
    "topModel": {
     "name": "gpt-5.6-sol-xhigh",
@@ -678,7 +678,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 44,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-09-13",
    "topModel": {
     "name": "claude-opus-5-high",
@@ -693,9 +693,9 @@
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "modelCount": 149,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
-   "dataDate": "2026-10-22",
+   "modelCount": 150,
+   "updatedAt": "2026-10-24T17:29:49.715Z",
+   "dataDate": "2026-10-23",
    "topModel": {
     "name": "Claude Opus 5.5 (Max)",
     "org": "Anthropic",
@@ -709,13 +709,13 @@
    "scale": "elo",
    "parent": "code-webdev",
    "isBoard": false,
-   "modelCount": 148,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
-   "dataDate": "2026-10-22",
+   "modelCount": 149,
+   "updatedAt": "2026-10-24T17:29:49.715Z",
+   "dataDate": "2026-10-23",
    "topModel": {
     "name": "GPT-6.1 Sol (Max)",
     "org": "OpenAI",
-    "score": 1793.7
+    "score": 1793.8
    }
   },
   {
@@ -725,13 +725,13 @@
    "scale": "elo",
    "parent": "code-webdev",
    "isBoard": false,
-   "modelCount": 133,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
-   "dataDate": "2026-10-22",
+   "modelCount": 134,
+   "updatedAt": "2026-10-24T17:29:49.715Z",
+   "dataDate": "2026-10-23",
    "topModel": {
     "name": "Claude Opus 5.5 (Max)",
     "org": "Anthropic",
-    "score": 1854.9
+    "score": 1855.6
    }
   },
   {
@@ -742,7 +742,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 64,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-19",
    "topModel": {
     "name": "Claude Opus 5.5 (Max)",
@@ -758,7 +758,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 82,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-07",
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
@@ -774,7 +774,7 @@
    "parent": "image-text-to-image",
    "isBoard": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-07",
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
@@ -790,7 +790,7 @@
    "parent": "image-text-to-image",
    "isBoard": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-07",
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
@@ -806,7 +806,7 @@
    "parent": "image-text-to-image",
    "isBoard": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-07",
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
@@ -822,7 +822,7 @@
    "parent": "image-text-to-image",
    "isBoard": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-07",
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
@@ -838,7 +838,7 @@
    "parent": "image-text-to-image",
    "isBoard": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-07",
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
@@ -854,7 +854,7 @@
    "parent": "image-text-to-image",
    "isBoard": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-07",
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
@@ -870,7 +870,7 @@
    "parent": "image-text-to-image",
    "isBoard": false,
    "modelCount": 82,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-07",
    "topModel": {
     "name": "gpt-image-2.5-sunburst",
@@ -886,7 +886,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 60,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-20",
    "topModel": {
     "name": "GPT-Image-2.5 Sunburst",
@@ -902,7 +902,7 @@
    "parent": "image-image-edit",
    "isBoard": false,
    "modelCount": 45,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-10-20",
    "topModel": {
     "name": "GPT-Image-2.5 Sunburst",
@@ -918,7 +918,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 48,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-09-22",
    "topModel": {
     "name": "gemini-omni-1.1-flash",
@@ -934,7 +934,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 48,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-09-22",
    "topModel": {
     "name": "minimax-h3",
@@ -950,7 +950,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 10,
-   "updatedAt": "2026-10-23T18:28:58.275Z",
+   "updatedAt": "2026-10-24T17:29:49.715Z",
    "dataDate": "2026-08-27",
    "topModel": {
     "name": "wan3.0",
