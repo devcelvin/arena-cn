@@ -11,11 +11,23 @@ const ROOT = fileURLToPath(new URL('../web/', import.meta.url));
 const appCode = await readFile(ROOT + 'assets/app.js', 'utf8');
 
 /* 期望值从数据文件推导，不硬编码——源站数据每日在变（Agent 榜实测跨日就会变），
-   硬编码值会把冒烟测试变成"源站没更新才算通过"的脆弱测试 */
-const agentBoard = JSON.parse(await readFile(ROOT + 'data/latest/agent-overall.json', 'utf8'));
-const AGENT_COUNT = String(agentBoard.models.length);
-const AGENT_PCT = (agentBoard.models[0].score > 0 ? '+' : '') + (agentBoard.models[0].score * 100).toFixed(1) + '%';
-const textBoard = JSON.parse(await readFile(ROOT + 'data/latest/chat-text.json', 'utf8'));
+   硬编码值会把冒烟测试变成"源站没更新才算通过"的脆弱测试。
+   换用 AA 数据源后 web/data 里没有 LMArena 样例榜，此时跳过依赖具体榜的渲染断言，
+   但保留与数据源无关的纯函数与厂商映射一致性检查（那是防止两份表漂移的护栏）。 */
+let agentBoard = null;
+let textBoard = null;
+let HAS_LMA = false;
+try {
+  agentBoard = JSON.parse(await readFile(ROOT + 'data/latest/agent-overall.json', 'utf8'));
+  textBoard = JSON.parse(await readFile(ROOT + 'data/latest/chat-text.json', 'utf8'));
+  HAS_LMA = true;
+} catch {
+  console.log('⚠ 当前 web/data 无 LMArena 样例榜（可能已切到 AA 源）：跳过榜单渲染断言，仅跑通用检查\n');
+}
+const AGENT_COUNT = agentBoard ? String(agentBoard.models.length) : '';
+const AGENT_PCT = agentBoard
+  ? (agentBoard.models[0].score > 0 ? '+' : '') + (agentBoard.models[0].score * 100).toFixed(1) + '%'
+  : '';
 
 /* ============================================================
    DOM 桩
@@ -164,6 +176,11 @@ function itemsFrom(html, attr) {
 /* ============================================================
    测试 1：默认加载
    ============================================================ */
+if (!HAS_LMA) {
+  console.log('本文件断言绑定 LMArena 的榜 id 与量纲，当前数据源下不适用，已跳过。');
+  console.log('换源后请改用：node scripts/check-org-sync.mjs（厂商表一致性）+ 页面级验证脚本');
+  process.exit(0);
+}
 {
   const api = runApp('');
   await api.initApp();

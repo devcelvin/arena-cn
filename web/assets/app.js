@@ -24,6 +24,8 @@ const ORG_ZH = {
   OpenBMB: '面壁智能', ModelBest: '面壁智能', InclusiveAI: '潞晨科技',
   SenseTime: '商汤科技', iFlytek: '科大讯飞',
   Xiaomi: '小米', 'Ant Group': '蚂蚁集团', Kling: '快手',
+  Kimi: '月之暗面', InclusionAI: '蚂蚁集团', 'ByteDance Seed': '字节跳动',
+  'China Mobile': '中国移动', KwaiKAT: '快手', LongCat: '美团', Nanbeige: '南北阁',
 };
 const CN_ORGS = new Set([
   'DeepSeek', 'Moonshot', 'Moonshot AI', 'Zhipu', 'Z.ai', 'ZhipuAI',
@@ -31,6 +33,7 @@ const CN_ORGS = new Set([
   'Tencent', 'Baidu', 'Kuaishou', 'Shengshu', 'Vidu',
   'Shanghai AI Laboratory', 'OpenBMB', 'ModelBest', 'InclusiveAI',
   'SenseTime', 'iFlytek', 'Xiaomi', 'Ant Group', 'Kling',
+  'Kimi', 'InclusionAI', 'ByteDance Seed', 'China Mobile', 'KwaiKAT', 'LongCat', 'Nanbeige',
 ]);
 
 /* ---------- 中国标识图标（内联 SVG 五星红旗） ----------
@@ -70,15 +73,26 @@ const ORG_PALETTE = [
   '#ca8a04', '#dc2626', '#4f46e5', '#059669', '#be185d', '#0369a1',
 ];
 
-const SCALE_LABEL = { elo: 'ELO 评分', bt: '相对战力值', index: '对齐指数' };
+const SCALE_LABEL = {
+  elo: 'ELO 评分', bt: '相对战力值', index: '指数分',
+  rate: '得分率', price: '价格', speed: '速度', seconds: '延迟', date: '发布日期',
+};
 const SCALE_HINT = {
   elo: 'ELO 为相对战力分，分数越高代表对战表现越强；± 为 95% 置信区间。',
   bt: '相对战力值基于 Bradley-Terry 模型，0 = 平均水平，正值表示优于平均，按百分比展示。',
-  index: '对齐指数衡量模型在真实会话中「按用户意图办事」的表现，分数越高越好。源站标注为 Preliminary（初步数据），模型数与样本量都较小，仅供参考。',
+  index: '综合指数，由多项独立评测合成，分数越高越好。',
+  rate: '单项基准的得分率，按百分比展示，越高越好。',
+  price: '每百万 token 的美元价格，越低越省。混合价按输入:输出 = 3:1 加权。',
+  speed: '输出吞吐，单位 token/秒，越高越快。',
+  seconds: '响应延迟，单位秒，越低越快。',
+  date: '按模型发布日期倒序，用于查看最近上新的模型。',
 };
 
 /* 榜组图标（仅为可读性，不承载语义） */
-const GROUP_ICON = { 智能体: '🤖', 对话: '💬', 代码: '⌨️', 图像: '🎨', 视频: '🎬' };
+const GROUP_ICON = {
+  智能体: '🤖', 对话: '💬', 代码: '⌨️', 图像: '🎨', 视频: '🎬',
+  智能评测: '🧠', 生成竞技场: '🖼️', 性价比: '💰', 新模型: '🆕',
+};
 
 /* 旧链接兼容：2026-10-13 改为三级结构后榜单 id 加了路径前缀，老的 ?b= 仍可打开 */
 const LEGACY_ID = {
@@ -136,7 +150,13 @@ const fmtRel = (iso) => {
   if (h < 24) return `${h} 小时前`;
   return `${Math.floor(h / 24)} 天前`;
 };
-const fmtPrice = (p) => (p == null ? '—' : '$' + p.toFixed(2));
+const fmtPrice = (p) => {
+  if (p == null) return '—';
+  // AA 数据里有大量 0 价（开源权重自托管），显示「免费」比 $0.00 直观
+  if (p === 0) return '免费';
+  const s = p < 0.01 ? p.toFixed(4) : p.toFixed(2);
+  return '$' + s.replace(/(\.\d*?)0+$/, '$1').replace(/\.$/, '');
+};
 const fmtCtx = (n) => {
   if (n == null) return '—';
   if (n >= 1e6) return (n / 1e6).toFixed(n % 1e6 ? 1 : 0) + 'M';
@@ -157,11 +177,27 @@ function orgInitial(org) {
 }
 
 function scoreText(m, scale) {
+  if (m.score == null) return '—';
   if (scale === 'bt') {
     const v = (m.score * 100).toFixed(1);
     return (m.score > 0 ? '+' : '') + v + '%';
   }
-  return m.score == null ? '—' : String(Math.round(m.score * 10) / 10);
+  // 百分比类评测（AA 的 HLE / GPQA / LiveCodeBench 等，原始值为 0–1 小数）
+  if (scale === 'rate') return (m.score * 100).toFixed(1) + '%';
+  // 价格：小额给到 3 位有效位，避免 $0.26 被显示成 $0.3
+  if (scale === 'price') {
+    if (m.score === 0) return '免费';
+    const v = m.score < 1 ? m.score.toFixed(3) : m.score.toFixed(2);
+    return '$' + v.replace(/0+$/, '').replace(/\.$/, '');
+  }
+  if (scale === 'speed') return String(Math.round(m.score));
+  if (scale === 'seconds') return m.score < 10 ? m.score.toFixed(2) + ' 秒' : Math.round(m.score) + ' 秒';
+  // 发布日期以 YYYYMMDD 整数存储，展示成 2026-10-26
+  if (scale === 'date') {
+    const s = String(m.score);
+    return /^\d{8}$/.test(s) ? `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6)}` : s;
+  }
+  return String(Math.round(m.score * 10) / 10);
 }
 function ciText(m, scale) {
   if (m.scoreUpper == null || m.scoreLower == null) return '';
@@ -169,6 +205,11 @@ function ciText(m, scale) {
     const up = ((m.scoreUpper - m.score) * 100).toFixed(1);
     const lo = ((m.score - m.scoreLower) * 100).toFixed(1);
     return `+${up}% / -${lo}%`;
+  }
+  if (scale === 'rate') {
+    const up = ((m.scoreUpper - m.score) * 100).toFixed(1);
+    const lo = ((m.score - m.scoreLower) * 100).toFixed(1);
+    return `±${Math.max(up, lo)}%`;
   }
   const up = Math.round(m.scoreUpper - m.score);
   const lo = Math.round(m.score - m.scoreLower);
@@ -262,6 +303,14 @@ function emptyStateHtml(icon, title, desc, actionHtml = '') {
 
 /* 数据日期区间：源站在每个榜单页标注该榜数据时间（排名与票数冻结于该日），
    各榜日期不同（如文本榜 10-08、搜索榜 08-24），这里展示区间并提示以各榜为准 */
+/* 票数列的表头文案随数据源变：
+   LMArena 的 votes 是投票数，AA 的 appearances 是两两对战次数，含义不同不能混用 */
+function votesLabelForSource() {
+  return (INDEX && INDEX.source && INDEX.source.publisher === 'Artificial Analysis')
+    ? '对战数'
+    : '投票数';
+}
+
 function dataDateRangeHtml() {
   const dates = (INDEX && INDEX.boards || [])
     .map((b) => b.dataDate)
@@ -271,18 +320,28 @@ function dataDateRangeHtml() {
   const lo = fmtDate(dates[0]);
   const hi = fmtDate(dates[dates.length - 1]);
   const text = lo === hi ? `<b>${lo}</b>` : `<b>${lo}</b> ~ <b>${hi}</b>`;
-  return `<span><span class="dot"></span>数据日期 ${text}（数据集标注，以各榜为准）</span>`;
+  // 文案随源变化：LMArena 的日期由数据集标注，AA 的日期是本站抓取日
+  const tail = (INDEX && INDEX.source && INDEX.source.publisher === 'Artificial Analysis')
+    ? '抓取日，以各榜为准'
+    : '数据集标注，以各榜为准';
+  return `<span><span class="dot"></span>数据日期 ${text}（${tail}）</span>`;
 }
 
 function freshbarHtml(status) {
   if (!status) return '';
   const t = status.lastSuccess ? fmtTime(status.lastSuccess) : '—';
   const rel = status.lastSuccess ? fmtRel(status.lastSuccess) : '—';
-  // 注：CC BY 4.0 数据集不含「全球累计对战场次」类会话统计，原 session 区块已移除
+  // 数据来源随 index.json 走，换源后不用改这里
+  const s = (INDEX && INDEX.source) || {};
+  const srcName = s.publisher === 'Artificial Analysis'
+    ? 'Artificial Analysis'
+    : (s.publisher || 'LMArena 官方数据集');
+  const srcLic = s.license || 'CC BY 4.0';
+  const srcUrl = s.url || '#';
   return `<div class="freshbar ${status.stale ? 'stale' : ''}">
     ${dataDateRangeHtml()}
     <span>数据同步于 <b>${t}</b>（北京时间 · ${rel}）</span>
-    <span>数据来源 <b>LMArena 官方数据集</b>（CC BY 4.0）</span>
+    <span>数据来源 <a href="${esc(srcUrl)}" target="_blank" rel="noopener noreferrer"><b>${esc(srcName)}</b></a>（${esc(srcLic)}）</span>
   </div>${status.stale ? '<div class="banner-warn">⚠️ 数据可能过期：数据同步已多日未成功，以下展示的是最后一次成功同步的数据。</div>' : ''}`;
 }
 
@@ -314,10 +373,16 @@ function sortModels(models, key, dir) {
 }
 
 function boardTable(models, scale, opts = {}) {
-  const { limit = 0, sortKey = 'rank', sortDir = 'asc' } = opts;
+  const { limit = 0, sortKey = 'rank', sortDir = 'asc', votesLabel = '投票数' } = opts;
   let list = sortModels(models, sortKey, sortDir);
   const showExpand = limit && list.length > limit;
   const visible = showExpand ? list.slice(0, limit) : list;
+
+  // 列按数据实际情况出现：AA 的 LLM 榜没有票数与协议但有价格，
+  // LMArena 榜没有价格但有票数与协议。写死列会让另一半全是「—」。
+  const hasVotes = list.some((m) => m.votes != null);
+  const hasLicense = list.some((m) => m.license);
+  const hasPrice = list.some((m) => m.inputPrice != null || m.outputPrice != null);
 
   const scores = list.map((m) => m.score).filter((x) => x != null);
   const min = scores.length ? Math.min(...scores) : 0;
@@ -332,18 +397,23 @@ function boardTable(models, scale, opts = {}) {
 
   const rows = visible.map((m) => {
     const cn = CN_ORGS.has(m.org);
-    // CC BY 4.0 数据集不含价格与上下文长度，改用数据集自带的开源协议字段
     const lic = m.license ? String(m.license).replace(/[<>&"]/g, '') : '—';
-    const licCell = `<td class="lic" data-label="协议">${lic}</td>`;
+    const licCell = hasLicense ? `<td class="lic" data-label="协议">${lic}</td>` : '';
+    const priceCell = hasPrice
+      ? `<td class="num" data-label="输入价">${fmtPrice(m.inputPrice)}</td>
+         <td class="num" data-label="输出价">${fmtPrice(m.outputPrice)}</td>`
+      : '';
+    const votesCell = hasVotes ? `<td class="votes num" data-label="${votesLabel}">${fmtNum(m.votes)}</td>` : '';
     return `<tr class="${cn ? 'cn-row' : ''}${m.rank <= 3 ? ' top3' : ''}">
       <td class="rank" data-label="排名">${rankCell(m.rank)}</td>
       <td class="model" data-label="模型">${modelCell(m)}</td>
-      <td class="score num" data-label="${SCALE_LABEL[scale]}">
+      <td class="score num" data-label="${SCALE_LABEL[scale] || '分数'}">
         ${scoreText(m, scale)}
         ${scoreBarHtml(m, min, max)}
         ${ciText(m, scale) ? `<div class="ci">${ciText(m, scale)}</div>` : ''}
       </td>
-      <td class="votes num" data-label="投票数">${fmtNum(m.votes)}</td>
+      ${priceCell}
+      ${votesCell}
       ${licCell}
     </tr>`;
   }).join('');
@@ -352,9 +422,10 @@ function boardTable(models, scale, opts = {}) {
     <thead><tr>
       ${th('rank', '排名')}
       <th scope="col">模型</th>
-      ${th('score', SCALE_LABEL[scale])}
-      ${th('votes', '投票数')}
-      <th scope="col">开源协议</th>
+      ${th('score', SCALE_LABEL[scale] || '分数')}
+      ${hasPrice ? '<th class="num" scope="col">输入价</th><th class="num" scope="col">输出价</th>' : ''}
+      ${hasVotes ? th('votes', votesLabel) : ''}
+      ${hasLicense ? '<th scope="col">开源协议</th>' : ''}
     </tr></thead>
     <tbody>${rows}</tbody>
   </table></div>
@@ -653,9 +724,18 @@ function mountBoard(slot, board) {
         (m.key || '').toLowerCase().includes(q) ||
         (ORG_ZH[m.org] || '').includes(st.query));
     }
-    if (slot) slot.innerHTML = boardTable(models, meta.scale, { limit: 100, sortKey: st.sortKey, sortDir: st.sortDir });
+    if (slot) slot.innerHTML = boardTable(models, meta.scale, {
+      limit: 100,
+      sortKey: st.sortKey,
+      sortDir: st.sortDir,
+      votesLabel: votesLabelForSource(),
+    });
     bindTableSort(slot, () => st, (s) => { Object.assign(st, s); syncSortSelect(); apply(); });
-    if (slot) bindExpand(slot, models, meta.scale, { sortKey: st.sortKey, sortDir: st.sortDir });
+    if (slot) bindExpand(slot, models, meta.scale, {
+      sortKey: st.sortKey,
+      sortDir: st.sortDir,
+      votesLabel: votesLabelForSource(),
+    });
 
     const cnt = $('#result-count');
     if (cnt) cnt.innerHTML = `共 <b>${models.length}</b> 个模型${st.query || st.onlyCN ? '（已筛选）' : ''}`;

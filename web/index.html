@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>大模型竞技榜 — AI 模型对战排名中文版（每日更新）</title>
-  <meta name="description" content="LMArena 官方榜单数据集（CC BY 4.0）的中文呈现：按「大类 → 榜单 → 类别」三级联动整理 59 个榜单（对话/代码/图像/视频/智能体），每日同步，全中文界面，国产模型单独高亮。">
+  <title>大模型竞技榜 — AI 模型评测排名中文版（每日更新）</title>
+  <meta name="description" content="Artificial Analysis 官方数据的中文呈现：按「大类 → 榜单 → 类别」三级联动整理 30 个评测榜单（智能评测 / 生成竞技场 / 性价比 / 新模型），每日同步，全中文界面，国产模型单独高亮。">
   <meta name="theme-color" content="#2563eb">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>榜</text></svg>">
   <link rel="stylesheet" href="assets/style.css">
@@ -38,10 +38,11 @@
   <main class="wrap">
     <!-- Hero -->
     <section class="hero">
-      <h1>全球 AI 模型<em>对战实力榜</em>，中文版每日更新</h1>
+      <h1>全球 AI 模型<em>评测实力榜</em>，中文版每日更新</h1>
       <p class="lead">
-        数据来自 LMArena 官方公开数据集（CC BY 4.0），按「大类 → 榜单 → 类别」三级联动整理
-        59 个榜单 —— 全中文界面，厂商均标注中文名，国产模型单独高亮。
+        数据来自 Artificial Analysis 官方数据，按「大类 → 榜单 → 类别」三级联动整理
+        30 个榜单 —— 覆盖综合智能、单项基准、生成竞技场、价格与速度，全中文界面，
+        厂商均标注中文名，国产模型单独高亮。
       </p>
     </section>
 
@@ -91,24 +92,25 @@
     </div>
 
     <footer class="footer">
-      <p><strong>数据来源与授权（CC BY 4.0 署名）</strong>　本站数据来自
-        <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">LMArena（lmarena-ai）官方榜单数据集</a>，
-        该数据集以
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>
-        授权。本站在此基础上做了<strong>中文界面呈现与三级分类重排</strong>，未修改任何评分、排名与票数数值。
-        本站与 LMArena 无隶属或授权关系。</p>
-      <p><strong>评分说明</strong>　ELO 为相对战力分；智能体榜为 Bradley-Terry 相对战力值（0 = 平均水平，按百分比展示）。
-        各榜「数据日期」由数据集标注，各榜更新节奏不同，与本站同步时间不是一回事。厂商中文名为本站附加标注；
-        「开源协议」取自数据集自带的模型协议字段。</p>
+      <p><strong>数据来源与署名</strong>　本站评测数据来自
+        <a href="https://artificialanalysis.ai" target="_blank" rel="noopener">Artificial Analysis</a>
+        的免费数据 API（<a href="https://artificialanalysis.ai/api-reference" target="_blank" rel="noopener">API 说明</a>）。
+        依据其使用条款，本站<strong>必须并已标注来源</strong>。本站在此基础上做了
+        <strong>中文界面呈现与三级分类重排</strong>，未修改任何评分、排名与价格数值。
+        本站与 Artificial Analysis 无隶属关系，也不代表其立场。</p>
+      <p><strong>评分说明</strong>　「指数分」为 Artificial Analysis 合成的综合能力分；「得分率」为单项基准的通过率，按百分比展示；
+        生成竞技场为 ELO 相对战力分，± 为 95% 置信区间；价格为每百万 token 美元价，混合价按输入:输出 = 3:1 加权。
+        各榜「数据日期」为本站抓取日，人工审核与模型重测会让不同榜单的模型数差异较大（如智能指数仅收录已完成 v5.0 重测的模型），
+        某模型未出现在某榜，不等于它在那一项上表现差。厂商中文名为本站附加标注。</p>
       <p id="foot-info"></p>
       <div class="links">
-        <a href="index.html?b=agent">智能体总榜</a>
-        <a href="index.html?b=chat-text">文本对话榜</a>
-        <a href="index.html?b=chat-text-chinese">中文对话</a>
-        <a href="index.html?b=code-webdev">Web 开发榜</a>
-        <a href="index.html?b=image-text-to-image">文生图榜</a>
-        <a href="index.html?b=chat-vision">视觉问答榜</a>
-        <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">原始数据集 ↗</a>
+        <a href="index.html?b=aa-intelligence">智能指数</a>
+        <a href="index.html?b=aa-coding">编程指数</a>
+        <a href="index.html?b=aa-arena-image">文生图</a>
+        <a href="index.html?b=aa-arena-video">图生视频</a>
+        <a href="index.html?b=aa-price">价格榜</a>
+        <a href="index.html?b=aa-speed">速度榜</a>
+        <a href="https://artificialanalysis.ai" target="_blank" rel="noopener">Artificial Analysis ↗</a>
       </div>
     </footer>
   </main>

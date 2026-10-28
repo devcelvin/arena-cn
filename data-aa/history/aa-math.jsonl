@@ -1,0 +1,50 @@
+{"d":"10-28","k":"GPT-5.2 (Xhigh)","r":1,"s":99,"v":null}
+{"d":"10-28","k":"GPT-5 Codex (High)","r":2,"s":98.7,"v":null}
+{"d":"10-28","k":"Gemini 3 Flash Preview (Reasoning)","r":3,"s":97,"v":null}
+{"d":"10-28","k":"DeepSeek V3.2 Speciale","r":4,"s":96.7,"v":null}
+{"d":"10-28","k":"GPT-5.2 (Medium)","r":5,"s":96.7,"v":null}
+{"d":"10-28","k":"MiMo-V2-Flash (Reasoning)","r":6,"s":96.3,"v":null}
+{"d":"10-28","k":"Gemini 3 Pro Preview (High)","r":7,"s":95.7,"v":null}
+{"d":"10-28","k":"GPT-5.1 Codex (High)","r":8,"s":95.7,"v":null}
+{"d":"10-28","k":"GLM-4.7 (Reasoning)","r":9,"s":95,"v":null}
+{"d":"10-28","k":"KAT-Coder-Pro V1","r":10,"s":94.7,"v":null}
+{"d":"10-28","k":"Kimi K2 Thinking","r":11,"s":94.7,"v":null}
+{"d":"10-28","k":"GPT-5 (High)","r":12,"s":94.3,"v":null}
+{"d":"10-28","k":"Nova 2.0 Lite (High)","r":13,"s":94.3,"v":null}
+{"d":"10-28","k":"GPT-5.1 (High)","r":14,"s":94,"v":null}
+{"d":"10-28","k":"gpt-oss-120b (High)","r":15,"s":93.4,"v":null}
+{"d":"10-28","k":"Grok 4","r":16,"s":92.7,"v":null}
+{"d":"10-28","k":"DeepSeek V3.2 (Reasoning)","r":17,"s":92,"v":null}
+{"d":"10-28","k":"GPT-5 (Medium)","r":18,"s":91.7,"v":null}
+{"d":"10-28","k":"GPT-5.1 Codex mini (High)","r":19,"s":91.7,"v":null}
+{"d":"10-28","k":"Claude Opus 4.5 (Reasoning)","r":20,"s":91.3,"v":null}
+{"d":"10-28","k":"NVIDIA Nemotron 3 Nano 30B A3B (Reasoning)","r":21,"s":91,"v":null}
+{"d":"10-28","k":"Qwen3 235B A22B 2507 (Reasoning)","r":22,"s":91,"v":null}
+{"d":"10-28","k":"GPT-5 mini (High)","r":23,"s":90.7,"v":null}
+{"d":"10-28","k":"o4-mini (High)","r":24,"s":90.7,"v":null}
+{"d":"10-28","k":"K-EXAONE (Reasoning)","r":25,"s":90.3,"v":null}
+{"d":"10-28","k":"DeepSeek V3.1 (Reasoning)","r":26,"s":89.7,"v":null}
+{"d":"10-28","k":"DeepSeek V3.1 Terminus (Reasoning)","r":27,"s":89.7,"v":null}
+{"d":"10-28","k":"Grok 4 Fast (Reasoning)","r":28,"s":89.7,"v":null}
+{"d":"10-28","k":"Nova 2.0 Omni (Medium)","r":29,"s":89.7,"v":null}
+{"d":"10-28","k":"gpt-oss-20b (High)","r":30,"s":89.3,"v":null}
+{"d":"10-28","k":"Grok 4.1 Fast (Reasoning)","r":31,"s":89.3,"v":null}
+{"d":"10-28","k":"Ring-1T","r":32,"s":89.3,"v":null}
+{"d":"10-28","k":"Nova 2.0 Pro Preview (Medium)","r":33,"s":89,"v":null}
+{"d":"10-28","k":"Nova 2.0 Lite (Medium)","r":34,"s":88.7,"v":null}
+{"d":"10-28","k":"o3","r":35,"s":88.3,"v":null}
+{"d":"10-28","k":"Qwen3 VL 235B A22B (Reasoning)","r":36,"s":88.3,"v":null}
+{"d":"10-28","k":"Apriel-v1.6-15B-Thinker","r":37,"s":88,"v":null}
+{"d":"10-28","k":"Claude 4.5 Sonnet (Reasoning)","r":38,"s":88,"v":null}
+{"d":"10-28","k":"INTELLECT-3 (Based on GLM-4.5-Air)","r":39,"s":88,"v":null}
+{"d":"10-28","k":"DeepSeek V3.2 Exp (Reasoning)","r":40,"s":87.7,"v":null}
+{"d":"10-28","k":"Gemini 2.5 Pro","r":41,"s":87.7,"v":null}
+{"d":"10-28","k":"Apriel-v1.5-15B-Thinker","r":42,"s":87.5,"v":null}
+{"d":"10-28","k":"Gemini 3 Pro Preview (Low)","r":43,"s":86.7,"v":null}
+{"d":"10-28","k":"GLM-4.6 (Reasoning)","r":44,"s":86,"v":null}
+{"d":"10-28","k":"GLM-4.6V (Reasoning)","r":45,"s":85.3,"v":null}
+{"d":"10-28","k":"ERNIE 5.0 Thinking Preview","r":46,"s":85,"v":null}
+{"d":"10-28","k":"GPT-5 mini (Medium)","r":47,"s":85,"v":null}
+{"d":"10-28","k":"Grok 3 mini Reasoning (High)","r":48,"s":84.7,"v":null}
+{"d":"10-28","k":"Qwen3 VL 32B (Reasoning)","r":49,"s":84.7,"v":null}
+{"d":"10-28","k":"Seed-OSS-36B-Instruct","r":50,"s":84.7,"v":null}

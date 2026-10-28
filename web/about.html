@@ -35,15 +35,15 @@
     <section class="hero">
       <h1>关于本站</h1>
       <p class="lead">
-        「大模型竞技榜」把 LMArena 官方公开榜单整理成一页可查的中文界面：
-        59 个榜单，按「大类 → 榜单 → 类别」三级组织，每日自动同步。
+        「大模型竞技榜」把 Artificial Analysis 的公开评测数据整理成一页可查的中文界面：
+        30 个榜单，按「大类 → 榜单 → 类别」三级组织，每日自动同步。
       </p>
     </section>
 
     <div class="card card-pad" style="margin-bottom:16px">
       <h2 style="font-size:var(--fs-xl);margin:0 0 10px">本站是什么</h2>
       <p>
-        覆盖智能体、对话、代码、图像、视频五大类的 59 个榜单（12 个二级榜 + 47 个类别）。
+        覆盖智能评测、生成竞技场、性价比、新模型四大类的 30 个榜单（10 个二级榜 + 20 个类别）。
         厂商名称统一做了中文标注，国产模型单独标记，便于在中文语境下快速横向对比。
       </p>
       <p style="margin-bottom:0">
@@ -54,11 +54,11 @@
     <div class="card card-pad" style="margin-bottom:16px">
       <h2 style="font-size:var(--fs-xl);margin:0 0 10px">数据从哪来</h2>
       <p>
-        全部数据来自 LMArena（lmarena-ai）在 Hugging Face
-        <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">公开发布的榜单数据集</a>，
-        该数据集以
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>
-        授权。
+        全部数据来自
+        <a href="https://artificialanalysis.ai" target="_blank" rel="noopener">Artificial Analysis</a>
+        的
+        <a href="https://artificialanalysis.ai/api-reference" target="_blank" rel="noopener">免费数据 API</a>。
+        该 API 的使用条款要求<strong>必须标注数据来源</strong>，本站已在页脚与榜单页显著位置标注。
       </p>
       <p>本站在此基础上做的改动只有三项：</p>
       <ul style="margin:0 0 12px;padding-left:20px">
@@ -67,8 +67,8 @@
         <li>厂商名称映射为中文。</li>
       </ul>
       <p style="margin-bottom:0">
-        <strong>任何评分、排名与票数数值均未修改。</strong>
-        本站与 LMArena 无隶属或授权关系，相关名称与标识归其各自权利人所有。
+        <strong>任何评分、排名与价格数值均未修改。</strong>
+        本站与 Artificial Analysis 无隶属关系，也不代表其立场；相关名称与标识归其各自权利人所有。
       </p>
     </div>
 
@@ -76,7 +76,7 @@
       <h2 style="font-size:var(--fs-xl);margin:0 0 10px">数据更新与两种时间</h2>
       <p>本站每日自动同步一次官方数据集。页面上有两个时间，注意别混淆：</p>
       <ul style="margin:0 0 12px;padding-left:20px">
-        <li><strong>数据日期</strong>：LMArena 冻结该榜排名与票数的日期。各榜更新节奏不同，可能相差几天到几周；</li>
+        <li><strong>数据日期</strong>：本站拉取该榜数据的日期。各评测项的重测节奏不同，即使同步成功，不同榜的模型数也可能长期存在差异；</li>
         <li><strong>数据同步于</strong>：本站最近一次拉取的时间，只反映同步动作的新旧。</li>
       </ul>
       <p style="margin-bottom:0">
@@ -115,15 +115,15 @@
 
     <footer class="footer">
       <p>
-        <strong>数据来源与授权</strong>　本站数据来自
-        <a href="https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset" target="_blank" rel="noopener">LMArena（lmarena-ai）官方榜单数据集</a>（
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license noopener">CC BY 4.0</a>）。
-        本站与 LMArena 无隶属或授权关系。
+        <strong>数据来源与署名</strong>　本站数据来自
+        <a href="https://artificialanalysis.ai" target="_blank" rel="noopener">Artificial Analysis</a>
+        的<a href="https://artificialanalysis.ai/api-reference" target="_blank" rel="noopener">免费数据 API</a>，
+        按其条款要求标注来源。本站与 Artificial Analysis 无隶属关系。
       </p>
       <div class="links">
         <a href="index.html">全部榜单</a>
-        <a href="index.html?b=agent">智能体总榜</a>
-        <a href="index.html?b=chat-text">文本对话榜</a>
+        <a href="index.html?b=aa-intelligence">智能指数</a>
+        <a href="index.html?b=aa-coding">编程指数</a>
         <a href="index.html?b=chat-text-chinese">中文对话</a>
         <a href="index.html?b=image-text-to-image">文生图榜</a>
       </div>

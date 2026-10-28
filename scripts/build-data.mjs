@@ -14,14 +14,26 @@
 import { readFile, writeFile, mkdir, readdir, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { BOARDS, SOURCE } from './boards.config.mjs';
 import { validateBoard } from './validate.mjs';
 import { cleanupSnapshots, dirSizeMB } from './cleanup.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const today = new Date().toISOString().slice(0, 10);
-const rawDir = `${ROOT}.tmp/raw/${today}/`;
-const dataDir = `${ROOT}data/`;
+
+/**
+ * 数据源切换：默认走 Artificial Analysis。
+ * 回退到 LMArena（旧源）用 DATA_SOURCE=lmarena。
+ * 两套配置各自独立，raw 与输出目录也分开，互不覆盖。
+ */
+const USE_AA = process.env.DATA_SOURCE !== 'lmarena';
+const cfg = USE_AA
+  ? await import('./boards.aa.config.mjs')
+  : await import('./boards.config.mjs');
+const BOARDS = cfg.BOARDS;
+const SOURCE = cfg.SOURCE;
+const rawDir = USE_AA ? `${ROOT}.tmp/raw-aa/${today}/` : `${ROOT}.tmp/raw/${today}/`;
+// AA 模式写到独立目录：两套榜的 id 不同，但孤儿清理会误删对方的数据，必须物理隔离
+const dataDir = USE_AA ? `${ROOT}data-aa/` : `${ROOT}data/`;
 
 async function readJson(path) {
   try {
@@ -76,7 +88,15 @@ async function main() {
     const models = raw.models;
     const prev = await readJson(`${dataDir}latest/${b.id}.json`);
 
-    const { errors, warnings } = validateBoard({ boardId: b.id, scale: b.scale, models, prev });
+    const { errors, warnings } = validateBoard({
+      boardId: b.id,
+      scale: b.scale,
+      models,
+      prev,
+      // AA 的 LLM 端点无对战次数；text-to-speech 端点也只有 elo/rank/ci95，
+      // 这两类跳过 votes 必填校验。其余媒体端点有 appearances，仍强制校验。
+      votesOptional: USE_AA && (b.src === 'llm' || b.src === 'text-to-speech'),
+    });
     if (errors.length) {
       boardStatus[b.id] = { ok: false, error: errors[0], warnings };
       failCount++;
@@ -102,9 +122,12 @@ async function main() {
         // CC BY 4.0 署名所需：源、许可证、许可证链接（页脚据此渲染署名块）
         source: SOURCE.publisher,
         sourceUrl: SOURCE.url,
-        sourceConfig: raw.config ?? null,
+        sourceConfig: raw.config ?? raw.src ?? null,
         license: SOURCE.license,
         licenseUrl: SOURCE.licenseUrl,
+        // AA 榜的计量单位与口径说明，LMArena 榜为 null
+        unit: raw.unit || null,
+        note: b.note || null,
       },
       models,
     };
@@ -147,6 +170,8 @@ async function main() {
         updatedAt: st?.ok ? nowIso : null,
         dataDate: st?.ok ? boardDataDates[b.id] ?? null : null,
         topModel: topModels[b.id] || null,
+        unit: b.unit || null,
+        note: b.note || null,
       };
     }),
   };
@@ -202,7 +227,7 @@ async function main() {
   status.repoSizeMB = await dirSizeMB(dataDir);
   await writeFile(`${dataDir}status.json`, JSON.stringify(status, null, 1), 'utf8');
 
-  console.log(`\n[build-data] 成功 ${okCount} / 失败 ${failCount}；清理过期快照 ${removed} 天；data/ 体积 ${status.repoSizeMB}MB`);
+  console.log(`\n[build-data] 成功 ${okCount} / 失败 ${failCount}；清理过期快照 ${removed} 天；${USE_AA ? 'data-aa' : 'data'}/ 体积 ${status.repoSizeMB}MB`);
   if (!anyOk) {
     console.error('[build-data] 本次无任何榜单成功，退出码 1（保留旧数据，触发告警邮件）');
     process.exit(1);

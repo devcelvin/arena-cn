@@ -19,10 +19,12 @@ async function exists(p) {
 
 await rm(`${ROOT}web/data`, { recursive: true, force: true });
 await mkdir(`${ROOT}web/data`, { recursive: true });
-await cp(`${ROOT}data/latest`, `${ROOT}web/data/latest`, { recursive: true });
+// 默认从 data-aa/ 同步（Artificial Analysis 为主源）；DATA_SOURCE=lmarena 回退旧源
+const SRC = process.env.DATA_SOURCE === 'lmarena' ? 'data' : 'data-aa';
+await cp(`${ROOT}${SRC}/latest`, `${ROOT}web/data/latest`, { recursive: true });
 for (const f of ['index.json', 'status.json']) {
-  if (await exists(`${ROOT}data/${f}`)) {
-    await cp(`${ROOT}data/${f}`, `${ROOT}web/data/${f}`);
+  if (await exists(`${ROOT}${SRC}/${f}`)) {
+    await cp(`${ROOT}${SRC}/${f}`, `${ROOT}web/data/${f}`);
   }
 }
-console.log('[sync-web-data] web/data 已更新');
+console.log(`[sync-web-data] web/data 已更新（源：${SRC}）`);

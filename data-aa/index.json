@@ -1,0 +1,557 @@
+{
+ "generatedAt": "2026-10-28T07:15:15.698Z",
+ "source": {
+  "publisher": "Artificial Analysis",
+  "url": "https://artificialanalysis.ai",
+  "license": "免费 API（须署名）",
+  "licenseUrl": "https://artificialanalysis.ai/api-reference"
+ },
+ "groups": [
+  "智能评测",
+  "生成竞技场",
+  "性价比",
+  "新模型"
+ ],
+ "boards": [
+  {
+   "id": "aa-intelligence",
+   "name": "智能指数 v5.0",
+   "group": "智能评测",
+   "scale": "index",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 77,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Claude Opus 5.5 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 58.4
+   },
+   "unit": "分",
+   "note": "综合 9 项评测，v5.0 口径；仅部分模型已完成重测"
+  },
+  {
+   "id": "aa-hle",
+   "name": "HLE 人类最后考试",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-intelligence",
+   "isBoard": false,
+   "modelCount": 676,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Claude Opus 5.5 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 0.614
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-gpqa",
+   "name": "GPQA 专家问答",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-intelligence",
+   "isBoard": false,
+   "modelCount": 617,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GPT-6 Astra (Xhigh)",
+    "org": "OpenAI",
+    "score": 0.963
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-mmlu-pro",
+   "name": "MMLU-Pro",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-intelligence",
+   "isBoard": false,
+   "modelCount": 349,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Gemini 3 Pro Preview (High)",
+    "org": "Google",
+    "score": 0.898
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-lcr",
+   "name": "LCR 长上下文推理",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-intelligence",
+   "isBoard": false,
+   "modelCount": 587,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Kimi K3 (Max)",
+    "org": "Kimi",
+    "score": 0.8867
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-coding",
+   "name": "编程指数",
+   "group": "智能评测",
+   "scale": "index",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 258,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Claude Fable 5.1 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 81.6
+   },
+   "unit": "分",
+   "note": null
+  },
+  {
+   "id": "aa-livecodebench",
+   "name": "LiveCodeBench",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-coding",
+   "isBoard": false,
+   "modelCount": 343,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Gemini 3 Pro Preview (High)",
+    "org": "Google",
+    "score": 0.917
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-scicode",
+   "name": "SciCode",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-coding",
+   "isBoard": false,
+   "modelCount": 243,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Claude Opus 5.5 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 0.669
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-tb-hard",
+   "name": "Terminal-Bench Hard",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-coding",
+   "isBoard": false,
+   "modelCount": 432,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GPT-5.6 Sol (Max)",
+    "org": "OpenAI",
+    "score": 0.6591
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-tb-40",
+   "name": "Terminal-Bench 4.0",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-coding",
+   "isBoard": false,
+   "modelCount": 232,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Kimi K3.1 Pro",
+    "org": "Kimi",
+    "score": 0.6717
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-tb-21",
+   "name": "Terminal-Bench v2.1",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-coding",
+   "isBoard": false,
+   "modelCount": 242,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Claude Fable 5.1 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 0.9139
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-tau2",
+   "name": "Tau2 工具调用",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 440,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GLM-5.2 (Max)",
+    "org": "Z.ai",
+    "score": 0.9912
+   },
+   "unit": "%",
+   "note": "AA 免费层未提供 Agent 综合指数，以此项作为该域主榜"
+  },
+  {
+   "id": "aa-ifbench",
+   "name": "IFBench 指令遵循",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-tau2",
+   "isBoard": false,
+   "modelCount": 451,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Grok 4.3 (Medium)",
+    "org": "SpaceXAI",
+    "score": 0.8333
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-tau-banking",
+   "name": "Tau-Banking 银行场景",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-tau2",
+   "isBoard": false,
+   "modelCount": 209,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Qwen3.8 Max",
+    "org": "Alibaba",
+    "score": 0.5134
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-math",
+   "name": "数学指数",
+   "group": "智能评测",
+   "scale": "index",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 270,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GPT-5.2 (Xhigh)",
+    "org": "OpenAI",
+    "score": 99
+   },
+   "unit": "分",
+   "note": null
+  },
+  {
+   "id": "aa-aime25",
+   "name": "AIME 2025",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-math",
+   "isBoard": false,
+   "modelCount": 270,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GPT-5.2 (Xhigh)",
+    "org": "OpenAI",
+    "score": 0.99
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-math500",
+   "name": "MATH-500",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-math",
+   "isBoard": false,
+   "modelCount": 202,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GPT-5 (High)",
+    "org": "OpenAI",
+    "score": 0.994
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-aime",
+   "name": "AIME",
+   "group": "智能评测",
+   "scale": "rate",
+   "parent": "aa-math",
+   "isBoard": false,
+   "modelCount": 194,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GPT-5 (High)",
+    "org": "OpenAI",
+    "score": 0.9567
+   },
+   "unit": "%",
+   "note": null
+  },
+  {
+   "id": "aa-arena-image",
+   "name": "文生图",
+   "group": "生成竞技场",
+   "scale": "elo",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 106,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GPT Image 2.5 Sunburst (max)",
+    "org": "OpenAI",
+    "score": 1222
+   },
+   "unit": "ELO",
+   "note": null
+  },
+  {
+   "id": "aa-arena-image-edit",
+   "name": "图像编辑",
+   "group": "生成竞技场",
+   "scale": "elo",
+   "parent": "aa-arena-image",
+   "isBoard": false,
+   "modelCount": 77,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GPT Image 2.5 Sunburst (max)",
+    "org": "OpenAI",
+    "score": 1199
+   },
+   "unit": "ELO",
+   "note": null
+  },
+  {
+   "id": "aa-arena-video",
+   "name": "图生视频",
+   "group": "生成竞技场",
+   "scale": "elo",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 75,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Gemini Omni Flash",
+    "org": "Google",
+    "score": 1368
+   },
+   "unit": "ELO",
+   "note": null
+  },
+  {
+   "id": "aa-arena-t2v",
+   "name": "文生视频",
+   "group": "生成竞技场",
+   "scale": "elo",
+   "parent": "aa-arena-video",
+   "isBoard": false,
+   "modelCount": 32,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "HeyGen Video 1",
+    "org": "HeyGen",
+    "score": 1143
+   },
+   "unit": "ELO",
+   "note": null
+  },
+  {
+   "id": "aa-arena-speech",
+   "name": "语音合成",
+   "group": "生成竞技场",
+   "scale": "elo",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 98,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Eleven v4",
+    "org": "ElevenLabs",
+    "score": 1335
+   },
+   "unit": "ELO",
+   "note": "该端点无对战次数与发布日期字段，样本量无法展示"
+  },
+  {
+   "id": "aa-price",
+   "name": "混合价格（3:1）",
+   "group": "性价比",
+   "scale": "price",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 715,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Muse Wonder Full (Max)",
+    "org": "Meta",
+    "score": 0
+   },
+   "unit": "USD/1M",
+   "note": "按输入:输出 = 3:1 加权，越低越省"
+  },
+  {
+   "id": "aa-price-input",
+   "name": "输入价格",
+   "group": "性价比",
+   "scale": "price",
+   "parent": "aa-price",
+   "isBoard": false,
+   "modelCount": 715,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Muse Wonder Full (Max)",
+    "org": "Meta",
+    "score": 0
+   },
+   "unit": "USD/1M",
+   "note": null
+  },
+  {
+   "id": "aa-price-output",
+   "name": "输出价格",
+   "group": "性价比",
+   "scale": "price",
+   "parent": "aa-price",
+   "isBoard": false,
+   "modelCount": 715,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Muse Wonder Full (Max)",
+    "org": "Meta",
+    "score": 0
+   },
+   "unit": "USD/1M",
+   "note": null
+  },
+  {
+   "id": "aa-speed",
+   "name": "输出速度",
+   "group": "性价比",
+   "scale": "speed",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 715,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Celeris-1",
+    "org": "Celeris",
+    "score": 1704.4
+   },
+   "unit": "token/s",
+   "note": null
+  },
+  {
+   "id": "aa-ttft",
+   "name": "首字延迟",
+   "group": "性价比",
+   "scale": "seconds",
+   "parent": "aa-speed",
+   "isBoard": false,
+   "modelCount": 715,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Claude Opus 5.5 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 395.37
+   },
+   "unit": "秒",
+   "note": null
+  },
+  {
+   "id": "aa-ttfa",
+   "name": "首答延迟",
+   "group": "性价比",
+   "scale": "seconds",
+   "parent": "aa-speed",
+   "isBoard": false,
+   "modelCount": 715,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "Claude Opus 5.5 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 395.37
+   },
+   "unit": "秒",
+   "note": null
+  },
+  {
+   "id": "aa-new",
+   "name": "最新发布",
+   "group": "新模型",
+   "scale": "date",
+   "parent": null,
+   "isBoard": true,
+   "modelCount": 715,
+   "updatedAt": "2026-10-28T07:15:15.698Z",
+   "dataDate": "2026-10-28",
+   "topModel": {
+    "name": "GPT-6.1 Terra (Max)",
+    "org": "OpenAI",
+    "score": 20261026
+   },
+   "unit": null,
+   "note": "按发布日期倒序；解决「模型已发布但站上没有」的滞后"
+  }
+ ]
+}

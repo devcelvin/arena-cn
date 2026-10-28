@@ -1,0 +1,166 @@
+{
+ "lastSuccess": "2026-10-28T07:15:15.698Z",
+ "lastAttempt": "2026-10-28T07:15:15.698Z",
+ "stale": false,
+ "lastError": null,
+ "source": {
+  "publisher": "Artificial Analysis",
+  "url": "https://artificialanalysis.ai",
+  "license": "免费 API（须署名）",
+  "licenseUrl": "https://artificialanalysis.ai/api-reference"
+ },
+ "boards": {
+  "aa-intelligence": {
+   "ok": true,
+   "count": 77,
+   "warnings": []
+  },
+  "aa-hle": {
+   "ok": true,
+   "count": 676,
+   "warnings": []
+  },
+  "aa-gpqa": {
+   "ok": true,
+   "count": 617,
+   "warnings": []
+  },
+  "aa-mmlu-pro": {
+   "ok": true,
+   "count": 349,
+   "warnings": []
+  },
+  "aa-lcr": {
+   "ok": true,
+   "count": 587,
+   "warnings": []
+  },
+  "aa-coding": {
+   "ok": true,
+   "count": 258,
+   "warnings": []
+  },
+  "aa-livecodebench": {
+   "ok": true,
+   "count": 343,
+   "warnings": []
+  },
+  "aa-scicode": {
+   "ok": true,
+   "count": 243,
+   "warnings": []
+  },
+  "aa-tb-hard": {
+   "ok": true,
+   "count": 432,
+   "warnings": []
+  },
+  "aa-tb-40": {
+   "ok": true,
+   "count": 232,
+   "warnings": []
+  },
+  "aa-tb-21": {
+   "ok": true,
+   "count": 242,
+   "warnings": []
+  },
+  "aa-tau2": {
+   "ok": true,
+   "count": 440,
+   "warnings": []
+  },
+  "aa-ifbench": {
+   "ok": true,
+   "count": 451,
+   "warnings": []
+  },
+  "aa-tau-banking": {
+   "ok": true,
+   "count": 209,
+   "warnings": []
+  },
+  "aa-math": {
+   "ok": true,
+   "count": 270,
+   "warnings": []
+  },
+  "aa-aime25": {
+   "ok": true,
+   "count": 270,
+   "warnings": []
+  },
+  "aa-math500": {
+   "ok": true,
+   "count": 202,
+   "warnings": []
+  },
+  "aa-aime": {
+   "ok": true,
+   "count": 194,
+   "warnings": []
+  },
+  "aa-arena-image": {
+   "ok": true,
+   "count": 106,
+   "warnings": []
+  },
+  "aa-arena-image-edit": {
+   "ok": true,
+   "count": 77,
+   "warnings": []
+  },
+  "aa-arena-video": {
+   "ok": true,
+   "count": 75,
+   "warnings": []
+  },
+  "aa-arena-t2v": {
+   "ok": true,
+   "count": 32,
+   "warnings": []
+  },
+  "aa-arena-speech": {
+   "ok": true,
+   "count": 98,
+   "warnings": []
+  },
+  "aa-price": {
+   "ok": true,
+   "count": 715,
+   "warnings": []
+  },
+  "aa-price-input": {
+   "ok": true,
+   "count": 715,
+   "warnings": []
+  },
+  "aa-price-output": {
+   "ok": true,
+   "count": 715,
+   "warnings": []
+  },
+  "aa-speed": {
+   "ok": true,
+   "count": 715,
+   "warnings": []
+  },
+  "aa-ttft": {
+   "ok": true,
+   "count": 715,
+   "warnings": []
+  },
+  "aa-ttfa": {
+   "ok": true,
+   "count": 715,
+   "warnings": []
+  },
+  "aa-new": {
+   "ok": true,
+   "count": 715,
+   "warnings": []
+  }
+ },
+ "snapshotRetentionDays": 45,
+ "repoSizeMB": 5.1
+}

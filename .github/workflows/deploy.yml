@@ -14,7 +14,8 @@ on:
     branches: [main]
     paths:
       - 'web/**'
-      - 'data/**'          # 手动修数据后也要能直接上线（web/data 由本工作流生成）
+      - 'data/**'          # LMArena 旧源数据（保留归档，回退用）
+      - 'data-aa/**'       # Artificial Analysis 主源数据（web/data 由本工作流生成）
       - 'scripts/**'       # 流水线逻辑变更同样需要重新部署
       - '.github/workflows/deploy.yml'
   workflow_dispatch:

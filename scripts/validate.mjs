@@ -2,7 +2,7 @@
  * validate.mjs — 榜单数据校验（6 重）
  * 任一 error 即判定该榜单本次失败：不覆盖 latest，写 status.json，前端显示陈旧提示。
  */
-export function validateBoard({ boardId, scale, models, prev }) {
+export function validateBoard({ boardId, scale, models, prev, votesOptional = false }) {
   const errors = [];
   const warnings = [];
 
@@ -32,16 +32,40 @@ export function validateBoard({ boardId, scale, models, prev }) {
   // 4. score 量纲区间
   //    ELO：CC BY 4.0 数据集实测全域约 534（文本榜含老模型）–1863（Web 开发榜），故取 [500, 2000]；
   //         原下限 700 是按抓取榜单页时的分布定的，换源后会把真实数据误判为异常。
+  //         注：Artificial Analysis 媒体竞技场 ELO 实测 594–1368，同区间可用。
   //    BT ：智能体榜相对分值，实测约 -0.17~+0.18。
-  const range = scale === 'elo' ? [500, 2000] : scale === 'bt' ? [-0.5, 1] : scale === 'index' ? [0, 100] : [0, 1];
-  const scaleName = scale === 'elo' ? 'ELO' : scale === 'bt' ? 'BT' : scale === 'index' ? '对齐指数' : '胜率';
+  //    index ：AA 智能/编程/数学指数，实测 1.8–58.4，留出余量取 [0, 100]。
+  //    rate  ：AA 的 HLE/GPQA 等百分比类评测，原始值为 0–1 小数。
+  //    price ：AA 每百万 token 美元价，实测 0–20，留出余量取 [0, 10000]。
+  //    speed ：AA 输出吞吐 token/s，实测 1–数百，取 [0, 100000]。
+  //    seconds：AA 首字/首答延迟秒，取 [0, 3600]。
+  //    date  ：AA 发布日期榜，score 为 YYYYMMDD 整数。
+  const RANGES = {
+    elo: [500, 2000],
+    bt: [-0.5, 1],
+    index: [0, 100],
+    rate: [0, 1],
+    price: [0, 10000],
+    speed: [0, 100000],
+    seconds: [0, 3600],
+    date: [20000101, 21001231],
+  };
+  const NAMES = {
+    elo: 'ELO', bt: 'BT', index: '对齐指数', rate: '百分比',
+    price: '价格', speed: '速度', seconds: '秒', date: '日期',
+  };
+  const range = RANGES[scale] ?? [0, 1];
+  const scaleName = NAMES[scale] ?? '胜率';
   const bad = models.filter((m) => !(m.score >= range[0] && m.score <= range[1]));
   if (bad.length) {
     errors.push(`${bad.length} 个模型 score 超出${scaleName}合理区间 [${range}]，首个：${bad[0].name}=${bad[0].score}`);
   }
 
   // 5. 必填字段完整（org 允许空串，不允许 null）
-  const missing = models.filter((m) => !m.key || !m.name || m.score == null || m.votes == null || m.org == null);
+  //    AA 的 LLM 端点不提供对战次数，这类榜传 votesOptional=true 跳过该项
+  const missing = models.filter(
+    (m) => !m.key || !m.name || m.score == null || (!votesOptional && m.votes == null) || m.org == null
+  );
   if (missing.length) {
     errors.push(`${missing.length} 个模型缺少必填字段，首个：${missing[0].name || missing[0].key}`);
   }

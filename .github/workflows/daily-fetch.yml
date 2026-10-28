@@ -1,10 +1,14 @@
-# Daily Sync — 每日同步 LMArena 官方榜单数据集（Hugging Face · CC BY 4.0）
+# Daily Sync — 每日同步 Artificial Analysis 榜单数据
 #
 # 时间：UTC 14:23 = 北京时间 22:23（避开整点 cron 排队高峰）
 # 手动补跑：Actions → Daily Sync → Run workflow
 #
-# ⚠️ 本项目不再抓取 arena.ai 站点页面（其 ToS §5 禁止 scrape / mirror / translate）。
-#    数据源为官方主动发布、以 CC BY 4.0 授权的公开数据集，抓取脚本为 scripts/fetch-hf.mjs。
+# 数据源：Artificial Analysis 免费 Data API（https://artificialanalysis.ai/api-reference）
+#   要求：必须署名（页脚与榜单页已标注）；免费层 1000 请求/天，本流程每天 6 次。
+#   Key 存放：仓库 Secrets 的 AA_API_KEY（不要把 key 写进代码或提交历史）。
+#
+# 回退到旧源（LMArena）：把下方命令改为 `node scripts/fetch-hf.mjs && DATA_SOURCE=lmarena node scripts/build-data.mjs`，
+#   并把提交路径改回 data/。旧数据仍完整保留在 data/ 目录，未删除。
 name: Daily Sync
 
 on:
@@ -26,21 +30,24 @@ jobs:
         with:
           node-version: 22
 
-      - name: 安装依赖（hyparquet：解析 parquet）
-        run: npm install --no-audit --no-fund
-
-      - name: 拉取数据集 + 校验 + 落库
+      - name: 拉取 AA 数据 + 校验 + 落库
+        env:
+          AA_API_KEY: ${{ secrets.AA_API_KEY }}
         run: |
-          node scripts/fetch-hf.mjs
+          if [ -z "$AA_API_KEY" ]; then
+            echo "::error::缺少 AA_API_KEY secret，无法同步。请在 Settings → Secrets 添加。"
+            exit 1
+          fi
+          node scripts/fetch-aa.mjs
           node scripts/build-data.mjs
 
       - name: 提交数据快照
         run: |
           git config user.name "arena-bot"
           git config user.email "arena-bot@users.noreply.github.com"
-          git add data/
+          git add data-aa/
           if ! git diff --cached --quiet; then
-            git commit -m "chore(data): snapshot $(date -u +%F) [skip ci]"
+            git commit -m "chore(data): AA snapshot $(date -u +%F) [skip ci]"
             git push
             echo "committed=1" >> "$GITHUB_ENV"
           else

@@ -60,6 +60,16 @@ export const ORG_ZH = {
   'Xiaomi': '小米',
   'Ant Group': '蚂蚁集团',
   'Kling': '快手',
+  // —— Artificial Analysis Data API 里的写法（2026-10-28 接入时实测） ——
+  // AA 用 model_creator.name，与 LMArena 的 organization 不同；漏一个就漏标「国产」。
+  // 该集合与 web/assets/app.js 的副本必须同步，smoke-test 会断言一致。
+  'Kimi': '月之暗面',
+  'InclusionAI': '蚂蚁集团',      // Ling / Ring 系列；注意区别于潞晨科技的 InclusiveAI
+  'ByteDance Seed': '字节跳动',
+  'China Mobile': '中国移动',
+  'KwaiKAT': '快手',
+  'LongCat': '美团',
+  'Nanbeige': '南北阁',
 };
 
 /** 国产厂商集合（用于金色"国产"徽章高亮） */
@@ -70,6 +80,7 @@ export const CN_ORGS = new Set([
   'Shanghai AI Laboratory', 'OpenBMB', 'ModelBest', 'InclusiveAI',
   'SenseTime', 'iFlytek',
   'Xiaomi', 'Ant Group', 'Kling',
+  'Kimi', 'InclusionAI', 'ByteDance Seed', 'China Mobile', 'KwaiKAT', 'LongCat', 'Nanbeige',
 ]);
 
 /**
