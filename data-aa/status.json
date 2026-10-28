@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-10-28T07:22:42.247Z",
- "lastAttempt": "2026-10-28T07:22:42.247Z",
+ "lastSuccess": "2026-10-28T19:39:33.828Z",
+ "lastAttempt": "2026-10-28T19:39:33.828Z",
  "stale": false,
  "lastError": null,
  "source": {
@@ -12,12 +12,12 @@
  "boards": {
   "aa-intelligence": {
    "ok": true,
-   "count": 77,
+   "count": 78,
    "warnings": []
   },
   "aa-hle": {
    "ok": true,
-   "count": 676,
+   "count": 677,
    "warnings": []
   },
   "aa-gpqa": {
@@ -32,7 +32,7 @@
   },
   "aa-lcr": {
    "ok": true,
-   "count": 587,
+   "count": 588,
    "warnings": []
   },
   "aa-coding": {
@@ -47,7 +47,7 @@
   },
   "aa-scicode": {
    "ok": true,
-   "count": 243,
+   "count": 244,
    "warnings": []
   },
   "aa-tb-hard": {
@@ -57,7 +57,7 @@
   },
   "aa-tb-40": {
    "ok": true,
-   "count": 232,
+   "count": 233,
    "warnings": []
   },
   "aa-tb-21": {
@@ -111,56 +111,58 @@
    "warnings": []
   },
   "aa-arena-video": {
-   "ok": true,
-   "count": 75,
-   "warnings": []
+   "ok": false,
+   "error": "模型数异常波动：75 → 29（61%）",
+   "warnings": [
+    "top1 评分变化较大：1368 → 1130（-17.4%）"
+   ]
   },
   "aa-arena-t2v": {
    "ok": true,
-   "count": 32,
+   "count": 33,
    "warnings": []
   },
   "aa-arena-speech": {
    "ok": true,
-   "count": 98,
+   "count": 99,
    "warnings": []
   },
   "aa-price": {
    "ok": true,
-   "count": 715,
+   "count": 716,
    "warnings": []
   },
   "aa-price-input": {
    "ok": true,
-   "count": 715,
+   "count": 716,
    "warnings": []
   },
   "aa-price-output": {
    "ok": true,
-   "count": 715,
+   "count": 716,
    "warnings": []
   },
   "aa-speed": {
    "ok": true,
-   "count": 715,
+   "count": 716,
    "warnings": []
   },
   "aa-ttft": {
    "ok": true,
-   "count": 715,
+   "count": 716,
    "warnings": []
   },
   "aa-ttfa": {
    "ok": true,
-   "count": 715,
+   "count": 716,
    "warnings": []
   },
   "aa-new": {
    "ok": true,
-   "count": 715,
+   "count": 716,
    "warnings": []
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 5.1
+ "repoSizeMB": 5.2
 }
