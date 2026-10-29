@@ -48,3 +48,53 @@
 {"d":"10-28","k":"GPT-6 Sol (High)","r":48,"s":20260922,"v":null}
 {"d":"10-28","k":"GPT-6 Sol (Low)","r":49,"s":20260922,"v":null}
 {"d":"10-28","k":"GPT-6 Sol (Max)","r":50,"s":20260922,"v":null}
+{"d":"10-29","k":"Mistral Large 4 (High)","r":1,"s":20261029,"v":null}
+{"d":"10-29","k":"Mistral Large 4 (Medium)","r":2,"s":20261029,"v":null}
+{"d":"10-29","k":"Gemini 4 Carbon (High)","r":3,"s":20261028,"v":null}
+{"d":"10-29","k":"GPT-6.1 Terra (Max)","r":4,"s":20261026,"v":null}
+{"d":"10-29","k":"GPT-6.1 Terra (Xhigh)","r":5,"s":20261026,"v":null}
+{"d":"10-29","k":"GPT-6.1 Terra (High)","r":6,"s":20261026,"v":null}
+{"d":"10-29","k":"GPT-6.1 Terra (Medium)","r":7,"s":20261026,"v":null}
+{"d":"10-29","k":"GPT-6.1 Terra (Non-reasoning)","r":8,"s":20261026,"v":null}
+{"d":"10-29","k":"GPT-6.1 Terra (Low)","r":9,"s":20261026,"v":null}
+{"d":"10-29","k":"Kimi K3.1 Pro","r":10,"s":20261023,"v":null}
+{"d":"10-29","k":"Nemotron 3.5 Bolt E4B 4GB (Reasoning)","r":11,"s":20261023,"v":null}
+{"d":"10-29","k":"Ling 3.1 Flash 1019","r":12,"s":20261022,"v":null}
+{"d":"10-29","k":"MiniMax-M3.1-Flash","r":13,"s":20261019,"v":null}
+{"d":"10-29","k":"DeepSeek V4.1 Flash 1017 (Max)","r":14,"s":20261017,"v":null}
+{"d":"10-29","k":"Beam 1.0","r":15,"s":20261016,"v":null}
+{"d":"10-29","k":"Muse Spark Open (Xhigh)","r":16,"s":20261015,"v":null}
+{"d":"10-29","k":"Nemotron 3.5 Super VL","r":17,"s":20261015,"v":null}
+{"d":"10-29","k":"Nemotron 3.5 Bolt 74B-A9B","r":18,"s":20261015,"v":null}
+{"d":"10-29","k":"Muse Wonder Full (Max)","r":19,"s":20261012,"v":null}
+{"d":"10-29","k":"Muse Wonder (Max)","r":20,"s":20261012,"v":null}
+{"d":"10-29","k":"Claude Haiku 5.5 (Max)","r":21,"s":20261007,"v":null}
+{"d":"10-29","k":"Claude Haiku 5.5 (Xhigh)","r":22,"s":20261007,"v":null}
+{"d":"10-29","k":"Claude Haiku 5.5 (High)","r":23,"s":20261007,"v":null}
+{"d":"10-29","k":"Claude Haiku 5.5 (Medium)","r":24,"s":20261007,"v":null}
+{"d":"10-29","k":"Claude Haiku 5.5 (Low)","r":25,"s":20261007,"v":null}
+{"d":"10-29","k":"Mistral Large 4 Preview","r":26,"s":20261006,"v":null}
+{"d":"10-29","k":"Ling 3.1 Flash","r":27,"s":20261001,"v":null}
+{"d":"10-29","k":"Gemini 4 Argon (High)","r":28,"s":20260930,"v":null}
+{"d":"10-29","k":"GPT-6.1 Sol (Max)","r":29,"s":20260929,"v":null}
+{"d":"10-29","k":"GPT-6.1 Sol (Xhigh)","r":30,"s":20260929,"v":null}
+{"d":"10-29","k":"GPT-6.1 Sol (High)","r":31,"s":20260929,"v":null}
+{"d":"10-29","k":"GPT-6.1 Sol (Medium)","r":32,"s":20260929,"v":null}
+{"d":"10-29","k":"GPT-6.1 Sol (Low)","r":33,"s":20260929,"v":null}
+{"d":"10-29","k":"Claude Sonnet 5.5 (Max, Default Fallback)","r":34,"s":20260928,"v":null}
+{"d":"10-29","k":"Claude Sonnet 5.5 (Xhigh, Default Fallback)","r":35,"s":20260928,"v":null}
+{"d":"10-29","k":"Claude Sonnet 5.5 (High, Default Fallback)","r":36,"s":20260928,"v":null}
+{"d":"10-29","k":"Claude Sonnet 5.5 (Medium, Default Fallback)","r":37,"s":20260928,"v":null}
+{"d":"10-29","k":"Claude Sonnet 5.5 (Low, Default Fallback)","r":38,"s":20260928,"v":null}
+{"d":"10-29","k":"Claude Opus 5.5 (Max, Default Fallback)","r":39,"s":20260922,"v":null}
+{"d":"10-29","k":"Claude Opus 5.5 (Xhigh, Default Fallback)","r":40,"s":20260922,"v":null}
+{"d":"10-29","k":"Claude Opus 5.5 (High, Default Fallback)","r":41,"s":20260922,"v":null}
+{"d":"10-29","k":"Claude Opus 5.5 (Medium, Default Fallback)","r":42,"s":20260922,"v":null}
+{"d":"10-29","k":"Claude Opus 5.5 (Low, Default Fallback)","r":43,"s":20260922,"v":null}
+{"d":"10-29","k":"GPT-6 Luna (Max)","r":44,"s":20260922,"v":null}
+{"d":"10-29","k":"GPT-6 Luna (Xhigh)","r":45,"s":20260922,"v":null}
+{"d":"10-29","k":"GPT-6 Luna (High)","r":46,"s":20260922,"v":null}
+{"d":"10-29","k":"GPT-6 Luna (Medium)","r":47,"s":20260922,"v":null}
+{"d":"10-29","k":"GPT-6 Luna (Low)","r":48,"s":20260922,"v":null}
+{"d":"10-29","k":"GPT-6 Luna (Non-reasoning)","r":49,"s":20260922,"v":null}
+{"d":"10-29","k":"GPT-6 Sol (Daybreak Blue, max)","r":50,"s":20260922,"v":null}

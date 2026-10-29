@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-10-28T19:39:33.828Z",
- "lastAttempt": "2026-10-28T19:39:33.828Z",
+ "lastSuccess": "2026-10-29T19:42:52.656Z",
+ "lastAttempt": "2026-10-29T19:42:52.656Z",
  "stale": false,
  "lastError": null,
  "source": {
@@ -12,7 +12,7 @@
  "boards": {
   "aa-intelligence": {
    "ok": true,
-   "count": 78,
+   "count": 80,
    "warnings": []
   },
   "aa-hle": {
@@ -36,8 +36,8 @@
    "warnings": []
   },
   "aa-coding": {
-   "ok": true,
-   "count": 258,
+   "ok": false,
+   "error": "本轮抓取无数据（subset/category 缺失或下载失败）",
    "warnings": []
   },
   "aa-livecodebench": {
@@ -57,7 +57,7 @@
   },
   "aa-tb-40": {
    "ok": true,
-   "count": 233,
+   "count": 235,
    "warnings": []
   },
   "aa-tb-21": {
@@ -81,8 +81,8 @@
    "warnings": []
   },
   "aa-math": {
-   "ok": true,
-   "count": 270,
+   "ok": false,
+   "error": "本轮抓取无数据（subset/category 缺失或下载失败）",
    "warnings": []
   },
   "aa-aime25": {
@@ -114,7 +114,7 @@
    "ok": false,
    "error": "模型数异常波动：75 → 29（61%）",
    "warnings": [
-    "top1 评分变化较大：1368 → 1130（-17.4%）"
+    "top1 评分变化较大：1368 → 1126（-17.7%）"
    ]
   },
   "aa-arena-t2v": {
@@ -124,45 +124,49 @@
   },
   "aa-arena-speech": {
    "ok": true,
-   "count": 99,
+   "count": 100,
    "warnings": []
   },
   "aa-price": {
    "ok": true,
-   "count": 716,
+   "count": 718,
    "warnings": []
   },
   "aa-price-input": {
    "ok": true,
-   "count": 716,
+   "count": 718,
    "warnings": []
   },
   "aa-price-output": {
    "ok": true,
-   "count": 716,
+   "count": 718,
    "warnings": []
   },
   "aa-speed": {
    "ok": true,
-   "count": 716,
+   "count": 718,
    "warnings": []
   },
   "aa-ttft": {
    "ok": true,
-   "count": 716,
-   "warnings": []
+   "count": 718,
+   "warnings": [
+    "top1 评分变化较大：393.02 → 575.56（46.4%）"
+   ]
   },
   "aa-ttfa": {
    "ok": true,
-   "count": 716,
-   "warnings": []
+   "count": 718,
+   "warnings": [
+    "top1 评分变化较大：393.02 → 575.56（46.4%）"
+   ]
   },
   "aa-new": {
    "ok": true,
-   "count": 716,
+   "count": 718,
    "warnings": []
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 5.2
+ "repoSizeMB": 6.2
 }

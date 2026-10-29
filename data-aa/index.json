@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-28T19:39:33.828Z",
+ "generatedAt": "2026-10-29T19:42:52.656Z",
  "source": {
   "publisher": "Artificial Analysis",
   "url": "https://artificialanalysis.ai",
@@ -20,9 +20,9 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 78,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 80,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Gemini 4 Carbon (High)",
     "org": "Google",
@@ -39,8 +39,8 @@
    "parent": "aa-intelligence",
    "isBoard": false,
    "modelCount": 677,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -57,8 +57,8 @@
    "parent": "aa-intelligence",
    "isBoard": false,
    "modelCount": 617,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "GPT-6 Astra (Xhigh)",
     "org": "OpenAI",
@@ -75,8 +75,8 @@
    "parent": "aa-intelligence",
    "isBoard": false,
    "modelCount": 349,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Gemini 3 Pro Preview (High)",
     "org": "Google",
@@ -93,8 +93,8 @@
    "parent": "aa-intelligence",
    "isBoard": false,
    "modelCount": 588,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Kimi K3 (Max)",
     "org": "Kimi",
@@ -110,14 +110,10 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 258,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
-   "topModel": {
-    "name": "Claude Fable 5.1 (Max, Default Fallback)",
-    "org": "Anthropic",
-    "score": 81.6
-   },
+   "modelCount": null,
+   "updatedAt": null,
+   "dataDate": null,
+   "topModel": null,
    "unit": "分",
    "note": null
   },
@@ -129,8 +125,8 @@
    "parent": "aa-coding",
    "isBoard": false,
    "modelCount": 343,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Gemini 3 Pro Preview (High)",
     "org": "Google",
@@ -147,8 +143,8 @@
    "parent": "aa-coding",
    "isBoard": false,
    "modelCount": 244,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -165,8 +161,8 @@
    "parent": "aa-coding",
    "isBoard": false,
    "modelCount": 432,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "GPT-5.6 Sol (Max)",
     "org": "OpenAI",
@@ -182,9 +178,9 @@
    "scale": "rate",
    "parent": "aa-coding",
    "isBoard": false,
-   "modelCount": 233,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 235,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Kimi K3.1 Pro",
     "org": "Kimi",
@@ -201,8 +197,8 @@
    "parent": "aa-coding",
    "isBoard": false,
    "modelCount": 242,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Claude Fable 5.1 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -219,8 +215,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 440,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "GLM-5.2 (Max)",
     "org": "Z.ai",
@@ -237,8 +233,8 @@
    "parent": "aa-tau2",
    "isBoard": false,
    "modelCount": 451,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Grok 4.3 (Medium)",
     "org": "SpaceXAI",
@@ -255,8 +251,8 @@
    "parent": "aa-tau2",
    "isBoard": false,
    "modelCount": 209,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Qwen3.8 Max",
     "org": "Alibaba",
@@ -272,14 +268,10 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 270,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
-   "topModel": {
-    "name": "GPT-5.2 (Xhigh)",
-    "org": "OpenAI",
-    "score": 99
-   },
+   "modelCount": null,
+   "updatedAt": null,
+   "dataDate": null,
+   "topModel": null,
    "unit": "分",
    "note": null
   },
@@ -291,8 +283,8 @@
    "parent": "aa-math",
    "isBoard": false,
    "modelCount": 270,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "GPT-5.2 (Xhigh)",
     "org": "OpenAI",
@@ -309,8 +301,8 @@
    "parent": "aa-math",
    "isBoard": false,
    "modelCount": 202,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "GPT-5 (High)",
     "org": "OpenAI",
@@ -327,8 +319,8 @@
    "parent": "aa-math",
    "isBoard": false,
    "modelCount": 194,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "GPT-5 (High)",
     "org": "OpenAI",
@@ -345,8 +337,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 106,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "GPT Image 2.5 Sunburst (max)",
     "org": "OpenAI",
@@ -363,8 +355,8 @@
    "parent": "aa-arena-image",
    "isBoard": false,
    "modelCount": 77,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "GPT Image 2.5 Sunburst (max)",
     "org": "OpenAI",
@@ -395,8 +387,8 @@
    "parent": "aa-arena-video",
    "isBoard": false,
    "modelCount": 33,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "HeyGen Video 1",
     "org": "HeyGen",
@@ -412,13 +404,13 @@
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "modelCount": 99,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 100,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
-    "name": "Eleven v4",
+    "name": "Eleven v4 Turbo",
     "org": "ElevenLabs",
-    "score": 1335
+    "score": 1336
    },
    "unit": "ELO",
    "note": "该端点无对战次数与发布日期字段，样本量无法展示"
@@ -430,9 +422,9 @@
    "scale": "price",
    "parent": null,
    "isBoard": true,
-   "modelCount": 716,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 718,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Muse Wonder Full (Max)",
     "org": "Meta",
@@ -448,9 +440,9 @@
    "scale": "price",
    "parent": "aa-price",
    "isBoard": false,
-   "modelCount": 716,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 718,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Muse Wonder Full (Max)",
     "org": "Meta",
@@ -466,9 +458,9 @@
    "scale": "price",
    "parent": "aa-price",
    "isBoard": false,
-   "modelCount": 716,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 718,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Muse Wonder Full (Max)",
     "org": "Meta",
@@ -484,13 +476,13 @@
    "scale": "speed",
    "parent": null,
    "isBoard": true,
-   "modelCount": 716,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 718,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Celeris-1",
     "org": "Celeris",
-    "score": 1602.85
+    "score": 1718.98
    },
    "unit": "token/s",
    "note": null
@@ -502,13 +494,13 @@
    "scale": "seconds",
    "parent": "aa-speed",
    "isBoard": false,
-   "modelCount": 716,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 718,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "org": "Anthropic",
-    "score": 393.02
+    "score": 575.56
    },
    "unit": "秒",
    "note": null
@@ -520,13 +512,13 @@
    "scale": "seconds",
    "parent": "aa-speed",
    "isBoard": false,
-   "modelCount": 716,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 718,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "org": "Anthropic",
-    "score": 393.02
+    "score": 575.56
    },
    "unit": "秒",
    "note": null
@@ -538,13 +530,13 @@
    "scale": "date",
    "parent": null,
    "isBoard": true,
-   "modelCount": 716,
-   "updatedAt": "2026-10-28T19:39:33.828Z",
-   "dataDate": "2026-10-28",
+   "modelCount": 718,
+   "updatedAt": "2026-10-29T19:42:52.656Z",
+   "dataDate": "2026-10-29",
    "topModel": {
-    "name": "Gemini 4 Carbon (High)",
-    "org": "Google",
-    "score": 20261028
+    "name": "Mistral Large 4 (High)",
+    "org": "Mistral",
+    "score": 20261029
    },
    "unit": null,
    "note": "按发布日期倒序；解决「模型已发布但站上没有」的滞后"
