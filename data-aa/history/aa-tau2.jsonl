@@ -98,3 +98,53 @@
 {"d":"10-29","k":"Grok 4.20 0309 v2 (Reasoning)","r":48,"s":0.9298,"v":null}
 {"d":"10-29","k":"JT-MINI","r":49,"s":0.9298,"v":null}
 {"d":"10-29","k":"Kimi K2 Thinking","r":50,"s":0.9298,"v":null}
+{"d":"10-30","k":"GLM-5.2 (Max)","r":1,"s":0.9912,"v":null}
+{"d":"10-30","k":"JT-35B-Flash","r":2,"s":0.9912,"v":null}
+{"d":"10-30","k":"GLM-4.7-Flash (Reasoning)","r":3,"s":0.9883,"v":null}
+{"d":"10-30","k":"Claude Fable 5 (Max, Opus 4.8 Fallback)","r":4,"s":0.9854,"v":null}
+{"d":"10-30","k":"GLM 5V Turbo (Reasoning)","r":5,"s":0.9854,"v":null}
+{"d":"10-30","k":"GLM-5-Turbo","r":6,"s":0.9854,"v":null}
+{"d":"10-30","k":"Step 3.7 Flash","r":7,"s":0.9854,"v":null}
+{"d":"10-30","k":"GLM-5 (Reasoning)","r":8,"s":0.9825,"v":null}
+{"d":"10-30","k":"GLM-5.1 (Reasoning)","r":9,"s":0.9766,"v":null}
+{"d":"10-30","k":"Grok 4.3 (High)","r":10,"s":0.9766,"v":null}
+{"d":"10-30","k":"Qwen3.6 Plus","r":11,"s":0.9766,"v":null}
+{"d":"10-30","k":"GLM-5 (Non-reasoning)","r":12,"s":0.9737,"v":null}
+{"d":"10-30","k":"GLM-5.1 (Non-reasoning)","r":13,"s":0.9708,"v":null}
+{"d":"10-30","k":"Grok 4.20 0309 (Reasoning)","r":14,"s":0.9649,"v":null}
+{"d":"10-30","k":"DeepSeek V4 Pro 0424 (Max)","r":15,"s":0.962,"v":null}
+{"d":"10-30","k":"GLM-4.7 (Reasoning)","r":16,"s":0.9591,"v":null}
+{"d":"10-30","k":"Kimi K2.5 (Reasoning)","r":17,"s":0.9591,"v":null}
+{"d":"10-30","k":"Kimi K2.6 (Reasoning)","r":18,"s":0.9591,"v":null}
+{"d":"10-30","k":"Qwen3.6 Max Preview","r":19,"s":0.9591,"v":null}
+{"d":"10-30","k":"DeepSeek V4 Flash 0420 (High)","r":20,"s":0.9561,"v":null}
+{"d":"10-30","k":"Gemini 3.1 Pro Preview","r":21,"s":0.9561,"v":null}
+{"d":"10-30","k":"Gemini 3.5 Flash (Medium)","r":22,"s":0.9561,"v":null}
+{"d":"10-30","k":"Qwen3.5 397B A17B (Reasoning)","r":23,"s":0.9561,"v":null}
+{"d":"10-30","k":"Gemini 3.5 Flash (High)","r":24,"s":0.9532,"v":null}
+{"d":"10-30","k":"MiniMax-M2.5","r":25,"s":0.9532,"v":null}
+{"d":"10-30","k":"Qwen3.6 35B A3B (Reasoning)","r":26,"s":0.9532,"v":null}
+{"d":"10-30","k":"DeepSeek V4 Flash 0420 (Max)","r":27,"s":0.9503,"v":null}
+{"d":"10-30","k":"MiMo-V2-Flash (Reasoning)","r":28,"s":0.9503,"v":null}
+{"d":"10-30","k":"MiMo-V2-Pro","r":29,"s":0.9503,"v":null}
+{"d":"10-30","k":"Qwen3.7 Max","r":30,"s":0.9474,"v":null}
+{"d":"10-30","k":"Claude Opus 4.8 (Max)","r":31,"s":0.9444,"v":null}
+{"d":"10-30","k":"DeepSeek V4 Flash 0420 (Non-reasoning)","r":32,"s":0.9444,"v":null}
+{"d":"10-30","k":"Step 3.5 Flash","r":33,"s":0.9444,"v":null}
+{"d":"10-30","k":"DeepSeek V4 Pro 0424 (High)","r":34,"s":0.9415,"v":null}
+{"d":"10-30","k":"GLM-4.7 (Non-reasoning)","r":35,"s":0.9415,"v":null}
+{"d":"10-30","k":"MiMo-V2.5-Pro (Reasoning)","r":36,"s":0.9415,"v":null}
+{"d":"10-30","k":"Mistral Medium 3.5","r":37,"s":0.9415,"v":null}
+{"d":"10-30","k":"Qwen3.6 27B (Reasoning)","r":38,"s":0.9415,"v":null}
+{"d":"10-30","k":"GPT-5.5 (Xhigh)","r":39,"s":0.9386,"v":null}
+{"d":"10-30","k":"Kimi K2.6 (Non-reasoning)","r":40,"s":0.9386,"v":null}
+{"d":"10-30","k":"Qwen3.5 27B (Reasoning)","r":41,"s":0.9386,"v":null}
+{"d":"10-30","k":"Qwen3.5 122B A10B (Reasoning)","r":42,"s":0.9357,"v":null}
+{"d":"10-30","k":"Qwen3.6 27B (Non-reasoning)","r":43,"s":0.9357,"v":null}
+{"d":"10-30","k":"Grok 4.1 Fast (Reasoning)","r":44,"s":0.9327,"v":null}
+{"d":"10-30","k":"MiMo-V2-Flash (Feb 2026)","r":45,"s":0.9327,"v":null}
+{"d":"10-30","k":"Tri-21B-think Preview","r":46,"s":0.9327,"v":null}
+{"d":"10-30","k":"GPT-5.5 (High)","r":47,"s":0.9298,"v":null}
+{"d":"10-30","k":"Grok 4.20 0309 v2 (Reasoning)","r":48,"s":0.9298,"v":null}
+{"d":"10-30","k":"JT-MINI","r":49,"s":0.9298,"v":null}
+{"d":"10-30","k":"Kimi K2 Thinking","r":50,"s":0.9298,"v":null}
