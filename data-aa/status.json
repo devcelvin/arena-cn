@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-10-30T19:29:09.768Z",
- "lastAttempt": "2026-10-30T19:29:09.768Z",
+ "lastSuccess": "2026-10-31T18:38:36.126Z",
+ "lastAttempt": "2026-10-31T18:38:36.126Z",
  "stale": false,
  "lastError": null,
  "source": {
@@ -112,9 +112,9 @@
   },
   "aa-arena-video": {
    "ok": false,
-   "error": "模型数异常波动：75 → 32（57%）",
+   "error": "模型数异常波动：75 → 33（56%）",
    "warnings": [
-    "top1 评分变化较大：1368 → 1129（-17.5%）"
+    "top1 评分变化较大：1368 → 1155（-15.6%）"
    ]
   },
   "aa-arena-t2v": {
@@ -164,5 +164,5 @@
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 7.2
+ "repoSizeMB": 8.2
 }

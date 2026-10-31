@@ -148,3 +148,53 @@
 {"d":"10-30","k":"EXAONE 4.0 32B (Non-reasoning)","r":48,"s":0,"v":null}
 {"d":"10-30","k":"EXAONE 4.0 32B (Reasoning)","r":49,"s":0,"v":null}
 {"d":"10-30","k":"EXAONE 4.5 33B (Non-reasoning)","r":50,"s":0,"v":null}
+{"d":"10-31","k":"Muse Wonder Full (Max)","r":1,"s":0,"v":null}
+{"d":"10-31","k":"K2 Horizon 375B A23B","r":2,"s":0,"v":null}
+{"d":"10-31","k":"Command A+","r":3,"s":0,"v":null}
+{"d":"10-31","k":"Granite 4.2 3B","r":4,"s":0,"v":null}
+{"d":"10-31","k":"NVIDIA Nemotron 3 Nano 4B","r":5,"s":0,"v":null}
+{"d":"10-31","k":"A.X-K2","r":6,"s":0,"v":null}
+{"d":"10-31","k":"Apertus 70B Instruct","r":7,"s":0,"v":null}
+{"d":"10-31","k":"Apriel-v1.5-15B-Thinker","r":8,"s":0,"v":null}
+{"d":"10-31","k":"Apriel-v1.6-15B-Thinker","r":9,"s":0,"v":null}
+{"d":"10-31","k":"Arctic Instruct","r":10,"s":0,"v":null}
+{"d":"10-31","k":"Claude 2.0","r":11,"s":0,"v":null}
+{"d":"10-31","k":"Claude 2.1","r":12,"s":0,"v":null}
+{"d":"10-31","k":"Claude 3 Sonnet","r":13,"s":0,"v":null}
+{"d":"10-31","k":"Claude 3.5 Haiku","r":14,"s":0,"v":null}
+{"d":"10-31","k":"Claude 3.7 Sonnet (Reasoning)","r":15,"s":0,"v":null}
+{"d":"10-31","k":"Claude 4 Sonnet (Non-reasoning)","r":16,"s":0,"v":null}
+{"d":"10-31","k":"Claude 4 Sonnet (Reasoning)","r":17,"s":0,"v":null}
+{"d":"10-31","k":"Claude Instant","r":18,"s":0,"v":null}
+{"d":"10-31","k":"Cogito v2.1 (Reasoning)","r":19,"s":0,"v":null}
+{"d":"10-31","k":"Command-R (Mar '24)","r":20,"s":0,"v":null}
+{"d":"10-31","k":"Command-R+ (Apr '24)","r":21,"s":0,"v":null}
+{"d":"10-31","k":"DBRX Instruct","r":22,"s":0,"v":null}
+{"d":"10-31","k":"DeepHermes 3 - Llama-3.1 8B Preview (Non-reasoning)","r":23,"s":0,"v":null}
+{"d":"10-31","k":"DeepHermes 3 - Mistral 24B Preview (Non-reasoning)","r":24,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek Coder V2 Lite Instruct","r":25,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek LLM 67B Chat (V1)","r":26,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek R1 0528 Qwen3 8B","r":27,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek R1 Distill Llama 8B","r":28,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek R1 Distill Qwen 1.5B","r":29,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek R1 Distill Qwen 14B","r":30,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek R1 Distill Qwen 32B","r":31,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek V3.2 Speciale","r":32,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek-Coder-V2","r":33,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek-V2-Chat","r":34,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek-V2.5","r":35,"s":0,"v":null}
+{"d":"10-31","k":"DeepSeek-V2.5 (Dec '24)","r":36,"s":0,"v":null}
+{"d":"10-31","k":"Devstral 2","r":37,"s":0,"v":null}
+{"d":"10-31","k":"Devstral Medium","r":38,"s":0,"v":null}
+{"d":"10-31","k":"Devstral Small (Jul '25)","r":39,"s":0,"v":null}
+{"d":"10-31","k":"Devstral Small (May '25)","r":40,"s":0,"v":null}
+{"d":"10-31","k":"Devstral Small 2","r":41,"s":0,"v":null}
+{"d":"10-31","k":"DiffusionGemma 26B A4B","r":42,"s":0,"v":null}
+{"d":"10-31","k":"Doubao Seed Code","r":43,"s":0,"v":null}
+{"d":"10-31","k":"ERNIE 4.5 300B A47B","r":44,"s":0,"v":null}
+{"d":"10-31","k":"ERNIE 5.0 Thinking Preview","r":45,"s":0,"v":null}
+{"d":"10-31","k":"Exaone 4.0 1.2B (Non-reasoning)","r":46,"s":0,"v":null}
+{"d":"10-31","k":"Exaone 4.0 1.2B (Reasoning)","r":47,"s":0,"v":null}
+{"d":"10-31","k":"EXAONE 4.0 32B (Non-reasoning)","r":48,"s":0,"v":null}
+{"d":"10-31","k":"EXAONE 4.0 32B (Reasoning)","r":49,"s":0,"v":null}
+{"d":"10-31","k":"EXAONE 4.5 33B (Non-reasoning)","r":50,"s":0,"v":null}

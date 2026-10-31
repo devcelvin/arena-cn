@@ -148,3 +148,53 @@
 {"d":"10-30","k":"Qwen3.5 122B A10B (Non-reasoning)","r":48,"s":142.6,"v":null}
 {"d":"10-30","k":"Qwen3.6 35B A3B (Non-reasoning)","r":49,"s":141.83,"v":null}
 {"d":"10-30","k":"Gemma 4 12B (Reasoning)","r":50,"s":141.63,"v":null}
+{"d":"10-31","k":"Celeris-1","r":1,"s":1721.34,"v":null}
+{"d":"10-31","k":"Nemotron 3.5 Super VL","r":2,"s":455.86,"v":null}
+{"d":"10-31","k":"Gemini 3.5 Flash-Lite","r":3,"s":396.95,"v":null}
+{"d":"10-31","k":"K2 Horizon 375B A23B","r":4,"s":389.78,"v":null}
+{"d":"10-31","k":"Beam 1.0","r":5,"s":340.41,"v":null}
+{"d":"10-31","k":"Nemotron 3.5 Lightning","r":6,"s":279.85,"v":null}
+{"d":"10-31","k":"NVIDIA Nemotron 3 Nano 30B A3B (Non-reasoning)","r":7,"s":260.91,"v":null}
+{"d":"10-31","k":"gpt-oss-120b (Low)","r":8,"s":258.28,"v":null}
+{"d":"10-31","k":"Nova Micro","r":9,"s":246.49,"v":null}
+{"d":"10-31","k":"NVIDIA Nemotron 3 Nano 30B A3B (Reasoning)","r":10,"s":239.94,"v":null}
+{"d":"10-31","k":"Claude Haiku 5.5 (Max)","r":11,"s":236.63,"v":null}
+{"d":"10-31","k":"Nemotron 3 Nano Omni 30B A3B Reasoning","r":12,"s":234.47,"v":null}
+{"d":"10-31","k":"NVIDIA Nemotron Nano 9B V2 (Reasoning)","r":13,"s":228.53,"v":null}
+{"d":"10-31","k":"Qwen3.5 Omni Flash","r":14,"s":224.08,"v":null}
+{"d":"10-31","k":"Ling 3.1 Flash","r":15,"s":215.18,"v":null}
+{"d":"10-31","k":"Nova 2.0 Lite (High)","r":16,"s":214.33,"v":null}
+{"d":"10-31","k":"Nova 2.0 Lite (Non-reasoning)","r":17,"s":208.56,"v":null}
+{"d":"10-31","k":"NVIDIA Nemotron Nano 12B v2 VL (Non-reasoning)","r":18,"s":207,"v":null}
+{"d":"10-31","k":"Ministral 3 3B","r":19,"s":203.6,"v":null}
+{"d":"10-31","k":"Nova 2.0 Lite (Low)","r":20,"s":202.47,"v":null}
+{"d":"10-31","k":"Inkling Small","r":21,"s":195.82,"v":null}
+{"d":"10-31","k":"gpt-oss-120b (High)","r":22,"s":185.8,"v":null}
+{"d":"10-31","k":"Nova 2.0 Lite (Medium)","r":23,"s":178.6,"v":null}
+{"d":"10-31","k":"Claude Haiku 5.5 (Xhigh)","r":24,"s":176.62,"v":null}
+{"d":"10-31","k":"Mistral Small 4 (Reasoning)","r":25,"s":174.98,"v":null}
+{"d":"10-31","k":"NVIDIA Nemotron Nano 9B V2 (Non-reasoning)","r":26,"s":170.44,"v":null}
+{"d":"10-31","k":"Mistral Large 4 (High)","r":27,"s":169.06,"v":null}
+{"d":"10-31","k":"Command A+","r":28,"s":167.3,"v":null}
+{"d":"10-31","k":"Inkling (Xhigh)","r":29,"s":162.73,"v":null}
+{"d":"10-31","k":"Mistral Small 4 (Non-reasoning)","r":30,"s":161.8,"v":null}
+{"d":"10-31","k":"Claude Haiku 5.5 (High)","r":31,"s":159.58,"v":null}
+{"d":"10-31","k":"Apertus 8B Instruct","r":32,"s":159.34,"v":null}
+{"d":"10-31","k":"Mistral Medium 3.5","r":33,"s":159.13,"v":null}
+{"d":"10-31","k":"DeepSeek V4.1 Flash 1017 (Max)","r":34,"s":157.65,"v":null}
+{"d":"10-31","k":"Sarvam 105B (High)","r":35,"s":155.41,"v":null}
+{"d":"10-31","k":"DeepSeek V4 Flash Vision (Max)","r":36,"s":153.5,"v":null}
+{"d":"10-31","k":"Claude Haiku 5.5 (Low)","r":37,"s":152.3,"v":null}
+{"d":"10-31","k":"Nemotron 3 Ultra 550B A55B (Reasoning)","r":38,"s":151.58,"v":null}
+{"d":"10-31","k":"Muse Spark Open (Xhigh)","r":39,"s":149.97,"v":null}
+{"d":"10-31","k":"Claude Haiku 5.5 (Medium)","r":40,"s":149.47,"v":null}
+{"d":"10-31","k":"GPT-5.5 Instant (June 2026)","r":41,"s":148.73,"v":null}
+{"d":"10-31","k":"Gemma 4 12B (Non-reasoning)","r":42,"s":144.78,"v":null}
+{"d":"10-31","k":"Qwen3.5 122B A10B (Non-reasoning)","r":43,"s":143.79,"v":null}
+{"d":"10-31","k":"Muse Wonder (Max)","r":44,"s":143.02,"v":null}
+{"d":"10-31","k":"Qwen3 Next 80B A3B Instruct","r":45,"s":142.76,"v":null}
+{"d":"10-31","k":"DeepSeek V4.1 Flash 1017 (Non-reasoning)","r":46,"s":142.57,"v":null}
+{"d":"10-31","k":"Quasar 438B (Max, Based on GLM-5.2)","r":47,"s":142.43,"v":null}
+{"d":"10-31","k":"Qwen3.6 35B A3B (Non-reasoning)","r":48,"s":141.83,"v":null}
+{"d":"10-31","k":"Nova 2.0 Pro Preview (Low)","r":49,"s":140.38,"v":null}
+{"d":"10-31","k":"gpt-oss-20b (High)","r":50,"s":140.37,"v":null}
