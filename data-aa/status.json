@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-10-31T18:38:36.126Z",
- "lastAttempt": "2026-10-31T18:38:36.126Z",
+ "lastSuccess": "2026-11-01T18:59:40.419Z",
+ "lastAttempt": "2026-11-01T18:59:40.419Z",
  "stale": false,
  "lastError": null,
  "source": {
@@ -150,12 +150,16 @@
   "aa-ttft": {
    "ok": true,
    "count": 719,
-   "warnings": []
+   "warnings": [
+    "top1 评分变化较大：559.33 → 454.94（-18.7%）"
+   ]
   },
   "aa-ttfa": {
    "ok": true,
    "count": 719,
-   "warnings": []
+   "warnings": [
+    "top1 评分变化较大：559.33 → 454.94（-18.7%）"
+   ]
   },
   "aa-new": {
    "ok": true,
@@ -164,5 +168,5 @@
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 8.2
+ "repoSizeMB": 9.2
 }
