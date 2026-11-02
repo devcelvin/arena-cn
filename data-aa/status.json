@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-11-01T18:59:40.419Z",
- "lastAttempt": "2026-11-01T18:59:40.419Z",
+ "lastSuccess": "2026-11-02T22:48:52.805Z",
+ "lastAttempt": "2026-11-02T22:48:52.805Z",
  "stale": false,
  "lastError": null,
  "source": {
@@ -12,7 +12,7 @@
  "boards": {
   "aa-intelligence": {
    "ok": true,
-   "count": 89,
+   "count": 93,
    "warnings": []
   },
   "aa-hle": {
@@ -57,7 +57,7 @@
   },
   "aa-tb-40": {
    "ok": true,
-   "count": 236,
+   "count": 239,
    "warnings": []
   },
   "aa-tb-21": {
@@ -129,44 +129,44 @@
   },
   "aa-price": {
    "ok": true,
-   "count": 719,
+   "count": 722,
    "warnings": []
   },
   "aa-price-input": {
    "ok": true,
-   "count": 719,
+   "count": 722,
    "warnings": []
   },
   "aa-price-output": {
    "ok": true,
-   "count": 719,
+   "count": 722,
    "warnings": []
   },
   "aa-speed": {
    "ok": true,
-   "count": 719,
+   "count": 722,
    "warnings": []
   },
   "aa-ttft": {
    "ok": true,
-   "count": 719,
+   "count": 722,
    "warnings": [
-    "top1 评分变化较大：559.33 → 454.94（-18.7%）"
+    "top1 评分变化较大：454.94 → 550.8（21.1%）"
    ]
   },
   "aa-ttfa": {
    "ok": true,
-   "count": 719,
+   "count": 722,
    "warnings": [
-    "top1 评分变化较大：559.33 → 454.94（-18.7%）"
+    "top1 评分变化较大：454.94 → 550.8（21.1%）"
    ]
   },
   "aa-new": {
    "ok": true,
-   "count": 719,
+   "count": 722,
    "warnings": []
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 9.2
+ "repoSizeMB": 10.2
 }
