@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-02T22:48:52.805Z",
+ "generatedAt": "2026-11-03T20:31:45.253Z",
  "source": {
   "publisher": "Artificial Analysis",
   "url": "https://artificialanalysis.ai",
@@ -20,9 +20,9 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 93,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 95,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Gemini 4 Carbon (High)",
     "org": "Google",
@@ -39,8 +39,8 @@
    "parent": "aa-intelligence",
    "isBoard": false,
    "modelCount": 677,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -57,8 +57,8 @@
    "parent": "aa-intelligence",
    "isBoard": false,
    "modelCount": 617,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "GPT-6 Astra (Xhigh)",
     "org": "OpenAI",
@@ -75,8 +75,8 @@
    "parent": "aa-intelligence",
    "isBoard": false,
    "modelCount": 349,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Gemini 3 Pro Preview (High)",
     "org": "Google",
@@ -93,8 +93,8 @@
    "parent": "aa-intelligence",
    "isBoard": false,
    "modelCount": 589,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Kimi K3 (Max)",
     "org": "Kimi",
@@ -125,8 +125,8 @@
    "parent": "aa-coding",
    "isBoard": false,
    "modelCount": 343,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Gemini 3 Pro Preview (High)",
     "org": "Google",
@@ -143,8 +143,8 @@
    "parent": "aa-coding",
    "isBoard": false,
    "modelCount": 244,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -161,8 +161,8 @@
    "parent": "aa-coding",
    "isBoard": false,
    "modelCount": 432,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "GPT-5.6 Sol (Max)",
     "org": "OpenAI",
@@ -178,9 +178,9 @@
    "scale": "rate",
    "parent": "aa-coding",
    "isBoard": false,
-   "modelCount": 239,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 240,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Kimi K3.1 Pro",
     "org": "Kimi",
@@ -197,8 +197,8 @@
    "parent": "aa-coding",
    "isBoard": false,
    "modelCount": 242,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Claude Fable 5.1 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -215,8 +215,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 440,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "GLM-5.2 (Max)",
     "org": "Z.ai",
@@ -233,8 +233,8 @@
    "parent": "aa-tau2",
    "isBoard": false,
    "modelCount": 451,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Grok 4.3 (Medium)",
     "org": "SpaceXAI",
@@ -251,8 +251,8 @@
    "parent": "aa-tau2",
    "isBoard": false,
    "modelCount": 209,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Qwen3.8 Max",
     "org": "Alibaba",
@@ -283,8 +283,8 @@
    "parent": "aa-math",
    "isBoard": false,
    "modelCount": 270,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "GPT-5.2 (Xhigh)",
     "org": "OpenAI",
@@ -301,8 +301,8 @@
    "parent": "aa-math",
    "isBoard": false,
    "modelCount": 202,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "GPT-5 (High)",
     "org": "OpenAI",
@@ -319,8 +319,8 @@
    "parent": "aa-math",
    "isBoard": false,
    "modelCount": 194,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "GPT-5 (High)",
     "org": "OpenAI",
@@ -337,12 +337,12 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 106,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "GPT Image 2.5 Sunburst (max)",
     "org": "OpenAI",
-    "score": 1222
+    "score": 1223
    },
    "unit": "ELO",
    "note": null
@@ -355,8 +355,8 @@
    "parent": "aa-arena-image",
    "isBoard": false,
    "modelCount": 77,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "GPT Image 2.5 Sunburst (max)",
     "org": "OpenAI",
@@ -387,8 +387,8 @@
    "parent": "aa-arena-video",
    "isBoard": false,
    "modelCount": 36,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "HeyGen Video 1",
     "org": "HeyGen",
@@ -404,13 +404,13 @@
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "modelCount": 100,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 103,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Eleven v4",
     "org": "ElevenLabs",
-    "score": 1333
+    "score": 1334
    },
    "unit": "ELO",
    "note": "该端点无对战次数与发布日期字段，样本量无法展示"
@@ -422,9 +422,9 @@
    "scale": "price",
    "parent": null,
    "isBoard": true,
-   "modelCount": 722,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 723,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Muse Wonder Full (Max)",
     "org": "Meta",
@@ -440,9 +440,9 @@
    "scale": "price",
    "parent": "aa-price",
    "isBoard": false,
-   "modelCount": 722,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 723,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Muse Wonder Full (Max)",
     "org": "Meta",
@@ -458,9 +458,9 @@
    "scale": "price",
    "parent": "aa-price",
    "isBoard": false,
-   "modelCount": 722,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 723,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Muse Wonder Full (Max)",
     "org": "Meta",
@@ -476,13 +476,13 @@
    "scale": "speed",
    "parent": null,
    "isBoard": true,
-   "modelCount": 722,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 723,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Celeris-1",
     "org": "Celeris",
-    "score": 1590.3
+    "score": 1517.9
    },
    "unit": "token/s",
    "note": null
@@ -494,13 +494,13 @@
    "scale": "seconds",
    "parent": "aa-speed",
    "isBoard": false,
-   "modelCount": 722,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 723,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "org": "Anthropic",
-    "score": 550.8
+    "score": 535.84
    },
    "unit": "秒",
    "note": null
@@ -512,13 +512,13 @@
    "scale": "seconds",
    "parent": "aa-speed",
    "isBoard": false,
-   "modelCount": 722,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 723,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
     "org": "Anthropic",
-    "score": 550.8
+    "score": 535.84
    },
    "unit": "秒",
    "note": null
@@ -530,9 +530,9 @@
    "scale": "date",
    "parent": null,
    "isBoard": true,
-   "modelCount": 722,
-   "updatedAt": "2026-11-02T22:48:52.805Z",
-   "dataDate": "2026-11-02",
+   "modelCount": 723,
+   "updatedAt": "2026-11-03T20:31:45.253Z",
+   "dataDate": "2026-11-03",
    "topModel": {
     "name": "Mistral Large 4 (High)",
     "org": "Mistral",

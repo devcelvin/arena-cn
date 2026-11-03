@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-11-02T22:48:52.805Z",
- "lastAttempt": "2026-11-02T22:48:52.805Z",
+ "lastSuccess": "2026-11-03T20:31:45.253Z",
+ "lastAttempt": "2026-11-03T20:31:45.253Z",
  "stale": false,
  "lastError": null,
  "source": {
@@ -12,7 +12,7 @@
  "boards": {
   "aa-intelligence": {
    "ok": true,
-   "count": 93,
+   "count": 95,
    "warnings": []
   },
   "aa-hle": {
@@ -57,7 +57,7 @@
   },
   "aa-tb-40": {
    "ok": true,
-   "count": 239,
+   "count": 240,
    "warnings": []
   },
   "aa-tb-21": {
@@ -112,9 +112,9 @@
   },
   "aa-arena-video": {
    "ok": false,
-   "error": "模型数异常波动：75 → 33（56%）",
+   "error": "模型数异常波动：75 → 34（55%）",
    "warnings": [
-    "top1 评分变化较大：1368 → 1155（-15.6%）"
+    "top1 评分变化较大：1368 → 1154（-15.6%）"
    ]
   },
   "aa-arena-t2v": {
@@ -124,49 +124,45 @@
   },
   "aa-arena-speech": {
    "ok": true,
-   "count": 100,
+   "count": 103,
    "warnings": []
   },
   "aa-price": {
    "ok": true,
-   "count": 722,
+   "count": 723,
    "warnings": []
   },
   "aa-price-input": {
    "ok": true,
-   "count": 722,
+   "count": 723,
    "warnings": []
   },
   "aa-price-output": {
    "ok": true,
-   "count": 722,
+   "count": 723,
    "warnings": []
   },
   "aa-speed": {
    "ok": true,
-   "count": 722,
+   "count": 723,
    "warnings": []
   },
   "aa-ttft": {
    "ok": true,
-   "count": 722,
-   "warnings": [
-    "top1 评分变化较大：454.94 → 550.8（21.1%）"
-   ]
+   "count": 723,
+   "warnings": []
   },
   "aa-ttfa": {
    "ok": true,
-   "count": 722,
-   "warnings": [
-    "top1 评分变化较大：454.94 → 550.8（21.1%）"
-   ]
+   "count": 723,
+   "warnings": []
   },
   "aa-new": {
    "ok": true,
-   "count": 722,
+   "count": 723,
    "warnings": []
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 10.2
+ "repoSizeMB": 11.2
 }
