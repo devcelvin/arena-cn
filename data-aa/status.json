@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-11-03T20:31:45.253Z",
- "lastAttempt": "2026-11-03T20:31:45.253Z",
+ "lastSuccess": "2026-11-04T20:51:05.449Z",
+ "lastAttempt": "2026-11-04T20:51:05.449Z",
  "stale": false,
  "lastError": null,
  "source": {
@@ -12,7 +12,7 @@
  "boards": {
   "aa-intelligence": {
    "ok": true,
-   "count": 95,
+   "count": 102,
    "warnings": []
   },
   "aa-hle": {
@@ -112,9 +112,9 @@
   },
   "aa-arena-video": {
    "ok": false,
-   "error": "模型数异常波动：75 → 34（55%）",
+   "error": "模型数异常波动：75 → 35（53%）",
    "warnings": [
-    "top1 评分变化较大：1368 → 1154（-15.6%）"
+    "top1 评分变化较大：1368 → 1155（-15.6%）"
    ]
   },
   "aa-arena-t2v": {
@@ -164,5 +164,5 @@
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 11.2
+ "repoSizeMB": 12.3
 }
