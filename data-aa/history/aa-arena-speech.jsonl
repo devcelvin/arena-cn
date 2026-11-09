@@ -398,3 +398,53 @@
 {"d":"11-04","k":"Turbo v2.5","r":48,"s":1092,"v":null}
 {"d":"11-04","k":"Multilingual v2","r":49,"s":1092,"v":null}
 {"d":"11-04","k":"Speech-02-Turbo","r":50,"s":1090,"v":null}
+{"d":"11-09","k":"Eleven v4","r":1,"s":1339,"v":null}
+{"d":"11-09","k":"Eleven v4 Turbo","r":2,"s":1335,"v":null}
+{"d":"11-09","k":"Qwen-Audio-3.1-TTS-Plus","r":3,"s":1303,"v":null}
+{"d":"11-09","k":"Sonic 3.6","r":4,"s":1297,"v":null}
+{"d":"11-09","k":"Simba 3.5","r":5,"s":1286,"v":null}
+{"d":"11-09","k":"Gemini 3.8 Flash TTS","r":6,"s":1283,"v":null}
+{"d":"11-09","k":"Fish Audio Drama 3","r":7,"s":1275,"v":null}
+{"d":"11-09","k":"Lightning V3.1 Pro (Oct 2026)","r":8,"s":1273,"v":null}
+{"d":"11-09","k":"Qwen-Audio-3.0-TTS-Plus","r":9,"s":1268,"v":null}
+{"d":"11-09","k":"Realtime TTS-2","r":10,"s":1268,"v":null}
+{"d":"11-09","k":"Gemini 3.8 Flash-Lite TTS","r":11,"s":1260,"v":null}
+{"d":"11-09","k":"Simba 3.2","r":12,"s":1250,"v":null}
+{"d":"11-09","k":"Fish Audio Drama 3 Preview","r":13,"s":1241,"v":null}
+{"d":"11-09","k":"Breeze TTS 2","r":14,"s":1228,"v":null}
+{"d":"11-09","k":"AssemblyAI-TTS-1","r":15,"s":1224,"v":null}
+{"d":"11-09","k":"Realtime TTS-2 Flash","r":16,"s":1217,"v":null}
+{"d":"11-09","k":"Voxtral 3 TTS","r":17,"s":1217,"v":null}
+{"d":"11-09","k":"v3 Conversational","r":18,"s":1216,"v":null}
+{"d":"11-09","k":"StepAudio 2.5 TTS (Aug 2026)","r":19,"s":1216,"v":null}
+{"d":"11-09","k":"Gemini 3.1 Flash TTS","r":20,"s":1215,"v":null}
+{"d":"11-09","k":"Luna TTS","r":21,"s":1204,"v":null}
+{"d":"11-09","k":"Sonic 3.5","r":22,"s":1196,"v":null}
+{"d":"11-09","k":"Eleven v3","r":23,"s":1189,"v":null}
+{"d":"11-09","k":"Fish Audio S2.1 Pro (Oct 2026)","r":24,"s":1188,"v":null}
+{"d":"11-09","k":"Ming-3.0-tts","r":25,"s":1187,"v":null}
+{"d":"11-09","k":"Soniox TTS Real-Time v2","r":26,"s":1181,"v":null}
+{"d":"11-09","k":"Gradium TTS (Sep 2026)","r":27,"s":1176,"v":null}
+{"d":"11-09","k":"Speech 2.8 HD","r":28,"s":1175,"v":null}
+{"d":"11-09","k":"Gradium TTS (Oct 2026)","r":29,"s":1168,"v":null}
+{"d":"11-09","k":"SpaceXAI TTS","r":30,"s":1159,"v":null}
+{"d":"11-09","k":"Falcon 2","r":31,"s":1158,"v":null}
+{"d":"11-09","k":"Speech 2.8 Turbo","r":32,"s":1153,"v":null}
+{"d":"11-09","k":"Gradium TTS (Aug 2026)","r":33,"s":1153,"v":null}
+{"d":"11-09","k":"Azure HD 2.5","r":34,"s":1145,"v":null}
+{"d":"11-09","k":"Async Flash v1.5","r":35,"s":1140,"v":null}
+{"d":"11-09","k":"Step TTS 2 (Mar 2026)","r":36,"s":1138,"v":null}
+{"d":"11-09","k":"Async Pro v1.0","r":37,"s":1129,"v":null}
+{"d":"11-09","k":"Speech 2.6 HD","r":38,"s":1127,"v":null}
+{"d":"11-09","k":"Speech 2.6 Turbo","r":39,"s":1121,"v":null}
+{"d":"11-09","k":"Simba 3.0","r":40,"s":1117,"v":null}
+{"d":"11-09","k":"Phonon 31M (English)","r":41,"s":1114,"v":null}
+{"d":"11-09","k":"Coda v2","r":42,"s":1112,"v":null}
+{"d":"11-09","k":"Chatterbox HD","r":43,"s":1111,"v":null}
+{"d":"11-09","k":"Fish Audio S2 Pro","r":44,"s":1108,"v":null}
+{"d":"11-09","k":"TTS-1 HD","r":45,"s":1107,"v":null}
+{"d":"11-09","k":"Speech-02-HD","r":46,"s":1105,"v":null}
+{"d":"11-09","k":"Step Audio EditX (Mar 2026)","r":47,"s":1101,"v":null}
+{"d":"11-09","k":"Multilingual v2","r":48,"s":1094,"v":null}
+{"d":"11-09","k":"Turbo v2.5","r":49,"s":1094,"v":null}
+{"d":"11-09","k":"Speech 2.6","r":50,"s":1093,"v":null}

@@ -1,168 +1,138 @@
 {
- "lastSuccess": "2026-11-04T20:51:05.449Z",
- "lastAttempt": "2026-11-04T20:51:05.449Z",
+ "lastSuccess": "2026-11-09T08:55:03.970Z",
+ "lastAttempt": "2026-11-09T08:55:03.970Z",
  "stale": false,
+ "contractVersion": "aa-v2-free-2026-11",
  "lastError": null,
+ "failedBoards": [],
  "source": {
   "publisher": "Artificial Analysis",
   "url": "https://artificialanalysis.ai",
   "license": "免费 API（须署名）",
-  "licenseUrl": "https://artificialanalysis.ai/api-reference"
+  "licenseUrl": "https://artificialanalysis.ai/data-api/docs#attribution-and-licensing"
  },
  "boards": {
   "aa-intelligence": {
    "ok": true,
-   "count": 102,
-   "warnings": []
+   "count": 110,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
-  "aa-hle": {
+  "aa-cap-finance": {
    "ok": true,
-   "count": 677,
-   "warnings": []
+   "count": 121,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
-  "aa-gpqa": {
+  "aa-cap-strategy": {
    "ok": true,
-   "count": 617,
-   "warnings": []
+   "count": 125,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
-  "aa-mmlu-pro": {
+  "aa-cap-legal": {
    "ok": true,
-   "count": 349,
-   "warnings": []
+   "count": 121,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
-  "aa-lcr": {
+  "aa-cap-healthcare": {
    "ok": true,
-   "count": 589,
-   "warnings": []
+   "count": 94,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
-  "aa-coding": {
-   "ok": false,
-   "error": "本轮抓取无数据（subset/category 缺失或下载失败）",
-   "warnings": []
-  },
-  "aa-livecodebench": {
+  "aa-cap-engineering": {
    "ok": true,
-   "count": 343,
-   "warnings": []
+   "count": 110,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
-  "aa-scicode": {
+  "aa-cap-economics": {
    "ok": true,
-   "count": 244,
-   "warnings": []
-  },
-  "aa-tb-hard": {
-   "ok": true,
-   "count": 432,
-   "warnings": []
-  },
-  "aa-tb-40": {
-   "ok": true,
-   "count": 240,
-   "warnings": []
-  },
-  "aa-tb-21": {
-   "ok": true,
-   "count": 242,
-   "warnings": []
-  },
-  "aa-tau2": {
-   "ok": true,
-   "count": 440,
-   "warnings": []
-  },
-  "aa-ifbench": {
-   "ok": true,
-   "count": 451,
-   "warnings": []
-  },
-  "aa-tau-banking": {
-   "ok": true,
-   "count": 209,
-   "warnings": []
-  },
-  "aa-math": {
-   "ok": false,
-   "error": "本轮抓取无数据（subset/category 缺失或下载失败）",
-   "warnings": []
-  },
-  "aa-aime25": {
-   "ok": true,
-   "count": 270,
-   "warnings": []
-  },
-  "aa-math500": {
-   "ok": true,
-   "count": 202,
-   "warnings": []
-  },
-  "aa-aime": {
-   "ok": true,
-   "count": 194,
-   "warnings": []
+   "count": 121,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-arena-image": {
    "ok": true,
-   "count": 106,
-   "warnings": []
+   "count": 108,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-arena-image-edit": {
    "ok": true,
-   "count": 77,
-   "warnings": []
+   "count": 79,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-arena-video": {
-   "ok": false,
-   "error": "模型数异常波动：75 → 35（53%）",
+   "ok": true,
+   "count": 38,
    "warnings": [
-    "top1 评分变化较大：1368 → 1155（-15.6%）"
-   ]
+    "top1 评分变化较大：1368 → 1154（-15.6%）"
+   ],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-arena-t2v": {
    "ok": true,
-   "count": 36,
-   "warnings": []
+   "count": 37,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-arena-speech": {
    "ok": true,
-   "count": 103,
-   "warnings": []
+   "count": 104,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-price": {
    "ok": true,
-   "count": 723,
-   "warnings": []
+   "count": 447,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-price-input": {
    "ok": true,
-   "count": 723,
-   "warnings": []
+   "count": 447,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-price-output": {
    "ok": true,
-   "count": 723,
-   "warnings": []
+   "count": 447,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-speed": {
    "ok": true,
-   "count": 723,
-   "warnings": []
+   "count": 378,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-ttft": {
    "ok": true,
-   "count": 723,
-   "warnings": []
+   "count": 378,
+   "warnings": [
+    "top1 评分变化较大：518.7 → 645.03（24.4%）"
+   ],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-ttfa": {
    "ok": true,
-   "count": 723,
-   "warnings": []
+   "count": 378,
+   "warnings": [
+    "top1 评分变化较大：518.7 → 645.03（24.4%）"
+   ],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   },
   "aa-new": {
    "ok": true,
-   "count": 723,
-   "warnings": []
+   "count": 727,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T08:55:03.970Z"
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 12.3
+ "repoSizeMB": 10.7
 }

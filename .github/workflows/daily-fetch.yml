@@ -3,8 +3,11 @@
 # 时间：UTC 14:23 = 北京时间 22:23（避开整点 cron 排队高峰）
 # 手动补跑：Actions → Daily Sync → Run workflow
 #
-# 数据源：Artificial Analysis 免费 Data API（https://artificialanalysis.ai/api-reference）
-#   要求：必须署名（页脚与榜单页已标注）；免费层 1000 请求/天，本流程每天 6 次。
+# 数据源：Artificial Analysis V2 Data API 免费层（https://artificialanalysis.ai/data-api/docs）
+#   要求：必须署名（页脚与榜单页已标注）；免费层 100 请求 / 24h 滚动窗口，
+#         本流程每天 9 次（LLM 列表 4 页 + 5 个媒体端点）。
+#   2026-11-09：旧 /api/v2/data/* 端点已于 11-04 退役（410 Gone），现行路径见
+#         scripts/boards.aa.config.mjs；fetch-aa.mjs 会做端点/契约自检并 fail-fast。
 #   Key 存放：仓库 Secrets 的 AA_API_KEY（不要把 key 写进代码或提交历史）。
 #
 # 回退到旧源（LMArena）：把下方命令改为 `node scripts/fetch-hf.mjs && DATA_SOURCE=lmarena node scripts/build-data.mjs`，
@@ -20,6 +23,11 @@ on:
   push:
     paths:
       - '.github/workflows/daily-fetch.yml'
+
+# 同一次只允许一个同步在跑：避免手动补跑与 cron 撞车、互相 rebase 打架
+concurrency:
+  group: daily-sync
+  cancel-in-progress: false
 
 permissions:
   contents: write   # 提交数据快照
@@ -46,6 +54,24 @@ jobs:
           node scripts/fetch-aa.mjs
           node scripts/build-data.mjs
 
+      # 双保险：即使上面两步未来被改坏，也不允许「数据已过期但流程显绿」
+      - name: 断言数据新鲜度
+        run: |
+          node --input-type=commonjs -e '
+          const fs = require("fs");
+          const s = JSON.parse(fs.readFileSync("data-aa/status.json", "utf8"));
+          const age = Date.now() - new Date(s.lastSuccess).getTime();
+          if (!s.lastSuccess || !Number.isFinite(age) || age > 2 * 86400000) {
+            console.error("::error::数据超过 2 天未成功同步（lastSuccess=" + s.lastSuccess + "）");
+            process.exit(1);
+          }
+          if (s.failedBoards && s.failedBoards.length) {
+            console.error("::error::仍有失败的榜：" + s.failedBoards.join(", "));
+            process.exit(1);
+          }
+          console.log("新鲜度通过：" + s.lastSuccess + " · 失败榜 0 · 契约 " + s.contractVersion);
+          '
+
       - name: 提交数据快照
         run: |
           git config user.name "arena-bot"
@@ -65,3 +91,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run deploy.yml --ref main
+
+      - name: 失败摘要
+        if: failure()
+        run: |
+          echo "::error::Daily Sync 失败。先看 fetch-aa 日志里的『失败：』行：410=端点退役 / 401=key 失效 / 403=需 Pro 订阅 / 429=配额耗尽 / 『上游契约变更』=AA 改了字段。"
+          echo "::error::本地体检命令：npm run check:aa（只探端点与字段，不写数据）"

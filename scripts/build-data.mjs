@@ -1,15 +1,21 @@
 /**
  * build-data.mjs — 数据流水线编排：归一化 → 校验 → 落库
  *
- * 输入：.tmp/raw/{today}/{boardId}.json（fetch-hf.mjs 产物，已归一化）
- * 数据源：HF lmarena-ai/leaderboard-dataset（CC BY 4.0）
+ * 输入：.tmp/raw-aa/{today}/{boardId}.json（fetch-aa.mjs 产物，默认源）
+ *      或 .tmp/raw/{today}/（DATA_SOURCE=lmarena 时读 fetch-hf.mjs 产物）
  *
  * 输出：
- *   data/latest/{boardId}.json    站点唯一数据源（校验通过才覆盖）
- *   data/snapshots/{today}/{boardId}.json
- *   data/history/{boardId}.jsonl  二级榜单 top50 趋势（追加）
- *   data/index.json               榜单目录
- *   data/status.json              健康状态/新鲜度
+ *   data-aa/latest/{boardId}.json    站点唯一数据源（校验通过才覆盖）
+ *   data-aa/snapshots/{today}/      二级榜每日快照
+ *   data-aa/history/{boardId}.jsonl 二级榜 top50 趋势（追加）
+ *   data-aa/index.json              榜单目录
+ *   data-aa/status.json             健康状态 / 新鲜度 / 逐榜成功时间
+ *
+ * 2026-11-09 稳定性改造：
+ *   - 契约版本写进 meta，字段换代那一轮跳过「数量波动」误判（旧数据口径不可比）
+ *   - 失败榜的 index 条目保留上一次的 count/date/topModel，不再置 null 假装没数据
+ *   - status.json 记录逐榜 lastSuccessAt + failedBoards
+ *   - **任一部分失败也退出码 1**：旧版只有「全军覆没」才红灯，11-05~08 就是这么静默的
  */
 import { readFile, writeFile, mkdir, readdir, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -31,6 +37,7 @@ const cfg = USE_AA
   : await import('./boards.config.mjs');
 const BOARDS = cfg.BOARDS;
 const SOURCE = cfg.SOURCE;
+const CONTRACT_VERSION = cfg.CONTRACT_VERSION ?? null;
 const rawDir = USE_AA ? `${ROOT}.tmp/raw-aa/${today}/` : `${ROOT}.tmp/raw/${today}/`;
 // AA 模式写到独立目录：两套榜的 id 不同，但孤儿清理会误删对方的数据，必须物理隔离
 const dataDir = USE_AA ? `${ROOT}data-aa/` : `${ROOT}data/`;
@@ -73,13 +80,15 @@ async function main() {
   let okCount = 0;
   let failCount = 0;
   const nowIso = new Date().toISOString();
+  const prevIndex = await readJson(`${dataDir}index.json`);
+  const prevStatus = await readJson(`${dataDir}status.json`);
 
   for (const b of BOARDS) {
     const rawFile = `${rawDir}${b.id}.json`;
     const raw = await readJson(rawFile);
 
     if (!raw || !Array.isArray(raw.models) || raw.models.length === 0) {
-      boardStatus[b.id] = { ok: false, error: '本轮抓取无数据（subset/category 缺失或下载失败）', warnings: [] };
+      boardStatus[b.id] = { ok: false, error: '本轮抓取无数据（字段下架或抓取失败，见 fetch-aa 日志）', warnings: [] };
       failCount++;
       console.log(`✗ ${b.id}：本轮无数据`);
       continue;
@@ -87,15 +96,17 @@ async function main() {
 
     const models = raw.models;
     const prev = await readJson(`${dataDir}latest/${b.id}.json`);
+    // 上游契约换代时，模型数天然会大幅变化，跳过「环比 30%」误判；日常仍强制校验。
+    const countShiftOk = USE_AA && prev?.meta?.contractVersion !== CONTRACT_VERSION;
 
     const { errors, warnings } = validateBoard({
       boardId: b.id,
       scale: b.scale,
       models,
       prev,
-      // AA 的 LLM 端点无对战次数；text-to-speech 端点也只有 elo/rank/ci95，
-      // 这两类跳过 votes 必填校验。其余媒体端点有 appearances，仍强制校验。
-      votesOptional: USE_AA && (b.src === 'llm' || b.src === 'text-to-speech'),
+      // AA 免费层所有端点都不提供对战次数（LLM 无、媒体端点也不再给 appearances）
+      votesOptional: USE_AA,
+      countShiftOk,
     });
     if (errors.length) {
       boardStatus[b.id] = { ok: false, error: errors[0], warnings };
@@ -119,15 +130,17 @@ async function main() {
         dataDate,
         totalVotes: raw.totalVotes ?? null,
         modelCount: models.length,
-        // CC BY 4.0 署名所需：源、许可证、许可证链接（页脚据此渲染署名块）
+        // 署名所需：源、许可证、许可证链接（页脚据此渲染署名块）
         source: SOURCE.publisher,
         sourceUrl: SOURCE.url,
         sourceConfig: raw.config ?? raw.src ?? null,
         license: SOURCE.license,
         licenseUrl: SOURCE.licenseUrl,
-        // AA 榜的计量单位与口径说明，LMArena 榜为 null
         unit: raw.unit || null,
         note: b.note || null,
+        // 契约版本 + 取分字段：下次上游改结构时能定位是哪个口径的数据
+        contractVersion: raw.contractVersion ?? CONTRACT_VERSION,
+        field: raw.field ?? null,
       },
       models,
     };
@@ -149,8 +162,10 @@ async function main() {
     boardStatus[b.id] = { ok: true, count: models.length, warnings };
     boardDataDates[b.id] = dataDate;
     okCount++;
-    console.log(`✓ ${b.id}（${b.name}）${models.length} 个模型${warnings.length ? ` ⚠ ${warnings[0]}` : ''}`);
+    console.log(`✓ ${b.id}（${b.name}）${models.length} 个模型${warnings.length ? ` ⚠ ${warnings[0]}` : ''}${countShiftOk ? ' · 契约换代跳过数量环比' : ''}`);
   }
+
+  const failedBoards = BOARDS.filter((b) => !boardStatus[b.id]?.ok).map((b) => b.id);
 
   // index.json
   const index = {
@@ -159,6 +174,7 @@ async function main() {
     groups: [...new Set(BOARDS.map((b) => b.group))],
     boards: BOARDS.map((b) => {
       const st = boardStatus[b.id];
+      const old = prevIndex?.boards?.find((x) => x.id === b.id);
       return {
         id: b.id,
         name: b.name,
@@ -166,10 +182,11 @@ async function main() {
         scale: b.scale,
         parent: b.parent ?? null,
         isBoard: !b.parent,
-        modelCount: st?.ok ? st.count : null,
-        updatedAt: st?.ok ? nowIso : null,
-        dataDate: st?.ok ? boardDataDates[b.id] ?? null : null,
-        topModel: topModels[b.id] || null,
+        // 失败榜保留上一次的值，不置 null（否则前端会把它显示成"从未同步"）
+        modelCount: st?.ok ? st.count : old?.modelCount ?? null,
+        updatedAt: st?.ok ? nowIso : old?.updatedAt ?? null,
+        dataDate: st?.ok ? boardDataDates[b.id] ?? null : old?.dataDate ?? null,
+        topModel: st?.ok ? topModels[b.id] || null : old?.topModel ?? null,
         unit: b.unit || null,
         note: b.note || null,
       };
@@ -178,8 +195,7 @@ async function main() {
   if (okCount > 0) {
     await writeFile(`${dataDir}index.json`, JSON.stringify(index, null, 1), 'utf8');
 
-    // 清理孤儿文件：换源后旧榜单（如图像编辑的 16 个细分榜）已下线，
-    // latest 里的残留会跟着 sync-web-data 部署上线，必须清掉
+    // 清理孤儿文件：换源 / 榜单下线后，latest 里的残留会跟着 sync-web-data 部署上线，必须清掉
     try {
       const valid = new Set(BOARDS.map((b) => b.id));
       for (const f of await readdir(`${dataDir}latest`)) {
@@ -208,16 +224,25 @@ async function main() {
 
   // status.json
   const anyOk = okCount > 0;
-  const prevStatus = await readJson(`${dataDir}status.json`);
   const lastSuccess = anyOk ? nowIso : prevStatus?.lastSuccess || null;
-  const stale = !lastSuccess || Date.now() - new Date(lastSuccess).getTime() > 3 * 86400_000;
+  const stale = !lastSuccess || Date.now() - new Date(lastSuccess).getTime() > 2 * 86400_000;
   const status = {
     lastSuccess,
     lastAttempt: nowIso,
     stale,
-    lastError: anyOk ? null : '本次全部榜单抓取/校验失败，页面展示上一次成功的数据',
+    contractVersion: CONTRACT_VERSION,
+    lastError: failedBoards.length
+      ? `本次 ${failedBoards.length}/${BOARDS.length} 个榜失败：${failedBoards.join(', ')}`
+      : null,
+    failedBoards,
     source: { publisher: SOURCE.publisher, url: SOURCE.url, license: SOURCE.license, licenseUrl: SOURCE.licenseUrl },
-    boards: Object.fromEntries(BOARDS.map((b) => [b.id, boardStatus[b.id] || { ok: false, error: '未处理' }])),
+    boards: Object.fromEntries(BOARDS.map((b) => {
+      const st = boardStatus[b.id] || { ok: false, error: '未处理' };
+      return [b.id, {
+        ...st,
+        lastSuccessAt: st.ok ? nowIso : (prevStatus?.boards?.[b.id]?.lastSuccessAt ?? null),
+      }];
+    })),
     snapshotRetentionDays: 45,
     repoSizeMB: await dirSizeMB(dataDir),
   };
@@ -228,8 +253,9 @@ async function main() {
   await writeFile(`${dataDir}status.json`, JSON.stringify(status, null, 1), 'utf8');
 
   console.log(`\n[build-data] 成功 ${okCount} / 失败 ${failCount}；清理过期快照 ${removed} 天；${USE_AA ? 'data-aa' : 'data'}/ 体积 ${status.repoSizeMB}MB`);
-  if (!anyOk) {
-    console.error('[build-data] 本次无任何榜单成功，退出码 1（保留旧数据，触发告警邮件）');
+  // 部分失败也必须红灯：旧版只在「全军覆没」时退出 1，会让坏数据静默混过 CI。
+  if (failedBoards.length) {
+    console.error(`[build-data] 失败的榜：${failedBoards.join(', ')}；退出码 1（保留旧数据，触发 CI 告警）`);
     process.exit(1);
   }
 }

@@ -2,7 +2,7 @@
  * validate.mjs — 榜单数据校验（6 重）
  * 任一 error 即判定该榜单本次失败：不覆盖 latest，写 status.json，前端显示陈旧提示。
  */
-export function validateBoard({ boardId, scale, models, prev, votesOptional = false }) {
+export function validateBoard({ boardId, scale, models, prev, votesOptional = false, countShiftOk = false }) {
   const errors = [];
   const warnings = [];
 
@@ -12,7 +12,9 @@ export function validateBoard({ boardId, scale, models, prev, votesOptional = fa
   }
 
   // 2. 与上日数量差异 < 30%
-  if (prev && Array.isArray(prev.models) && prev.models.length > 0) {
+  //    countShiftOk：上游契约换代那一轮（字段/口径全变）模型数天然会大变，
+  //    由 build-data.mjs 比较 meta.contractVersion 后置 true，只跳过这一项，其余 5 项照验。
+  if (!countShiftOk && prev && Array.isArray(prev.models) && prev.models.length > 0) {
     const diff = Math.abs(models.length - prev.models.length) / prev.models.length;
     if (diff >= 0.3) {
       errors.push(`模型数异常波动：${prev.models.length} → ${models.length}（${(diff * 100).toFixed(0)}%）`);
