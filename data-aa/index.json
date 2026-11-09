@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-09T09:20:58.812Z",
+ "generatedAt": "2026-11-09T23:28:10.502Z",
  "source": {
   "publisher": "Artificial Analysis",
   "url": "https://artificialanalysis.ai",
@@ -20,13 +20,13 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 110,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 118,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
-    "name": "Gemini 4 Carbon (High)",
-    "org": "Google",
-    "score": 60
+    "name": "Claude Fable 5.2 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 64.6
    },
    "unit": "分",
    "note": "AA 智能指数 v5.0 综合口径；免费层仅部分模型已完成重测"
@@ -38,13 +38,13 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 121,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 129,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
-    "name": "Gemini 4 Carbon (High)",
-    "org": "Google",
-    "score": 62.6
+    "name": "Claude Fable 5.2 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 64.7
    },
    "unit": "分",
    "note": "AA 六项能力指数之一；缺任一依赖评测的模型为 null，不参与排名"
@@ -56,13 +56,13 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 125,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 133,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
-    "name": "Claude Opus 5.5 (Max, Default Fallback)",
+    "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
-    "score": 61.4
+    "score": 67.4
    },
    "unit": "分",
    "note": "AA 六项能力指数之一"
@@ -74,13 +74,13 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 121,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 129,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
-    "name": "Gemini 4 Carbon (High)",
-    "org": "Google",
-    "score": 62
+    "name": "Claude Fable 5.2 (Max, Default Fallback)",
+    "org": "Anthropic",
+    "score": 63.3
    },
    "unit": "分",
    "note": "AA 六项能力指数之一"
@@ -92,8 +92,8 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 94,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 97,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
@@ -110,13 +110,13 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 110,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 118,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
-    "name": "Claude Opus 5.5 (Max, Default Fallback)",
+    "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
-    "score": 65.3
+    "score": 72.6
    },
    "unit": "分",
    "note": "AA 六项能力指数之一"
@@ -128,13 +128,13 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 121,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 129,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
-    "name": "Claude Opus 5.5 (Max, Default Fallback)",
+    "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
-    "score": 60.3
+    "score": 66.5
    },
    "unit": "分",
    "note": "AA 六项能力指数之一"
@@ -147,7 +147,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 108,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "GPT Image 2.6 Sunburst (max)",
@@ -165,7 +165,7 @@
    "parent": "aa-arena-image",
    "isBoard": false,
    "modelCount": 79,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "GPT Image 2.6 Sunburst (max)",
@@ -182,13 +182,13 @@
    "scale": "elo",
    "parent": null,
    "isBoard": true,
-   "modelCount": 38,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 39,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Utopai X",
     "org": "Utopai Studios",
-    "score": 1154
+    "score": 1155
    },
    "unit": "ELO",
    "note": null
@@ -200,13 +200,13 @@
    "scale": "elo",
    "parent": "aa-arena-video",
    "isBoard": false,
-   "modelCount": 37,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 38,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "HeyGen Video 1",
     "org": "HeyGen",
-    "score": 1145
+    "score": 1146
    },
    "unit": "ELO",
    "note": null
@@ -219,7 +219,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 104,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Eleven v4",
@@ -236,8 +236,8 @@
    "scale": "price",
    "parent": null,
    "isBoard": true,
-   "modelCount": 447,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 454,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "North Mini Code",
@@ -254,8 +254,8 @@
    "scale": "price",
    "parent": "aa-price",
    "isBoard": false,
-   "modelCount": 447,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 454,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "North Mini Code",
@@ -272,8 +272,8 @@
    "scale": "price",
    "parent": "aa-price",
    "isBoard": false,
-   "modelCount": 447,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 454,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "North Mini Code",
@@ -290,13 +290,13 @@
    "scale": "speed",
    "parent": null,
    "isBoard": true,
-   "modelCount": 378,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 379,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Celeris-1",
     "org": "Celeris",
-    "score": 1522.84
+    "score": 1488.05
    },
    "unit": "token/s",
    "note": "取 performance 的中位吞吐；performance_v3 是均值口径，不混用"
@@ -308,8 +308,8 @@
    "scale": "seconds",
    "parent": "aa-speed",
    "isBoard": false,
-   "modelCount": 378,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 379,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Gemini 2.5 Flash-Lite (Non-reasoning)",
@@ -326,8 +326,8 @@
    "scale": "seconds",
    "parent": "aa-speed",
    "isBoard": false,
-   "modelCount": 378,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 379,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Gemini 2.5 Flash-Lite (Non-reasoning)",
@@ -344,13 +344,13 @@
    "scale": "date",
    "parent": null,
    "isBoard": true,
-   "modelCount": 727,
-   "updatedAt": "2026-11-09T09:20:58.812Z",
+   "modelCount": 734,
+   "updatedAt": "2026-11-09T23:28:10.502Z",
    "dataDate": "2026-11-09",
    "topModel": {
-    "name": "Agnes 2.5 Pro Theta",
-    "org": "Sapiens AI",
-    "score": 20261107
+    "name": "Claude Fable 5.2 (Medium, Default Fallback)",
+    "org": "Anthropic",
+    "score": 20261109
    },
    "unit": null,
    "note": "按发布日期倒序；免费层列表分 4 页，已翻页合并"

@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-11-09T09:20:58.812Z",
- "lastAttempt": "2026-11-09T09:20:58.812Z",
+ "lastSuccess": "2026-11-09T23:28:10.502Z",
+ "lastAttempt": "2026-11-09T23:28:10.502Z",
  "stale": false,
  "contractVersion": "aa-v2-free-2026-11",
  "lastError": null,
@@ -14,123 +14,123 @@
  "boards": {
   "aa-intelligence": {
    "ok": true,
-   "count": 110,
+   "count": 118,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-cap-finance": {
    "ok": true,
-   "count": 121,
+   "count": 129,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-cap-strategy": {
    "ok": true,
-   "count": 125,
+   "count": 133,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-cap-legal": {
    "ok": true,
-   "count": 121,
+   "count": 129,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-cap-healthcare": {
    "ok": true,
-   "count": 94,
+   "count": 97,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-cap-engineering": {
    "ok": true,
-   "count": 110,
-   "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "count": 118,
+   "warnings": [
+    "top1 评分变化较大：65.3 → 72.6（11.2%）"
+   ],
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-cap-economics": {
    "ok": true,
-   "count": 121,
-   "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "count": 129,
+   "warnings": [
+    "top1 评分变化较大：60.3 → 66.5（10.3%）"
+   ],
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-arena-image": {
    "ok": true,
    "count": 108,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-arena-image-edit": {
    "ok": true,
    "count": 79,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-arena-video": {
    "ok": true,
-   "count": 38,
+   "count": 39,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-arena-t2v": {
    "ok": true,
-   "count": 37,
+   "count": 38,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-arena-speech": {
    "ok": true,
    "count": 104,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-price": {
    "ok": true,
-   "count": 447,
+   "count": 454,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-price-input": {
    "ok": true,
-   "count": 447,
+   "count": 454,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-price-output": {
    "ok": true,
-   "count": 447,
+   "count": 454,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-speed": {
    "ok": true,
-   "count": 378,
+   "count": 379,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-ttft": {
    "ok": true,
-   "count": 378,
-   "warnings": [
-    "top1 评分变化较大：645.03 → 0.31（-100.0%）"
-   ],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "count": 379,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-ttfa": {
    "ok": true,
-   "count": 378,
-   "warnings": [
-    "top1 评分变化较大：645.03 → 0.31（-100.0%）"
-   ],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "count": 379,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   },
   "aa-new": {
    "ok": true,
-   "count": 727,
+   "count": 734,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T09:20:58.812Z"
+   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 10.7
+ "repoSizeMB": 10.8
 }
