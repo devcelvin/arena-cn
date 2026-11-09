@@ -268,7 +268,10 @@ function buildBoard(rows, board) {
     .filter(Boolean)
     .filter((m) => m.name);
 
-  const asc = board.kind === 'price' || board.kind === 'blended'; // 越便宜越前
+  // 「越小越好」的量纲走升序：价格（含现算混合价）与秒数（首字/首答延迟）。
+  // 其余（指数 / ELO / 吞吐 / 发布日期）都是越大越好，降序。
+  // 按 scale 判断而非 kind：blended 与 price 同为 price 量纲，seconds 榜以前被误排成「最慢第一」。
+  const asc = board.scale === 'price' || board.scale === 'seconds';
   mapped.sort((a, b) => (asc ? a.score - b.score : b.score - a.score));
 
   return mapped.map((m, i) => ({
