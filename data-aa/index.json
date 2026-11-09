@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-09T08:55:03.970Z",
+ "generatedAt": "2026-11-09T08:59:36.617Z",
  "source": {
   "publisher": "Artificial Analysis",
   "url": "https://artificialanalysis.ai",
@@ -21,7 +21,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 110,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Gemini 4 Carbon (High)",
@@ -39,7 +39,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 121,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Gemini 4 Carbon (High)",
@@ -57,7 +57,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 125,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
@@ -75,7 +75,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 121,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Gemini 4 Carbon (High)",
@@ -93,7 +93,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 94,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
@@ -111,7 +111,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 110,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
@@ -129,7 +129,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 121,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
@@ -147,7 +147,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 108,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "GPT Image 2.6 Sunburst (max)",
@@ -165,7 +165,7 @@
    "parent": "aa-arena-image",
    "isBoard": false,
    "modelCount": 79,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "GPT Image 2.6 Sunburst (max)",
@@ -183,7 +183,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 38,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Utopai X",
@@ -201,7 +201,7 @@
    "parent": "aa-arena-video",
    "isBoard": false,
    "modelCount": 37,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "HeyGen Video 1",
@@ -219,7 +219,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 104,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Eleven v4",
@@ -237,7 +237,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 447,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "North Mini Code",
@@ -255,7 +255,7 @@
    "parent": "aa-price",
    "isBoard": false,
    "modelCount": 447,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "North Mini Code",
@@ -273,7 +273,7 @@
    "parent": "aa-price",
    "isBoard": false,
    "modelCount": 447,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "North Mini Code",
@@ -291,7 +291,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 378,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Celeris-1",
@@ -309,7 +309,7 @@
    "parent": "aa-speed",
    "isBoard": false,
    "modelCount": 378,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
@@ -327,7 +327,7 @@
    "parent": "aa-speed",
    "isBoard": false,
    "modelCount": 378,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Claude Opus 5.5 (Max, Default Fallback)",
@@ -345,7 +345,7 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 727,
-   "updatedAt": "2026-11-09T08:55:03.970Z",
+   "updatedAt": "2026-11-09T08:59:36.617Z",
    "dataDate": "2026-11-09",
    "topModel": {
     "name": "Agnes 2.5 Pro Theta",
