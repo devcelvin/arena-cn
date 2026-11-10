@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-11-09T23:28:10.502Z",
- "lastAttempt": "2026-11-09T23:28:10.502Z",
+ "lastSuccess": "2026-11-10T20:54:06.055Z",
+ "lastAttempt": "2026-11-10T20:54:06.055Z",
  "stale": false,
  "contractVersion": "aa-v2-free-2026-11",
  "lastError": null,
@@ -14,123 +14,121 @@
  "boards": {
   "aa-intelligence": {
    "ok": true,
-   "count": 118,
+   "count": 119,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-cap-finance": {
    "ok": true,
-   "count": 129,
+   "count": 130,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-cap-strategy": {
    "ok": true,
-   "count": 133,
+   "count": 134,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-cap-legal": {
    "ok": true,
-   "count": 129,
+   "count": 130,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-cap-healthcare": {
    "ok": true,
-   "count": 97,
-   "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "count": 100,
+   "warnings": [
+    "top1 评分变化较大：57.9 → 65.4（13.0%）"
+   ],
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-cap-engineering": {
    "ok": true,
-   "count": 118,
-   "warnings": [
-    "top1 评分变化较大：65.3 → 72.6（11.2%）"
-   ],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "count": 119,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-cap-economics": {
    "ok": true,
-   "count": 129,
-   "warnings": [
-    "top1 评分变化较大：60.3 → 66.5（10.3%）"
-   ],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "count": 130,
+   "warnings": [],
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-arena-image": {
    "ok": true,
    "count": 108,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-arena-image-edit": {
    "ok": true,
    "count": 79,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-arena-video": {
    "ok": true,
    "count": 39,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-arena-t2v": {
    "ok": true,
    "count": 38,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-arena-speech": {
    "ok": true,
    "count": 104,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-price": {
    "ok": true,
    "count": 454,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-price-input": {
    "ok": true,
    "count": 454,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-price-output": {
    "ok": true,
    "count": 454,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-speed": {
    "ok": true,
-   "count": 379,
+   "count": 386,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-ttft": {
    "ok": true,
-   "count": 379,
+   "count": 386,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-ttfa": {
    "ok": true,
-   "count": 379,
+   "count": 386,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   },
   "aa-new": {
    "ok": true,
    "count": 734,
    "warnings": [],
-   "lastSuccessAt": "2026-11-09T23:28:10.502Z"
+   "lastSuccessAt": "2026-11-10T20:54:06.055Z"
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 10.8
+ "repoSizeMB": 11.7
 }
