@@ -1,6 +1,6 @@
 {
- "lastSuccess": "2026-11-13T20:55:36.272Z",
- "lastAttempt": "2026-11-13T20:55:36.272Z",
+ "lastSuccess": "2026-11-14T19:15:34.136Z",
+ "lastAttempt": "2026-11-14T19:15:34.136Z",
  "stale": false,
  "contractVersion": "aa-v2-free-2026-11",
  "lastError": null,
@@ -16,117 +16,117 @@
    "ok": true,
    "count": 128,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-cap-finance": {
    "ok": true,
    "count": 137,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-cap-strategy": {
    "ok": true,
    "count": 142,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-cap-legal": {
    "ok": true,
    "count": 137,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-cap-healthcare": {
    "ok": true,
    "count": 102,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-cap-engineering": {
    "ok": true,
    "count": 128,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-cap-economics": {
    "ok": true,
    "count": 137,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-arena-image": {
    "ok": true,
    "count": 114,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-arena-image-edit": {
    "ok": true,
    "count": 84,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-arena-video": {
    "ok": true,
    "count": 40,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-arena-t2v": {
    "ok": true,
    "count": 39,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-arena-speech": {
    "ok": true,
    "count": 105,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-price": {
    "ok": true,
-   "count": 457,
+   "count": 456,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-price-input": {
    "ok": true,
-   "count": 457,
+   "count": 456,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-price-output": {
    "ok": true,
-   "count": 457,
+   "count": 456,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-speed": {
    "ok": true,
-   "count": 388,
+   "count": 387,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-ttft": {
    "ok": true,
-   "count": 388,
+   "count": 387,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-ttfa": {
    "ok": true,
-   "count": 388,
+   "count": 387,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   },
   "aa-new": {
    "ok": true,
    "count": 741,
    "warnings": [],
-   "lastSuccessAt": "2026-11-13T20:55:36.272Z"
+   "lastSuccessAt": "2026-11-14T19:15:34.136Z"
   }
  },
  "snapshotRetentionDays": 45,
- "repoSizeMB": 14.7
+ "repoSizeMB": 15.7
 }
