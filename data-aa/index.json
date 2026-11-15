@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-14T19:15:34.136Z",
+ "generatedAt": "2026-11-15T19:50:31.553Z",
  "source": {
   "publisher": "Artificial Analysis",
   "url": "https://artificialanalysis.ai",
@@ -21,8 +21,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 128,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -39,8 +39,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 137,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -57,8 +57,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 142,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -75,8 +75,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 137,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -93,8 +93,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 102,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -111,8 +111,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 128,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -129,8 +129,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 137,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -147,8 +147,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 114,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "GPT Image 2.6 Sunburst (max)",
     "org": "OpenAI",
@@ -165,8 +165,8 @@
    "parent": "aa-arena-image",
    "isBoard": false,
    "modelCount": 84,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "GPT Image 2.6 Sunburst (max)",
     "org": "OpenAI",
@@ -183,8 +183,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 40,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Utopai X",
     "org": "Utopai Studios",
@@ -201,8 +201,8 @@
    "parent": "aa-arena-video",
    "isBoard": false,
    "modelCount": 39,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "HeyGen Video 1",
     "org": "HeyGen",
@@ -219,8 +219,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 105,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Eleven v4",
     "org": "ElevenLabs",
@@ -237,8 +237,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 456,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "North Mini Code",
     "org": "Cohere",
@@ -255,8 +255,8 @@
    "parent": "aa-price",
    "isBoard": false,
    "modelCount": 456,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "North Mini Code",
     "org": "Cohere",
@@ -273,8 +273,8 @@
    "parent": "aa-price",
    "isBoard": false,
    "modelCount": 456,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "North Mini Code",
     "org": "Cohere",
@@ -291,12 +291,12 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 387,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Celeris-1",
     "org": "Celeris",
-    "score": 1486.58
+    "score": 1486.23
    },
    "unit": "token/s",
    "note": "取 performance 的中位吞吐；performance_v3 是均值口径，不混用"
@@ -309,8 +309,8 @@
    "parent": "aa-speed",
    "isBoard": false,
    "modelCount": 387,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Gemini 2.5 Flash-Lite (Non-reasoning)",
     "org": "Google",
@@ -327,8 +327,8 @@
    "parent": "aa-speed",
    "isBoard": false,
    "modelCount": 387,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Gemini 2.5 Flash-Lite (Non-reasoning)",
     "org": "Google",
@@ -345,8 +345,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 741,
-   "updatedAt": "2026-11-14T19:15:34.136Z",
-   "dataDate": "2026-11-14",
+   "updatedAt": "2026-11-15T19:50:31.553Z",
+   "dataDate": "2026-11-15",
    "topModel": {
     "name": "Gemini 4 Hydrogen (Low)",
     "org": "Google",
