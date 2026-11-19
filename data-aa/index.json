@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-18T22:07:36.516Z",
+ "generatedAt": "2026-11-19T22:17:19.182Z",
  "source": {
   "publisher": "Artificial Analysis",
   "url": "https://artificialanalysis.ai",
@@ -20,9 +20,9 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 155,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "modelCount": 156,
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -39,8 +39,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 164,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Gemini 4 Neon (Xhigh)",
     "org": "Google",
@@ -57,8 +57,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 168,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -75,8 +75,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 164,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Gemini 4 Neon (Xhigh)",
     "org": "Google",
@@ -92,9 +92,9 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 113,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "modelCount": 122,
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -110,9 +110,9 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 155,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "modelCount": 156,
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -129,8 +129,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 164,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -147,8 +147,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 116,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "GPT Image 2.6 Sunburst (max)",
     "org": "OpenAI",
@@ -165,8 +165,8 @@
    "parent": "aa-arena-image",
    "isBoard": false,
    "modelCount": 86,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "MAI-Image-2.7",
     "org": "Microsoft AI",
@@ -183,8 +183,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 40,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Utopai X",
     "org": "Utopai Studios",
@@ -201,8 +201,8 @@
    "parent": "aa-arena-video",
    "isBoard": false,
    "modelCount": 40,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "HeyGen Video 1",
     "org": "HeyGen",
@@ -219,12 +219,12 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 105,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Eleven v4",
     "org": "ElevenLabs",
-    "score": 1341
+    "score": 1340
    },
    "unit": "ELO",
    "note": null
@@ -236,9 +236,9 @@
    "scale": "price",
    "parent": null,
    "isBoard": true,
-   "modelCount": 475,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "modelCount": 467,
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "North Mini Code",
     "org": "Cohere",
@@ -254,9 +254,9 @@
    "scale": "price",
    "parent": "aa-price",
    "isBoard": false,
-   "modelCount": 475,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "modelCount": 467,
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "North Mini Code",
     "org": "Cohere",
@@ -272,9 +272,9 @@
    "scale": "price",
    "parent": "aa-price",
    "isBoard": false,
-   "modelCount": 475,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "modelCount": 467,
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "North Mini Code",
     "org": "Cohere",
@@ -290,13 +290,13 @@
    "scale": "speed",
    "parent": null,
    "isBoard": true,
-   "modelCount": 401,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "modelCount": 393,
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Celeris-1",
     "org": "Celeris",
-    "score": 1564.26
+    "score": 1548.81
    },
    "unit": "token/s",
    "note": "取 performance 的中位吞吐；performance_v3 是均值口径，不混用"
@@ -308,13 +308,13 @@
    "scale": "seconds",
    "parent": "aa-speed",
    "isBoard": false,
-   "modelCount": 401,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "modelCount": 393,
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Gemini 2.5 Flash-Lite (Non-reasoning)",
     "org": "Google",
-    "score": 0.31
+    "score": 0.3
    },
    "unit": "秒",
    "note": null
@@ -326,13 +326,13 @@
    "scale": "seconds",
    "parent": "aa-speed",
    "isBoard": false,
-   "modelCount": 401,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "modelCount": 393,
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Gemini 2.5 Flash-Lite (Non-reasoning)",
     "org": "Google",
-    "score": 0.31
+    "score": 0.3
    },
    "unit": "秒",
    "note": null
@@ -345,8 +345,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 763,
-   "updatedAt": "2026-11-18T22:07:36.516Z",
-   "dataDate": "2026-11-18",
+   "updatedAt": "2026-11-19T22:17:19.182Z",
+   "dataDate": "2026-11-19",
    "topModel": {
     "name": "Gemini 4 Neon (Low)",
     "org": "Google",
