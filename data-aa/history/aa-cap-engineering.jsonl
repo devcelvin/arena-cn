@@ -598,3 +598,53 @@
 {"d":"11-20","k":"Qwen4 Max","r":48,"s":50.1,"v":null}
 {"d":"11-20","k":"GPT-6 Astra (Low)","r":49,"s":49.8,"v":null}
 {"d":"11-20","k":"Muse Wonder (Max)","r":50,"s":49.6,"v":null}
+{"d":"11-21","k":"Claude Fable 5.2 (Max, Default Fallback)","r":1,"s":72.6,"v":null}
+{"d":"11-21","k":"Claude Fable 5.2 (Xhigh, Default Fallback)","r":2,"s":70.2,"v":null}
+{"d":"11-21","k":"Claude Fable 5.2 (High, Default Fallback)","r":3,"s":69.6,"v":null}
+{"d":"11-21","k":"Gemini 4 Neon (Xhigh)","r":4,"s":66.8,"v":null}
+{"d":"11-21","k":"GPT-6.2 Astra (Max)","r":5,"s":66.6,"v":null}
+{"d":"11-21","k":"Claude Opus 5.5 (Max, Default Fallback)","r":6,"s":65.3,"v":null}
+{"d":"11-21","k":"Gemini 4 Carbon (High)","r":7,"s":65.3,"v":null}
+{"d":"11-21","k":"GPT-6.2 Astra (Xhigh)","r":8,"s":65.1,"v":null}
+{"d":"11-21","k":"Gemini 4 Neon (High)","r":9,"s":64.9,"v":null}
+{"d":"11-21","k":"Claude Fable 5.2 (Medium, Default Fallback)","r":10,"s":64.7,"v":null}
+{"d":"11-21","k":"Gemini 4 Carbon (Medium)","r":11,"s":63.9,"v":null}
+{"d":"11-21","k":"GPT-6.2 Astra (High)","r":12,"s":63.6,"v":null}
+{"d":"11-21","k":"Claude Opus 5.5 (Xhigh, Default Fallback)","r":13,"s":62.9,"v":null}
+{"d":"11-21","k":"GPT-6 Astra (Max)","r":14,"s":61.8,"v":null}
+{"d":"11-21","k":"Claude Fable 5.2 (Low, Default Fallback)","r":15,"s":61.5,"v":null}
+{"d":"11-21","k":"GPT-6.2 Sol (Max)","r":16,"s":61.2,"v":null}
+{"d":"11-21","k":"Gemini 4 Neon (Medium)","r":17,"s":60.9,"v":null}
+{"d":"11-21","k":"GPT-6 Astra (Xhigh)","r":18,"s":60.4,"v":null}
+{"d":"11-21","k":"Gemini 4 Carbon (Low)","r":19,"s":60.2,"v":null}
+{"d":"11-21","k":"Gemini 4 Hydrogen (Xhigh)","r":20,"s":60.1,"v":null}
+{"d":"11-21","k":"GPT-6 Astra (High)","r":21,"s":60,"v":null}
+{"d":"11-21","k":"GPT-6.2 Sol (Xhigh)","r":22,"s":59.9,"v":null}
+{"d":"11-21","k":"GPT-6.2 Astra (Medium)","r":23,"s":59.9,"v":null}
+{"d":"11-21","k":"GPT-6.1 Sol (Max)","r":24,"s":59.4,"v":null}
+{"d":"11-21","k":"GPT-6.2 Sol (High)","r":25,"s":58.7,"v":null}
+{"d":"11-21","k":"Claude Sonnet 5.5 (Max, Default Fallback)","r":26,"s":58.5,"v":null}
+{"d":"11-21","k":"Claude Opus 5.5 (High, Default Fallback)","r":27,"s":57.8,"v":null}
+{"d":"11-21","k":"GPT-6.1 Sol (Xhigh)","r":28,"s":57.5,"v":null}
+{"d":"11-21","k":"Gemini 4 Argon (High)","r":29,"s":57.3,"v":null}
+{"d":"11-21","k":"Claude Fable 5.1 (Xhigh, Default Fallback)","r":30,"s":57.2,"v":null}
+{"d":"11-21","k":"Gemini 4 Hydrogen (High)","r":31,"s":57,"v":null}
+{"d":"11-21","k":"GPT-6 Astra (Medium)","r":32,"s":56.8,"v":null}
+{"d":"11-21","k":"Claude Fable 5.1 (Max, Default Fallback)","r":33,"s":56.7,"v":null}
+{"d":"11-21","k":"GPT-6.2 Sol (Medium)","r":34,"s":56.2,"v":null}
+{"d":"11-21","k":"GPT-6.1 Sol (High)","r":35,"s":55.4,"v":null}
+{"d":"11-21","k":"Muse Wonder Full (Max)","r":36,"s":55.3,"v":null}
+{"d":"11-21","k":"GPT-6.1 Terra (Max)","r":37,"s":54.7,"v":null}
+{"d":"11-21","k":"Claude Fable 5.1 (High, Default Fallback)","r":38,"s":54.3,"v":null}
+{"d":"11-21","k":"Claude Sonnet 5.5 (Xhigh, Default Fallback)","r":39,"s":53.8,"v":null}
+{"d":"11-21","k":"Claude Opus 5.5 (Medium, Default Fallback)","r":40,"s":53.7,"v":null}
+{"d":"11-21","k":"Gemini 4 Argon (Medium)","r":41,"s":52.7,"v":null}
+{"d":"11-21","k":"GPT-6.1 Sol (Medium)","r":42,"s":52.1,"v":null}
+{"d":"11-21","k":"Gemini 4 Neon (Low)","r":43,"s":52,"v":null}
+{"d":"11-21","k":"Claude Opus 5 (Max)","r":44,"s":51.3,"v":null}
+{"d":"11-21","k":"Kimi K3.1 Pro","r":45,"s":50.9,"v":null}
+{"d":"11-21","k":"GPT-6.2 Astra (Low)","r":46,"s":50.5,"v":null}
+{"d":"11-21","k":"Claude Fable 5.1 (Medium, Default Fallback)","r":47,"s":50.2,"v":null}
+{"d":"11-21","k":"Qwen4 Max","r":48,"s":50.1,"v":null}
+{"d":"11-21","k":"GPT-6 Astra (Low)","r":49,"s":49.8,"v":null}
+{"d":"11-21","k":"Muse Wonder (Max)","r":50,"s":49.6,"v":null}

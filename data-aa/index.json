@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-20T21:52:47.296Z",
+ "generatedAt": "2026-11-21T20:35:42.470Z",
  "source": {
   "publisher": "Artificial Analysis",
   "url": "https://artificialanalysis.ai",
@@ -21,8 +21,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 157,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -38,9 +38,9 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 165,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "modelCount": 166,
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Gemini 4 Neon (Xhigh)",
     "org": "Google",
@@ -56,9 +56,9 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 169,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "modelCount": 170,
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -74,9 +74,9 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 165,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "modelCount": 166,
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Gemini 4 Neon (Xhigh)",
     "org": "Google",
@@ -93,8 +93,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 122,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -111,8 +111,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 157,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -128,9 +128,9 @@
    "scale": "index",
    "parent": null,
    "isBoard": true,
-   "modelCount": 165,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "modelCount": 166,
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Claude Fable 5.2 (Max, Default Fallback)",
     "org": "Anthropic",
@@ -147,12 +147,12 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 116,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "GPT Image 2.6 Sunburst (max)",
     "org": "OpenAI",
-    "score": 1261
+    "score": 1263
    },
    "unit": "ELO",
    "note": "免费层只给 ELO 与 ci_95，不提供对战次数与发布日期"
@@ -165,8 +165,8 @@
    "parent": "aa-arena-image",
    "isBoard": false,
    "modelCount": 86,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "MAI-Image-2.7",
     "org": "Microsoft AI",
@@ -183,12 +183,12 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 41,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Utopai X",
     "org": "Utopai Studios",
-    "score": 1154
+    "score": 1150
    },
    "unit": "ELO",
    "note": null
@@ -201,12 +201,12 @@
    "parent": "aa-arena-video",
    "isBoard": false,
    "modelCount": 40,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "HeyGen Video 1",
     "org": "HeyGen",
-    "score": 1145
+    "score": 1149
    },
    "unit": "ELO",
    "note": null
@@ -219,8 +219,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 106,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Eleven v4",
     "org": "ElevenLabs",
@@ -237,8 +237,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 467,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "North Mini Code",
     "org": "Cohere",
@@ -255,8 +255,8 @@
    "parent": "aa-price",
    "isBoard": false,
    "modelCount": 467,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "North Mini Code",
     "org": "Cohere",
@@ -273,8 +273,8 @@
    "parent": "aa-price",
    "isBoard": false,
    "modelCount": 467,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "North Mini Code",
     "org": "Cohere",
@@ -291,12 +291,12 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 394,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Celeris-1",
     "org": "Celeris",
-    "score": 1466.81
+    "score": 1478.49
    },
    "unit": "token/s",
    "note": "取 performance 的中位吞吐；performance_v3 是均值口径，不混用"
@@ -309,12 +309,12 @@
    "parent": "aa-speed",
    "isBoard": false,
    "modelCount": 394,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
-    "name": "Gemini 2.5 Flash-Lite (Non-reasoning)",
-    "org": "Google",
-    "score": 0.31
+    "name": "LFM3-VL-2B",
+    "org": "Liquid AI",
+    "score": 0.3
    },
    "unit": "秒",
    "note": null
@@ -327,8 +327,8 @@
    "parent": "aa-speed",
    "isBoard": false,
    "modelCount": 394,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Gemini 2.5 Flash-Lite (Non-reasoning)",
     "org": "Google",
@@ -345,8 +345,8 @@
    "parent": null,
    "isBoard": true,
    "modelCount": 764,
-   "updatedAt": "2026-11-20T21:52:47.296Z",
-   "dataDate": "2026-11-20",
+   "updatedAt": "2026-11-21T20:35:42.470Z",
+   "dataDate": "2026-11-21",
    "topModel": {
     "name": "Inkling 2 Mini",
     "org": "Thinking Machines",
