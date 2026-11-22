@@ -1048,3 +1048,53 @@
 {"d":"11-21","k":"Gemini 3.5 Flash (High)","r":48,"s":202.14,"v":null}
 {"d":"11-21","k":"GPT-4o (Nov '24)","r":49,"s":199.87,"v":null}
 {"d":"11-21","k":"Gemini 3.5 Flash (Medium)","r":50,"s":199.18,"v":null}
+{"d":"11-22","k":"Celeris-1","r":1,"s":1563.31,"v":null}
+{"d":"11-22","k":"Mercury 2.5","r":2,"s":670.54,"v":null}
+{"d":"11-22","k":"Muse Ember (Max)","r":3,"s":657.23,"v":null}
+{"d":"11-22","k":"Muse Ember (Xhigh)","r":4,"s":587.14,"v":null}
+{"d":"11-22","k":"Mercury 2","r":5,"s":534.55,"v":null}
+{"d":"11-22","k":"LFM3-VL-2B","r":6,"s":438.94,"v":null}
+{"d":"11-22","k":"LFM3-1.7B","r":7,"s":423.55,"v":null}
+{"d":"11-22","k":"Nemotron 3.5 Super VL","r":8,"s":417.94,"v":null}
+{"d":"11-22","k":"Gemini 3.5 Flash-Lite","r":9,"s":407.9,"v":null}
+{"d":"11-22","k":"Gemini 2.5 Flash-Lite (Reasoning)","r":10,"s":381.84,"v":null}
+{"d":"11-22","k":"Sarvam 105B (High)","r":11,"s":354.54,"v":null}
+{"d":"11-22","k":"Muse Spark 1.3 (Xhigh)","r":12,"s":338.78,"v":null}
+{"d":"11-22","k":"Nemotron 3.5 Lightning","r":13,"s":338.67,"v":null}
+{"d":"11-22","k":"Beam 1.0","r":14,"s":338.49,"v":null}
+{"d":"11-22","k":"Gemini 3.1 Flash-Lite","r":15,"s":330.83,"v":null}
+{"d":"11-22","k":"North Mini Code","r":16,"s":326.05,"v":null}
+{"d":"11-22","k":"NVIDIA Nemotron 3 Nano 30B A3B (Non-reasoning)","r":17,"s":315.32,"v":null}
+{"d":"11-22","k":"NVIDIA Nemotron 3 Nano 30B A3B (Reasoning)","r":18,"s":306.11,"v":null}
+{"d":"11-22","k":"GPT-5.4 mini (Xhigh)","r":19,"s":295.28,"v":null}
+{"d":"11-22","k":"DeepSeek V4.1 Flash (Non-reasoning)","r":20,"s":290.7,"v":null}
+{"d":"11-22","k":"GPT-4.1 nano","r":21,"s":285.34,"v":null}
+{"d":"11-22","k":"Gemini 2.5 Flash-Lite (Non-reasoning)","r":22,"s":282.51,"v":null}
+{"d":"11-22","k":"Muse Spark 1.2 (Xhigh)","r":23,"s":282.19,"v":null}
+{"d":"11-22","k":"Nemotron 3 Ultra 550B A55B (Reasoning)","r":24,"s":281.19,"v":null}
+{"d":"11-22","k":"Nova Micro","r":25,"s":280.03,"v":null}
+{"d":"11-22","k":"o3-mini","r":26,"s":271.67,"v":null}
+{"d":"11-22","k":"o3-mini (High)","r":27,"s":266.3,"v":null}
+{"d":"11-22","k":"gpt-oss-120b (Low)","r":28,"s":264.6,"v":null}
+{"d":"11-22","k":"Ministral 3 3B","r":29,"s":263.05,"v":null}
+{"d":"11-22","k":"gpt-oss-120b (High)","r":30,"s":262.76,"v":null}
+{"d":"11-22","k":"Muse Spark 1.1 (Xhigh)","r":31,"s":261.44,"v":null}
+{"d":"11-22","k":"Command A+","r":32,"s":248.6,"v":null}
+{"d":"11-22","k":"Qwen3.5 Omni Flash","r":33,"s":247.37,"v":null}
+{"d":"11-22","k":"Nemotron 3 Super 120B A12B (Reasoning)","r":34,"s":242.89,"v":null}
+{"d":"11-22","k":"Muse Spark Open (Xhigh)","r":35,"s":233.33,"v":null}
+{"d":"11-22","k":"Claude Haiku 5.5 (Max)","r":36,"s":232.21,"v":null}
+{"d":"11-22","k":"gpt-oss-20b (Low)","r":37,"s":230.88,"v":null}
+{"d":"11-22","k":"Gemini 4 Hydrogen (Low)","r":38,"s":229.56,"v":null}
+{"d":"11-22","k":"Qwen3 Coder 30B A3B Instruct","r":39,"s":227.24,"v":null}
+{"d":"11-22","k":"Gemini 3 Flash Preview (Non-reasoning)","r":40,"s":221.14,"v":null}
+{"d":"11-22","k":"DeepSeek V4.1 Flash (Max)","r":41,"s":219.03,"v":null}
+{"d":"11-22","k":"Gemini 2.5 Flash (Reasoning)","r":42,"s":213.42,"v":null}
+{"d":"11-22","k":"Gemini 4 Hydrogen (Medium)","r":43,"s":212.87,"v":null}
+{"d":"11-22","k":"GPT-5.4 mini (Medium)","r":44,"s":211.66,"v":null}
+{"d":"11-22","k":"Gemini 3 Flash Preview (Reasoning)","r":45,"s":211.07,"v":null}
+{"d":"11-22","k":"GPT-5 nano (Medium)","r":46,"s":208.6,"v":null}
+{"d":"11-22","k":"Gemini 3.6 Flash (High)","r":47,"s":207.64,"v":null}
+{"d":"11-22","k":"Gemini 3.5 Flash (Medium)","r":48,"s":206.41,"v":null}
+{"d":"11-22","k":"Gemini 4 Hydrogen (High)","r":49,"s":204.02,"v":null}
+{"d":"11-22","k":"Gemini 4 Hydrogen (Xhigh)","r":50,"s":203.45,"v":null}
