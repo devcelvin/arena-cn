@@ -1148,3 +1148,53 @@
 {"d":"11-24","k":"Solar Mini","r":48,"s":0.15,"v":null}
 {"d":"11-24","k":"Qwen3 14B (Non-reasoning)","r":49,"s":0.15,"v":null}
 {"d":"11-24","k":"Step 3.5 Flash 2603","r":50,"s":0.15,"v":null}
+{"d":"11-25","k":"North Mini Code","r":1,"s":0,"v":null}
+{"d":"11-25","k":"Gemma 3 4B Instruct","r":2,"s":0,"v":null}
+{"d":"11-25","k":"Gemma 3 27B Instruct","r":3,"s":0,"v":null}
+{"d":"11-25","k":"Gemma 3 12B Instruct","r":4,"s":0,"v":null}
+{"d":"11-25","k":"Command A+","r":5,"s":0,"v":null}
+{"d":"11-25","k":"Sarvam M (Reasoning, Based on Mistral Small 3.1)","r":6,"s":0,"v":null}
+{"d":"11-25","k":"Ling 3.0 Tiny","r":7,"s":0,"v":null}
+{"d":"11-25","k":"Tiny Aya Global","r":8,"s":0,"v":null}
+{"d":"11-25","k":"Gemma 3n E2B Instruct","r":9,"s":0,"v":null}
+{"d":"11-25","k":"Apriel-v1.5-15B-Thinker","r":10,"s":0,"v":null}
+{"d":"11-25","k":"K2 Horizon 375B A23B","r":11,"s":0,"v":null}
+{"d":"11-25","k":"Gemma 4 31B (Reasoning)","r":12,"s":0,"v":null}
+{"d":"11-25","k":"Gemma 3 1B Instruct","r":13,"s":0,"v":null}
+{"d":"11-25","k":"Gemini 2.0 Flash (experimental)","r":14,"s":0,"v":null}
+{"d":"11-25","k":"Grok 3 mini Reasoning (High)","r":15,"s":0,"v":null}
+{"d":"11-25","k":"Llama 3.1 Instruct 8B","r":16,"s":0.06,"v":null}
+{"d":"11-25","k":"Mistral Small 3","r":17,"s":0.06,"v":null}
+{"d":"11-25","k":"Nova Micro","r":18,"s":0.06,"v":null}
+{"d":"11-25","k":"Sarvam 105B (High)","r":19,"s":0.07,"v":null}
+{"d":"11-25","k":"NVIDIA Nemotron 3 Nano 30B A3B (Non-reasoning)","r":20,"s":0.09,"v":null}
+{"d":"11-25","k":"NVIDIA Nemotron 3 Nano 30B A3B (Reasoning)","r":21,"s":0.09,"v":null}
+{"d":"11-25","k":"gpt-oss-20b (High)","r":22,"s":0.09,"v":null}
+{"d":"11-25","k":"Nemotron 3.5 Lightning","r":23,"s":0.1,"v":null}
+{"d":"11-25","k":"Hy3-preview (Reasoning)","r":24,"s":0.1,"v":null}
+{"d":"11-25","k":"Hy3-preview (Non-reasoning)","r":25,"s":0.1,"v":null}
+{"d":"11-25","k":"Ministral 3 3B","r":26,"s":0.1,"v":null}
+{"d":"11-25","k":"Llama 3 Instruct 8B","r":27,"s":0.1,"v":null}
+{"d":"11-25","k":"NVIDIA Nemotron Nano 9B V2 (Non-reasoning)","r":28,"s":0.1,"v":null}
+{"d":"11-25","k":"Nova Lite","r":29,"s":0.11,"v":null}
+{"d":"11-25","k":"Mistral Small 3.2","r":30,"s":0.11,"v":null}
+{"d":"11-25","k":"Granite 4.2 8B","r":31,"s":0.11,"v":null}
+{"d":"11-25","k":"LFM3-1.7B","r":32,"s":0.11,"v":null}
+{"d":"11-25","k":"Ling 3.0 Flash","r":33,"s":0.11,"v":null}
+{"d":"11-25","k":"DeepSeek V4 Flash 0420 (Non-reasoning)","r":34,"s":0.12,"v":null}
+{"d":"11-25","k":"Mistral Small 3.1","r":35,"s":0.13,"v":null}
+{"d":"11-25","k":"Reka Flash 3","r":36,"s":0.13,"v":null}
+{"d":"11-25","k":"gpt-oss-20b (Low)","r":37,"s":0.13,"v":null}
+{"d":"11-25","k":"Phi-4 Mini Instruct","r":38,"s":0.13,"v":null}
+{"d":"11-25","k":"GPT-5 nano (Minimal)","r":39,"s":0.14,"v":null}
+{"d":"11-25","k":"GPT-5 nano (Medium)","r":40,"s":0.14,"v":null}
+{"d":"11-25","k":"GPT-5 nano (High)","r":41,"s":0.14,"v":null}
+{"d":"11-25","k":"MiMo-V2.5","r":42,"s":0.14,"v":null}
+{"d":"11-25","k":"Phi-4 Multimodal Instruct","r":43,"s":0.14,"v":null}
+{"d":"11-25","k":"DeepSeek V4 Flash 0420 (High)","r":44,"s":0.14,"v":null}
+{"d":"11-25","k":"DeepSeek V4 Flash 0420 (Max)","r":45,"s":0.14,"v":null}
+{"d":"11-25","k":"Qwen3 14B (Reasoning)","r":46,"s":0.15,"v":null}
+{"d":"11-25","k":"Ministral 3 8B","r":47,"s":0.15,"v":null}
+{"d":"11-25","k":"Solar Mini","r":48,"s":0.15,"v":null}
+{"d":"11-25","k":"Qwen3 14B (Non-reasoning)","r":49,"s":0.15,"v":null}
+{"d":"11-25","k":"Step 3.5 Flash 2603","r":50,"s":0.15,"v":null}
