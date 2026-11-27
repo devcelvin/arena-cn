@@ -6,6 +6,7 @@
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { CN_ORGS as SRC_CN_ORGS, ORG_ZH as SRC_ORG_ZH } from './org-map.mjs';
+import { validateBoard } from './validate.mjs';
 
 const ROOT = fileURLToPath(new URL('../web/', import.meta.url));
 const appCode = await readFile(ROOT + 'assets/app.js', 'utf8');
@@ -171,6 +172,45 @@ function itemsFrom(html, attr) {
   let m;
   while ((m = re.exec(html))) out.push({ dataset: { [attr === 'data-g' ? 'g' : 'b']: m[1] } });
   return out;
+}
+
+/* ============================================================
+   测试 8：静态页 ?b= 链接必须指向存在的榜（2026-11-27）
+   切源后 index.html / about.html 残留 aa-coding / chat-text-chinese /
+   image-text-to-image 三个死链，点击落到「暂无数据」。这里从 index.json
+   读真实榜 id 做校验，以后换源漏改链接会直接测试红。
+   ============================================================ */
+{
+  const boardIds = new Set();
+  try {
+    const idx = JSON.parse(await readFile(ROOT + 'data/index.json', 'utf8'));
+    (idx.boards || []).forEach((b) => boardIds.add(b.id));
+  } catch {
+    // 无 web/data 时跳过（本地未执行 sync-web-data.mjs 的场景）
+  }
+  if (boardIds.size) {
+    for (const page of ['index.html', 'about.html', '404.html']) {
+      let html = '';
+      try { html = await readFile(ROOT + page, 'utf8'); } catch { continue; }
+      const bad = [...html.matchAll(/href="index\.html\?b=([^"&]+)"/g)]
+        .map((m) => decodeURIComponent(m[1]))
+        .filter((id) => !boardIds.has(id));
+      check(`链接：${page} 无死链${bad.length ? `（${bad.join('/')}）` : ''}`, bad.length === 0);
+    }
+  }
+}
+
+/* ============================================================
+   测试 9：top1 波动告警阈值（2026-11-27）
+   seconds 榜 0.25→0.22 属正常噪声，不应告警；大跳仍需提示。
+   ============================================================ */
+{
+  const mk = (score) => [1, 2].map((rank) => ({ rank, key: `m${rank}`, name: `m${rank}`, score, org: 'X', votes: 1 }));
+  const prev = (score) => ({ models: mk(score) });
+  const q = (scale, a, b) => validateBoard({ boardId: 'x', scale, models: mk(a), prev: prev(b), votesOptional: true }).warnings;
+  check('告警：秒数榜 0.25→0.22 不误报', q('seconds', 0.22, 0.25).length === 0);
+  check('告警：秒数榜 0.3→0.15 仍提示', q('seconds', 0.15, 0.3).some((w) => w.includes('top1')));
+  check('告警：指数榜 50→44 仍提示', q('index', 44, 50).some((w) => w.includes('top1')));
 }
 
 /* ============================================================

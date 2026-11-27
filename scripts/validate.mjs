@@ -72,11 +72,15 @@ export function validateBoard({ boardId, scale, models, prev, votesOptional = fa
     errors.push(`${missing.length} 个模型缺少必填字段，首个：${missing[0].name || missing[0].key}`);
   }
 
-  // 6. top1 环比变化 < 10%（warning，不阻断——新模型登顶属正常）
+  // 6. top1 环比变化（warning，不阻断——新模型登顶属正常）
+  //    seconds 榜（首字/首答延迟）top1 常是 0.2~0.3 秒的小数，10% 相对阈值会把
+  //    0.25→0.22（差 0.03 秒）这种正常测量噪声报成 -12%，2026-11-22/26 已两次误报。
+  //    这类榜改看绝对波动 ≥0.1 秒；其他量纲维持原 10% 阈值。
   if (prev && prev.models && prev.models[0]) {
     const a = models[0].score;
     const b = prev.models[0].score;
-    if (b && Math.abs(a - b) / b >= 0.1) {
+    const shifted = scale === 'seconds' ? Math.abs(a - b) >= 0.1 : b && Math.abs(a - b) / b >= 0.1;
+    if (b && shifted) {
       warnings.push(`top1 评分变化较大：${b} → ${a}（${(((a - b) / b) * 100).toFixed(1)}%）`);
     }
   }
